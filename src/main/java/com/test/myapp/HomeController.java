@@ -1,4 +1,4 @@
-package com.localup.control;
+package com.test.myapp;
 
 import java.text.DateFormat;
 import java.util.Date;

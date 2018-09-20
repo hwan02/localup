@@ -1,4 +1,4 @@
-package com.test.myapp;
+package com.encore.test.dao;
 
 import javax.inject.Inject;
 

@@ -47,7 +47,6 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 spring-test/test-output/
-pom.xml
 /spring-*/build
 /src/asciidoc/build
 */target/*

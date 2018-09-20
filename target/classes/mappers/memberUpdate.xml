@@ -4,16 +4,19 @@
   <!--회원정보 수정-->
   <update id="mUpdate">
   	update member set member_pw=#{member_pw},
+					  member_zipcode=#{member_zipcode},
 					  member_addr=#{member_addr},
-					  member_tel=#{member_tel},member_pref=#{member_pref},
+					  member_detailedaddress=#{member_detailedaddress},
+					  member_tel=#{member_tel},
+					  member_pref=#{member_pref},
 					  member_intro=#{member_intro}
 					  where member_email=#{member_email}
   </update>
   
   	<!-- 회원정보 조회 -->
 	<select id="listAll" resultType="MemberUpdateVO">
-		select member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro
+		select member_email,member_pw,member_name,member_zipcode,member_addr, member_detailedaddress,member_tel,member_pref,member_intro
 		from member
-		order by member_email desc
+		order by member_email ASC
 	</select>
 </mapper>

@@ -4,24 +4,39 @@
 --member_email
 --member_pw
 --member_name
+--member_zipcode
 --member_addr
+--member_detailedaddress
 --member_tel
 --member_pref
 --member_intro
 
 drop table member;
-select * from MEMBER;
-
-create table member(
-	member_email varchar2(50)  constraint member_pk primary key,	--이메일 : 아이디
-	member_pw	 varchar2(20)  not null,							--비번
-	member_name	 varchar2(30)  not null,							--이름
-	member_addr  varchar2(200) not null,							--주소
-	member_tel	 varchar2(13)  not null,							--연락처
-	member_pref	 varchar2(50)  not null,							--선호지역
-	member_intro varchar2(300) null									--소개	
+/* 멤버 : 우편번호,주소,상세주소 추가*/
+CREATE TABLE member (
+	member_email VARCHAR2(50) NOT NULL, /* 이메일 */
+	member_pw VARCHAR2(20) NOT NULL, /* 회원PW */
+	member_name VARCHAR2(30) NOT NULL, /* 이름 */
+	member_zipcode VARCHAR2(50) NOT NULL, /* 우편번호 */
+	member_addr VARCHAR2(1000) NOT NULL, /*주소*/
+	member_detailedaddress VARCHAR2(1000) NOT NULL, /*상세주소*/
+	member_tel VARCHAR2(13) NOT NULL, /* 연락처 */
+	member_pref VARCHAR2(50), /* 선호지역 */
+	member_intro VARCHAR2(300) /* 소개 */
 );
 
-insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
-	values ('localup@gmail.com','123','가이드왕','서울시','01012345678','서울시 서초구','가이드왕 될사람');
+CREATE UNIQUE INDEX PK_member
+	ON member (
+		member_email ASC
+	);
+
+ALTER TABLE member
+	ADD
+		CONSTRAINT PK_member
+		PRIMARY KEY (
+			member_email
+		);
+
+insert into member (member_email,member_pw,member_name,member_zipcode,member_addr,member_detailedaddress,member_tel,member_pref,member_intro)
+	values('localup@gmail.com','123','가이드왕','12345','서울시','엔코아','010-1234-5678','서울시 서초구','나야나');
 ------------------------------member table_END

@@ -22,7 +22,13 @@
 		<div><input type="text" disabled="disabled" name="member_name" value="${mUpdateVO.member_name}"></div>
 		<br>
 		주소
-		<div><input type="text" name="member_addr" value="${mUpdateVO.member_addr}"> </div>
+		<div>
+			<input type="text" name="member_zipcode"  value="${mUpdateVO.member_zipcode}" id="sample6_postcode" placeholder="우편번호">
+		</div>
+		<div>
+			<input type="text"  name="member_addr"  value="${mUpdateVO.member_addr}" id="sample6_address" size="30" placeholder="주소">
+			<input type="text"  name="member_detailedaddress" value="${mUpdateVO.member_detailedaddress}" id="sample6_address2" placeholder="상세주소">		
+		</div>
 		<br>
 		연락처
 		<div><input type="tel" name="member_tel" value="${mUpdateVO.member_tel}"></div>
@@ -31,10 +37,11 @@
 		<div><input type="text" name="member_pref" value="${mUpdateVO.member_pref}"></div>
 		<br>
 		소개
-		<div><input type="text" name="member_intro" value="${mUpdateVO.member_intro}"></div>
+<%-- 		<div><input type="text" name="member_intro" value="${mUpdateVO.member_intro}"></div> --%>
+		<div><textarea rows="10" cols="30" name="member_intro">${mUpdateVO.member_intro}</textarea> </div>
 		</c:forEach>
 		<br>
-		<button>확인</button>
+		<a href="memberUpdate">확인</a>
 	</form>
 </body>
 </html>

@@ -1,13 +1,15 @@
 package com.localup.domain;
 
 public class MemberUpdateVO {
-	private String member_email; 	// 이메일 : 아이디
-	private String member_pw; 		// 비번
-	private String member_name; 	// 이름
-	private String member_addr; 	// 주소
-	private String member_tel; 		// 연락처
-	private String member_pref; 	// 선호지역
-	private String member_intro; 	// 소개
+	private String member_email; 						// 이메일 : 아이디
+	private String member_pw; 							// 비번
+	private String member_name; 						// 이름
+	private String member_zipcode; 					// 우편번호
+	private String member_addr; 							// 주소
+	private String member_detailedaddress; 		// 상세주소
+	private String member_tel; 								// 연락처
+	private String member_pref; 							// 선호지역
+	private String member_intro; 							// 소개
 
 	public String getMember_email() {
 		return member_email;
@@ -33,12 +35,28 @@ public class MemberUpdateVO {
 		this.member_name = member_name;
 	}
 
+	public String getMember_zipcode() {
+		return member_zipcode;
+	}
+
+	public void setMember_zipcode(String member_zipcode) {
+		this.member_zipcode = member_zipcode;
+	}
+
 	public String getMember_addr() {
 		return member_addr;
 	}
 
 	public void setMember_addr(String member_addr) {
 		this.member_addr = member_addr;
+	}
+
+	public String getMember_detailedaddress() {
+		return member_detailedaddress;
+	}
+
+	public void setMember_detailedaddress(String member_detailedaddress) {
+		this.member_detailedaddress = member_detailedaddress;
 	}
 
 	public String getMember_tel() {
@@ -68,7 +86,9 @@ public class MemberUpdateVO {
 	@Override
 	public String toString() {
 		return "MemberUpdateVO [member_email=" + member_email + ", member_pw=" + member_pw + ", member_name="
-				+ member_name + ", member_addr=" + member_addr + ", member_tel=" + member_tel + ", member_pref="
+				+ member_name + ", member_zipcode=" + member_zipcode + ", member_addr=" + member_addr
+				+ ", member_detailedaddress=" + member_detailedaddress + ", member_tel=" + member_tel + ", member_pref="
 				+ member_pref + ", member_intro=" + member_intro + "]";
 	}
+
 }

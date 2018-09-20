@@ -41,9 +41,9 @@ public class MemberUpdateController {
 		return "test/memberUpdate/listAll";
 	}
 	
-	//다음주소 API
-	@RequestMapping(value="memberAddr", method=RequestMethod.GET)
-	public String addrAPI()throws Exception{
-		return "test/daumAddrAPI/addrAPI";	
-	}
+//	//다음주소 API
+//	@RequestMapping(value="memberAddr", method=RequestMethod.GET)
+//	public String addrAPI()throws Exception{
+//		return "test/daumAddrAPI/addrAPI";	
+//	}
 }

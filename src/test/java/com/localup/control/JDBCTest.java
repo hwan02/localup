@@ -1,4 +1,4 @@
-package com.encore.test.db;
+package com.localup.control;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

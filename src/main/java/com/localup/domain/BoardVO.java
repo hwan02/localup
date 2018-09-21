@@ -13,8 +13,8 @@ public class BoardVO {
 	private String board_like;
 	private Date board_date;
 	private String board_rec;
-	private float board_alti;
-	private float board_long;
+	private double board_alti;
+	private double board_long;
 	private int board_max;
 
 	public BoardVO() {
@@ -22,8 +22,8 @@ public class BoardVO {
 	}
 
 	public BoardVO(int board_no, String member_id, String board_type, String board_title, String board_cont,
-			String board_img, String board_view, String board_like, Date board_date, String board_rec, float board_alti,
-			float board_long, int board_max) {
+			String board_img, String board_view, String board_like, Date board_date, String board_rec,
+			double board_alti, double board_long, int board_max) {
 		super();
 		this.board_no = board_no;
 		this.member_id = member_id;
@@ -39,7 +39,7 @@ public class BoardVO {
 		this.board_long = board_long;
 		this.board_max = board_max;
 	}
-	
+
 	public int getBoard_no() {
 		return board_no;
 	}
@@ -120,19 +120,19 @@ public class BoardVO {
 		this.board_rec = board_rec;
 	}
 	
-	public float getBoard_alti() {
+	public double getBoard_alti() {
 		return board_alti;
 	}
 
-	public void setBoard_alti(float board_alti) {
+	public void setBoard_alti(double board_alti) {
 		this.board_alti = board_alti;
 	}
 
-	public float getBoard_long() {
+	public double getBoard_long() {
 		return board_long;
 	}
 
-	public void setBoard_long(float board_long) {
+	public void setBoard_long(double board_long) {
 		this.board_long = board_long;
 	}
 

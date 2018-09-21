@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- board.xml -->
+<mapper namespace="board">
+
+	<!-- 게시글 입력 -->
+	<insert id="insertBoard">
+		insert into board (board_no,member_email,board_type,board_title,board_cont,board_img,board_date,board_alti,board_long) 
+					values (board_seq.nextval,#{member_email},#{board_type},#{board_title},#{board_cont},#{board_img},sysdate,#{board_alti},#{board_long})
+		<!-- insert into board (board_no,member_email,board_type,board_title,board_cont,board_date,board_alti,board_long) 
+					values (board_seq.nextval,#{member_email},#{board_type},#{board_title},#{board_cont},sysdate,#{board_alti},#{board_long}) -->
+	</insert>
+	
+</mapper>

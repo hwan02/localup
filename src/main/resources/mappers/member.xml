@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--작성자 : rys-->
+<mapper namespace="member">   
+  <!--회원정보 수정-->
+  <update id="myUpdate">
+  	update member set member_pw=#{member_pw},
+					  member_addr=#{member_addr},
+					  member_tel=#{member_tel},
+					  member_pref=#{member_pref},
+					  member_intro=#{member_intro}
+					  where member_email=#{member_email}
+  </update>
+  
+  	<!-- 전체회원정보 조회 -->
+<!-- 	<select id="myUpdateCheck" resultType="MemberVO"> -->
+<!-- 		select member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro -->
+<!-- 		from member -->
+<!-- 		order by member_email ASC -->
+<!-- 	</select> -->
+
+	<!-- 특정 아이디 읽기 -->
+	<select id="read" resultType="MemberVO">
+		select member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro
+		from member
+		where member_email=#{member_email}
+	</select>
+</mapper>

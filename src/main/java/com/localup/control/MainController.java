@@ -15,12 +15,20 @@ import com.localup.service.MainService;
 @Controller
 @RequestMapping("main")
 public class MainController {
+	
 	@Inject
 	private MainService service;
+	
+	@RequestMapping("main")
+	public String main() {
+		return "main/main";
+	}
+	
 	@RequestMapping("test")
 	public String test() {
 		return "test";
 	}
+	
 	@RequestMapping("location")
 	public String loc(Location loc, Model model) {
 		if(loc!=null) {

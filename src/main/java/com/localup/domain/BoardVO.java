@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BoardVO {
 	private int board_no;
-	private String member_id;
+	private String member_email;
 	private String board_type;
 	private String board_title;
 	private String board_cont;
@@ -21,12 +21,12 @@ public class BoardVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BoardVO(int board_no, String member_id, String board_type, String board_title, String board_cont,
+	public BoardVO(int board_no, String member_email, String board_type, String board_title, String board_cont,
 			String board_img, String board_view, String board_like, Date board_date, String board_rec,
 			double board_alti, double board_long, int board_max) {
 		super();
 		this.board_no = board_no;
-		this.member_id = member_id;
+		this.member_email = member_email;
 		this.board_type = board_type;
 		this.board_title = board_title;
 		this.board_cont = board_cont;
@@ -48,12 +48,12 @@ public class BoardVO {
 		this.board_no = board_no;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public String getMember_email() {
+		return member_email;
 	}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 
 	public String getBoard_type() {
@@ -146,7 +146,7 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [board_no=" + board_no + ", member_id=" + member_id + ", board_type=" + board_type
+		return "BoardVO [board_no=" + board_no + ", member_email=" + member_email + ", board_type=" + board_type
 				+ ", board_title=" + board_title + ", board_cont=" + board_cont + ", board_img=" + board_img
 				+ ", board_view=" + board_view + ", board_like=" + board_like + ", board_date=" + board_date
 				+ ", board_rec=" + board_rec + ", board_alti=" + board_alti + ", board_long=" + board_long

@@ -43,4 +43,15 @@ increment by 1
 nocache
 nocycle;		
 
-insert into BOARD 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 
+'gildong', 
+'맛집',
+'어디까지 가봤니?',
+'난 여기까지 가봤단다',
+'mathouse.jpg',
+13,
+8,
+126,
+37.1,
+5); 

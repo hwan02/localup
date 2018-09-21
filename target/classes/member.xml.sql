@@ -21,4 +21,5 @@ ALTER TABLE member
 		PRIMARY KEY (
 			member_id
 		);
-		
+insert into member(member_id, member_pw, member_name, member_addr, member_tel,member_email,member_pref, member_intro)
+values('gildong@naver.com', )

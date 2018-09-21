@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class TestController {
+public class MainController {
 	
-	@RequestMapping("test")
-	public void test() {
-		System.out.println("테스트페이지 요청...");
+	@RequestMapping("main")
+	public String test() {
+		System.out.println("메인페이지 요청...");
+		
+		return "main/main";
 	}
 }

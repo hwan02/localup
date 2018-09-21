@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>테스트 페이지</title>
+    <title>메인 페이지</title>
  <style>
 .overlaybox {position:relative;width:360px;height:350px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png') no-repeat;padding:15px 10px;}
 .overlaybox div, ul {overflow:hidden;margin:0;padding:0;}

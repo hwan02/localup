@@ -43,4 +43,15 @@ increment by 1
 nocache
 nocycle;		
 
-insert into BOARD 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다2','mathouse2.jpg',13,8,37.2,126.2,5); 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다3','mathouse3.jpg',13,8,37.3,126.3,5); 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다4','mathouse4.jpg',13,8,37.4,126.4,5); 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다5','mathouse5.jpg',13,8,37.5,126.5,5); 
+insert into BOARD(board_no, member_id, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong', '맛집','어디까지 가봤니?','난 여기까지 가봤단다6','mathouse6.jpg',13,8,37.6,126.6,5); 

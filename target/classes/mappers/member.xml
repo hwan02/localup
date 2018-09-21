@@ -25,4 +25,10 @@
 		from member
 		where member_email=#{member_email}
 	</select>
+
+	<!-- 특정 글번호 삭제 -->
+	<delete id="delete">
+		delete from member
+		where member_email=#{member_email}
+	</delete>
 </mapper>

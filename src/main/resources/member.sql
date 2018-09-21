@@ -1,4 +1,5 @@
 /* 멤버 */
+select * from member;
 CREATE TABLE member (
 	member_id VARCHAR2(15) NOT NULL, /* 회원ID */
 	member_pw VARCHAR2(20) NOT NULL, /* 회원PW */
@@ -22,3 +23,8 @@ ALTER TABLE member
 			member_id
 		);
 		
+--------------------------Test 추가
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
+	values('localup@gmail.com','123','가이드왕','서울시','010-1234-5678','서울시 서초구','나야나');
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
+	values('naver@gmail.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');		

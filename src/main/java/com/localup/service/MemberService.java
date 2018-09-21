@@ -13,4 +13,7 @@ public interface MemberService {
 	
 	//특정 아이디 조회
 	public MemberVO read(String member_email) throws Exception;
+	
+	//회원탈퇴
+	public void delete(String member_email) throws Exception;
 }

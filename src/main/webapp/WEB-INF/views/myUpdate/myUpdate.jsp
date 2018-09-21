@@ -44,12 +44,28 @@
 // 		}
 
 // 	}
+
+
+
+	
+	$(function() {
+		$('#updateBT').click(function() {
+			alert("수정 완료");
+		});
+	});
+	
+	$(function() {
+		$("#deleteBT").click(function() {
+			$('form').attr('action','/member/delete');
+			$('form').submit();
+		});
+	});
 </script>
 </head>
 <body>
 	<h1>회원정보 변경 TEST</h1>
 	<hr>
-	<form action="memberUpdate" method="post">
+	<form action="/member/myUpdate" method="post">
 <%-- 		<c:forEach items="${memberVO}" var="memberVO"> --%>
 		이메일
 		<div><input type="text" disabled="disabled" name="member_email" value="${memberVO.member_email}"></div>
@@ -133,7 +149,8 @@
 		<div><textarea rows="10" cols="30" name="member_intro">${memberVO.member_intro}</textarea> </div>
 <%-- 		</c:forEach> --%>
 		<br>
-		<button>수정</button>
+		<button id="updateBT">수정</button>
+		<button type="button" id="deleteBT">탈퇴</button>
 		<button type="reset">취소</button>
 	</form>
 </body>

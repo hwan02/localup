@@ -27,6 +27,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.read(member_email);
 	}
 
+	@Override
+	public void delete(String member_email) throws Exception {
+		memberDAO.delete(member_email);
+		
+	}
+
 	//회원정보 조회
 //	@Override
 //	public List<MemberVO> listAll() throws Exception {

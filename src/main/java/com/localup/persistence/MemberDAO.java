@@ -14,4 +14,7 @@ public interface MemberDAO {
 	
 	//특정한 값 조회
 	public MemberVO read(String member_email) throws Exception;
+	
+	//회원탈퇴
+	public void delete(String member_email) throws Exception;
 }

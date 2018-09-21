@@ -374,29 +374,29 @@
 		var bounds = map.getBounds();
 		// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
 		var boundsStr = bounds.toString();
-	    // 지도 중심좌표를 얻어옵니다 
-	    //var latlng = map.getCenter(); 
-	    //var noLatLng = bounds.getNorth();
-	   // var eaLatLng = bounds.getEast(); 
-	    //var soLatLng = bounds.getSouth(); 
-	    //var weLatLng = bounds.getWest();
-	    //var swLatLng = bounds.getSouthWest(); 
-	    //var neLatLng = bounds.getNorthEast(); 
-	    //var check = new daum.maps.LatLngBounds(swLatLng, neLatLng);
+	    var swLatLng = bounds.getSouthWest();
+	    var south = swLatLng.getLat();
+	    var west = swLatLng.getLng();
+	    var neLatLng = bounds.getNorthEast(); 
+	    var north = neLatLng.getLat();
+	    var east = neLatLng.getLng();
 	    var message ='영역정보는 '+boundsStr;
-	    alert(message);
 	    var resultDiv = document.getElementById('result');  
 	    resultDiv.innerHTML = message;
-	    
-	   /* var result = document.getElementById('result2'); 
-	   result.html = boundsStr; */
+	    $.ajax({
+	    	url:"location",
+	    	data:{"south":south, "west":west,"north":north,"east":east},
+	    	success:function(result){
+	    		$("#ajaxResult").html(result);
+	    	}
+	    	
+	    });
 		}
-		$("#result2").val(boundsStr);
 	});  
 </script>
 	<input type="text" name="result2" id="result2">
-	
 	<br>
 	<div id="result"></div>
+	<div id="ajaxResult"></div>
 </body>
 </html>

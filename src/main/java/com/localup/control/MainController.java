@@ -13,7 +13,6 @@ import com.localup.domain.Location;
 import com.localup.service.MainService;
 
 @Controller
-@RequestMapping("main")
 public class MainController {
 	
 	@Inject

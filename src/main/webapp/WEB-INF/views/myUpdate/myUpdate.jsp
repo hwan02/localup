@@ -7,20 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보 변경 TEST</title>
-<!--<div id="checkPwd">동일한 비밀번호 입력하세요.</div> : 스타일-->
-<style type="text/css">
-/*(굳이 필요 없을듯)*/
-/* span{ */
-/*   font-size: 15px; */
-/* } */
-/* #checkMsg{ */
-/*   font-size: 12px; */
-/* } */
-/* #checkPwd{ */
-/*   color : red; */
-/*   font-size: 12px; */
-/* } */
-</style>
 
 <!--구글 스트립트-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -45,13 +31,18 @@
 
 // 	}
 
-
-
-	
-	$(function() {
-		$('#updateBT').click(function() {
+	$(function() { 
+		$('#updateBT').click(function() { //수정 버튼 클릭시
 			alert("수정 완료");
 		});
+		
+	    $("input").keydown(function() { //수정 할시 버튼 생김
+	        $("#updateDIV").show(1000);
+	    });
+
+	    $("textarea").keydown(function() {//수정 할시 버튼 생김
+	        $("#updateDIV").show(1000);
+	    });
 	});
 	
 	$(function() {
@@ -149,9 +140,9 @@
 		<div><textarea rows="10" cols="30" name="member_intro">${memberVO.member_intro}</textarea> </div>
 <%-- 		</c:forEach> --%>
 		<br>
-		<button id="updateBT">수정</button>
-		<button type="button" id="deleteBT">탈퇴</button>
-		<button type="reset">취소</button>
+		<div style="display: none;" id="updateDIV"><button id="updateBT">수정</button></div>
+		<div><button type="reset">취소</button></div>
+		<div><button type="button" id="deleteBT">탈퇴</button></div>
 	</form>
 </body>
 </html>

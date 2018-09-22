@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO read(String member_email) throws Exception {
 		member_email = "naver@gmail.com";
-		System.out.println(member_email);
+		System.out.println("로그인상태 아이디>>>"+member_email);
 		return sqlSession.selectOne("member.read",member_email);
 	}
 

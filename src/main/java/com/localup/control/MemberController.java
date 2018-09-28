@@ -23,7 +23,7 @@ public class MemberController {
 	@RequestMapping(value="myUpdate", method=RequestMethod.GET)
 	public String myUpdateGET(Model model,String member_email)throws Exception{
 		model.addAttribute("memberVO",memberService.read(member_email));
-		return "myUpdate/myUpdate";	
+		return "myUpdate/my/myUpdate";	
 	}
 	
 	//회원정보 DB수정

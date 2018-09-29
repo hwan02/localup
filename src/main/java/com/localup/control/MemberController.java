@@ -19,6 +19,7 @@ public class MemberController {
 	@Inject
 	MemberService memberService;
 	
+	//회원정보 수정(작성자 : rys)
 	//회원정보 수정폼
 	@RequestMapping(value="myUpdate", method=RequestMethod.GET)
 	public String myUpdateGET(Model model,String member_email)throws Exception{

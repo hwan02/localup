@@ -11,11 +11,14 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.localup.domain.GuideVO;
@@ -33,7 +36,7 @@ public class GuideController {
 	@Inject
 	GuideService guideService;
 	
-	//이미지 DB 입력
+	//local 폴더에 저장 위치 호출
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -57,11 +60,24 @@ public class GuideController {
 //	}
 	
 	//가이드 상세 페이지 등록 ===> DB 입력처리
-	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
-	public String guideWritePOST(GuideVO guideVO, MultipartFile tour_img) throws Exception {
-		String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
+//	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
+//	public String guideWritePOST(GuideVO guideVO, MultipartFile tour_img) throws Exception {
+//		//String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
+//		//guideVO.setTour_img(savedName);
+//		//guideService.insert(guideVO);
+//		return "redirect: /guide/main";
+//	}
+	@ResponseBody
+	@RequestMapping(value="guideWrite",method=RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> guideWritePOST(MultipartFile tour_img) throws Exception {
+		//String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
 		//guideVO.setTour_img(savedName);
 		//guideService.insert(guideVO);
+		return new ResponseEntity<>(tour_img.getOriginalFilename(), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("main")
+	public String main() {
 		return "main/main";
 	}
 	
@@ -82,8 +98,9 @@ public class GuideController {
 	
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_upload_" + originalName;
+		//UUID uid = UUID.randomUUID();
+		//String savedName = uid.toString() + "_upload_" + originalName;
+		String savedName = "upload_" + originalName;
 		File target = new File(uploadPath,savedName);
 		FileCopyUtils.copy(fileData, target);
 		return savedName;

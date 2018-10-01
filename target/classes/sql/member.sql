@@ -27,4 +27,4 @@ insert into member (member_email,member_pw,member_name,member_addr,member_tel,me
 insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
    values('naver@gmail.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');    
 insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
-   values('gildong@naver.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');    
+   values('gildong@naver.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');

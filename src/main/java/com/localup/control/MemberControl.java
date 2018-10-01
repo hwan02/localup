@@ -26,4 +26,11 @@ public class MemberControl {
 		
 		return "login/find";
 	}
+	
+	@RequestMapping("member_wait")
+	public String member_wait() {
+		System.out.println("회원가입 대기 페이지 요청...");
+		
+		return "login/member_wait";
+	}
 }

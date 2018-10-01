@@ -27,7 +27,10 @@ public class MainController {
 	public String test() {
 		return "test";
 	}
-	
+	@RequestMapping("test2")
+	public String test2() {
+		return "test2";
+	}
 	@RequestMapping("location")
 	public String loc(Location loc, Model model) {
 		if(loc!=null) {

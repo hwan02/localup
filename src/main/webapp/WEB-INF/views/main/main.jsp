@@ -1,48 +1,156 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>메인 페이지</title>
- <style>
-.overlaybox {position:relative;width:360px;height:350px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png') no-repeat;padding:15px 10px;}
-.overlaybox div, ul {overflow:hidden;margin:0;padding:0;}
-.overlaybox li {list-style: none;}
-.overlaybox .boxtitle {color:#fff;font-size:16px;font-weight:bold;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png') no-repeat right 120px center;margin-bottom:8px;}
-.overlaybox .first {position:relative;width:247px;height:136px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumb.png') no-repeat;margin-bottom:8px;}
-.first .text {color:#fff;font-weight:bold;}
-.first .triangle {position:absolute;width:48px;height:48px;top:0;left:0;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png') no-repeat; padding:6px;font-size:18px;}
-.first .movietitle {position:absolute;width:100%;bottom:0;background:rgba(0,0,0,0.4);padding:7px 15px;font-size:14px;}
-.overlaybox ul {width:247px;}
-.overlaybox li {position:relative;margin-bottom:2px;background:#2b2d36;padding:5px 10px;color:#aaabaf;line-height: 1;}
-.overlaybox li span {display:inline-block;}
-.overlaybox li .number {font-size:16px;font-weight:bold;}
-.overlaybox li .title {font-size:13px;}
-.overlaybox ul .arrow {position:absolute;margin-top:8px;right:25px;width:5px;height:3px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png') no-repeat;} 
-.overlaybox li .up {background-position:0 -40px;}
-.overlaybox li .down {background-position:0 -60px;}
-.overlaybox li .count {position:absolute;margin-top:5px;right:15px;font-size:10px;}
-.overlaybox li:hover {color:#fff;background:#d24545;}
-.overlaybox li:hover .up {background-position:0 0px;}
-.overlaybox li:hover .down {background-position:0 -20px;}   
+<meta charset="utf-8">
+<title>메인 페이지</title>
+<style>
+.overlaybox {
+	position: relative;
+	width: 360px;
+	height: 350px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png')
+		no-repeat;
+	padding: 15px 10px;
+}
+
+.overlaybox div, ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.overlaybox li {
+	list-style: none;
+}
+
+.overlaybox .boxtitle {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png')
+		no-repeat right 120px center;
+	margin-bottom: 8px;
+}
+
+.overlaybox .first {
+	position: relative;
+	width: 247px;
+	height: 136px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumb.png')
+		no-repeat;
+	margin-bottom: 8px;
+}
+
+.first .text {
+	color: #fff;
+	font-weight: bold;
+}
+
+.first .triangle {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	top: 0;
+	left: 0;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png')
+		no-repeat;
+	padding: 6px;
+	font-size: 18px;
+}
+
+.first .movietitle {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 7px 15px;
+	font-size: 14px;
+}
+
+.overlaybox ul {
+	width: 247px;
+}
+
+.overlaybox li {
+	position: relative;
+	margin-bottom: 2px;
+	background: #2b2d36;
+	padding: 5px 10px;
+	color: #aaabaf;
+	line-height: 1;
+}
+
+.overlaybox li span {
+	display: inline-block;
+}
+
+.overlaybox li .number {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.overlaybox li .title {
+	font-size: 13px;
+}
+
+.overlaybox ul .arrow {
+	position: absolute;
+	margin-top: 8px;
+	right: 25px;
+	width: 5px;
+	height: 3px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png')
+		no-repeat;
+}
+
+.overlaybox li .up {
+	background-position: 0 -40px;
+}
+
+.overlaybox li .down {
+	background-position: 0 -60px;
+}
+
+.overlaybox li .count {
+	position: absolute;
+	margin-top: 5px;
+	right: 15px;
+	font-size: 10px;
+}
+
+.overlaybox li:hover {
+	color: #fff;
+	background: #d24545;
+}
+
+.overlaybox li:hover .up {
+	background-position: 0 0px;
+}
+
+.overlaybox li:hover .down {
+	background-position: 0 -20px;
+}
 </style>
 </head>
 <body>
-<br>
-<p style="margin-top:-12px">
-    사용한 데이터를 보시려면 
-    <em class="link">
-       <a href="/resources/test_data.jsp" target="_blank">여기를 클릭하세요!</a>
-    </em>
-</p>
-<div id="map" style="width:100%;height:800px;"></div>
+	<br>
+	<div id="map" style="width: 100%; height: 800px;"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer"></script>
-<script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer"></script>
+	<script>
 	var disMarker;
-
+	
     var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
         center : new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
         level : 14 // 지도의 확대 레벨 
@@ -74,6 +182,8 @@
      
     // 데이터를 가져오기 위해 jQuery를 사용합니다
     // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+    
+     var coffeMarkers = []; // 커피숍 마커 객체를 가지고 있을 배열입니다
     $.get("/resources/test_data.jsp", function(data) {
         // 데이터에서 좌표 값을 가지고 마커를 표시합니다
         // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
@@ -83,7 +193,7 @@
                 position : new daum.maps.LatLng(position.lat, position.lng),
             	image : markerImage // 마커 이미지
             });
-            
+			            
          	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
             var iwContent = '<div style="padding:5px;">'
             				+'위도:'+position.lat
@@ -103,7 +213,7 @@
             daum.maps.event.addListener(marker, 'click', function() {
                   // 마커 위에 인포윈도우를 표시합니다
                   //infowindow.open(map, marker);
-                  
+                  console.log(coffeMarkers);	
                   //사라졌던 마커가 있으면 다시 표시해주기
                   if(disMarker != null && disMarker.getMap() == null) {
                   	disMarker.setMap(map);
@@ -118,6 +228,7 @@
 
         // 클러스터러에 마커들을 추가합니다
         clusterer.addMarkers(markers);
+        
     });
 
     // 지도에 클릭 이벤트를 등록합니다
@@ -226,6 +337,61 @@
 	daum.maps.event.addListener(map, 'zoom_changed', function() {        
 		customOverlay.setMap(null); //커스텀 오버레이 닫기
 	});
+    
+	//function getInfo() {
+	    
+	    // 지도의 현재 영역을 얻어옵니다 
+	 // var bounds = map.getBounds();
+	    
+	    // 영역의 남서쪽 좌표를 얻어옵니다 
+	    //var swLatLng = bounds.getSouthWest(); 
+	    
+	    // 영역의 북동쪽 좌표를 얻어옵니다 
+	    //var neLatLng = bounds.getNorthEast(); 
+	    
+	    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+	   // var boundsStr = bounds.toString();
+	    
+	    
+	   // var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
+	   // message += '경도 ' + center.getLng() + ' 이고 <br>';
+	   // message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
+	    
+	    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
+	  //   console.log(message);
+	//}
+	
+	// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+	daum.maps.event.addListener(map, 'dragend', function() {   
+		var level = map.getLevel();
+		if(level <= 5){
+		// 지도의 현재 영역을 얻어옵니다 
+		var bounds = map.getBounds();
+		// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+		var boundsStr = bounds.toString();
+	    var swLatLng = bounds.getSouthWest();
+	    var south = swLatLng.getLat();
+	    var west = swLatLng.getLng();
+	    var neLatLng = bounds.getNorthEast(); 
+	    var north = neLatLng.getLat();
+	    var east = neLatLng.getLng();
+	    var message ='영역정보는 '+boundsStr;
+	    var resultDiv = document.getElementById('result');  
+	    resultDiv.innerHTML = message;
+	    $.ajax({
+	    	url:"location",
+	    	data:{"south":south, "west":west,"north":north,"east":east},
+	    	success:function(result){
+	    		$("#ajaxResult").html(result);
+	    	}
+	    	
+	    });
+		}
+	});  
 </script>
+	<input type="hidden" name="result2" id="result2">
+	<br>
+	<div id="result"></div>
+	<div id="ajaxResult"></div>
 </body>
 </html>

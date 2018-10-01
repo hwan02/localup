@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel= "stylesheet" type="text/css" href="/resources/login/index.css">
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <title>회원가입</title>
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <style type="text/css">
 	input[type="text"], input[type="password"],select{
 		display: inline-block;
@@ -23,6 +27,7 @@
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#site').change(function(){ //이메일 입력
@@ -38,6 +43,7 @@ $(function(){
 	});
 	
 	$('#insert').click(function(){ //회원가입 폼 유효성 검사
+		$('#frm').submit(); //for test
 		//var nameExp = /^[가-힣a-zA-Z]{2,15}$/; //이름 유효성 검사식
 		var emailExp = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
 		var phoneExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -94,9 +100,12 @@ $(function(){
 	$("#addr").click(function() {
 		sample6_execDaumPostcode();
 	});
+	
+	$("#addr").keydown(function() {
+		sample6_execDaumPostcode();
+	});
 });
 </script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -137,11 +146,12 @@ $(function(){
     }
 </script>
 <body class="container" style="text-align: center;">
+	<br>
 	<h3>회원가입</h3>
 	<hr>
 	<!-- <form name="frm" method="post" id="frm"> -->
-	<form action="userinput.do?action=insert" name="frm" id="frm" method="post">
-		<div class="container">
+	<form action="member_wait" name="frm" id="frm" method="post">
+		<div class="container" id="cont">
 			<table style="text-align: center;" class="container">
 				<tr>
 					<td>
@@ -178,12 +188,18 @@ $(function(){
 						<input type="text" name="addr" id="addr" placeholder="주소">
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<input type="text" id="inputBox" placeholder="선호 지역">
+					</td>
+				</tr>
 			</table>
 		</div>
 		<br>
 		<div class="container">
-			<button id="insert" type="button" class="btn">등록</button>
+			<button id="insert" type="button" class="btn">계속</button>
 		</div>
 	</form>
+	<script src="/resources/login/index.js"></script>
 </body>
 </html>

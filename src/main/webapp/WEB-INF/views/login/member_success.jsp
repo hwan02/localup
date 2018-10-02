@@ -30,11 +30,12 @@
 </head>
 <body class="container" style="text-align: center;">
 	<br>
-	<h3>이메일 인증이 필요합니다</h3>
+	<h3>회원가입 완료</h3>
 	<hr>
 	<div class="container" id="cont">
-		보내진 링크를 클릭하여 계속 진행하세요  ͡° ͜ʖ ͡° 
-	</div>
-	<a href="#">메인 페이지로 이동</a>
+		<h5>환영합니다  (๑˃؂˂๑)</h5><br>
+		가입이메일 ▶ ${member_eamil } 
+	</div><br>
+	<a href="/login">로그인 페이지로 이동</a>
 </body>
 </html>

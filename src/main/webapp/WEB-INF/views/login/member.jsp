@@ -43,7 +43,6 @@ $(function(){
 	});
 	
 	$('#insert').click(function(){ //회원가입 폼 유효성 검사
-		$('#frm').submit(); //for test
 		//var nameExp = /^[가-힣a-zA-Z]{2,15}$/; //이름 유효성 검사식
 		var emailExp = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
 		var phoneExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -56,27 +55,30 @@ $(function(){
 		}else if($('#id').val()==''){
 			alert('중복확인을 통해 id를 입력해주세요.');
 			$('#id').focus();
-		}else if($('#pw').val().trim()==''){
+		}else if($('#member_pw').val().trim()==''){
 			alert('비밀번호를 입력해주세요.');
-			$('#pw').focus();
-		}else if($('#pw2').val().trim()==''){
+			$('#member_pw').focus();
+		}else if($('#member_pw2').val().trim()==''){
 			alert('비밀번호를 입력해주세요.');
-			$('#pw2').focus();
-		}else if($('#pw').val() != $('#pw2').val()){
+			$('#member_pw2').focus();
+		}else if($('#member_pw').val() != $('#member_pw2').val()){
 			alert('비밀번호가 일치하지 않습니다');
-			$('#pw2').val('');
-			$('#pw2').focus();
-		}else if($('#name').val().trim()==''){ //(!nameExp.test($('#name').val())){
+			$('#member_pw2').val('');
+			$('#member_pw2').focus();
+		}else if($('#member_name').val().trim()==''){ //(!nameExp.test($('#name').val())){
 			alert('이름을 정확히 입력해주세요.');
 			//alert('이름에는 숫자가 들어갈 수 없습니다.');
-			$('#name').focus();
+			$('#member_name').focus();
 		}else if(!phoneExp.test($('#phone1').val()+'-'+$('#phone2').val()+'-'+$('#phone3').val())){
 			alert('알맞지 않은 핸드폰 번호입니다.');
-		}else if($('#addr').val().trim()==''){
+		}else if($('#member_addr').val().trim()==''){
 			alert('주소를 입력해주세요.');
-			$('addr').focus();
+			$('member_addr').focus();
 		}else{
 			//올바른 데이터 입력시
+			$("#member_email").val($('#email1').val()+'@'+$('#email2').val());
+			$("#member_tel").val($('#phone1').val()+'-'+$('#phone2').val()+'-'+$('#phone3').val());
+			
 			$('#frm').submit();
 		}
 	}); //등록 버튼 클릭
@@ -97,11 +99,11 @@ $(function(){
 		}
 	});
 	
-	$("#addr").click(function() {
+	$("#member_addr").click(function() {
 		sample6_execDaumPostcode();
 	});
 	
-	$("#addr").keydown(function() {
+	$("#member_addr").keydown(function() {
 		sample6_execDaumPostcode();
 	});
 });
@@ -140,7 +142,7 @@ $(function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('addr').value = fullAddr;
+                document.getElementById('member_addr').value = fullAddr;
             }
         }).open();
     }
@@ -149,8 +151,7 @@ $(function(){
 	<br>
 	<h3>회원가입</h3>
 	<hr>
-	<!-- <form name="frm" method="post" id="frm"> -->
-	<form action="member_wait" name="frm" id="frm" method="post">
+	<form action="member/wait" name="frm" id="frm" method="post">
 		<div class="container" id="cont">
 			<table style="text-align: center;" class="container">
 				<tr>
@@ -165,32 +166,34 @@ $(function(){
 							<option value="nate.com">nate.com</option>
 							<option value="hotmail.com">hotmail.com</option>
 						</select>
+						<input type="hidden" id="member_email" name="member_email"/>
 					</td>
 				</tr>
 				<tr>
-					<td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요"></td>
+					<td><input type="password" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요"></td>
 				</tr>
 				<tr>
-					<td><input type="password" id="pw2" name="pw2" placeholder="한 번 더 입력해주세요"></td>
+					<td><input type="password" id="member_pw2" name="member_pw2" placeholder="한 번 더 입력해주세요"></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="name" name="name" placeholder="이름"></td>
+					<td><input type="text" id="member_name" name="member_name" placeholder="이름"></td>
 				</tr>
 				<tr>
 					<td>
 						<input type="text" id="phone1" name="phone1" maxlength="3" placeholder="핸드폰"  style="width:125px">-
 						<input type="text" id="phone2" name="phone2" maxlength="4"  style="width:125px">-
 						<input type="text" id="phone3" name="phone3" maxlength="4"  style="width:125px">
+						<input type="hidden" id="member_tel" name="member_tel"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="addr" id="addr" placeholder="주소">
+						<input type="text" name="member_addr" id="member_addr" placeholder="주소">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" id="inputBox" placeholder="선호 지역">
+						<input type="text" id="inputBox" name="member_pref" placeholder="선호 지역">
 					</td>
 				</tr>
 			</table>

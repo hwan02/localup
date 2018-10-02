@@ -88,8 +88,8 @@ $(function(){
 	<hr>
 	<div id="d1">
 		<form name="selectId" style="text-align: center;">
-			이름 <input type="text" id="name" name="name"><br>
-			핸드폰 <input type="text" id="phone" name="phone" placeholder="'-'를 같이 입력해주세요."><br><br>
+			<b>이름<b/> <input type="text" id="name" name="name"><br>
+			<b>핸드폰<b/> <input type="text" id="phone" name="phone" placeholder="'-'를 같이 입력해주세요"><br><br>
 			<input type="button" value="검색" id="selectId" class="btn">
 			<input type="button" value="닫기" id="close" onclick="window.close()" class="btn"><br>
 		</form>
@@ -106,16 +106,16 @@ $(function(){
 	 -->
 	<div id="d2">
 		<form name="selectPw" style="text-align: center;">
-			이름  <input type="text" id="name2" name="name"><br>
-			ID <input type="text" id="id" name="id"><br>
-			질문
+			<b>이름</b>  <input type="text" id="name2" name="name"><br>
+			<b>이메일</b> <input type="text" id="id" name="id" placeholder="아이디@이메일주소"><br>
+<!-- 			질문
 				<select name="question" id="question">
 					<option value="좋아하는 색깔은 무엇입니까?">좋아하는 색깔은 무엇입니까?</option>
 					<option value="태어난 곳은 어디입니까?">태어난 곳은 어디입니까?</option>
 					<option value="여행가고 싶은 곳은 어디입니까?">여행가고 싶은 곳은 어디입니까?</option>
 				</select>
 				<br>
-			답변 <input type="text" name="answer" id="answer"><br><br>
+			답변 <input type="text" name="answer" id="answer"><br><br> --><br>
 				<input type="button" value="검색" id="selectPw" class="btn">
 				<input type="button" value="닫기" id="close" onclick="window.close()" class="btn"><br>
 		</form>

@@ -9,7 +9,7 @@ CREATE TABLE tour (
 	--tour_pay NUMBER NOT NULL, /* 투어금액 */
 	--tour_cont VARCHAR2(500) NOT NULL, /* 투어내용 */
 	--tour_img VARCHAR2(150) NOT NULL /* 투어이미지 */
-	tour_imgFile VARCHAR2(150) NOT NULL
+	tour_img VARCHAR2(150) NOT NULL
 	--board_no NUMBER NOT NULL /* 게시글번호 */
 );
 

@@ -43,9 +43,14 @@ public class GuideController {
 	//가이드 상세 페이지 (작성자 : rys)
 	//가이드 상세 페이지 폼 보기
 	@RequestMapping("guideDetailPage")
-	public String guideDetailPage() throws Exception {
+	public String guideDetailPage(String tour_img, Model model) throws Exception {
+		model.addAttribute("GuideVO",guideService.list(tour_img));
 		return "board/guide";
 	}
+	
+	
+	
+	
 	
 	//가이드 상세 페이지 등록 폼보기
 	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
@@ -53,49 +58,21 @@ public class GuideController {
 		return "board/guideWrite";
 	}
 
-	//이미지 TEST
-//	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
-//	public String guideWriteGET() throws Exception {
-//		return "board/guideWriteTest";
-//	}
-	
 	//가이드 상세 페이지 등록 ===> DB 입력처리
-//	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
-//	public String guideWritePOST(GuideVO guideVO, MultipartFile tour_img) throws Exception {
-//		//String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
-//		//guideVO.setTour_img(savedName);
-//		//guideService.insert(guideVO);
-//		return "redirect: /guide/main";
-//	}
-	@ResponseBody
-	@RequestMapping(value="guideWrite",method=RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> guideWritePOST(MultipartFile tour_img) throws Exception {
-		//String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
-		//guideVO.setTour_img(savedName);
-		//guideService.insert(guideVO);
-		return new ResponseEntity<>(tour_img.getOriginalFilename(), HttpStatus.CREATED);
+	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
+	public String guideWritePOST(GuideVO guideVO, MultipartFile tour_imgs) throws Exception {
+		String savedName = uploadFile(tour_imgs.getOriginalFilename(),tour_imgs.getBytes());
+		guideVO.setTour_img(savedName);
+		guideService.insert(guideVO);
+		return "redirect: /guide/main";
 	}
 	
+	//가이드 상세 페이지 등록 ==이동==> 페인페이지
 	@RequestMapping("main")
 	public String main() {
 		return "main/main";
 	}
-	
-	//이미지 TEST
-//	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
-//	public String guideWritePOST(GuideVO guideVO,MultipartFile tour_img) throws Exception {
-//		String savedName = uploadFile(tour_img.getOriginalFilename(),tour_img.getBytes());
-//		guideVO.setTour_img(savedName);
-//		guideService.insert(guideVO);
-//		return "redirect:result";
-//	}
-	
-//	//이미지 TEST
-//	@RequestMapping("result")
-//	public String result() {
-//		return "board/guideWriteTest2";
-//	}
-	
+		
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 		//UUID uid = UUID.randomUUID();

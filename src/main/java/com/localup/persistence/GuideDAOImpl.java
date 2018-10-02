@@ -14,22 +14,20 @@ import com.localup.domain.GuideVO;
 @Repository
 public class GuideDAOImpl implements GuideDAO{
 	
-//	@Inject
-//	SqlSession sqlSession;
+	@Inject
+	SqlSession sqlSession;
 	
 	//DB 입력
 	@Override
 	public void insert(GuideVO guideVO) throws Exception {
-		//sqlSession.insert("guide.insert",guideVO);
+		sqlSession.insert("guide.insert",guideVO);
 	}
 
-	//============================================이미지 TEST 시작	
-	@Inject
-	private SqlSession query;
-	 
-	public void saveImage(Map<String, Object> hmap) throws SQLException {
-	    query.insert("guide.insert",hmap);
+	//특정 가이드 상세페이지 가져오기
+	@Override
+	public GuideVO list(String tour_img) throws Exception {
+		tour_img = "upload_6.jpg";
+		return sqlSession.selectOne("guide.list",tour_img);
 	}
-
 
 }

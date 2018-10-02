@@ -538,7 +538,6 @@
 	    geocoder.addressSearch(keyword, function(result, status) {
 	        // 정상적으로 검색이 완료됐으면 
 	         if (status === daum.maps.services.Status.OK) {
-				alert(result[0].y, result[0].x);
 	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	            map.setCenter(coords);
@@ -550,8 +549,6 @@
 	        } 
 	    });    
 	}
-
-	
 </script>
 	<br>
 	<div id="result"></div>

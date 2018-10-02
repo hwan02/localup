@@ -91,7 +91,6 @@ public class BoardController {
 
 	@RequestMapping(value="read")
 	public String read(int board_no,Model model) throws Exception{
-		//model.addAttribute("path","C:\\localup\\img");
 		model.addAttribute("boardVO",boardService.BoarRead(board_no));
 		return "board/boardRead";
 	}

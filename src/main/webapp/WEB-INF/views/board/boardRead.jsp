@@ -12,10 +12,8 @@
 		<input type="text" name="board_no" value="${boardVO.board_no }"><br>
 		제목: <input type="text" name="board_title" value="${boardVO.board_title }"><br>
 		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }"><br>
-		
 		이미지: <img src="/resources/img/${boardVO.board_img }"><br>
-		<input type="text" value="${boardVO.board_img }"><br>
-		
+		<%-- <input type="text" value="${boardVO.board_img }" size="50"><br> --%>
 		내용: <textarea rows="20" cols="50">${boardVO.board_cont }</textarea><br>
 	</form>
 	<br><br>

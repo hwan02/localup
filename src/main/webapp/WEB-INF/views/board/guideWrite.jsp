@@ -47,30 +47,30 @@ small{
 		게시글 번호(FK : board_no)
 -->
 
-	<form action="/guide/guideWrite" method="post" enctype="multipart/form-data">
+	<form action="/guide/guideWrite" method="post"
+		enctype="multipart/form-data">
 		<!--투어명-->
-<!-- 	<input type="text" name="tour_title"> -->
-<!-- 	<br> -->
- 	    <!--투어 시작일시(날짜)-->
-<!-- 	<input type="text" name="tour_sdate" placeholder="예) 2018-08-15"> ~ -->
-<!-- 	<!--투어 종료일시(날짜)-->
-<!-- 	<input type="text" name="tour_edate" placeholder="예) 2018-08-17"> -->
-<!-- 	<br> -->
-	 	<!--투어 금액-->
-<!-- 	<input type="text" name="tour_pay"> -->
-<!-- 	<br> -->
-	 	<!--투어 내용--> 
-<!-- 	<textarea rows="10" cols="10" name="tour_cont"></textarea> -->
-<!-- 	<br> -->
-	<!--투어 이미지-->
-	<input type="file" name="tour_imgs">
-	<br>
-	<!--투어 등록하기-->
-	<input type="submit" id="tour_submit" value="투어 등록하기">
-	<br><br>
+		<input type="text" name="tour_title"> <br>
+		<!--투어 시작일시(날짜)-->
+		<input type="text" name="tour_sdate" placeholder="예) 2018-08-15">
+		~
+		<!--투어 종료일시(날짜)-->
+		<input type="text" name="tour_edate" placeholder="예) 2018-08-17">
+		<br>
+		<!--투어 금액-->
+		<input type="text" name="tour_pay"> <br>
+		<!--투어 내용-->
+		<textarea rows="10" cols="10" name="tour_cont"></textarea>
+		<br>
+		<!--투어 이미지-->
+		<input type="file" name="tour_imgs"> <br>
+		<!--게시글 번호 TEST 후 hide 처리-->
+		<input type="text" name="board_no">
+		<br>
+		<!--투어 등록하기-->
+		<input type="submit" id="tour_submit" value="투어 등록하기"> <br>
+		<br>
 	</form>
 
-	<!--게시글 번호 TEST 후 hide 처리-->
-<!-- 	<input type="text"  name="board_no"> -->
 </body>
 </html>

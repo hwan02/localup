@@ -8,5 +8,5 @@ public interface GuideService {
 	public void insert(GuideVO guideVO) throws Exception;
 	
 	//특정값 불어오기
-	public GuideVO list(String tour_img) throws Exception;
+	public GuideVO list(Integer board_no) throws Exception;
 }

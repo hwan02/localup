@@ -43,8 +43,8 @@ public class GuideController {
 	//가이드 상세 페이지 (작성자 : rys)
 	//가이드 상세 페이지 폼 보기
 	@RequestMapping("guideDetailPage")
-	public String guideDetailPage(String tour_img, Model model) throws Exception {
-		model.addAttribute("GuideVO",guideService.list(tour_img));
+	public String guideDetailPage(Integer board_no, Model model) throws Exception {
+		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guide";
 	}
 	

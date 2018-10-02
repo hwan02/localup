@@ -13,4 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					values (board_seq.nextval,#{member_email},#{board_type},#{board_title},#{board_cont},sysdate,#{board_alti},#{board_long}) -->
 	</insert>
 	
+	<!-- 특정 게시글 보기 -->
+	<select id="readBoard" resultType="BoardVO">
+		select board_no,member_email,board_type,board_title,board_cont,board_img,board_date,board_alti,board_long 
+		from board
+		where board_no=#{board_no}
+	</select>
 </mapper>

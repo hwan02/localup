@@ -35,6 +35,7 @@ public class MainController {
 	public String loc(Location loc, Model model) {
 		if(loc!=null) {
 		List<BoardVO> list =service.listBoard(loc);
+		model.addAttribute("list",list);
 		System.out.println(list);
 		}
 		return "jsp/test";

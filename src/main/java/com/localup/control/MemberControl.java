@@ -87,7 +87,7 @@ public class MemberControl {
 		String member_eamil = "";
 		for(int i=0; i<code.length()-1; i+=2) {
 			member_eamil += (char)((Integer.parseInt(code.substring(i, i+2),16))-code.length()/2);
-			//코드를 두자리씩 끊어서 16진수로 변환 -> 각각에 이메일 길이값 만큼 빼주기 -> 하나의 이메일로 묶기
+			//코드를 두자리씩 끊어서 16진수로 변환 -> 각각에 이메일 길이값 만큼 빼주기 -> 하나의 이메일로 묶기3
 		}
 		
 		request.setAttribute("member_eamil", member_eamil);

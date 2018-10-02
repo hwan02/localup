@@ -23,18 +23,18 @@
 -->
 
 	<!--투어 번호 TEST 후 hide 처리-->
-	<input type="text">
+	<input type="text" value="${GuideVO.tour_no}">
 	<br>
 	<!--투어명-->
-	<input type="text" readonly="readonly">
+	<input type="text" readonly="readonly" value="${GuideVO.tour_title}">
 	<br>
 	<!--투어 시작일시(날짜)-->
-	<input type="text" readonly="readonly"> ~
+	<input type="text" readonly="readonly" value="${GuideVO.tour_sdate}"> ~
 	<!--투어 종료일시(날짜)-->
-	<input type="text" readonly="readonly">
+	<input type="text" readonly="readonly" value="${GuideVO.tour_edate}">
 	<br>
 	<!--투어 금액-->
-	<input type="text" readonly="readonly">
+	<input type="text" readonly="readonly" value="${GuideVO.tour_pay}">
 	<br>
 	<!--투어 이미지-->
 	<input type="image" src="/resources/img/${GuideVO.tour_img }">
@@ -43,6 +43,6 @@
 	<input type="button" value="투어 신청">
 	<br>
 	<!--게시글 번호 TEST 후 hide 처리-->
-	<input type="text">
+	<input type="text" value="${GuideVO.board_no }">
 </body>
 </html>

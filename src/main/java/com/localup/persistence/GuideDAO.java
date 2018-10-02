@@ -8,5 +8,5 @@ public interface GuideDAO {
 	public void insert(GuideVO guideVO) throws Exception;
 	
 	//특정 가이드 상세페이지 가져오기
-	public GuideVO list(String tour_img) throws Exception;
+	public GuideVO list(Integer board_no) throws Exception;
 }

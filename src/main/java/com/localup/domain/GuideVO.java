@@ -5,14 +5,14 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class GuideVO {
-	private Integer tour_no;	/* 투어번호 */
-	private String tour_title; 	/* 투어명 */
-	private Date tour_sdate; 	/* 투어시작일시 */
-	private Date tour_edate; 	/* 투어종료일시 */
-	private Integer tour_pay; 	/* 투어금액 */
-	private String tour_cont; 	/* 투어내용 */
-	private String tour_img; 	/* 투어이미지 */
-	private Integer board_no; 	/* 게시글번호 */
+	private Integer tour_no; /* 투어번호 */
+	private String tour_title; /* 투어명 */
+	private String tour_sdate; /* 투어시작일시 */
+	private String tour_edate; /* 투어종료일시 */
+	private Integer tour_pay; /* 투어금액 */
+	private String tour_cont; /* 투어내용 */
+	private String tour_img; /* 투어이미지 */
+	private Integer board_no; /* 게시글번호 */
 
 	public Integer getTour_no() {
 		return tour_no;
@@ -30,19 +30,19 @@ public class GuideVO {
 		this.tour_title = tour_title;
 	}
 
-	public Date getTour_sdate() {
+	public String getTour_sdate() {
 		return tour_sdate;
 	}
 
-	public void setTour_sdate(Date tour_sdate) {
+	public void setTour_sdate(String tour_sdate) {
 		this.tour_sdate = tour_sdate;
 	}
 
-	public Date getTour_edate() {
+	public String getTour_edate() {
 		return tour_edate;
 	}
 
-	public void setTour_edate(Date tour_edate) {
+	public void setTour_edate(String tour_edate) {
 		this.tour_edate = tour_edate;
 	}
 
@@ -84,5 +84,5 @@ public class GuideVO {
 				+ ", tour_edate=" + tour_edate + ", tour_pay=" + tour_pay + ", tour_cont=" + tour_cont + ", tour_img="
 				+ tour_img + ", board_no=" + board_no + "]";
 	}
-	
+
 }

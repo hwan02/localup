@@ -2,15 +2,16 @@
 select * from tour;
 drop table tour;
 CREATE TABLE tour (
-	--tour_no NUMBER NOT NULL, /* 투어번호 */
-	--tour_title VARCHAR2(100) NOT NULL, /* 투어명 */
+	tour_no NUMBER NOT NULL, /* 투어번호 */
+	tour_title VARCHAR2(100) NOT NULL, /* 투어명 */
 	--tour_sdate DATE NOT NULL, /* 투어시작일시 */
 	--tour_edate DATE NOT NULL, /* 투어종료일시 */
-	--tour_pay NUMBER NOT NULL, /* 투어금액 */
-	--tour_cont VARCHAR2(500) NOT NULL, /* 투어내용 */
-	--tour_img VARCHAR2(150) NOT NULL /* 투어이미지 */
-	tour_img VARCHAR2(150) NOT NULL
-	--board_no NUMBER NOT NULL /* 게시글번호 */
+	tour_sdate VARCHAR2(100) NOT NULL, /* 투어시작일시 */
+	tour_edate VARCHAR2(100) NOT NULL, /* 투어종료일시 */
+	tour_pay NUMBER NOT NULL, /* 투어금액 */
+	tour_cont VARCHAR2(500) NOT NULL, /* 투어내용 */
+	tour_img VARCHAR2(150) NOT NULL, /* 투어이미지 */
+	board_no NUMBER NOT NULL /* 게시글번호 */
 );
 
 
@@ -45,6 +46,3 @@ ALTER TABLE tour
 		REFERENCES board (
 			board_no
 		);
-		
---board 테이블 조회
-select * from board;

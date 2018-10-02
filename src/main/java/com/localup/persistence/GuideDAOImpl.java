@@ -25,9 +25,9 @@ public class GuideDAOImpl implements GuideDAO{
 
 	//특정 가이드 상세페이지 가져오기
 	@Override
-	public GuideVO list(String tour_img) throws Exception {
-		tour_img = "upload_6.jpg";
-		return sqlSession.selectOne("guide.list",tour_img);
+	public GuideVO list(Integer board_no) throws Exception {
+		board_no = 1;
+		return sqlSession.selectOne("guide.list",board_no);
 	}
 
 }

@@ -19,8 +19,8 @@ public class GuideServiceImpl implements GuideService{
 	}
 
 	@Override
-	public GuideVO list(String tour_img) throws Exception {
-		return guideDAO.list(tour_img);
+	public GuideVO list(Integer board_no) throws Exception {
+		return guideDAO.list(board_no);
 	}
 
 }

@@ -6,9 +6,9 @@ $(document).ready(function() {
   getLocationJson()
 });
 
-$("#inputBox").focusout(function() {
+/*$("#inputBox").focusout(function() {
 	$("#insert").show();
-});
+});*/
 
 $("#inputBox").keyup(function(e) {
 
@@ -47,6 +47,7 @@ $(document).on("mousedown", ".autoCompleteBox",function(e) {
   $("#inputBox").val($(this).children()[1].innerHTML)
   $(".autoCompleteBox").remove()
   $(".autoCompleteContainer").remove()
+  $("#insert").show();
 })
 
 $(document).on("blur", "#inputBox",function() {

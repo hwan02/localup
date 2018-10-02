@@ -37,7 +37,7 @@
 	<input type="text" readonly="readonly">
 	<br>
 	<!--투어 이미지-->
-	<input type="image">
+	<input type="image" src="/resources/img/${GuideVO.tour_img }">
 	<br>
 	<!--투어 신청하기-->
 	<input type="button" value="투어 신청">

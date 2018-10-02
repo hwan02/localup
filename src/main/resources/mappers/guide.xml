@@ -7,8 +7,16 @@
 <!-- 		insert into tour (tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no) -->
 <!-- 		values(tour_seq.nextval,#{tour_title},#{tour_sdate},#{tour_edate},#{tour_pay},#{tour_cont},#{tour_img},#{board_no}) -->
 <!-- 	</insert> -->
-	<insert id="insert" parameterType="java.util.Map">
-		insert into tour (tour_imgFile)
-		values(#{img})
+	<insert id="insert">
+		insert into tour (tour_img)
+		values(#{tour_img})
 	</insert>
+
+	<!-- 특정 가이드 상세페이지 가져오기 -->
+	<select id="list" resultType="GuideVO">
+		select
+		tour_img
+		from tour
+<!-- 		where member_email=#{member_email} -->
+	</select>
 </mapper>

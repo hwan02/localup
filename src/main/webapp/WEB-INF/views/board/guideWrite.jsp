@@ -23,17 +23,13 @@ small{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-	
-
 	$(function() {
 			$('#tour_submit').click(function() {
 				alert("업로드 성공");
-				//$('form').submit();
+				$('form').reset();
 			});
 
 		});
-
-	});
 </script>
 </head>
 <body>
@@ -51,7 +47,7 @@ small{
 		게시글 번호(FK : board_no)
 -->
 
-	<form action="/guide/guideWrite" method="post" enctype="multipart/form-data" target="localupFrame">
+	<form action="/guide/guideWrite" method="post" enctype="multipart/form-data">
 		<!--투어명-->
 <!-- 	<input type="text" name="tour_title"> -->
 <!-- 	<br> -->
@@ -67,45 +63,13 @@ small{
 <!-- 	<textarea rows="10" cols="10" name="tour_cont"></textarea> -->
 <!-- 	<br> -->
 	<!--투어 이미지-->
-	<input type="file" name="tour_img">
+	<input type="file" name="tour_imgs">
 	<br>
 	<!--투어 등록하기-->
 	<input type="submit" id="tour_submit" value="투어 등록하기">
 	<br><br>
 	</form>
-	<!--Ajax 이미지 올리기 TEST-->
-	<div class="fileDrop"></div>
-	<div class="uploadList"></div>
-	
-	<script type="text/javascript">
-	$(".filDrop").on("dragenter dragover", function(event) {
-		event.preventDefault();
-	});
 
-	$(".filDrop").on("drop", function(event) {
-		event.preventDefault();
-
-		var files = event.originalEvent.dataTransfer.files;
-		var file = files[0];
-		//console.log(file);
-
-		var formData = new FormData();
-		FormData.append("file", file);
-		
-		ajax({
-			url : "/guide/guideWrite",
-			data : formData,
-			dataType:"text",
-			processData:false,
-			contentType:false,
-			type:"POST",
-			success: function(data) {
-				alert(data);
-			}
-		});
-	</script>
-<!-- 	<iframe name="localup" ></iframe> -->
-	
 	<!--게시글 번호 TEST 후 hide 처리-->
 <!-- 	<input type="text"  name="board_no"> -->
 </body>

@@ -58,8 +58,8 @@ $(function(){
 	
 	<c:if test="${empty sessionScope.id}">
 		<form action="/Funshop/login.do?action=login" method="post" name="frm" id="frm">
-			<input type="text" id="id" name="id" placeholder="ID"><br>
-			<input type="password" id="pw" name="pw" placeholder="PW"><br>
+			<input type="text" id="id" name="id" placeholder="Email"><br>
+			<input type="password" id="pw" name="pw" placeholder="Password"><br>
 			<br>
 			<button id="login" class="btn">로그인</button><br><br>
 		</form>

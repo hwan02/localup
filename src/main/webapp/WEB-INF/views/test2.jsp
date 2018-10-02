@@ -522,6 +522,36 @@
 	        el.removeChild (el.lastChild);
 	    }
 	}
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+	// 키워드 검색을 요청하는 함수입니다
+	function searchPlaces() {
+
+	    var keyword = document.getElementById('keyword').value;
+
+	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+	        alert('키워드를 입력해주세요!');
+	        return false;
+	    }
+	 // 주소로 좌표를 검색합니다
+	    geocoder.addressSearch(keyword, function(result, status) {
+	        // 정상적으로 검색이 완료됐으면 
+	         if (status === daum.maps.services.Status.OK) {
+				alert(result[0].y, result[0].x);
+	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	            map.setCenter(coords);
+	            map.setLevel(4);
+	        }else if(status === daum.maps.services.Status.ERROR){
+	        	alert("다시 검색해주세요.");
+	        }else{
+	        	alert("검색 결과가 없습니다.");
+	        } 
+	    });    
+	}
+
+	
 </script>
 	<br>
 	<div id="result"></div>
@@ -532,7 +562,7 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    키워드 : <input type="text" id="keyword" size="15"> 
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -541,6 +571,5 @@
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
-    
 </body>
 </html>

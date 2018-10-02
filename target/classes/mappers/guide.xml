@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--작성자 : rys-->
+<mapper namespace="guide">   
+	<!--가이드 상세 페이지 등록 ===> DB 입력-->
+<!-- 	<insert id="insert"> -->
+<!-- 		insert into tour (tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no) -->
+<!-- 		values(tour_seq.nextval,#{tour_title},#{tour_sdate},#{tour_edate},#{tour_pay},#{tour_cont},#{tour_img},#{board_no}) -->
+<!-- 	</insert> -->
+	<insert id="insert" parameterType="java.util.Map">
+		insert into tour (tour_imgFile)
+		values(#{img})
+	</insert>
+</mapper>

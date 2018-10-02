@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보 변경 TEST</title>
 
-<!--구글 스트립트-->
+<!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	//비밀번호 일치 하는 작업 : 보류!(굳이 필요 없을듯)

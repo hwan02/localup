@@ -18,6 +18,11 @@ public class BoardServiceImpl implements BoardService{
 	public void BoardWrite(BoardVO boardVO) throws Exception {
 		boardDAO.insertBoard(boardVO);
 	}
+
+	@Override
+	public BoardVO BoarRead(int board_no) throws Exception {
+		return boardDAO.readBoard(board_no);
+	}
 	
 }
 

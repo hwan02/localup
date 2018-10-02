@@ -19,6 +19,12 @@ public class BoardDAOImpl implements BoardDAO{
 		System.out.println("insertVO>>>"+boardVO);
 		sqlSession.insert("board.insertBoard",boardVO);
 	}
+
+	@Override
+	public BoardVO readBoard(int board_no) throws Exception {
+		System.out.println("board_no>>"+board_no);
+		return sqlSession.selectOne("board.readBoard",board_no);
+	}
 	
 }
 

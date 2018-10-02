@@ -81,7 +81,7 @@ public class BoardController {
 	}
 	//-----------------test Image Upload
 	
-	private String uploadFile(String originalName, byte[] fileData) throws Exception {
+	private String uploadFile(String originalName, byte[] fileData) throws Exception { //사진 중복되지 않게 id를 붙임 
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() + "_" + originalName;
 		File target = new File(uploadPath,savedName);
@@ -89,8 +89,10 @@ public class BoardController {
 		return savedName;
 	}
 
-	@RequestMapping(value="read", method=RequestMethod.GET)
-	public String read() throws Exception{
+	@RequestMapping(value="read")
+	public String read(int board_no,Model model) throws Exception{
+		model.addAttribute("path","C:\\localup\\img");
+		model.addAttribute("boardVO",boardService.BoarRead(board_no));
 		return "board/boardRead";
 	}
 }

@@ -54,4 +54,16 @@ values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다5','mathouse5.jpg',13,8,37.5,126.5,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
-values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다6','mathouse6.jpg',13,8,37.6,126.6,5); 
+values(board_seq.nextval, 'gildong@naver.com', '가이드','어디까지 가봤니?','난 여기까지 가봤단다6','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '교통','어디까지 가봤니?','난 여기까지 가봤단다7','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '편의시설','어디까지 가봤니?','난 여기까지 가봤단다8','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '랜드마크','어디까지 가봤니?','난 여기까지 가봤단다9','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '숙박','어디까지 가봤니?','난 여기까지 가봤단다10','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '지역소식','어디까지 가봤니?','난 여기까지 가봤단다11','mathouse6.jpg',13,8,37.6,126.6,5); 
+
+select * from board;

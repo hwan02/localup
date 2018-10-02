@@ -32,9 +32,9 @@ public class MainController {
 		return "test2";
 	}
 	@RequestMapping("location")
-	public String loc(Location loc, Model model) {
+	public String loc(Location loc, String board_type, Model model) {
 		if(loc!=null) {
-		List<BoardVO> list =service.listBoard(loc);
+		List<BoardVO> list =service.listBoard(loc,board_type);
 		model.addAttribute("list",list);
 		System.out.println(list);
 		}

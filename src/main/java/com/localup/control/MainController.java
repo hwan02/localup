@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.localup.domain.BoardVO;
 import com.localup.domain.Location;
@@ -38,17 +39,21 @@ public class MainController {
 	@RequestMapping("location")
 	public String loc(Location loc, String board_type, Model model) {
 		if(loc.getSouth()!=null) {
-			System.out.println("실행2"+loc);
 		List<BoardVO> list =service.listBoard(loc,board_type);
 		model.addAttribute("list",list);
-		System.out.println(list);
 		}
-		return "jsp/test";
+		return "main/board";
 	}
 	@RequestMapping("first")
-	public String loc2(Model model) {
+	public String loc2(Location loc,String board_type, Model model) {
+		if(loc.getSouth()!=null) {
+			//System.out.println("loc2:::실행2>>>loc:"+loc+"\nboard_type:"+board_type);
+		List<BoardVO> list =service.listBoard(loc,board_type);
+		model.addAttribute("list",list);
+		}else {
 			List<BoardVO> list =service.listBoardAll();
-			model.addAttribute("list",list);
+		model.addAttribute("list",list);
+		}
 		return "main/location";
 	}
 }

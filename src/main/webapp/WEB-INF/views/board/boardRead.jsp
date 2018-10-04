@@ -21,6 +21,7 @@
 	<form method="post">
 		댓글: <textarea rows="5" cols="70"></textarea><br>
 		이메일: <input type="text" name="member_email"><br>
+		<button id="addReply">등록</button>
 	</form>
 </body>
 </html>

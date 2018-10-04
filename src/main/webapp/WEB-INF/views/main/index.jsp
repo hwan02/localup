@@ -118,6 +118,7 @@
 		 <script>
 			$(function(){
 				$("#mat").click(function(){
+					alert("클릭")
 					var bounds = map.getBounds();
 					// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
 					var boundsStr = bounds.toString();
@@ -127,13 +128,16 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
+				    
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("맛집")
+				    newLocation(info);
+					/* $.ajax({
 				    	url:"location",
 				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"맛집"},	    	
 				    	success:function(result){
 				    		$("#ajaxResult").html(result);
 				    	}
-				    });
+				    }); */
 				});
 				$("#kyo").click(function(){
 					var bounds = map.getBounds();
@@ -145,13 +149,16 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
+				    
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("교통")
+				    newLocation(info);
+					/* $.ajax({
 				    	url:"location",
 				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"교통"},	    	
 				    	success:function(result){
 				    		$("#ajaxResult").html(result);
 				    	}
-				    });
+				    }); */
 				});
 				$("#pyeon").click(function(){
 					var bounds = map.getBounds();
@@ -244,7 +251,54 @@
 				    });
 				});
 			});
+function newLocation(type){
+	        	$.get("/first?"+type, function(data) {
+	                // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+	                // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+	            	data = JSON.parse(data); //string을 json으로 변환
+	                var markers = $(data.positions).map(function(i, position) {
+	                    var marker = new daum.maps.Marker({
+	                        position : new daum.maps.LatLng(position.lat, position.lng),
+	                    	image : markerImage // 마커 이미지
+	                    });		            
+	         	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+	            var iwContent = '<div style="padding:5px;">'
+	            				+'위도:'+position.lat
+	            				+'<br>경도:'+position.lng
+	            				+'<br><a href="#">게시글보기</a>'
+	            				+'<br><a href="#">게시글쓰기</a>'
+	            				+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	                iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
+	            // 인포윈도우를 생성합니다
+	            var infowindow = new daum.maps.InfoWindow({
+	                content : iwContent,
+	                removable : iwRemoveable
+	            });
+
+	            // 마커에 클릭이벤트를 등록합니다
+	            daum.maps.event.addListener(marker, 'click', function() {
+	                  // 마커 위에 인포윈도우를 표시합니다
+	                  //infowindow.open(map, marker);
+	                  console.log(coffeMarkers);	
+	                  //사라졌던 마커가 있으면 다시 표시해주기
+	                  if(disMarker != null && disMarker.getMap() == null) {
+	                  	disMarker.setMap(map);
+	                  }
+	                  
+	                  //마커를 대신해 커스텀 오버레이를 표시하기
+	            	  showOverlay(marker); 
+	            });
+	            
+	            return marker;
+	        });
+
+	        // 클러스터러에 마커들을 추가합니다
+	        clusterer.clear();
+	        clusterer.addMarkers(markers);
+	        
+	    });
+	}
 		 </script>
 <script>
 var disMarker;
@@ -292,10 +346,10 @@ var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 d
             position : new daum.maps.LatLng(position.lat, position.lng),
         	image : markerImage // 마커 이미지
         }); */
+
         $.get("/first", function(data) {
             // 데이터에서 좌표 값을 가지고 마커를 표시합니다
             // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        	alert(data);
         	data = JSON.parse(data); //string을 json으로 변환
             var markers = $(data.positions).map(function(i, position) {
                 var marker = new daum.maps.Marker({

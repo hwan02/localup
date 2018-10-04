@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- reply.xml -->
+<mapper namespace="reply">
+
+	<!-- 댓글 추가 -->
+	<insert id="insertReply">
+		insert into reply (reply_no,board_no,reply_cont,member_email,reply_date,reply_star)
+					values (reply_seq.nextval,#{board_no},#{reply_cont},#{member_email},sysdate,#{reply_star})
+	</insert>
+	
+	<!-- (특정게시물에 대한)댓글조회 -->
+	<select id="selectReply" resultType="ReplyVO">
+		select reply_no,board_no,board_cont,member_email,reply_date,reply_star
+		from reply
+		where board_no=#{board_no}
+		order by reply_no desc
+	</select>
+	
+	<!-- 특정댓글 수정 -->
+	<!-- <update id="update">
+		update tbl_reply 
+		set replytext=#{replytext},replyer=#{replyer}, updatedate=sysdate
+		where rno=#{rno}
+	</update> -->
+	
+	<!-- 특정댓글 삭제 -->
+	<!-- <delete id="delete">
+		delete from tbl_reply where rno=#{rno}
+	</delete> -->
+	
+	<!-- 특정게시물의 총 댓글수 -->
+	<!-- <select id="count" resultType="int">
+		select count(*) from tbl_reply where bno=#{bno}
+	</select> -->
+	
+	<!-- 댓글달린 게시물 번호얻기 
+		왜? 댓글 삭제시 (해당게시물의 댓글수 감소)사용하기 위해서
+	-->
+	<!-- <select id="getBno" resultType="int">
+		select bno from tbl_reply where rno=#{rno}
+	</select> -->
+	
+</mapper>

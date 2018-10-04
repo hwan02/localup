@@ -1,164 +1,190 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>마커 클러스터러 사용하기</title>
-<style>
-.overlaybox {
-	position: relative;
-	width: 360px;
-	height: 350px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png')
-		no-repeat;
-	padding: 15px 10px;
-}
-
-.overlaybox div, ul {
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
-}
-
-.overlaybox li {
-	list-style: none;
-}
-
-.overlaybox .boxtitle {
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png')
-		no-repeat right 120px center;
-	margin-bottom: 8px;
-}
-
-.overlaybox .first {
-	position: relative;
-	width: 247px;
-	height: 136px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumb.png')
-		no-repeat;
-	margin-bottom: 8px;
-}
-
-.first .text {
-	color: #fff;
-	font-weight: bold;
-}
-
-.first .triangle {
-	position: absolute;
-	width: 48px;
-	height: 48px;
-	top: 0;
-	left: 0;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png')
-		no-repeat;
-	padding: 6px;
-	font-size: 18px;
-}
-
-.first .movietitle {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.4);
-	padding: 7px 15px;
-	font-size: 14px;
-}
-
-.overlaybox ul {
-	width: 247px;
-}
-
-.overlaybox li {
-	position: relative;
-	margin-bottom: 2px;
-	background: #2b2d36;
-	padding: 5px 10px;
-	color: #aaabaf;
-	line-height: 1;
-}
-
-.overlaybox li span {
-	display: inline-block;
-}
-
-.overlaybox li .number {
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.overlaybox li .title {
-	font-size: 13px;
-}
-
-.overlaybox ul .arrow {
-	position: absolute;
-	margin-top: 8px;
-	right: 25px;
-	width: 5px;
-	height: 3px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png')
-		no-repeat;
-}
-
-.overlaybox li .up {
-	background-position: 0 -40px;
-}
-
-.overlaybox li .down {
-	background-position: 0 -60px;
-}
-
-.overlaybox li .count {
-	position: absolute;
-	margin-top: 5px;
-	right: 15px;
-	font-size: 10px;
-}
-
-.overlaybox li:hover {
-	color: #fff;
-	background: #d24545;
-}
-
-.overlaybox li:hover .up {
-	background-position: 0 0px;
-}
-
-.overlaybox li:hover .down {
-	background-position: 0 -20px;
-}
-</style>
+<title>로컬업</title>
+ <link rel="stylesheet" type="text/css" href="/resources/css/mainCustom.css">
 </head>
 <body>
 	<br>
-	<p style="margin-top: -12px">
-		사용한 데이터를 보시려면 <em class="link"> <a
-			href="/resources/test_data.jsp" target="_blank">여기를 클릭하세요!</a>
-		</em>
-	</p>
+	<div id="mapwrap"> 
+    <!-- 지도가 표시될 div -->
 	<div id="map" style="width: 100%; height: 800px;"></div>
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- 지도 위에 표시될 마커 카테고리 -->
+    <div class="category">
+        <ul>
+            <li id="mat">
+                <span class="ico_comm ico_coffee"></span>
+               맛집
+            </li>
+            <li id="kyo" >
+                <span class="ico_comm ico_store"></span>
+                교통
+            </li>
+            <li id="pyeon" >
+                <span class="ico_comm ico_carpark"></span>
+                편의시설
+            </li>
+            <li id="land" >
+                <span class="ico_comm ico_carpark"></span>
+                랜드마크
+            </li>
+            <li id="suk" >
+                <span class="ico_comm ico_carpark"></span>
+                숙박
+            </li>
+            <li id="ji" >
+                <span class="ico_comm ico_carpark"></span>
+                지역소식
+            </li>
+            <li id="guide">
+                <span class="ico_comm ico_carpark"></span>
+                가이드
+            </li>
+        </ul>
+    </div>
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer,services,drawing"></script>
+	<script>
+		$(function(){
+			$("#mat").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"맛집"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#kyo").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"교통"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#pyeon").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"편의시설"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#land").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"랜드마크"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#suk").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"숙박"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#ji").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"지역소식"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+			$("#guide").click(function(){
+				var bounds = map.getBounds();
+				// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+				var boundsStr = bounds.toString();
+			    var swLatLng = bounds.getSouthWest();
+			    var south = swLatLng.getLat();
+			    var west = swLatLng.getLng();
+			    var neLatLng = bounds.getNorthEast(); 
+			    var north = neLatLng.getLat();
+			    var east = neLatLng.getLng();
+				$.ajax({
+			    	url:"location",
+			    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"가이드"},	    	
+			    	success:function(result){
+			    		$("#ajaxResult").html(result);
+			    	}
+			    });
+			});
+		});
+	</script>
 	<script>
 	var disMarker;
 	
     var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
         center : new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
-        level : 14 // 지도의 확대 레벨 
+        level : 12 // 지도의 확대 레벨 
     });
     
  	 // 마커 클러스터러를 생성합니다 
@@ -342,29 +368,6 @@
 	daum.maps.event.addListener(map, 'zoom_changed', function() {        
 		customOverlay.setMap(null); //커스텀 오버레이 닫기
 	});
-    
-	//function getInfo() {
-	    
-	    // 지도의 현재 영역을 얻어옵니다 
-	 // var bounds = map.getBounds();
-	    
-	    // 영역의 남서쪽 좌표를 얻어옵니다 
-	    //var swLatLng = bounds.getSouthWest(); 
-	    
-	    // 영역의 북동쪽 좌표를 얻어옵니다 
-	    //var neLatLng = bounds.getNorthEast(); 
-	    
-	    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
-	   // var boundsStr = bounds.toString();
-	    
-	    
-	   // var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
-	   // message += '경도 ' + center.getLng() + ' 이고 <br>';
-	   // message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
-	    
-	    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
-	  //   console.log(message);
-	//}
 	
 	// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
 	daum.maps.event.addListener(map, 'dragend', function() {   
@@ -389,7 +392,6 @@
 	    	success:function(result){
 	    		$("#ajaxResult").html(result);
 	    	}
-	    	
 	    });
 		}
 	});  
@@ -397,131 +399,9 @@
 	// 장소 검색 객체를 생성합니다
 	var ps = new daum.maps.services.Places();  
 	
-	// 키워드로 장소를 검색합니다
-	//searchPlaces();
-	
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	var infowindow = new daum.maps.InfoWindow({zIndex:1});
 	
-	// 키워드 검색을 요청하는 함수입니다
-	function searchPlaces() {
-	    var keyword = document.getElementById('keyword').value;
-
-	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-	        alert('키워드를 입력해주세요!');
-	        return false;
-	    }
-
-	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-	    ps.keywordSearch( keyword, placesSearchCB); 
-	}
-	
-	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-	function placesSearchCB(data, status, pagination) {
-	    if (status === daum.maps.services.Status.OK) {
-			alert("data="+data);
-	        // 정상적으로 검색이 완료됐으면
-	        // 검색 목록과 마커를 표출합니다
-	        displayPlaces(data);
-
-	        // 페이지 번호를 표출합니다
-	        displayPagination(pagination);
-
-	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
-
-	        alert('검색 결과가 존재하지 않습니다.');
-	        return;
-
-	    } else if (status === daum.maps.services.Status.ERROR) {
-
-	        alert('검색 결과 중 오류가 발생했습니다.');
-	        return;
-
-	    }
-	}
-	// 검색 결과 목록과 마커를 표출하는 함수입니다
-	function displayPlaces(places) {
-
-	    var listEl = document.getElementById('placesList'), 
-	    menuEl = document.getElementById('menu_wrap'),
-	    fragment = document.createDocumentFragment(), 
-	    bounds = new daum.maps.LatLngBounds(), 
-	    listStr = '';
-	    
-	    // 검색 결과 목록에 추가된 항목들을 제거합니다
-	    removeAllChildNods(listEl);
-
-	    // 지도에 표시되고 있는 마커를 제거합니다
-	    removeMarker();
-	    
-	    for ( var i=0; i<places.length; i++ ) {
-
-	        // 마커를 생성하고 지도에 표시합니다
-	        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
-	            marker = addMarker(placePosition, i), 
-	            itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
-	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-	        // LatLngBounds 객체에 좌표를 추가합니다
-	        bounds.extend(placePosition);
-
-	        // 마커와 검색결과 항목에 mouseover 했을때
-	        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-	        // mouseout 했을 때는 인포윈도우를 닫습니다
-	        (function(marker, title) {
-	            daum.maps.event.addListener(marker, 'mouseover', function() {
-	                displayInfowindow(marker, title);
-	            });
-
-	            daum.maps.event.addListener(marker, 'mouseout', function() {
-	                infowindow.close();
-	            });
-
-	            itemEl.onmouseover =  function () {
-	                displayInfowindow(marker, title);
-	            };
-
-	            itemEl.onmouseout =  function () {
-	                infowindow.close();
-	            };
-	        })(marker, places[i].place_name);
-
-	        fragment.appendChild(itemEl);
-	    }
-
-	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-	    listEl.appendChild(fragment);
-	    menuEl.scrollTop = 0;
-
-	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-	    map.setBounds(bounds);
-	}
-	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-	function addMarker(position, idx, title) {
-	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-	        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
-	        imgOptions =  {
-	            spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
-	            spriteOrigin : new daum.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-	            offset: new daum.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-	        },
-	        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-	            marker = new daum.maps.Marker({
-	            position: position, // 마커의 위치
-	            image: markerImage 
-	        });
-
-	    marker.setMap(map); // 지도 위에 마커를 표출합니다
-	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
-	    return marker;
-	}
-	// 검색결과 목록의 자식 Element를 제거하는 함수입니다
-	function removeAllChildNods(el) {   
-	    while (el.hasChildNodes()) {
-	        el.removeChild (el.lastChild);
-	    }
-	}
 	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new daum.maps.services.Geocoder();

@@ -1,4 +1,5 @@
 /* 멤버 */
+select * from member;
 alter table member drop constraint PK_member cascade;
 drop table member;
 CREATE TABLE member (

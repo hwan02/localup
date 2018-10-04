@@ -31,13 +31,24 @@ public class MainController {
 	public String test2() {
 		return "test2";
 	}
+	@RequestMapping("index")
+	public String index() {
+		return "main/index";
+	}
 	@RequestMapping("location")
-	public String loc(Location loc, Model model) {
-		if(loc!=null) {
-		List<BoardVO> list =service.listBoard(loc);
+	public String loc(Location loc, String board_type, Model model) {
+		if(loc.getSouth()!=null) {
+			System.out.println("실행2"+loc);
+		List<BoardVO> list =service.listBoard(loc,board_type);
 		model.addAttribute("list",list);
 		System.out.println(list);
 		}
 		return "jsp/test";
+	}
+	@RequestMapping("first")
+	public String loc2(Model model) {
+			List<BoardVO> list =service.listBoardAll();
+			model.addAttribute("list",list);
+		return "main/location";
 	}
 }

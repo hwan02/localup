@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -118,7 +119,6 @@
 		 <script>
 			$(function(){
 				$("#mat").click(function(){
-					alert("클릭")
 					var bounds = map.getBounds();
 					// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
 					var boundsStr = bounds.toString();
@@ -131,13 +131,6 @@
 				    
 				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("맛집")
 				    newLocation(info);
-					/* $.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"맛집"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    }); */
 				});
 				$("#kyo").click(function(){
 					var bounds = map.getBounds();
@@ -170,13 +163,8 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"편의시설"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    });
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("편의시설")
+				    newLocation(info);
 				});
 				$("#land").click(function(){
 					var bounds = map.getBounds();
@@ -188,13 +176,8 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"랜드마크"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    });
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("랜드마크")
+				    newLocation(info);
 				});
 				$("#suk").click(function(){
 					var bounds = map.getBounds();
@@ -206,13 +189,8 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"숙박"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    });
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("숙박")
+				    newLocation(info);
 				});
 				$("#ji").click(function(){
 					var bounds = map.getBounds();
@@ -224,13 +202,8 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"지역소식"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    });
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("지역소식")
+				    newLocation(info);
 				});
 				$("#guide").click(function(){
 					var bounds = map.getBounds();
@@ -242,13 +215,8 @@
 				    var neLatLng = bounds.getNorthEast(); 
 				    var north = neLatLng.getLat();
 				    var east = neLatLng.getLng();
-					$.ajax({
-				    	url:"location",
-				    	data:{"south":south, "west":west,"north":north,"east":east,"board_type":"가이드"},	    	
-				    	success:function(result){
-				    		$("#ajaxResult").html(result);
-				    	}
-				    });
+				    var info = "south="+south+"&west="+west+"&east="+east+"&north="+north+"&board_type="+ encodeURIComponent("가이드")
+				    newLocation(info);
 				});
 			});
 function newLocation(type){
@@ -304,8 +272,8 @@ function newLocation(type){
 var disMarker;
 
 var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-    center : new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
-    level : 12 // 지도의 확대 레벨 
+    center : new daum.maps.LatLng(37.486454939832456, 127.02068035663186), // 지도의 중심좌표 
+    level : 5 // 지도의 확대 레벨 
 });
 
 	 // 마커 클러스터러를 생성합니다 
@@ -521,7 +489,7 @@ daum.maps.event.addListener(map, 'dragend', function() {
     	url:"location",
     	data:{"south":south, "west":west,"north":north,"east":east},
     	success:function(result){
-    		$("#ajaxResult").html(result);
+    		$("#newBoard").html(result);
     	}
     });
 	}
@@ -583,42 +551,30 @@ function searchPlaces() {
     <!-- Page Content -->
     <div class="container">
 
-
-      <!-- Marketing Icons Section -->
+<script>
+	$(function(){
+		var bounds = map.getBounds();
+		// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+		var boundsStr = bounds.toString();
+	    var swLatLng = bounds.getSouthWest();
+	    var south = swLatLng.getLat();
+	    var west = swLatLng.getLng();
+	    var neLatLng = bounds.getNorthEast(); 
+	    var north = neLatLng.getLat();
+	    var east = neLatLng.getLng();
+	    $.ajax({
+	    	url:"location",
+	    	data:{"south":south, "west":west,"north":north,"east":east},	    	
+	    	success:function(result){
+	    		alert(result)
+	    		$("#newBoard").html(result);
+	    	}
+	    });
+	});
+</script>
+      <!-- 게시글 -->
       <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
+      <div id="newBoard"></div>
       </div>
       <!-- /.row -->
 
@@ -735,7 +691,7 @@ function searchPlaces() {
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; localup Website 2018</p>
       </div>
       <!-- /.container -->
     </footer>

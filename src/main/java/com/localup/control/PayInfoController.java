@@ -30,7 +30,7 @@ public class PayInfoController {
 		return "redirect:main";
 	}
 	
-	//가이드 상세 페이지 등록 ==이동==> 페인페이지
+	//결제페이 ==이동==> 페인페이지
 	@RequestMapping("main")
 	public String main() throws Exception{
 		return "main/main";

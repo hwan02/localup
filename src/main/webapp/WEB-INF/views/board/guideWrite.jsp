@@ -6,19 +6,6 @@
 <meta charset="UTF-8">
 <!--작성자 : rys-->
 <title>가이드 상세페이지 등록</title>
-<style type="text/css">
-.fileDrop {
-	width:100%;
-	height:200px;
-	border:1px dotted blue;
-}
-
-small{
-	margin-left:3px;
-	font-weight:bold;
-	color:gray;
-}
-</style>
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

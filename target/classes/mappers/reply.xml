@@ -13,34 +13,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- (특정게시물에 대한)댓글조회 -->
 	<select id="selectReply" resultType="ReplyVO">
-		select reply_no,board_no,board_cont,member_email,reply_date,reply_star
+		select reply_no,board_no,reply_cont,member_email,reply_date,reply_star
 		from reply
 		where board_no=#{board_no}
 		order by reply_no desc
 	</select>
 	
 	<!-- 특정댓글 수정 -->
-	<!-- <update id="update">
-		update tbl_reply 
-		set replytext=#{replytext},replyer=#{replyer}, updatedate=sysdate
-		where rno=#{rno}
-	</update> -->
+	<update id="updateReply">
+		update reply 
+		set reply_cont=#{reply_cont},reply_star=#{reply_star},reply_date=sysdate
+		where reply_no=#{reply_no}
+	</update>
 	
 	<!-- 특정댓글 삭제 -->
-	<!-- <delete id="delete">
-		delete from tbl_reply where rno=#{rno}
-	</delete> -->
+	<delete id="deleteReply">
+		delete from reply where reply_no=#{reply_no}
+	</delete>
 	
 	<!-- 특정게시물의 총 댓글수 -->
-	<!-- <select id="count" resultType="int">
-		select count(*) from tbl_reply where bno=#{bno}
-	</select> -->
+	<select id="count" resultType="int">
+		select count(*) from reply where board_no=#{board_no}
+	</select>
 	
 	<!-- 댓글달린 게시물 번호얻기 
 		왜? 댓글 삭제시 (해당게시물의 댓글수 감소)사용하기 위해서
 	-->
-	<!-- <select id="getBno" resultType="int">
-		select bno from tbl_reply where rno=#{rno}
-	</select> -->
+	<select id="getBno" resultType="int">
+		select board_no from reply where reply_no=#{reply_no}
+	</select>
 	
 </mapper>

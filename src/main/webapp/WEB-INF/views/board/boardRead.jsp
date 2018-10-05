@@ -52,8 +52,9 @@
 				console.log(result);
 				var str='';
 				$(result).each(function(){
-					str += '<li data-rno="'+ this.reply_no +'" data-rtext="'+ this.reply_cont +'" class="replyLi">'
-							+ this.reply_no +":"+ this.reply_cont +'<button>수정</button></li>';
+					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
+						+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
+							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +'<button>수정</button></li>';
 				});
 				$('#replies').html(str);
 			}
@@ -67,8 +68,9 @@
 			success:function(result){ //result ---> Map{List("list"), PageMaker("pageMaker")}
 				var str='';
 				$(result.list).each(function(){
-					str += '<li data-rno="'+ this.reply_no +'" data-rtext="'+ this.reply_cont +'" class="replyLi">'
-							+ this.reply_no +":"+ this.reply_cont +'<button>수정</button></li>';
+					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
+					+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
+							+ this.reply_no +" 평점:"+ this.reply_star +":"+ this.reply_cont +" 이메일:"+ this.member_email + '<button>수정</button></li>';
 				});
 				$('#replies').html(str);
 				printPaging(result.pageMaker);
@@ -125,18 +127,25 @@
 			//수정버튼 좌측에 있는 댓글번호,댓글내용 얻기
 			var reply = $(this).parent(); //---> <li>엘리먼트
 			var reply_no = reply.attr('data-rno');
-			var reply_cont = reply.attr('data-rtext');//reply.text();
-			//alert(rno+'>>'+replytext);
+			var reply_cont = reply.attr('data-rcont');//reply.text();
+			var reply_star = reply.attr('data-rstar');
+			var member_email = reply.attr('data-remail');
+			
+			//alert(reply_no);
+			//alert(reply_cont);
+			
 			$('.modal-title').html(reply_no);
-			$('#reply_cont').val(reply_cont);
+			$('#modDiv #reply_cont').val(reply_cont);
+			$('#modDiv #member_email').val(member_email);
+			$('#modDiv #reply_star').val(reply_star);
 			$('#modDiv').show(1500);
 		});
 		
 		//댓글 삭제 요청
 		$('#delReply').click(function(){
-			var rno = $('.modal-title').html();
+			var reply_no = $('.modal-title').html();
 			$.ajax({
-				url:'/reply/'+rno, //--->/reply/4
+				url:'/reply/'+reply_no, //--->/reply/4
 				type:'delete',
 				success:function(result){
 					if(result==='SUCCESS'){
@@ -155,12 +164,13 @@
 		
 		//댓글 수정
 		$('#modReply').click(function(){
-			var rno = $('.modal-title').html();
+			var reply_no = $('.modal-title').html();
 			$.ajax({
 				url:'/reply/'+reply_no, //--->/reply/4
 				type:'put',
 				data:JSON.stringify({
-					reply_cont:$('#reply_cont').val()
+					reply_cont:$('#modDiv #reply_cont').val(),
+					reply_star:$('#modDiv #reply_star').val()
 				}),
 				headers:{
 					'Content-Type':'application/json'
@@ -271,7 +281,9 @@
 	<div id="modDiv" style="display: none;">
 		<div class="modal-title"></div>
 		<div>
-			<input type="text" id="reply_cont">
+			평점: <input type="text" id="reply_star"><br>
+			내용: <input type="text" id="reply_cont"><br>
+			이메일: <input type="text" id="member_email" disabled>
 		</div>
 		<div>
 			<button id="modReply">수정</button>

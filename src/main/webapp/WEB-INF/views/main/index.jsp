@@ -381,7 +381,7 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 	
 	//커스텀 오버레이가 열려있다면
 	if(customOverlay.getMap() != null) {
-    	customOverlay.setMap(null); //커스텀 오버레이 닫기
+    	//customOverlay.setMap(null); //커스텀 오버레이 닫기
     	disMarker.setMap(map); //사라졌던 마커 표시하기
 		return;
 	}
@@ -399,7 +399,7 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
     var iwContent = '<div style="padding:5px;">'
     				+'위도:'+latlng.getLat()
     				+'<br>경도:'+latlng.getLng()
-    				+'<br><a href="#">게시글쓰기</a>'
+    				+'<br><a href="board/write">게시글쓰기</a>'
     				+'<br><a href="javascript:removeMarker()">취소</a>'
     				+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 

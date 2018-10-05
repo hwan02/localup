@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 특정댓글 수정 -->
 	<update id="updateReply">
 		update reply 
-		set reply_cont=#{reply_cont},reply_date=sysdate
+		set reply_cont=#{reply_cont},reply_star=#{reply_star},reply_date=sysdate
 		where reply_no=#{reply_no}
 	</update>
 	

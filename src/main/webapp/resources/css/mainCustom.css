@@ -166,3 +166,14 @@ body {
 .overlaybox li:hover .down {
 	background-position: 0 -20px;
 }
+/* 게시글 디자인 */
+.message-card-list li .message-card {
+    float: left;
+    padding-top: 16px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    background-color: #ffffff;
+    line-height: 0;
+    word-wrap: break-word;
+    width: 100%;
+}

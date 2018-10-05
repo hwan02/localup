@@ -30,4 +30,11 @@ public class MainDAOImpl implements MainDAO{
 		
 		return sqlSession.selectList("main.listBoardAll");
 	}
+@Override
+public List<BoardVO> listCustom(String lat, String lng) {
+	Map<String, String> map = new HashMap<>();
+	map.put("lng", lng);
+	map.put("lat", lat);
+	return sqlSession.selectList("main.listCustom", map);
+}
 }

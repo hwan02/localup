@@ -100,10 +100,12 @@ public class ReplyController {
 			
 		try {
 			replyVO.setReply_no(reply_no);//URL경로를 통해 전달받은 rno값을 VO에 설정.
+			System.out.println(replyVO);
 			replyService.modifyReply(replyVO);
 			//return "SUCCESS";
 			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);//200
 		} catch (Exception e) {
+			System.out.println(replyVO);
 			e.printStackTrace();
 			//return "FAIL";
 			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);//400

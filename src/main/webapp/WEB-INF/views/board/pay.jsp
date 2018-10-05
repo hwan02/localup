@@ -37,6 +37,7 @@
 	<input type="button" id="payGO" value="결제 하기">
 	<br>
 	<input type="text" name="pay_way" id="pay_way" placeholder="결제수단">
+	<br>
 	<!--pay_state 결제 상태 TEST 후 hiden 처리 v-->
 	<input type="hidden" name="pay_state" value="완료">
 	<!--게시글 번호 TEST후 hiden 처리(DB에서 가져오기)-->

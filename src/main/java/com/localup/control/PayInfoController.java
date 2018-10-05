@@ -35,4 +35,10 @@ public class PayInfoController {
 	public String main() throws Exception{
 		return "main/main";
 	}
+	
+	//결제하기 버튼 클릭시 결제 화면창 보이기
+	@RequestMapping("payWindow")
+	public String payWindow() {
+		return"board/payWindow";
+	}
 }

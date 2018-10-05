@@ -32,7 +32,7 @@
 	<!--DB : 결제 수단으로 입력 v-->
 	<!--pay_pay-->
 	<!--pay_way-->
-	<input type="text" name="pay_pay" readonly="readonly" value="결제금액 : 2000">
+	<input type="text" name="pay_pay"  placeholder="결제금액">
 	<br>
 	<input type="button" id="payGO" value="결제 하기">
 	<br>

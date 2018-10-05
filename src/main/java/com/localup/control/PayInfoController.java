@@ -41,4 +41,5 @@ public class PayInfoController {
 	public String payWindow() {
 		return"board/payWindow";
 	}
+	
 }

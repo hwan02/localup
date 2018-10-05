@@ -65,6 +65,7 @@
 	// reply/120/2 ===> 120:글번호, 2:2페이지
 	function replylistPage(page){ //전체 댓글 중 특정 페이지의 댓글(예: 1페이지의 댓글 10개)
 		var board_no = $('input[name=board_no]').val();
+		var page = 1;
 		$.ajax({
 			url:'/reply/'+board_no+'/'+page,
 			success:function(result){ //result ---> Map{List("list"), PageMaker("pageMaker")}
@@ -81,9 +82,11 @@
 	}//replylistPage
 	
 	function printPaging(pageMaker){ //하단 번호출력
+		var board_no = $('input[name=board_no]').val();
 		var str='';
 		for(var i=pageMaker.startPage; i<=pageMaker.endPage; i++){
 			str += '<li><a>'+i+'</a></li>';
+			//str += '<li><a href="http://localhost/board/read?board_no='+board_no+'&page='+i+'">'+i+'</a></li>';
 		}
 		$('.pagination').html(str);
 	}//printPaging

@@ -103,6 +103,53 @@
 			$("#Kbankcheck").toggle(1000);
 		});
 
+		
+		
+		//(계좌)확인 버튼시 pay.jsp에 전달
+		$("#KBbankcheck").click(function(){
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("KBbank").value				
+			window.close(); //닫기 동시에 전달하기!!!
+		});
+		
+		$("#Kakaobankcheck").click(function(){
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("Kakaobank").value				
+			window.close(); //닫기 동시에 전달하기!!!
+		});
+
+
+		$("#KEBHanacbankheck").click(function(){
+			
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("KEBHanabank").value			
+
+			window.close(); //닫기 동시에 전달하기!!!
+		});
+	
+		$("#Shinhanbankcheck").click(function(){
+			
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("Shinhanbank").value				
+
+			window.close(); //닫기 동시에 전달하기!!!
+		});
+
+		$("#nonghyupbankcheck").click(function(){
+			
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("nonghyupbank").value				
+
+			window.close(); //닫기 동시에 전달하기!!!
+		});
+
+		$("#Kbankcheck2").click(function(){
+			
+				opener.document.getElementById("pay_way").value = 
+					document.getElementById("Kbank2").value				
+
+			window.close(); //닫기 동시에 전달하기!!!
+		});
 	});
 </script>
 </head>
@@ -161,5 +208,12 @@
 <input type="text" id="KbankNumber" size="50" style="display: none;">
 <!--결제페이지 이동-->
 <input type="button" id="Kbankcheck" value="확인" style="display: none;">
+<br>
+<label>계좌</label>
+<br>
+<input type="button" id="KBbank" value="국민카드">
+<input type="button" id="Kakaobank" value="카카오카드">
+<input type="button" id="KEBHanabank" value="KEB하나카드">
+<br>
 </body>
 </html>

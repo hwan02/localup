@@ -27,10 +27,17 @@
 			value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+<<<<<<< HEAD
 			<property name="username" value="localup"></property>
 			<property name="password" value="QWER"></property>
 		<!-- <property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property> -->
+=======
+		<property name="username" value="localup"></property>
+		<property name="password" value="QWER"></property>
+<!-- 		<property name="username" value="scott"></property> -->
+<!-- 		<property name="password" value="tiger"></property> -->
+>>>>>>> f2c478f5656c952d905879e4a1d7ef2d1793ec8e
 	</bean>
 
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"

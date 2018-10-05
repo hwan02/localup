@@ -44,7 +44,7 @@ nocache
 nocycle;		
 delete from board;
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
-values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
+values(board_seq.nextval, 'localup@gmail.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다2','mathouse2.jpg',13,8,37.2,126.2,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 

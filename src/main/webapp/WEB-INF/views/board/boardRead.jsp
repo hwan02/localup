@@ -43,11 +43,12 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	var board_no=2;
+	//var board_no=2;
 	function replylist(){ //전체 댓글
+		var board_no = $('input[name=board_no]').val();
 		$.ajax({
 			url:'/reply/all/'+board_no,
-			success:function(result){ //result ---> List데이터
+			success:function(result){ //result --> List데이터
 				console.log(result.length);
 				console.log(result);
 				var str='';
@@ -63,6 +64,7 @@
 	
 	// reply/120/2 ===> 120:글번호, 2:2페이지
 	function replylistPage(page){ //전체 댓글 중 특정 페이지의 댓글(예: 1페이지의 댓글 10개)
+		var board_no = $('input[name=board_no]').val();
 		$.ajax({
 			url:'/reply/'+board_no+'/'+page,
 			success:function(result){ //result ---> Map{List("list"), PageMaker("pageMaker")}
@@ -87,6 +89,8 @@
 	}//printPaging
 	
 	$(function(){//window ready
+		var board_no = $('input[name=board_no]').val();
+	
 		//replylist();
 		replylistPage(1);
 		
@@ -187,75 +191,10 @@
 		
 	});//window ready
 </script>
-
-
-<!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#addReply").on("click", function() {
-			var member_email = $('#member_email').val();
-			var reply_cont = $('#reply_cont').val();
-			
-			$.ajax({
-				type:post,
-				url : '/reply/',
-				headers : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				dataType : 'text',
-				data: ({
-					board_no : board_no,
-					member_email : member_email,
-					reply_cont : reply_cont,
-					reply_star : reply_star
-				}),
-				success:function(result){
-					if(result=='SUCCESS'){
-						alert('등록되었습니다');
-					}
-				}
-			}); 
-			
-			//var member_emailObj = $("#member_email");
-			var reply_contObj = $("#reply_cont");
-			var member_email = member_emailObj.val();
-			var reply_cont = reply_contObj.val();
-	
-			$.ajax({
-				type : 'post',
-				url : '/reply/',
-				headers : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				dataType : 'text',
-				data : JSON.stringify({
-					board_no : board_no,
-					member_email : member_email,
-					reply_cont : reply_cont,
-					reply_star: reply_star
-				}),
-				success : function(result) {
-					console.log("result: " + result);
-					if (result == 'SUCCESS') {
-						alert("등록이 완료되었습니다");
-						replyPage = 1;
-						getPage("/reply/" + board_no + "/" + replyPage);
-						member_emailObj.val("");
-						reply_contObj.val("");
-					}
-				}
-			}); //
-		});
-	});
-	
-</script> -->
 </head>
 <body>
 	<form>
-		<input type="text" name="board_no" value="${boardVO.board_no }"><br>
+		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no"><br>
 		제목: <input type="text" name="board_title" value="${boardVO.board_title }"><br>
 		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }"><br>
 		이미지: <img src="/resources/img/${boardVO.board_img }" width="300" height="300"><br>

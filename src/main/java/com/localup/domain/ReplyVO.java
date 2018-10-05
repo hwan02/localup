@@ -11,6 +11,22 @@ public class ReplyVO {
 	private double reply_star;
 	private String member_email;
 
+	public ReplyVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReplyVO(int reply_no, String reply_cont, Date reply_date, int reply_upno, int board_no, double reply_star,
+			String member_email) {
+		super();
+		this.reply_no = reply_no;
+		this.reply_cont = reply_cont;
+		this.reply_date = reply_date;
+		this.reply_upno = reply_upno;
+		this.board_no = board_no;
+		this.reply_star = reply_star;
+		this.member_email = member_email;
+	}
+
 	public int getReply_no() {
 		return reply_no;
 	}

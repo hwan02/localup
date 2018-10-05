@@ -21,14 +21,14 @@ public class MemberDAOImpl implements MemberDAO{
 	//회원정보 업데이트
 	@Override
 	public void update(MemberVO memberUpdateVO) throws Exception {
-		//System.out.println("member 수정VO : " + memberUpdateVO); //DB 수정 잘 되는지 확인 TEST
+		System.out.println("member 수정VO : " + memberUpdateVO); //DB 수정 잘 되는지 확인 TEST
 		sqlSession.update("member.myUpdate",memberUpdateVO);	
 	}
 
 	//특정값 조회
 	@Override
 	public MemberVO read(String member_email) throws Exception {
-		member_email = "naver@gmail.com";
+		member_email = "localup@gmail.com";
 		System.out.println("로그인상태 아이디>>>"+member_email);
 		return sqlSession.selectOne("member.read",member_email);
 	}

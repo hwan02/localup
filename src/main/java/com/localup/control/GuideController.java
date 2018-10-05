@@ -48,10 +48,6 @@ public class GuideController {
 		return "board/guide";
 	}
 	
-	
-	
-	
-	
 	//가이드 상세 페이지 등록 폼보기
 	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
 	public String guideWriteGET() throws Exception {
@@ -72,7 +68,8 @@ public class GuideController {
 	public String main() {
 		return "main/main";
 	}
-		
+	
+	
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 		//UUID uid = UUID.randomUUID();

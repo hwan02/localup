@@ -348,9 +348,17 @@ var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 d
               if(disMarker != null && disMarker.getMap() == null) {
               	disMarker.setMap(map);
               }
-              
-              //마커를 대신해 커스텀 오버레이를 표시하기
-        	  showOverlay(marker); 
+              var lng = marker.getPosition().getLng();
+              var lat = marker.getPosition().getLat();
+              $.ajax({
+			    	url:"customOverlay",
+			    	data:{"lng":lng,"lat":lat},	    	
+			    	success:function(result){
+			    		//정보 넣어주어야 하는데 
+		              //마커를 대신해 커스텀 오버레이를 표시하기 
+		        	  showOverlay(marker,result); 
+			    	}
+			    });
         });
         
         return marker;
@@ -412,8 +420,8 @@ var customOverlay = new daum.maps.CustomOverlay({
     yAnchor: 0.91
 });
 
-function showOverlay(marker) {
-   var content = '<div class="overlaybox">' +
+function showOverlay(marker,result) {
+	/* var content = '<div class="overlaybox">' +
     '    <div class="boxtitle">금주 영화순위</div>' +
     '    <div class="first">' +
     '        <div class="triangle text">1</div>' +
@@ -445,14 +453,14 @@ function showOverlay(marker) {
     '            <span class="count">1</span>' +
     '        </li>' +
     '    </ul>' +
-    '</div>';
-
+    '</div>'; */
+if(result!=undefined){
 // 커스텀 오버레이의 내용을 설정합니다
-customOverlay.setContent(content);
+customOverlay.setContent(result);
+}
 
 // 커스텀 오버레이의 위치를 설정합니다
 customOverlay.setPosition(marker.getPosition());
-
 //마커지우기
 marker.setMap(null);
 
@@ -475,16 +483,12 @@ daum.maps.event.addListener(map, 'dragend', function() {
 	// 지도의 현재 영역을 얻어옵니다 
 	var bounds = map.getBounds();
 	// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
-	var boundsStr = bounds.toString();
     var swLatLng = bounds.getSouthWest();
     var south = swLatLng.getLat();
     var west = swLatLng.getLng();
     var neLatLng = bounds.getNorthEast(); 
     var north = neLatLng.getLat();
     var east = neLatLng.getLng();
-    var message ='영역정보는 '+boundsStr;
-    var resultDiv = document.getElementById('result');  
-    resultDiv.innerHTML = message;
     $.ajax({
     	url:"location",
     	data:{"south":south, "west":west,"north":north,"east":east},
@@ -530,7 +534,6 @@ function searchPlaces() {
 }
 </script>
 <br>
-<div id="result"></div>
 <!-- 지도 범위 내 영역 표시  -->
 <div id="ajaxResult"></div>
 <!-- 키워드로 장소검색하고 목록으로 표출하기 -->
@@ -566,7 +569,6 @@ function searchPlaces() {
 	    	url:"location",
 	    	data:{"south":south, "west":west,"north":north,"east":east},	    	
 	    	success:function(result){
-	    		alert(result)
 	    		$("#newBoard").html(result);
 	    	}
 	    });
@@ -577,116 +579,6 @@ function searchPlaces() {
       <div id="newBoard"></div>
       </div>
       <!-- /.row -->
-
-      <!-- Portfolio Section -->
-      <h2>Portfolio Heading</h2>
-
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project One</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Two</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Three</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Four</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Five</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Six</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <!-- Features Section -->
-      <div class="row">
-        <div class="col-lg-6">
-          <h2>Modern Business Features</h2>
-          <p>The Modern Business template by Start Bootstrap includes:</p>
-          <ul>
-            <li>
-              <strong>Bootstrap v4</strong>
-            </li>
-            <li>jQuery</li>
-            <li>Font Awesome</li>
-            <li>Working contact form with validation</li>
-            <li>Unstyled page elements for easy customization</li>
-          </ul>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-        </div>
-        <div class="col-lg-6">
-          <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Call to Action Section -->
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-        </div>
-        <div class="col-md-4">
-          <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-        </div>
-      </div>
-
-    </div>
-    <!-- /.container -->
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

@@ -21,5 +21,9 @@ public class MainServiceImpl implements MainService{
 	public List<BoardVO> listBoardAll() {
 		return mainDAO.listBoardAll();
 	}
+	@Override
+	public List<BoardVO> listCustom(String lat, String lng) {
+		return mainDAO.listCustom(lat, lng);
+	}
 
 }

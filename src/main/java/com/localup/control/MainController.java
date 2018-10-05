@@ -1,6 +1,8 @@
 package com.localup.control;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -55,5 +57,11 @@ public class MainController {
 		model.addAttribute("list",list);
 		}
 		return "main/location";
+	}
+	@RequestMapping("customOverlay")
+	public String custom(String lng, String lat, Model model) {
+		List<BoardVO> custom =service.listCustom(lat.substring(0,14), lng);
+		model.addAttribute("custom",custom);
+		return "main/custom";
 	}
 }

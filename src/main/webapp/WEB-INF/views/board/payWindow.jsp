@@ -12,10 +12,18 @@ $(function() {
 	//확인 버튼시 pay.jsp에 전달
 		$("#KBcheck").click(
 				function() {
-					var cardNumExp = /^([0-9]{1,4})-?([0-9]{1,4})-?([0-9]{1,4})-?([0-9]{1,4})$/; //숫자 16자리(하이픈 제외)
+// 					var cardNumExp = /^([0-9]{4})-?([0-9]{4})-?([0-9]{4})$/; //숫자 16자리(하이픈 제외)
+					var cardNumExp = /^\d{4}-\d{4}-\d{4}-\d{4}$/; //숫자 16자리(하이픈 포함)
+					var cardMonthYear = /^\d{2}-\d{2}$/; //숫자 16자리(하이픈 포함)
+
 					if(!cardNumExp.test($('#KBcardNumber').val() )){ //카드번호 유효성 검사
 						alert("카드번호 다시입력 하세요 ;)" );
-						$('#KBcardNumber').focus();
+						$('#KBcardNumber').val("");
+						$('#KBcardNumber').focus();   
+					}else if(!cardMonthYear.test($('#KBcardMonthYear').val() )){
+						alert("만료일 다시입력 하세요 ;)" );
+						$('#KBcardMonthYear').val("");
+						$('#KBcardMonthYear').focus();
 					}else{
 						opener.document.getElementById("pay_way").value = 
 							document.getElementById("KBcard").value
@@ -70,8 +78,8 @@ $(function() {
 		//국민카드 버튼 클릭시 카드번호 입력창 보이기
 		$("#KBcard").click(function() {
 			$("#KBcardNumberInput").toggle(1000);
-			$("#KBbr").toggle(1000);
 			$("#KBcardNumber").toggle(1000);
+			$("#KBcardMonthYear").toggle(1000);
 			$("#KBcheck").toggle(1000);
 		});
 
@@ -227,9 +235,19 @@ $(function() {
 	<input type="button" id="KEBHanacard" value="KEB하나카드">
 	<br>
 	<!--국민카드-->
-	<label id="KBcardNumberInput" style="display: none;">KB 카드번호 입력</label>
-	<br id="KBbr" style="display: none;">
-	<input type="text" id="KBcardNumber" placeholder="하이픈 사용하여 카드번호 입력" size="50" style="display: none;">
+	<table border="1" cellpadding="5"  id="KBcardNumberInput" style="display: none;">
+		<tr>
+			<td>KB 카드번호</td>
+			<td><input type="text" id="KBcardNumber" placeholder="하이픈 사용하여 카드번호 입력"  size="25" style="display: none;"></td>
+		</tr>
+		<tr>
+			<td>만료일</td>
+			<td><input type="text" id="KBcardMonthYear" placeholder="MM-YY"  style="display: none;"></td>
+		</tr>
+	</table>
+<!-- 	<label id="KBcardNumberInput" style="display: none;">KB 카드번호 입력</label> -->
+<!-- 	<br id="KBbr" style="display: none;"> -->
+<!-- 	<input type="text" id="KBcardNumber" placeholder="하이픈 사용하여 카드번호 입력" size="50" style="display: none;"> -->
 	<!--결제페이지 이동-->
 	<input type="button" id="KBcheck" value="확인" style="display: none;">
 

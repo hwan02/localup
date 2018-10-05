@@ -9,35 +9,23 @@
 <script type="text/javascript">
 	$(function() {
 		//확인 버튼시 pay.jsp에 전달
-// 		$("#payCheck").click(function(){
-// 			if(KBcard==true){
-// 				opener.document.getElementById("pay_way").value = 
-// 					document.getElementById("KBcard").value				
-// 			}
-// 			window.close(); //닫기 동시에 전달하기!!!
-// 		});
 		$("#KBcheck").click(function(){
-			
 				opener.document.getElementById("pay_way").value = 
 					document.getElementById("KBcard").value				
-
 			window.close(); //닫기 동시에 전달하기!!!
 		});
-	});
-
-	$(function() {
-		$("#Kakocheck").click(function(){
-			
+		
+		$("#Kakaocheck").click(function(){
 				opener.document.getElementById("pay_way").value = 
-					document.getElementById("Kakocard").value				
-
+					document.getElementById("KakaoCard").value				
 			window.close(); //닫기 동시에 전달하기!!!
 		});
-	});
+
+
 		$("#KEBHanacheck").click(function(){
 			
 				opener.document.getElementById("pay_way").value = 
-					document.getElementById("KEBHanacard").value				
+					document.getElementById("KEBHanaCard").value			
 
 			window.close(); //닫기 동시에 전달하기!!!
 		});
@@ -45,7 +33,7 @@
 		$("#Shinhancheck").click(function(){
 			
 				opener.document.getElementById("pay_way").value = 
-					document.getElementById("Shinhancard").value				
+					document.getElementById("ShinhanCard").value				
 
 			window.close(); //닫기 동시에 전달하기!!!
 		});
@@ -53,7 +41,7 @@
 		$("#nonghyupcheck").click(function(){
 			
 				opener.document.getElementById("pay_way").value = 
-					document.getElementById("nonghyupcard").value				
+					document.getElementById("nonghyupCard").value				
 
 			window.close(); //닫기 동시에 전달하기!!!
 		});
@@ -61,7 +49,7 @@
 		$("#Kbankcheck").click(function(){
 			
 				opener.document.getElementById("pay_way").value = 
-					document.getElementById("Kbankcard").value				
+					document.getElementById("KbankCard").value				
 
 			window.close(); //닫기 동시에 전달하기!!!
 		});
@@ -114,13 +102,15 @@
 			$("#KbankNumber").toggle(1000);
 			$("#Kbankcheck").toggle(1000);
 		});
+
+	});
 </script>
 </head>
 <body>
 <label>카드</label>
 <br>
 <input type="button" id="KBcard" value="국민카드">
-<input type="button" id="KaKaoCard" value="카카오카드">
+<input type="button" id="KakaoCard" value="카카오카드">
 <input type="button" id="KEBHanaCard" value="KEB하나카드">
 <br>
 <!--국민카드-->

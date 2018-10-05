@@ -8,24 +8,8 @@ public class ReplyVO {
 	private Date reply_date;
 	private int reply_upno;
 	private int board_no;
-	private float reply_star;
+	private double reply_star;
 	private String member_email;
-	
-	public ReplyVO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ReplyVO(int reply_no, String reply_cont, Date reply_date, int reply_upno, int board_no, float reply_star,
-			String member_email) {
-		super();
-		this.reply_no = reply_no;
-		this.reply_cont = reply_cont;
-		this.reply_date = reply_date;
-		this.reply_upno = reply_upno;
-		this.board_no = board_no;
-		this.reply_star = reply_star;
-		this.member_email = member_email;
-	}
 
 	public int getReply_no() {
 		return reply_no;
@@ -67,11 +51,11 @@ public class ReplyVO {
 		this.board_no = board_no;
 	}
 
-	public float getReply_star() {
+	public double getReply_star() {
 		return reply_star;
 	}
 
-	public void setReply_star(float reply_star) {
+	public void setReply_star(double reply_star) {
 		this.reply_star = reply_star;
 	}
 
@@ -89,5 +73,5 @@ public class ReplyVO {
 				+ ", reply_upno=" + reply_upno + ", board_no=" + board_no + ", reply_star=" + reply_star
 				+ ", member_email=" + member_email + "]";
 	}
-	
+
 }

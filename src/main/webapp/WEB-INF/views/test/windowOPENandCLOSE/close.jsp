@@ -12,6 +12,10 @@
 			opener.document.getElementById("pInput").value = document.getElementById("cInput").value
 			window.close() //닫기 동시에 전달하기!!!
 		});
+		$("#sumit2").click(function(){
+			opener.document.getElementById("pInput").value = document.getElementById("cInput2").value
+			window.close() //닫기 동시에 전달하기!!!
+		});
 
 	});
 </script>
@@ -24,5 +28,6 @@
     <br><br>
  
     <input type="text" id="cInput"> <input type="button" id="sumit" value="전달하기">
+    <input type="text" id="cInput2"> <input type="button" id="sumit2" value="전달하기2">
 </body>
 </html>

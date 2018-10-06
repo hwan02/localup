@@ -27,13 +27,13 @@ public class PayInfoController {
 	@RequestMapping(value="pay",method=RequestMethod.POST)
 	public String payPOST(PayInfoVO payInfoVO) throws Exception{
 		payInfoService.insert(payInfoVO);
-		return "redirect:main";
+		return "redirect:payResult";
 	}
 	
-	//결제페이 ==이동==> 페인페이지
-	@RequestMapping("main")
-	public String main() throws Exception{
-		return "main/main";
+	//결제페이 ==이동==> payResult
+	@RequestMapping("payResult")
+	public String payResult() throws Exception{
+		return "board/payResult";
 	}
 	
 	//결제하기 버튼 클릭시 결제 화면창 보이기

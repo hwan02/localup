@@ -179,14 +179,29 @@ $(function() {
 
 
 
-	//계좌번호 유효성 검사(자릿수가 은행 마다 달라서 숫자만 입력하게 함)
-	var bankNumExp = /^[0-9]$/;
+	//계좌번호 유효성 검사(국민은행)
+	var KBbankNumExp = /^[0-9]{14}$/;
+	
+	//계좌번호 유효성 검사(카카오뱅크)
+	var KakaobankNumExp = /^[0-9]{13}$/;
+
+	//계좌번호 유효성 검사(하나은행)
+	var KEBHanabankNumExp = /^[0-9]{14}$/;
+
+	//계좌번호 유효성 검사(신한은행)
+	var ShinhanbankNumExp = /^[0-9]{12}$/;
+
+	//계좌번호 유효성 검사(농협은행)
+	var nonghyupbankNumExp = /^[0-9]{12}$/;
+
+	//계좌번호 유효성 검사(K뱅크)
+	var KbankNumExp = /^[0-9]{12}$/;
 	
 	//(계좌)확인 버튼시 pay.jsp에 전달
 	//국민은행 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#KBbankCheck").click(
 			function() {
-				if(!bankNumExp.test($('#KBbankNumber').val() )){ //카드번호 유효성 검사
+				if(!KBbankNumExp.test($('#KBbankNumber').val() )){ //카드번호 유효성 검사
 					alert("계좌번호 다시입력 하세요 ;)" );
 					$('#KBbankNumber').val("");
 					$('#KBbankNumber').focus();   
@@ -209,7 +224,7 @@ $(function() {
 		//카카오뱅크 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#KakaobankCheck").click(
 				function() {
-					if(!bankNumExp.test($('#KakaobankNumber').val() )){ //카드번호 유효성 검사
+					if(!KakaobankNumExp.test($('#KakaobankNumber').val() )){ //카드번호 유효성 검사
 						alert("계좌번호 다시입력 하세요 ;)" );
 						$('#KakaobankNumber').val("");
 						$('#KakaobankNumber').focus();   
@@ -232,7 +247,7 @@ $(function() {
 		//KEB하나은행 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#KEBHanabankCheck").click(
 				function() {
-					if(!bankNumExp.test($('#KEBHanabankNumber').val() )){ //카드번호 유효성 검사
+					if(!KEBHanabankNumExp.test($('#KEBHanabankNumber').val() )){ //카드번호 유효성 검사
 						alert("계좌번호 다시입력 하세요 ;)" );
 						$('#KEBHanabankNumber').val("");
 						$('#KEBHanabankNumber').focus();   
@@ -256,7 +271,7 @@ $(function() {
 		//신한은행 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#ShinhanbankCheck").click(
 				function() {
-					if(!bankNumExp.test($('#ShinhanbankNumber').val() )){ //카드번호 유효성 검사
+					if(!ShinhanbankNumExp.test($('#ShinhanbankNumber').val() )){ //카드번호 유효성 검사
 						alert("계좌번호 다시입력 하세요 ;)" );
 						$('#ShinhanbankNumber').val("");
 						$('#ShinhanbankNumber').focus();   
@@ -279,7 +294,7 @@ $(function() {
 		//농협은행 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#nonghyupbankCheck").click(
 				function() {
-					if(!bankNumExp.test($('#nonghyupbankNumber').val() )){ //카드번호 유효성 검사
+					if(!nonghyupbankNumExp.test($('#nonghyupbankNumber').val() )){ //카드번호 유효성 검사
 						alert("계좌번호 다시입력 하세요 ;)" );
 						$('#nonghyupbankNumber').val("");
 						$('#nonghyupbankNumber').focus();   
@@ -302,7 +317,7 @@ $(function() {
 		//K뱅크 버튼 클릭시 확인 버튼 show 그리고 확인 버튼 클릭시 pay(부모창)으로 데이터 전달
 		$("#Kbank2Check").click(
 				function() {
-					if(!bankNumExp.test($('#Kbank2Number').val() )){ //카드번호 유효성 검사
+					if(!KbankNumExp.test($('#Kbank2Number').val() )){ //카드번호 유효성 검사
 						alert("계좌번호 다시입력 하세요 ;)" );
 						$('#Kbank2Number').val("");
 						$('#Kbank2Number').focus();   
@@ -520,7 +535,7 @@ $(function() {
 
 	<!--Kbank-->
 	<div>
-	<label id="Kbank2NumberInput" style="display: none;">케이뱅크 카드번호 입력</label>
+	<label id="Kbank2NumberInput" style="display: none;">케이뱅크 계좌번호 입력</label>
 	<br id="Kbank2br" style="display: none;">
 	<input type="text" id="Kbank2Number" placeholder="'-' 하이픈 없이 입력하세요" autofocus="autofocus" size="25" style="display: none;">
 	<!--결제페이지 이동-->

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.localup.domain.MemberVO;
+import com.localup.service.BoardService;
 import com.localup.service.MemberService;
 
 @Controller
@@ -18,6 +19,9 @@ public class MemberController {
 	
 	@Inject
 	MemberService memberService;
+	
+//	@Inject
+//	BoardService boardService;
 	
 	//회원정보 수정(작성자 : rys)
 	//회원정보 수정폼
@@ -33,14 +37,6 @@ public class MemberController {
 		memberService.update(memberVO);		//수정작업
 		return "redirect:myUpdate";		//수정작업확인	
 	}
-		
-	//회원탈퇴
-//	@RequestMapping(value="delete", method=RequestMethod.POST)
-//	public String delete(@RequestParam("member_email") String member_email, RedirectAttributes rttr) throws Exception{
-//		memberService.delete(member_email);
-//		rttr.addFlashAttribute("msg","SUCCESS");
-//		return "redirect:/member/main";
-//	}
 	
 	//회원 탈퇴시 ==이동==> 메인페이지
 	@RequestMapping(value="delete", method=RequestMethod.POST)
@@ -54,4 +50,14 @@ public class MemberController {
 	public String main() throws Exception{
 		return "main/main";
 	}
+	
+	//사용자정보 페이지 폼 보기
+	@RequestMapping("mInfo")
+	public String mInfoGET(Model model,String member_id_guide1) throws Exception {
+		//model.addAttribute("memberVO",memberService.read(member_email));
+		//model.addAttribute("boardVO",boardService.BoarRead(board_no));
+		return"board/mInfo";
+	} 	
+	
+	
 }

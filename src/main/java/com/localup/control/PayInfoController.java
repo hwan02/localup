@@ -2,8 +2,10 @@ package com.localup.control;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.internal.resources.MoveDeleteHook;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -60,5 +62,12 @@ public class PayInfoController {
 	public String payWindow() {
 		return"board/payWindow";
 	}
+	
+	//결제내역 폼 보기
+	@RequestMapping("myPayInfo")
+	public String myPayInfoGET(Model model, String member_email) {
+		return"my/myPayInfo";
+	}
+	
 	
 }

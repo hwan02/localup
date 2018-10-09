@@ -10,11 +10,11 @@
 		values(pay_seq.nextval,#{member_email},#{pay_num},#{pay_pay},#{board_no},#{pay_way},#{pay_state})
 	</insert>
 
-	<!--특정 값 가져오기 : board_no-->
-<!-- 	<select id="list" resultType="GuideVO"> -->
-<!-- 		select -->
-<!-- 		tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no -->
-<!-- 		from tour -->
-<!-- 		where board_no=#{board_no} -->
-<!-- 	</select> -->
+	<!--특정 값 가져오기 : member_id_guide1-->
+	<select id="list" resultType="GuideVO">
+		select
+		member_id_guide1
+		from sub
+		where member_id_guide1=#{member_id_guide1}
+	</select>
 </mapper>

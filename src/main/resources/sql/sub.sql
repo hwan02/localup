@@ -40,4 +40,4 @@ ALTER TABLE sub
 		);
 		
 --TEST
-insert into sub(member_id_sub1,member_id_guide1) values("localup@gmail.com","naver@gmail.com");
+insert into sub(member_id_sub1,member_id_guide1) values('localup@gmail.com','naver@gmail.com');

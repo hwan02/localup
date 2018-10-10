@@ -287,6 +287,7 @@ function newLocation(type){
 	    });
 	}
 		 </script>
+		
 <script>
 var disMarker;
 
@@ -525,42 +526,48 @@ var ps = new daum.maps.services.Places();
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 
+		
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-	$(function(){
-		$.ajax({
-			url:"locInfo",
-	    	data:{'email':'${member_email}'}
-			});
-	});	
 	var keyword = null;
 	if('${login}'){
-		keyword = '${locInfo}';
+		 $.ajax({
+				url:"locInfo",
+		    	data:{'email':'${member_email}'},
+		    	success:function(result){
+					keyword=result
+					keyCheck(keyword)
+		    	}
+				});
 	}else{
     //로그인 후 메인 페이지로 넘어올 때 해당 아이디 선호지역으로 지도 이동
     keyword = document.getElementById('keyword').value;
+    keyCheck(keyword)
 	}
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
-        return false;
-    }
- // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(keyword, function(result, status) {
-        // 정상적으로 검색이 완료됐으면 
-         if (status === daum.maps.services.Status.OK) {
-            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-            map.setLevel(4);
-        }else if(status === daum.maps.services.Status.ERROR){
-        	alert("다시 검색해주세요.");
-        }else{
-        	alert("검색 결과가 없습니다.");
-        } 
-    });    
 }
+function keyCheck(keyword){
+	 if (!keyword.replace(/^\s+|\s+$/g, '')) {
+	        alert('키워드를 입력해주세요!');
+	        return false;
+	    }
+	 // 주소로 좌표를 검색합니다
+	    geocoder.addressSearch(keyword, function(result, status) {
+	        // 정상적으로 검색이 완료됐으면 
+	         if (status === daum.maps.services.Status.OK) {
+	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	            map.setCenter(coords);
+	            map.setLevel(4);
+	        }else if(status === daum.maps.services.Status.ERROR){
+	        	alert("다시 검색해주세요.");
+	        }else{
+	        	alert("검색 결과가 없습니다.");
+	        } 
+	    });    
+}
+   
 </script>
 <br>
 <!-- 지도 범위 내 영역 표시  -->

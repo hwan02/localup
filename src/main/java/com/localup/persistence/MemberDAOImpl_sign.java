@@ -47,4 +47,14 @@ public class MemberDAOImpl_sign implements MemberDAO_sign{
 		map.put("member_tel", member_tel);
 		return (String)sqlSession.selectOne("member.findEmail", map);
 	}
+
+	//(임시)비밀번호 설정
+	@Override
+	public int update_pw(String member_name, String member_email, String member_pw) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member_name", member_name);
+		map.put("member_email", member_email);
+		map.put("member_pw", member_pw);
+		return sqlSession.update("member.update_pw", map);
+	}
 }

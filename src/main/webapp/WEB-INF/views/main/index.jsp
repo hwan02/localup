@@ -29,7 +29,7 @@
             </li>
             <li></li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="loginA">안녕하세요</a>
+              <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -529,12 +529,14 @@ var infowindow = new daum.maps.InfoWindow({zIndex:1});
 var geocoder = new daum.maps.services.Geocoder();
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-	var keyword = null;
-	if('${login}'){
+	$(function(){
 		$.ajax({
 			url:"locInfo",
-	    	data:{"email":'${member_email}'},	    	
+	    	data:{'email':'${member_email}'}
 			});
+	});	
+	var keyword = null;
+	if('${login}'){
 		keyword = '${locInfo}';
 	}else{
     //로그인 후 메인 페이지로 넘어올 때 해당 아이디 선호지역으로 지도 이동

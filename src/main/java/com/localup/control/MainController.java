@@ -59,8 +59,9 @@ public class MainController {
 		return "main/custom";
 	}
 	@RequestMapping("locInfo")
-	public void locInfo(String email, HttpServletRequest request) {
+	public String locInfo(String email, HttpServletRequest request) {
 		String locInfo =service.locInfo(email);
 		request.getSession().setAttribute("locInfo",locInfo);
+		return "main/index";
 	}
 }

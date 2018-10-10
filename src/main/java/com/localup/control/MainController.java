@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.localup.domain.BoardVO;
@@ -27,8 +28,11 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@RequestMapping("index")
-	public String index() {
+	@RequestMapping(value="index")
+	public String indexGet(String logout, HttpServletRequest request) {
+		if(logout!=null&&logout.equals("logout")) {
+			request.getSession().removeAttribute("login");
+		}
 		return "main/index";
 	}
 	@RequestMapping("location")
@@ -61,7 +65,6 @@ public class MainController {
 	@RequestMapping("locInfo")
 	public String locInfo(String email, Model model) {
 		if(email!=null) {
-			System.out.println(email);
 		String locInfo =service.locInfo(email);
 		model.addAttribute("locInfo",locInfo);
 		}

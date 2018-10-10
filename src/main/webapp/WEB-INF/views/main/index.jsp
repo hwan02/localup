@@ -65,6 +65,10 @@
                 <a class="dropdown-item" href="pricing.html">Pricing Table</a>
               </div>
             </li>
+            <li>
+              <a class="nav-link" href="index" id="logCheck">
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -124,10 +128,18 @@
 				$("#loginA").attr('href','#');
 				$("#loginA").text('${member_email}');
 				searchPlaces();
+				$("#logCheck").text('로그아웃');
 			}else{
 				$("#loginA").attr('href','login');
 				$("#loginA").text('로그인/회원가입');
+				$("#logCheck").text(' ');
 			}
+			$("#logCheck").click(function(){
+				$.ajax({
+					url:"index",
+					data:{"logout":"logout"}
+				});
+			});
 		});
 	</script>
 	<script type="text/javascript"
@@ -537,8 +549,7 @@ function searchPlaces() {
 				url:"locInfo",
 		    	data:{'email':'${member_email}'},
 		    	success:function(result){
-					keyword=result
-					keyCheck(keyword)
+					keyCheck(result)
 		    	}
 				});
 	}else{
@@ -548,6 +559,7 @@ function searchPlaces() {
 	}
 }
 function keyCheck(keyword){
+if(keyword!=undefined){
 	 if (!keyword.replace(/^\s+|\s+$/g, '')) {
 	        alert('키워드를 입력해주세요!');
 	        return false;
@@ -566,6 +578,7 @@ function keyCheck(keyword){
 	        	alert("검색 결과가 없습니다.");
 	        } 
 	    });    
+	}	
 }
    
 </script>

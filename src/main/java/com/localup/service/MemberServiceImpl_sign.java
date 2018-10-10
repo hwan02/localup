@@ -1,5 +1,7 @@
 package com.localup.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ public class MemberServiceImpl_sign implements MemberService_sign{
 	}
 
 	@Override
-	public String findEmail(String member_name, String member_tel) throws Exception {
+	public List<Object> findEmail(String member_name, String member_tel) throws Exception {
 		return memberDAO_sign.findEmail(member_name, member_tel);
 	}
 

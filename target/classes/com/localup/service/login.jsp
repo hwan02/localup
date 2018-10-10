@@ -22,7 +22,10 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script type="text/javascript">
-if('${login}'=='fail'){
+if('${login}') {
+	location.href = "/index";
+}
+if('${login_result}'=='fail'){
 	alert('ID나 PW가 잘못되었습니다.');
 }
 

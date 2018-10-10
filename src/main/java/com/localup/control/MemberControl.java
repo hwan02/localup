@@ -45,7 +45,7 @@ public class MemberControl {
 		
 		try {
 			if(!memberService_sign.signin(request.getParameter("id"), request.getParameter("pw"))) {
-				model.addAttribute("login", "fail");
+				model.addAttribute("login_result", "fail");
 				return "login/login";
 			}
 		} catch (Exception e) {
@@ -83,10 +83,10 @@ public class MemberControl {
 		String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random random = new Random();
 		int size = 0;
-		while(size < 10) size = random.nextInt(15);
+		while(size < 10) size = random.nextInt(16); //10~15자리
 		for(int i=0; i<size; i++) {
-			size = random.nextInt(str.length()-1);
-			temp_pw += str.charAt(size);
+			int idx = random.nextInt(str.length());
+			temp_pw += str.charAt(idx);
 		}
 		
 		try {

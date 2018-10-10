@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -50,7 +51,21 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 		return sqlSession.selectOne("payInfo.payList_payno",pay_no);
 	}
 
-	
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("payInfo.totalCount");
+	}
+
+	@Override
+	public List<PayInfoVO> myPayInfoAll(int start, int max,String member_email) {
+		//RowBounds rb = new RowBounds(skip,max);
+		//===>rb를 통해 조회할 행의 범위설정이 가능 : start=스킵할 행의수, max=조회할 최대 행의수
+		member_email="localup@gmail.com";
+		RowBounds rb = new RowBounds(start,max);
+		return sqlSession.selectList("payInfo.payList2",member_email ,rb);
+		//								호출 id			
+	}
 
 
 }

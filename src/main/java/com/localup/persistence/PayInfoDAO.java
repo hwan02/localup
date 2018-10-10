@@ -1,6 +1,7 @@
 package com.localup.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.localup.domain.GuideVO;
 import com.localup.domain.PayInfoVO;
@@ -20,4 +21,11 @@ public interface PayInfoDAO {
 	
 	//결제취소시 업데이트
 	public void update(PayInfoVO payInfoVO) throws Exception;
+	
+	//전체 행 수 조회
+	public int totalCount();
+	
+	//myPayInfo update DB전체조회
+	public List<PayInfoVO> myPayInfoAll(int start, int max,String member_email);
+	
 }

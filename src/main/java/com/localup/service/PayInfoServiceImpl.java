@@ -54,6 +54,25 @@ public class PayInfoServiceImpl implements PayInfoService{
 
 
 
+	@Override
+	public int listCount() {
+		// TODO Auto-generated method stub
+		return payInfoDAO.totalCount();
+	}
+
+	@Override
+	//myPayInfo update DB전체조회
+	public List<PayInfoVO> myPayInfoAll(int start, int max,String member_email) {
+		return payInfoDAO.myPayInfoAll(start, max,member_email);
+	}
+
+
+
+
+
+
+	
+
 	
 
 

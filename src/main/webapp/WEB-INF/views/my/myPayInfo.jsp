@@ -7,6 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>결제내역</title>
+<style type="text/css">
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination > .active > a{
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+</style>
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -24,16 +53,24 @@
  		$('form').submit();
 		
 
-			
-
-			
 
 	
 	
+
 		
 		});	
 	});	
  		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //  		$.ajax({
 // 				url:'/pay/myPayInfo',
 // 				success: function(data){
@@ -108,10 +145,9 @@
 	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
 	
 	
-		<!--투어번호 -->
-<!-- 		신청 이메일 -->
+		신청 이메일
 		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
-<!-- 		투어번호 -->
+		투어번호
 <input type="text" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}">
 		<table border="1" cellpadding="5" class="paypaypay">
 			<tr>
@@ -154,10 +190,25 @@
 		</table>
 	</c:forEach>
 
-	<div id="result" style="text-align: center;"></div>
 	</form>
-		
-		
+
+
+	<!--현재 페이지 따라서 표시 해줌-->
+	<c:if test="${maker.prev}"><a href="/pay/myPayInfo?page=${maker.startPage-1 }">◁◁</a></c:if>
+	<ul class="pagination">
+	<c:forEach begin="${maker.startPage }" end="${maker.endPage }" var="i">
+		 <li 
+        <c:out value="${(i==maker.cri.page)?'class=active':''}"/>
+        >
+			<a href="/pay/myPayInfo?page=${i} ">${i }</a> <!--$perPageNum=${maker.cri.perPageNum }-->
+		</li>
+	</c:forEach>
+	</ul>
+	<c:if test="${maker.next}"><a href="/pay/myPayInfo?page=${maker.endPage+1 }">▷▷</a></c:if>
+
+
+
+
 
 </body>
 </html>

@@ -36,6 +36,7 @@
 		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate,member_email
 		from pay
 		where pay_no=#{pay_no}
+		order by pay_no desc
 	</select>
 	
 	<!--결제내역 수정-->
@@ -44,4 +45,9 @@
 		set pay_state=#{pay_state},pay_cdate=sysdate
 		where pay_no=#{pay_no}
 	</update>
+
+	<!--전체 행 수 조회 -->
+	<select id="totalCount" resultType="int">
+		select count(member_email) from pay
+	</select>
 </mapper>

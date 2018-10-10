@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--작성자 : rys-->
+<mapper namespace="payInfo">   
+	<!--DB 입력-->
+	<insert id="insert">
+<!-- 		insert into pay (pay_no,pay_num,pay_pay,pay_way,board_no,pay_state,pay_pdate,member_email) -->
+<!-- 		values(pay_seq.nextval,#{pay_num},#{pay_pay},#{pay_way},#{board_no},#{pay_state},sysdate,#{member_email}) -->
+		insert into pay (pay_no,member_email,pay_num,pay_pay,board_no,pay_way,pay_state)
+		values(pay_seq.nextval,#{member_email},#{pay_num},#{pay_pay},#{board_no},#{pay_way},#{pay_state})
+	</insert>
+
+	<!--특정 값 가져오기 : member_id_guide1-->
+	<select id="list" resultType="GuideVO">
+		select
+		member_id_guide1
+		from sub
+		where member_id_guide1=#{member_id_guide1}
+	</select>
+</mapper>

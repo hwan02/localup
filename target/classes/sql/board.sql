@@ -42,9 +42,9 @@ start with 1
 increment by 1 
 nocache
 nocycle;		
-
+delete from board;
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
-values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
+values(board_seq.nextval, 'localup@gmail.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다2','mathouse2.jpg',13,8,37.2,126.2,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
@@ -54,4 +54,26 @@ values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다5','mathouse5.jpg',13,8,37.5,126.5,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
-values(board_seq.nextval, 'gildong@naver.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다6','mathouse6.jpg',13,8,37.6,126.6,5); 
+values(board_seq.nextval, 'gildong@naver.com', '가이드','어디까지 가봤니?','난 여기까지 가봤단다6','mathouse6.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '교통','어디까지 가봤니?','난 여기까지 가봤단다7','mathouse7.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '편의시설','어디까지 가봤니?','난 여기까지 가봤단다8','mathouse8.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '랜드마크','어디까지 가봤니?','난 여기까지 가봤단다9','mathouse9.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '숙박','어디까지 가봤니?','난 여기까지 가봤단다10','mathouse10.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '지역소식','어디까지 가봤니?','난 여기까지 가봤단다11','mathouse11.jpg',13,8,37.6,126.6,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '숙박','어디까지 가봤니?','난 여기까지 가봤단다12','mathouse12.jpg',13,8,37.48545493983245,127.02068035663186,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '지역소식','어디까지 가봤니?','난 여기까지 가봤단다13','mathouse13.jpg',13,8,37.48745493983242,127.02068035663186,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '랜드마크','어디까지 가봤니?','난 여기까지 가봤단다14','mathouse14.jpg',13,8,37.48845493983241,127.02068035663186,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '편의시설','어디까지 가봤니?','난 여기까지 가봤단다15','mathouse15.jpg',13,8,37.48945493983240,127.02068035663186,5); 
+insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
+values(board_seq.nextval, 'gildong@naver.com', '지역소식','어디까지 가봤니?','난 여기까지 가봤단다11','mathouse12.jpg',13,8,37.49045493983244,127.02068035663186,5); 
+
+select * from board;

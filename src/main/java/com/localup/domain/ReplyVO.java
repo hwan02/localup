@@ -1,20 +1,22 @@
 package com.localup.domain;
 
+import java.util.Date;
+
 public class ReplyVO {
 	private int reply_no;
 	private String reply_cont;
-	private String reply_date;
-	private String reply_upno;
-	private String board_no;
-	private String reply_star;
+	private Date reply_date;
+	private int reply_upno;
+	private int board_no;
+	private double reply_star;
 	private String member_email;
-	
+
 	public ReplyVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReplyVO(int reply_no, String reply_cont, String reply_date, String reply_upno, String board_no,
-			String reply_star, String member_email) {
+	public ReplyVO(int reply_no, String reply_cont, Date reply_date, int reply_upno, int board_no, double reply_star,
+			String member_email) {
 		super();
 		this.reply_no = reply_no;
 		this.reply_cont = reply_cont;
@@ -41,35 +43,35 @@ public class ReplyVO {
 		this.reply_cont = reply_cont;
 	}
 
-	public String getReply_date() {
+	public Date getReply_date() {
 		return reply_date;
 	}
 
-	public void setReply_date(String reply_date) {
+	public void setReply_date(Date reply_date) {
 		this.reply_date = reply_date;
 	}
 
-	public String getReply_upno() {
+	public int getReply_upno() {
 		return reply_upno;
 	}
 
-	public void setReply_upno(String reply_upno) {
+	public void setReply_upno(int reply_upno) {
 		this.reply_upno = reply_upno;
 	}
 
-	public String getBoard_no() {
+	public int getBoard_no() {
 		return board_no;
 	}
 
-	public void setBoard_no(String board_no) {
+	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
 	}
 
-	public String getReply_star() {
+	public double getReply_star() {
 		return reply_star;
 	}
 
-	public void setReply_star(String reply_star) {
+	public void setReply_star(double reply_star) {
 		this.reply_star = reply_star;
 	}
 
@@ -87,5 +89,5 @@ public class ReplyVO {
 				+ ", reply_upno=" + reply_upno + ", board_no=" + board_no + ", reply_star=" + reply_star
 				+ ", member_email=" + member_email + "]";
 	}
-	
+
 }

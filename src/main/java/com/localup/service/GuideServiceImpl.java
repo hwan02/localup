@@ -18,4 +18,9 @@ public class GuideServiceImpl implements GuideService{
 		guideDAO.insert(guideVO);
 	}
 
+	@Override
+	public GuideVO list(Integer board_no) throws Exception {
+		return guideDAO.list(board_no);
+	}
+
 }

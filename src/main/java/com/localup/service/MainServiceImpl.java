@@ -14,8 +14,16 @@ public class MainServiceImpl implements MainService{
 	@Inject
 	private MainDAO mainDAO;
 	@Override
-	public List<BoardVO> listBoard(Location loc) {
-		return mainDAO.listBoard(loc);
+	public List<BoardVO> listBoard(Location loc,String board_type) {
+		return mainDAO.listBoard(loc,board_type);
+	}
+	@Override
+	public List<BoardVO> listBoardAll() {
+		return mainDAO.listBoardAll();
+	}
+	@Override
+	public List<BoardVO> listCustom(String lat, String lng) {
+		return mainDAO.listCustom(lat, lng);
 	}
 
 }

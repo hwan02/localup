@@ -32,6 +32,14 @@ public class MemberControl {
 	@Inject
 	MemberService_sign memberService_sign;
 	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		request.getSession().invalidate();
+		System.out.println("로그아웃 요청...");
+		
+		return "redirect:login";
+	}
+	
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login() {
 		System.out.println("로그인페이지 요청...");
@@ -45,17 +53,17 @@ public class MemberControl {
 		
 		try {
 			if(!memberService_sign.signin(request.getParameter("id"), request.getParameter("pw"))) {
-				model.addAttribute("login", "fail");
+				model.addAttribute("login_result", "fail");
 				return "login/login";
 			}
 		} catch (Exception e) {
 			// 로그인 에러 발생
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("login", true);
 		request.getSession().setAttribute("member_email", request.getParameter("id"));
-		return "main/index";
+		return "redirect:index";
 	}
 	
 	@RequestMapping("findEmail")
@@ -80,17 +88,14 @@ public class MemberControl {
 		String temp_pw = ""; //임시비밀번호
 		
 		//임시비밀번호 생성
-		String alpha = "abcdefghijklmnopqrstuvwxyz";
-		String Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String number = "0123456789";
+		String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random random = new Random();
-		int size;
-/*		while(size < 10) {
-			sizerandom.nextInt(15);
-		for(int i=0; i<10; i++) {
-			
+		int size = 0;
+		while(size < 10) size = random.nextInt(16); //10~15자리
+		for(int i=0; i<size; i++) {
+			int idx = random.nextInt(str.length());
+			temp_pw += str.charAt(idx);
 		}
-		}*/
 		
 		try {
 			if(memberService_sign.update_pw(request.getParameter("name"), member_email, temp_pw) > 0) {
@@ -154,7 +159,7 @@ public class MemberControl {
 			sendEmail(form);
 		} catch (Exception e) {
 			// 메일 발송 실패
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "login/member_fail";
 		}
 		
@@ -174,7 +179,7 @@ public class MemberControl {
 		String member_eamil = "";
 		for(int i=0; i<code.length()-1; i+=2) {
 			member_eamil += (char)((Integer.parseInt(code.substring(i, i+2),16))-code.length()/2);
-			//코드를 두자리씩 끊어서 16진수로 변환 -> 각각에 이메일 길이값 만큼 빼주기 -> 하나의 이메일로 묶기3
+			//코드를 두자리씩 끊어서 16진수로 변환 -> 각각에 이메일 길이값 만큼 빼주기 -> 하나의 이메일로 묶기
 		}
 		
 		try {
@@ -184,7 +189,7 @@ public class MemberControl {
 			}
 		} catch (Exception e) {
 			// 이메일 인증 실패
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "login/member_fail";
 		}
 		request.setAttribute("member_eamil", member_eamil);

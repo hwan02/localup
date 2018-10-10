@@ -35,6 +35,6 @@
 	<div class="container" id="cont">
 		이미 사용중이거나 사용 불가능한 이메일 입니다 (ᗒᗣᗕ)՞
 	</div>
-	<a href="/main">메인 페이지로 이동</a>
+	<a href="/index">메인 페이지로 이동</a>
 </body>
 </html>

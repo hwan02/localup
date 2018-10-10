@@ -1,6 +1,7 @@
 package com.localup.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,11 +42,11 @@ public class MemberDAOImpl_sign implements MemberDAO_sign{
 
 	//이메일 찾기
 	@Override
-	public String findEmail(String member_name, String member_tel) throws Exception {
+	public List<Object> findEmail(String member_name, String member_tel) throws Exception {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("member_name", member_name);
 		map.put("member_tel", member_tel);
-		return (String)sqlSession.selectOne("member.findEmail", map);
+		return sqlSession.selectList("member.findEmail", map);
 	}
 
 	//(임시)비밀번호 설정

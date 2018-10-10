@@ -53,6 +53,7 @@ $(function(){
 	});//ID찾기 버튼 클릭
 	
 	$('#selectPw').click(function(){
+		$('#result').html('잠시만 기다려주세요...');
 		$.ajax({
 			url:'/findPw',
 			success: function(data){

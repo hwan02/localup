@@ -56,7 +56,7 @@ public class BoardController {
 		System.out.println("contVO>>"+boardVO);
 		boardService.BoardWrite(boardVO);
 		//return "board/board";
-		return "redirect:write";
+		return "redirect:/index";
 	}
 	
 	//-----------------test Image Upload
@@ -89,10 +89,19 @@ public class BoardController {
 		return savedName;
 	}
 
-	@RequestMapping(value="read")
+	@RequestMapping(value="read", method=RequestMethod.GET) //게시글 상세페이지 --> http://localhost/board/read?board_no=2
 	public String read(int board_no,Model model) throws Exception{
 		model.addAttribute("boardVO",boardService.BoarRead(board_no));
 		return "board/boardRead";
 	}
+	
+	//좋아요
+	@RequestMapping(value="like", method=RequestMethod.POST)
+	public String like(int board_no,Model model) throws Exception{
+		System.out.println("like board_no>>>"+board_no);
+		boardService.LikeUp(board_no); //좋아요 갯수 update 0-->1, 1-->2
+		return "board/boardRead";
+	}
+	
 }
 

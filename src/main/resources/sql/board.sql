@@ -36,12 +36,14 @@ ALTER TABLE board
 		REFERENCES member (
 			member_email
 		);
+		
 drop sequence board_seq;
 create sequence board_seq
 start with 1
 increment by 1 
 nocache
-nocycle;		
+nocycle;
+
 delete from board;
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'localup@gmail.com', '맛집','어디까지 가봤니?','난 여기까지 가봤단다1','mathouse1.jpg',13,8,37.1,126.1,5); 
@@ -75,5 +77,39 @@ insert into BOARD(board_no, member_email, board_type, board_title, board_cont, b
 values(board_seq.nextval, 'gildong@naver.com', '편의시설','어디까지 가봤니?','난 여기까지 가봤단다15','mathouse15.jpg',13,8,37.48945493983240,127.02068035663186,5); 
 insert into BOARD(board_no, member_email, board_type, board_title, board_cont, board_img, board_view, board_like, board_alti, board_long, board_max) 
 values(board_seq.nextval, 'gildong@naver.com', '지역소식','어디까지 가봤니?','난 여기까지 가봤단다11','mathouse12.jpg',13,8,37.49045493983244,127.02068035663186,5); 
+
+
+/* 좋아요 버튼  */
+drop table likebt;
+create table likebt(
+	likebt_ch number default 0, /* 좋아요 버튼 체크 상태 -- 0 or 1 */
+	board_no number not null,
+	member_email varchar2(100) not null
+);
+
+--TABLE likebt --member_email foreign key
+ALTER TABLE likebt
+	ADD
+		CONSTRAINT FK_member_TO_likebt
+		FOREIGN KEY (
+			member_email
+		)
+		REFERENCES member (
+			member_email
+		);
+
+--TABLE likebt --board_no foreign key	
+ALTER TABLE likebt
+	ADD
+		CONSTRAINT FK_board_TO_likebt
+		FOREIGN KEY (
+			board_no
+		)
+		REFERENCES board (
+			board_no
+		);
+
+
+
 
 select * from board;

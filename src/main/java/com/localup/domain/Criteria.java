@@ -7,7 +7,7 @@ public class Criteria {
 	public Criteria() {
 		//기본값 설정(파라미터 정보가 없을시)
 		page = 1;
-		perPageNum = 10;
+		perPageNum = 10; //페이지(1p,2p,..)의 댓글 수
 	}
 	
 	//IN <----- 사용자 요청	/board/listCri?page=3&perPageNum=10
@@ -20,7 +20,7 @@ public class Criteria {
 	}
 	public void setPerPageNum(int perPageNum) {
 		if(perPageNum<=0 || perPageNum>100) {
-			perPageNum = 10; //한페이지에 출력할 기본 행수!!
+			perPageNum = 5; //한페이지에 출력할 기본 행수!!
 			return;
 		}
 		this.perPageNum = perPageNum;

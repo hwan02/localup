@@ -24,7 +24,6 @@
 <script type="text/javascript">
 if('${login}'=='fail'){
 	alert('ID나 PW가 잘못되었습니다.');
-	window.location.href='/Funshop/login.do?action=loginForm';
 }
 
 $(function(){
@@ -57,7 +56,7 @@ $(function(){
 	</c:if>
 	
 	<c:if test="${empty sessionScope.id}">
-		<form action="/Funshop/login.do?action=login" method="post" name="frm" id="frm">
+		<form method="post" name="frm" id="frm">
 			<input type="text" id="id" name="id" placeholder="Email"><br>
 			<input type="password" id="pw" name="pw" placeholder="Password"><br>
 			<br>

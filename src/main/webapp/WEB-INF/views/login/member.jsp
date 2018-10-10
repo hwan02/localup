@@ -151,7 +151,7 @@ $(function(){
 	<br>
 	<h3>회원가입</h3>
 	<hr>
-	<form action="member/wait" name="frm" id="frm" method="post">
+	<form action="member/wait" name="frm" id="frm" method="post"  autocomplete="off">
 		<div class="container" id="cont">
 			<table style="text-align: center;" class="container">
 				<tr>

@@ -38,18 +38,14 @@ $(function(){
 	
 	$('#selectId').click(function(){
 		$.ajax({
-			url:'/Funshop/login.do',
+			url:'/findEmail',
 			success: function(data){
-				console.log(data);
-				console.log($.trim(data).length);
 				$('#result').html('<font color=blue>'+data+'</font>');
 				if($.trim(data).length==0){
 					$('#result').html('<font color=red>정확한 정보를 기입해주세요.</font>');
 				}
 			},
 			data:{
-				action: 'selectIdPw',
-				select: 'id',
 				name: $('#name').val(),
 				phone: $('#phone').val(),
 			}

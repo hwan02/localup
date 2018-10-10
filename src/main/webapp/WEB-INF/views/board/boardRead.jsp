@@ -54,8 +54,8 @@
 				var str='';
 				$(result).each(function(){
 					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
-						+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
-							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +'<button>수정</button></li>';
+						+ this.reply_cont +'" data-remail="'+ this.member_email +'" data-rdate="'+ this.reply_date +'" class="replyLi">'
+							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>';
 				});
 				$('#replies').html(str);
 			}
@@ -65,7 +65,7 @@
 	// reply/120/2 ===> 120:글번호, 2:2페이지
 	function replylistPage(page){ //전체 댓글 중 특정 페이지의 댓글(예: 1페이지의 댓글 10개)
 		var board_no = $('input[name=board_no]').val();
-		var page = 1;
+		
 		$.ajax({
 			url:'/reply/'+board_no+'/'+page,
 			success:function(result){ //result ---> Map{List("list"), PageMaker("pageMaker")}
@@ -78,22 +78,46 @@
 				$('#replies').html(str);
 				printPaging(result.pageMaker);
 			}
-		});
+		}); 
+		
 	}//replylistPage
 	
 	function printPaging(pageMaker){ //하단 번호출력
 		var board_no = $('input[name=board_no]').val();
 		var str='';
-		for(var i=pageMaker.startPage; i<=pageMaker.endPage; i++){
+		/* for(var i=pageMaker.startPage; i<=pageMaker.endPage; i++){
 			str += '<li><a>'+i+'</a></li>';
 			//str += '<li><a href="http://localhost/board/read?board_no='+board_no+'&page='+i+'">'+i+'</a></li>';
 		}
+		$('.pagination').html(str); */
+		
+		/////
+		if(pageMaker.prev) {
+			str += "<li><a href='" + (pageMaker.startPage - 1) + "'> << </a></li>";
+			//str += "<li><a href='/reply/"+board_no+"/"+(pageMaker.startPage - 1) + "'> << </a></li>";
+		}
+		
+		for(var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+			var strClass = pageMaker.cri.page == i ? 'class=active' : '';
+			str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
+			//str += "<li "+strClass+"><a href='/reply/"+board_no+"/"+i+"'>" + i + "</a></li>";			
+		}
+		
+		if(pageMaker.next) {
+			str += "<li><a href='" + (pageMaker.endPage + 1) + "'> >> </a></li>";
+			//str += "<li><a href='/reply/"+board_no+"/"+(pageMaker.endPage + 1) + "'> >> </a></li>";
+		}
 		$('.pagination').html(str);
-	}//printPaging
+		
+		
+		/////
+	} //printPaging
 	
 	$(function(){//window ready
 		var board_no = $('input[name=board_no]').val();
-	
+		var replyPage = $(this).attr("href");
+		console.log(replyPage);
+		
 		//replylist();
 		replylistPage(1);
 		
@@ -191,6 +215,13 @@
 				}
 			});
 		});//댓글 수정
+		
+		$('.pagination').on("click","li a",function(event){ //페이징
+			event.preventDefault(); //a태그의 href속성 기능 상실
+			replyPage=$(this).attr('href');  //  1 또는 2 ......
+			//getPageList(replyPage);
+			replylistPage(replyPage);
+		});
 		
 	});//window ready
 </script>

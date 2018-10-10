@@ -13,14 +13,19 @@
 
 	$(function() { 	
 		$(".payCancel").click(function() { //결제취소 버튼 할시       
+			var formObj = $("form[role='form']");
 			alert("취소가 되었습니다.");
+		var str = "결제완료";
 
 // 		$(this).parents('tr').find('.pay_state').fadeToggle("slow");
 // 		$(this).parents('tr').find('.complete').fadeToggle("slow");
 // 		$(this).parents('tr').find('.pay_cdate').fadeToggle("slow");
+		
+		$(".pay_state").fadeToggle("slow");;
+		$(".complete").fadeToggle("slow");;
+		$(".pay_cdate").fadeToggle("slow");;
 
- 		$('form').attr('action', '/pay/myPayInfo');
- 		$('form').attr('method', 'get');
+ 		$('form').attr('action', '/pay/myPayInfoUpdate');
  		$('form').submit();
 		
 
@@ -79,40 +84,15 @@
 </script>
 </head>
 <body>
-	<h1>결제내역 조회</h1>
+	<h1>결제내역 조회 수정</h1>
 	<hr>
-
-	<c:forEach items="${GuideVO}" var="GuideVO">
-		<!--가이드 번호-->
-		<input type="text" value="가이드번호 : ${GuideVO.tour_no}">
-		<br>
-		<table border="1" cellpadding="5">
-			<tr>
-				<th>투어명</th>
-				<th>투어 시작 날짜</th>
-				<th>투어 종료 날짜</th>
-			</tr>
-			<tr>
-				<!--투어명-->
-				<td><input type="text" value="${GuideVO.tour_title}" readonly></td>
-				
-				<!--시작날짜-->
-				<td><input type="text" value="${GuideVO.tour_sdate}" readonly></td>
-				<!--종료날짜-->
-				<td><input type="text" value="${GuideVO.tour_edate}" readonly></td>
-			</tr>
-		</table>
-	</c:forEach>
-	
-	<form action="/pay/myPayInfo"   method="post">	
-	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
-	
-	
-		<!--투어번호 -->
-<!-- 		신청 이메일 -->
+	<form action=""   method="post">	
+<%-- 	<c:forEach items="${PayInfoVO}" var="PayInfoVO"> --%>
+		<!--투어번호-->
+		신청 이메일
 		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
-<!-- 		투어번호 -->
-<input type="text" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}">
+		투어번호
+		<input type="text" name="pay_no" value="${PayInfoVO.pay_no}">
 		<table border="1" cellpadding="5" class="paypaypay">
 			<tr>
 				<th>투어 인원</th>
@@ -120,13 +100,13 @@
 				<th>투어 결제수단</th>
 			</tr>
 			<tr>
-<!-- 				투어인원 -->
+				<!--투어인원-->
 				<td><input type="text" value="${PayInfoVO.pay_num}" readonly></td>
 
-<!-- 				투어금액 -->
+				<!--투어금액-->
 				<td><input type="text" value="${PayInfoVO.pay_pay}" readonly></td>
 
-<!-- 				투어 결제수단 -->
+				<!--투어 결제수단-->
 				<td><input type="text" value="${PayInfoVO.pay_way}" readonly></td>
 			</tr>
 		</table>
@@ -138,22 +118,22 @@
 				<th>투어 결제 취소 하기</th>
 			</tr>
 			<tr >
-<!-- 				투어 결제상태 -->
+				<!--투어 결제상태-->
 				<td>
 					<input type="text" value="${PayInfoVO.pay_state}" class="complete" readonly>
 					<input type="text" value="결제취소" class="pay_state" name="pay_state" style="display: none;" readonly>
 				</td>
 
-<!-- 				투어 결제 승인 -->
+				<!--투어 결제 승인-->
 				<td class="pay_pdate"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${PayInfoVO.pay_pdate}"/></td>
 
-<!-- 				투어 결제 취소 -->
+				<!--투어 결제 취소-->
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"  value="${PayInfoVO.pay_cdate}"/></td>
-				<td>		<a href='/pay/myPayInfoUpdate?pay_no=${PayInfoVO.pay_no}'>	<input type="button" class="payCancel" value="결제취소"></a></td>
+				<td></td>
 			</tr>
 		</table>
-	</c:forEach>
-
+<%-- 	</c:forEach> --%>
+	<input type="button" class="payCancel" value="결제취소">
 	<div id="result" style="text-align: center;"></div>
 	</form>
 		

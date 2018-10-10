@@ -1,4 +1,5 @@
 /* 구독 */
+drop table sub;
 CREATE TABLE sub (
 	member_id_sub1 VARCHAR2(50) NOT NULL, /* 구독자ID */
 	member_id_guide1 VARCHAR2(50) NOT NULL, /* 가이드ID */
@@ -40,4 +41,4 @@ ALTER TABLE sub
 		);
 		
 --TEST
-insert into sub(member_id_sub1,member_id_guide1) values("localup@gmail.com","naver@gmail.com");
+insert into sub(member_id_sub1,member_id_guide1) values('localup@gmail.com','naver@gmail.com');

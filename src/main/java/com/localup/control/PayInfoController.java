@@ -77,9 +77,9 @@ public class PayInfoController {
 	
 	//결제내역 폼 보기
 	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
-	public String myPayInfoGET(Model model, Integer tour_no, String member_email) throws Exception {
+	public String myPayInfoGET(Model model, Integer tour_no, String member_email,Integer pay_no) throws Exception {
 		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
-		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email,pay_no));
 		return"my/myPayInfo";
 	}
 	
@@ -92,11 +92,27 @@ public class PayInfoController {
 	
 	//결제내역 수정
 	@RequestMapping(value="myPayInfo", method=RequestMethod.POST)
-	public String myPayInfoPOST(PayInfoVO payInfoVO,HttpServletRequest request,Model model) throws Exception {
-		System.out.println(payInfoVO);
+	public String myPayInfoPOST(PayInfoVO payInfoVO,Model model) throws Exception {
+		//System.out.println(payInfoVO);
+		
+		//payInfoService.update(payInfoVO);
+		return"redirect:/pay/myPayInfoUpdate";
+	}
+
+	//결제내역 수정 폼
+	@RequestMapping(value="myPayInfoUpdate", method=RequestMethod.GET)
+	public String myPayInfoUpdateGET(Model model,Integer pay_no) throws Exception {
+		//System.out.println(payInfoVO);
+		
+		model.addAttribute("PayInfoVO",payInfoService.payList_payno(pay_no));
+		return"my/myPayInfoUpdate";
+	}
+	@RequestMapping(value="myPayInfoUpdate", method=RequestMethod.POST)
+	public String myPayInfoUpdatePOST(PayInfoVO payInfoVO) throws Exception {
+		//System.out.println(payInfoVO);
 		
 		payInfoService.update(payInfoVO);
-		return"redirect:/pay/main";
+		return"redirect:/pay/myPayInfo";
 	}
 	
 }

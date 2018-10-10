@@ -14,8 +14,10 @@ public interface PayInfoService {
 	//투어번호
 	public List<GuideVO> payList(Integer tour_no) throws Exception;
 	
+	public PayInfoVO payList_payno(Integer pay_no) throws Exception;
+	
 	//결제번호
-	public List<PayInfoVO> payList2(String member_email) throws Exception;
+	public List<PayInfoVO> payList2(String member_email,Integer pay_no) throws Exception;
 	
 	//결제취소시 업데이트
 	public void update(PayInfoVO payInfoVO) throws Exception;

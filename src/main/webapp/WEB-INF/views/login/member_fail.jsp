@@ -30,10 +30,10 @@
 </head>
 <body class="container" style="text-align: center;">
 	<br>
-	<h3>이메일 인증이 필요합니다</h3>
+	<h3>회원가입이 불가능합니다</h3>
 	<hr>
 	<div class="container" id="cont">
-		보내진 링크를 클릭하여 계속 진행하세요  ͡° ͜ʖ ͡° 
+		이미 사용중이거나 사용 불가능한 이메일 입니다 (ᗒᗣᗕ)՞
 	</div>
 	<a href="/index">메인 페이지로 이동</a>
 </body>

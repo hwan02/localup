@@ -37,4 +37,9 @@ public List<BoardVO> listCustom(String lat, String lng) {
 	map.put("lat", lat);
 	return sqlSession.selectList("main.listCustom", map);
 }
+@Override
+public String locInfo(String email) {
+	System.out.println(email);
+	return sqlSession.selectOne("main.locInfo",email);
+}
 }

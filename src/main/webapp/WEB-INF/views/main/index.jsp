@@ -17,7 +17,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Localup</a>
+        <a class="navbar-brand" href="index">Localup</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
             </li>
             <li></li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">로그인/회원가입</a>
+              <a class="nav-link" href="#" id="loginA">안녕하세요</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -114,6 +114,17 @@
     </header>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(function(){
+			if('${login}'==true){
+				$("#loginA").attr('href','#');
+				$("#loginA").text('${member_email}');
+			}else{
+				$("#loginA").attr('href','login');
+				$("#loginA").text('로그인/회원가입');
+			}
+		});
+	</script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer,services,drawing"></script>
 		 <script>

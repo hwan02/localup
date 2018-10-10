@@ -24,8 +24,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <input type="search">
-          <button class="navbar-toggler-icon"></button>
+              <input type="search" id="mainSearch">
+          <button class="navbar-toggler-icon" id="mainButton"></button>
+           <div id="display"  style="position: absolute; background-color: white; top: 25px; border: 1px solid black; width: 300px; display: none"></div>
             </li>
             <li></li>
             <li class="nav-item">
@@ -127,7 +128,9 @@
 			if('${login}'){
 				$("#loginA").attr('href','#');
 				$("#loginA").text('${member_email}');
-				searchPlaces();
+				alert("환영합니다")
+				var first="첫 화면";
+				searchPlaces(first);
 				$("#logCheck").text('로그아웃');
 			}else{
 				$("#loginA").attr('href','login');
@@ -140,6 +143,30 @@
 					data:{"logout":"logout"}
 				});
 			});
+			 $("input#mainSearch").keyup(function() {
+                 var mainSearch = $(this).val();
+                 if(mainSearch=='') { 
+                     $("#display").hide();
+                 } else {    
+                     $.ajax({
+                     url: "/search",
+                     data: {mainSearch : mainSearch},
+                     success:function(result){
+                    	 alert(result);
+							var words = result.split("|");
+							var count = words[0];
+ 							$("#display").empty();
+							if(count>0){
+							$.each(words[1].split(','),function(index, value){
+								var name = value.split('@')[0];
+								var email = value.split('@')[1];
+								$("#display").append($('<a href="javascript:goMainDetail('+name+')">'+name+"@"+email+'</a><br>')).show();
+							})
+							}
+						}
+                     });
+                 }
+             });
 		});
 	</script>
 	<script type="text/javascript"
@@ -542,14 +569,14 @@ var infowindow = new daum.maps.InfoWindow({zIndex:1});
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
 // 키워드 검색을 요청하는 함수입니다
-function searchPlaces() {
+function searchPlaces(first) {
 	var keyword = null;
-	if('${login}'){
+	if(first!=undefined){
 		 $.ajax({
 				url:"locInfo",
 		    	data:{'email':'${member_email}'},
 		    	success:function(result){
-					keyCheck(result)
+		    		keyCheck(result)
 		    	}
 				});
 	}else{
@@ -570,8 +597,10 @@ if(keyword!=undefined){
 	         if (status === daum.maps.services.Status.OK) {
 	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	           
 	            map.setCenter(coords);
 	            map.setLevel(4);
+	            replaceLoc()
 	        }else if(status === daum.maps.services.Status.ERROR){
 	        	alert("다시 검색해주세요.");
 	        }else{
@@ -580,7 +609,24 @@ if(keyword!=undefined){
 	    });    
 	}	
 }
-   
+function replaceLoc(){
+	 var bounds = map.getBounds();
+		// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+	var boundsStr = bounds.toString();
+    var swLatLng = bounds.getSouthWest();
+    var south = swLatLng.getLat();
+    var west = swLatLng.getLng();
+    var neLatLng = bounds.getNorthEast(); 
+    var north = neLatLng.getLat();
+    var east = neLatLng.getLng();
+    $.ajax({
+    	url:"location",
+    	data:{"south":south, "west":west,"north":north,"east":east},	    	
+    	success:function(result){
+    		$("#newBoard").html(result);
+    	}
+    });
+}
 </script>
 <br>
 <!-- 지도 범위 내 영역 표시  -->
@@ -590,7 +636,7 @@ if(keyword!=undefined){
     <div class="option">
         <div>
             <form onsubmit="searchPlaces(); return false;">
-                키워드 : <input type="text" id="keyword" size="15"> 
+                키워드 : <input type="text" id="keyword" size="15">
                 <button type="submit">검색하기</button> 
             </form>
         </div>

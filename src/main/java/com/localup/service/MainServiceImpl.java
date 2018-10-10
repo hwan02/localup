@@ -29,5 +29,9 @@ public class MainServiceImpl implements MainService{
 	public String locInfo(String email) {
 		return mainDAO.locInfo(email);
 	}
+	@Override
+	public List<String> listName(String mainSearch) {
+		return mainDAO.listName(mainSearch);
+	}
 
 }

@@ -84,8 +84,9 @@ public class MemberControl {
 		String Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String number = "0123456789";
 		Random random = new Random();
-/*		while(true) {
-		random.nextInt(15);
+		int size;
+/*		while(size < 10) {
+			sizerandom.nextInt(15);
 		for(int i=0; i<10; i++) {
 			
 		}

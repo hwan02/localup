@@ -51,7 +51,8 @@ public class MemberControl {
 			e.printStackTrace();
 		}
 		
-		return "main/main";
+		request.getSession().setAttribute("login", true);
+		return "main/index";
 	}
 	
 	@RequestMapping("findEmail")

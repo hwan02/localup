@@ -8,7 +8,7 @@ CREATE TABLE member (
 	member_tel VARCHAR2(13) NOT NULL, /* 연락처 */
 	member_email VARCHAR2(50) NOT NULL, /* 이메일 */
 	member_pref VARCHAR2(50), /* 선호지역 */
-	member_intro VARCHAR2(300) /* 소개 */
+	member_intro VARCHAR2(300), /* 소개 */
 	member_state VARCHAR2(20) /* 상태 */
 );
 
@@ -29,3 +29,4 @@ insert into member (member_email,member_pw,member_name,member_addr,member_tel,me
    values('naver@gmail.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');    
 insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
    values('gildong@naver.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');
+select * from member;

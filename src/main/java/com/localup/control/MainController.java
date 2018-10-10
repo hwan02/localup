@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,6 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@RequestMapping("test")
-	public String test() {
-		return "test";
-	}
-	@RequestMapping("test2")
-	public String test2() {
-		return "test2";
-	}
 	@RequestMapping("index")
 	public String index() {
 		return "main/index";
@@ -47,10 +40,11 @@ public class MainController {
 		return "main/board";
 	}
 	@RequestMapping("first")
-	public String loc2(Location loc,String board_type, Model model) {
+	public String loc2(Location loc,String board_type,String member_email, Model model) {
 		if(loc.getSouth()!=null) {
 			//System.out.println("loc2:::실행2>>>loc:"+loc+"\nboard_type:"+board_type);
 		List<BoardVO> list =service.listBoard(loc,board_type);
+		
 		model.addAttribute("list",list);
 		}else {
 			List<BoardVO> list =service.listBoardAll();
@@ -63,5 +57,10 @@ public class MainController {
 		List<BoardVO> custom =service.listCustom(lat.substring(0,14), lng);
 		model.addAttribute("custom",custom);
 		return "main/custom";
+	}
+	@RequestMapping("locInfo")
+	public void locInfo(String email, HttpServletRequest request) {
+		String locInfo =service.locInfo(email);
+		request.getSession().setAttribute("locInfo",locInfo);
 	}
 }

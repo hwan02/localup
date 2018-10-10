@@ -25,5 +25,9 @@ public class MainServiceImpl implements MainService{
 	public List<BoardVO> listCustom(String lat, String lng) {
 		return mainDAO.listCustom(lat, lng);
 	}
+	@Override
+	public String locInfo(String email) {
+		return mainDAO.locInfo(email);
+	}
 
 }

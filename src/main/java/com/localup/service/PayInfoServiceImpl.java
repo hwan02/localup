@@ -21,12 +21,7 @@ public class PayInfoServiceImpl implements PayInfoService{
 	public void insert(PayInfoVO payInfoVO) throws Exception {
 		payInfoDAO.insert(payInfoVO);
 	}
-	
-	@Override
-	public void pay_cdateInsert(PayInfoVO payInfoVO) throws Exception {
-		payInfoDAO.pay_cdateInsert(payInfoVO);
-		
-	}
+
 	
 
 	//특정값 조회

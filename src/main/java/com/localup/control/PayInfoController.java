@@ -80,7 +80,6 @@ public class PayInfoController {
 	@RequestMapping(value="myPayInfo", method=RequestMethod.POST)
 	public String myPayInfoPOST(PayInfoVO payInfoVO) throws Exception {
 		payInfoService.update(payInfoVO);
-		//payInfoService.pay_cdateInsert(payInfoVO);
 		return"redirect:/pay/main";
 	}
 	

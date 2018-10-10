@@ -22,11 +22,6 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 		sqlSession.insert("payInfo.insert",payInfoVO);	
 	}
 	
-	@Override
-	public void pay_cdateInsert(PayInfoVO payInfoVO) throws Exception {
-		sqlSession.insert("payInfo.pay_cdate",payInfoVO);	
-	}
-	
 	//특정값 조회
 	//투어번호
 	@Override

@@ -8,7 +8,6 @@ import com.localup.domain.PayInfoVO;
 public interface PayInfoDAO {
 	//DB 입력
 	public void insert(PayInfoVO payInfoVO) throws Exception;
-	public void pay_cdateInsert(PayInfoVO payInfoVO) throws Exception;
 	
 	//특정한 값 조회
 	//투어번호

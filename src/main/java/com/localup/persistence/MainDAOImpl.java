@@ -46,4 +46,10 @@ public class MainDAOImpl implements MainDAO {
 	public String locInfo(String email) {
 		return sqlSession.selectOne("main.locInfo", email);
 	}
+
+	@Override
+	public List<String> listName(String mainSearch) {
+		String search = "%"+mainSearch+"%";
+		return sqlSession.selectList("main.listName", search);
+	}
 }

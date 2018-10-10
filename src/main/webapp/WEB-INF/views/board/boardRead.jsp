@@ -13,8 +13,9 @@
 		height: 100px;
 		padding: 30px;
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		top: 80%;
+		left: 70%;
+		bottom: 100%;
 		margin-top: -50px;
 		margin-left: -150px;
 		z-index: 1000;
@@ -82,16 +83,15 @@
 		
 	}//replylistPage
 	
-	function printPaging(pageMaker){ //하단 번호출력
+	function printPaging(pageMaker){ //하단 페이지 번호출력
 		var board_no = $('input[name=board_no]').val();
 		var str='';
 		/* for(var i=pageMaker.startPage; i<=pageMaker.endPage; i++){
 			str += '<li><a>'+i+'</a></li>';
 			//str += '<li><a href="http://localhost/board/read?board_no='+board_no+'&page='+i+'">'+i+'</a></li>';
 		}
-		$('.pagination').html(str); */
+		$('.pagination').html(str);  */
 		
-		/////
 		if(pageMaker.prev) {
 			str += "<li><a href='" + (pageMaker.startPage - 1) + "'> << </a></li>";
 			//str += "<li><a href='/reply/"+board_no+"/"+(pageMaker.startPage - 1) + "'> << </a></li>";
@@ -108,9 +108,6 @@
 			//str += "<li><a href='/reply/"+board_no+"/"+(pageMaker.endPage + 1) + "'> >> </a></li>";
 		}
 		$('.pagination').html(str);
-		
-		
-		/////
 	} //printPaging
 	
 	$(function(){//window ready
@@ -154,16 +151,12 @@
 		//<ul><li data-rno=15>안녕댓글<button>수정</button></li></ul>
 		//댓글 수정
 		$('#replies').on('click','.replyLi button',function(){//('click','li button',function(){
-			//alert('버튼클릭!!');
 			//수정버튼 좌측에 있는 댓글번호,댓글내용 얻기
 			var reply = $(this).parent(); //---> <li>엘리먼트
 			var reply_no = reply.attr('data-rno');
 			var reply_cont = reply.attr('data-rcont');//reply.text();
 			var reply_star = reply.attr('data-rstar');
 			var member_email = reply.attr('data-remail');
-			
-			//alert(reply_no);
-			//alert(reply_cont);
 			
 			$('.modal-title').html(reply_no);
 			$('#modDiv #reply_cont').val(reply_cont);
@@ -217,25 +210,53 @@
 		});//댓글 수정
 		
 		$('.pagination').on("click","li a",function(event){ //페이징
-			event.preventDefault(); //a태그의 href속성 기능 상실
-			replyPage=$(this).attr('href');  //  1 또는 2 ......
+			event.preventDefault(); // a태그의 href속성 기능 상실
+			replyPage=$(this).attr('href'); // 1 또는 2 ......
 			//getPageList(replyPage);
 			replylistPage(replyPage);
 		});
 		
+		$('#mainBtn').click(function(){
+			window.location.href='/index';
+		});
+		
 	});//window ready
+	
+	function likeClick(){
+		var board_no = $('input[name=board_no]').val();
+		console.log(board_no);
+		//alert('클릭');
+		$.ajax({
+			url:'/board/like',
+			type:'post',
+			data:{
+				board_no: board_no
+			},
+			success:function(result){
+				alert('++');
+			}
+		});
+	}
 </script>
 </head>
 <body>
 	<form>
-		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no"><br>
-		제목: <input type="text" name="board_title" value="${boardVO.board_title }"><br>
-		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }"><br>
-		이미지: <img src="/resources/img/${boardVO.board_img }" width="300" height="300"><br>
+		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no" readonly><br>
+		제목: <input type="text" name="board_title" value="${boardVO.board_title }" readonly><br>
+		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }" readonly><br>
+		이미지: <img src="/resources/img/${boardVO.board_img }" width="300" height="300" readonly><br>
 		<%-- <input type="text" value="${boardVO.board_img }" size="50"><br> --%>
-		내용: <textarea rows="20" cols="50">${boardVO.board_cont }</textarea><br>
+		내용: <textarea rows="20" cols="50" readonly>${boardVO.board_cont }</textarea><br>
 	</form>
-	<br><br>
+	<br>
+	
+	<!-- 좋아요 버튼 -->
+	<a href="javascript:likeClick();"><img src="/resources/img/like.png"></a>
+	<a><img src="/resources/img/like_b.png"></a>
+	
+	<!-- 메인으로 돌아가기 -->
+	<button id="mainBtn">메인으로</button>
+	
 	<hr>
 	<form method="post" id="replyForm">
 		댓글: <textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>

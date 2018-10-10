@@ -14,7 +14,7 @@ public interface PayInfoDAO {
 	public List<GuideVO> payList(Integer tour_no) throws Exception;
 	
 	//결제번호
-	public List<PayInfoVO> payList2(Integer pay_no) throws Exception;
+	public List<PayInfoVO> payList2(String member_email) throws Exception;
 	
 	//결제취소시 업데이트
 	public void update(PayInfoVO payInfoVO) throws Exception;

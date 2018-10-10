@@ -26,15 +26,15 @@
 	<!--결제내역 조회(ver : PayInfoVO)-->
 	<select id="payList2" resultType="PayInfoVO">
 		select
-		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate
+		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate,member_email
 		from pay
-		where pay_no=#{pay_no}
+		where member_email=#{member_email}
 	</select>
 	
 	<!--결제내역 수정-->
 	<update id="update">
 		update pay
 		set pay_state=#{pay_state},pay_cdate=sysdate
-		where pay_no=#{pay_no}
+		where member_email=#{member_email}
 	</update>
 </mapper>

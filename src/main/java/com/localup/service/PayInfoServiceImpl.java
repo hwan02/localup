@@ -33,8 +33,8 @@ public class PayInfoServiceImpl implements PayInfoService{
 
 	//투어번호
 	@Override
-	public List<PayInfoVO> payList2(Integer pay_no) throws Exception {
-		return payInfoDAO.payList2(pay_no);
+	public List<PayInfoVO> payList2(String member_email) throws Exception {
+		return payInfoDAO.payList2(member_email);
 	}
 
 	//결제취소시 업데이트

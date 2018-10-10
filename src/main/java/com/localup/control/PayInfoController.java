@@ -2,17 +2,24 @@ package com.localup.control;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.core.internal.resources.MoveDeleteHook;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.localup.domain.GuideVO;
 import com.localup.domain.PayInfoVO;
+import com.localup.domain.ReplyVO;
 import com.localup.persistence.MainDAOImpl;
 import com.localup.service.GuideService;
 import com.localup.service.PayInfoService;
@@ -70,15 +77,24 @@ public class PayInfoController {
 	
 	//결제내역 폼 보기
 	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
-	public String myPayInfoGET(Model model, Integer tour_no, Integer pay_no ) throws Exception {
+	public String myPayInfoGET(Model model, Integer tour_no, String member_email) throws Exception {
 		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
-		model.addAttribute("PayInfoVO",payInfoService.payList2(pay_no));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
 		return"my/myPayInfo";
 	}
 	
+//	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
+//	public @ResponseBody List<PayInfoVO> myPayInfoGET(String member_email) throws Exception {
+//		
+//		return payInfoService.payList2(member_email);
+//	}
+	
+	
 	//결제내역 수정
 	@RequestMapping(value="myPayInfo", method=RequestMethod.POST)
-	public String myPayInfoPOST(PayInfoVO payInfoVO) throws Exception {
+	public String myPayInfoPOST(PayInfoVO payInfoVO,HttpServletRequest request,Model model) throws Exception {
+		System.out.println(payInfoVO);
+		
 		payInfoService.update(payInfoVO);
 		return"redirect:/pay/main";
 	}

@@ -32,6 +32,14 @@ public class MemberControl {
 	@Inject
 	MemberService_sign memberService_sign;
 	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		request.getSession().invalidate();
+		System.out.println("로그아웃 요청...");
+		
+		return "redirect:login";
+	}
+	
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login() {
 		System.out.println("로그인페이지 요청...");
@@ -55,7 +63,7 @@ public class MemberControl {
 		
 		request.getSession().setAttribute("login", true);
 		request.getSession().setAttribute("member_email", request.getParameter("id"));
-		return "main/index";
+		return "redirect:index";
 	}
 	
 	@RequestMapping("findEmail")

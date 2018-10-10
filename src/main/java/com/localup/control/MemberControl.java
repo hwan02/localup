@@ -50,7 +50,7 @@ public class MemberControl {
 			}
 		} catch (Exception e) {
 			// 로그인 에러 발생
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("login", true);
@@ -80,17 +80,14 @@ public class MemberControl {
 		String temp_pw = ""; //임시비밀번호
 		
 		//임시비밀번호 생성
-		String alpha = "abcdefghijklmnopqrstuvwxyz";
-		String Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String number = "0123456789";
+		String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random random = new Random();
-		int size;
-/*		while(size < 10) {
-			sizerandom.nextInt(15);
-		for(int i=0; i<10; i++) {
-			
+		int size = 0;
+		while(size < 10) size = random.nextInt(15);
+		for(int i=0; i<size; i++) {
+			size = random.nextInt(str.length()-1);
+			temp_pw += str.charAt(size);
 		}
-		}*/
 		
 		try {
 			if(memberService_sign.update_pw(request.getParameter("name"), member_email, temp_pw) > 0) {
@@ -154,7 +151,7 @@ public class MemberControl {
 			sendEmail(form);
 		} catch (Exception e) {
 			// 메일 발송 실패
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "login/member_fail";
 		}
 		
@@ -184,7 +181,7 @@ public class MemberControl {
 			}
 		} catch (Exception e) {
 			// 이메일 인증 실패
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "login/member_fail";
 		}
 		request.setAttribute("member_eamil", member_eamil);

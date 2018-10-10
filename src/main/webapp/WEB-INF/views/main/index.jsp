@@ -17,7 +17,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Localup</a>
+        <a class="navbar-brand" href="index">Localup</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
             </li>
             <li></li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">로그인/회원가입</a>
+              <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,6 +80,10 @@
     <!-- 지도 위에 표시될 마커 카테고리 -->
     <div class="category">
         <ul>
+            <li id="all">
+                <span class="ico_comm ico_coffee"></span>
+              전체
+            </li>
             <li id="mat">
                 <span class="ico_comm ico_coffee"></span>
                맛집
@@ -112,12 +116,27 @@
     </div>
 </div>
     </header>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- email에 해당하는 선호 지역 위치 가져오기 -->
+	<script>
+		$(function(){
+			if('${login}'){
+				$("#loginA").attr('href','#');
+				$("#loginA").text('${member_email}');
+				searchPlaces();
+			}else{
+				$("#loginA").attr('href','login');
+				$("#loginA").text('로그인/회원가입');
+			}
+		});
+	</script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer,services,drawing"></script>
 		 <script>
 			$(function(){
+				$("#all").click(function(){
+				    newLocation();
+				});
 				$("#mat").click(function(){
 					var bounds = map.getBounds();
 					// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
@@ -268,6 +287,7 @@ function newLocation(type){
 	    });
 	}
 		 </script>
+		
 <script>
 var disMarker;
 
@@ -506,32 +526,48 @@ var ps = new daum.maps.services.Places();
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 
+		
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
-    var keyword = document.getElementById('keyword').value;
-
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
-        return false;
-    }
- // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(keyword, function(result, status) {
-        // 정상적으로 검색이 완료됐으면 
-         if (status === daum.maps.services.Status.OK) {
-            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-            map.setLevel(4);
-        }else if(status === daum.maps.services.Status.ERROR){
-        	alert("다시 검색해주세요.");
-        }else{
-        	alert("검색 결과가 없습니다.");
-        } 
-    });    
+	var keyword = null;
+	if('${login}'){
+		 $.ajax({
+				url:"locInfo",
+		    	data:{'email':'${member_email}'},
+		    	success:function(result){
+					keyword=result
+					keyCheck(keyword)
+		    	}
+				});
+	}else{
+    //로그인 후 메인 페이지로 넘어올 때 해당 아이디 선호지역으로 지도 이동
+    keyword = document.getElementById('keyword').value;
+    keyCheck(keyword)
+	}
 }
+function keyCheck(keyword){
+	 if (!keyword.replace(/^\s+|\s+$/g, '')) {
+	        alert('키워드를 입력해주세요!');
+	        return false;
+	    }
+	 // 주소로 좌표를 검색합니다
+	    geocoder.addressSearch(keyword, function(result, status) {
+	        // 정상적으로 검색이 완료됐으면 
+	         if (status === daum.maps.services.Status.OK) {
+	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	            map.setCenter(coords);
+	            map.setLevel(4);
+	        }else if(status === daum.maps.services.Status.ERROR){
+	        	alert("다시 검색해주세요.");
+	        }else{
+	        	alert("검색 결과가 없습니다.");
+	        } 
+	    });    
+}
+   
 </script>
 <br>
 <!-- 지도 범위 내 영역 표시  -->
@@ -589,7 +625,6 @@ function searchPlaces() {
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/resources/js/bootstrap.bundle.min.js"></script>
 
   </body>

@@ -35,6 +35,6 @@
 	<div class="container" id="cont">
 		보내진 링크를 클릭하여 계속 진행하세요  ͡° ͜ʖ ͡° 
 	</div>
-	<a href="/main">메인 페이지로 이동</a>
+	<a href="/index">메인 페이지로 이동</a>
 </body>
 </html>

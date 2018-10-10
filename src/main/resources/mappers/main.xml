@@ -19,4 +19,7 @@
 			from board
 			where substr(board_alti,0,14)=#{lat} and board_long=#{lng}
 		</select>
+		<select id="locInfo" resultType="string">
+			select member_pref from member where member_email=#{email}
+		</select>
 </mapper> 

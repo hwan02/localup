@@ -53,8 +53,9 @@ $(function(){
 	});//ID찾기 버튼 클릭
 	
 	$('#selectPw').click(function(){
+		$('#result').html('잠시만 기다려주세요...');
 		$.ajax({
-			url:'/Funshop/login.do',
+			url:'/findPw',
 			success: function(data){
 				console.log(data);
 				$('#result').html('<font color=blue>'+data+'</font>');
@@ -63,12 +64,8 @@ $(function(){
 				}
 			},
 			data:{
-				action: 'selectIdPw',
-				select: 'pw',
 				name: $('#name2').val(),
-				id: $('#id').val(),
-				question: $('#question').val(),
-				answer: $('#answer').val()
+				id: $('#id').val()
 			}
 		});
 	});//pw찾기 버튼 클릭
@@ -112,7 +109,7 @@ $(function(){
 				</select>
 				<br>
 			답변 <input type="text" name="answer" id="answer"><br><br> --><br>
-				<input type="button" value="검색" id="selectPw" class="btn">
+				<input type="button" value="찾기" id="selectPw" class="btn">
 				<input type="button" value="닫기" id="close" onclick="window.close()" class="btn"><br>
 		</form>
 	</div>

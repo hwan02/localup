@@ -9,6 +9,7 @@ CREATE TABLE member (
 	member_email VARCHAR2(50) NOT NULL, /* 이메일 */
 	member_pref VARCHAR2(50), /* 선호지역 */
 	member_intro VARCHAR2(300) /* 소개 */
+	member_state VARCHAR2(20) /* 상태 */
 );
 
 CREATE UNIQUE INDEX PK_member

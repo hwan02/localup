@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.localup.domain.BoardVO;
@@ -27,8 +28,11 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@RequestMapping("index")
-	public String index() {
+	@RequestMapping(value="index")
+	public String indexGet(String logout, HttpServletRequest request) {
+		if(logout!=null&&logout.equals("logout")) {
+			request.getSession().removeAttribute("login");
+		}
 		return "main/index";
 	}
 	@RequestMapping("location")
@@ -59,9 +63,23 @@ public class MainController {
 		return "main/custom";
 	}
 	@RequestMapping("locInfo")
-	public String locInfo(String email, HttpServletRequest request) {
+	public String locInfo(String email, Model model) {
+		if(email!=null) {
 		String locInfo =service.locInfo(email);
-		request.getSession().setAttribute("locInfo",locInfo);
-		return "main/index";
+		model.addAttribute("locInfo",locInfo);
+		}
+		return "main/locInfo";
+	}
+	@RequestMapping("search")
+	public String search(String mainSearch, Model model) {
+		List<String> listName=service.listName(mainSearch);
+		String listNames = listName.size()+"|";
+	    for(int i=0; i<listName.size(); i++){
+	    	listNames += listName.get(i);
+	    	if(i< listName.size()-1)listNames+=",";
+	    }
+	    //예시) 2|양말,양고기
+		model.addAttribute("listNames",listNames);
+		return "main/search";
 	}
 }

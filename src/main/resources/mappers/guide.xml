@@ -19,4 +19,5 @@
 		from tour
 		where board_no=#{board_no}
 	</select>
+	
 </mapper>

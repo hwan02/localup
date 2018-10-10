@@ -1,5 +1,7 @@
 package com.localup.control;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
+
 import javax.inject.Inject;
 
 import org.eclipse.core.internal.resources.MoveDeleteHook;
@@ -9,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.localup.domain.GuideVO;
 import com.localup.domain.PayInfoVO;
+import com.localup.persistence.MainDAOImpl;
+import com.localup.service.GuideService;
 import com.localup.service.PayInfoService;
 
 @Controller
@@ -64,10 +69,19 @@ public class PayInfoController {
 	}
 	
 	//결제내역 폼 보기
-	@RequestMapping("myPayInfo")
-	public String myPayInfoGET(Model model, String member_email) {
+	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
+	public String myPayInfoGET(Model model, Integer tour_no, Integer pay_no ) throws Exception {
+		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(pay_no));
 		return"my/myPayInfo";
 	}
 	
+	//결제내역 수정
+	@RequestMapping(value="myPayInfo", method=RequestMethod.POST)
+	public String myPayInfoPOST(PayInfoVO payInfoVO) throws Exception {
+		payInfoService.update(payInfoVO);
+		//payInfoService.pay_cdateInsert(payInfoVO);
+		return"redirect:/pay/main";
+	}
 	
 }

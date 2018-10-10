@@ -6,7 +6,7 @@ CREATE TABLE pay (
 	pay_pay NUMBER NOT NULL, /* 결제금액 */
 	pay_num NUMBER NOT NULL, /* 결제인원 */
 	pay_pdate date default sysdate, /* 결제승인일시 */
-	pay_cdate DATE, /* 결제취소일시 */
+	pay_cdate date,--date default sysdate, /* 결제취소일시 */
 	pay_state VARCHAR2(20) NOT NULL, /* 결제상태 */
 	pay_way VARCHAR2(20) NOT NULL, /* 결제수단 */
 	board_no NUMBER NOT NULL, /* 게시글번호 */

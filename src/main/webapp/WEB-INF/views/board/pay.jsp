@@ -56,7 +56,7 @@
 <body>
 	<h1>결제 페이지</h1>
 	<hr>
-<!-- 	<form action="" method="post"> -->
+	<form action="" method="post">
 		<br>
 		<!--DB가져오기-->
 		<!--member_email-->
@@ -94,6 +94,6 @@
 			<button id="btn-close-dialog">닫기</button>
 		</div>
 		<div id="dialog-background"></div>
-<!-- 	</form> -->
+	</form>
 </body>
 </html>

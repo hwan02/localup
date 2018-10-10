@@ -21,4 +21,10 @@
 		select member_email from member
 		where member_name='${member_name}' and member_tel='${member_tel}'
 	</select>
+	
+	<update id="update_pw">
+		update member
+		set member_pw='${member_pw}'
+		where member_name='${member_name}' and member_email='${member_email}' 
+	</update>
 </mapper>

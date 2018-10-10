@@ -14,4 +14,7 @@ public interface MemberService_sign {
 	
 	//이메일 찾기
 	public String findEmail(String member_name, String member_tel) throws Exception;
+	
+	//(임시)비밀번호 설정
+	public int update_pw(String member_name, String member_email, String member_pw) throws Exception;
 }

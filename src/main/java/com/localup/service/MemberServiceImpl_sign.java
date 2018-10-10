@@ -32,6 +32,9 @@ public class MemberServiceImpl_sign implements MemberService_sign{
 	public String findEmail(String member_name, String member_tel) throws Exception {
 		return memberDAO_sign.findEmail(member_name, member_tel);
 	}
-	
-	
+
+	@Override
+	public int update_pw(String member_name, String member_email, String member_pw) throws Exception {
+		return memberDAO_sign.update_pw(member_name, member_email, member_pw);
+	}	
 }

@@ -1,5 +1,7 @@
 package com.localup.control;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
@@ -52,6 +54,7 @@ public class MemberControl {
 		}
 		
 		request.getSession().setAttribute("login", true);
+		request.getSession().setAttribute("member_email", request.getParameter("id"));
 		return "main/index";
 	}
 	
@@ -63,6 +66,43 @@ public class MemberControl {
 			model.addAttribute("id", memberService_sign.findEmail(request.getParameter("name"), request.getParameter("phone")));
 		} catch (Exception e) {
 			//이메일 찾기 에러 발생
+			//e.printStackTrace();
+		}
+		
+		return "login/idResult";
+	}
+	
+	@RequestMapping("findPw")
+	public String findPw(HttpServletRequest request, Model model) {
+		System.out.println("비밀번호 찾기 요청...");
+		
+		String member_email = request.getParameter("id");
+		String temp_pw = ""; //임시비밀번호
+		
+		//임시비밀번호 생성
+		String alpha = "abcdefghijklmnopqrstuvwxyz";
+		String Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String number = "0123456789";
+		Random random = new Random();
+/*		while(true) {
+		random.nextInt(15);
+		for(int i=0; i<10; i++) {
+			
+		}
+		}*/
+		
+		try {
+			if(memberService_sign.update_pw(request.getParameter("name"), member_email, temp_pw) > 0) {
+				EmailForm form = new EmailForm();
+				form.setReceiver(member_email);
+				form.setSubject("로컬업 임시비밀번호");
+				form.setContent("로컬업 임시비밀번호입니다. \n"
+						   +"[ "+temp_pw+" ]"
+						   +"\n로그인 후 비밀번호를 변경해주세요.");
+				sendEmail(form);
+				model.addAttribute("id", "회원님의 이메일로 임시 비밀번호를 발송하였습니다");
+			}
+		} catch(Exception e) {
 			//e.printStackTrace();
 		}
 		

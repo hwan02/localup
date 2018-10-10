@@ -26,7 +26,7 @@ if('${login}') {
 	location.href = "/index";
 }
 if('${login_result}'=='fail'){
-	alert('ID나 PW가 잘못되었습니다.');
+	alert('등록되지 않은 회원입니다.');
 }
 
 $(function(){

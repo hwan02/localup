@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.localup.domain.BoardVO;
-import com.localup.domain.LikeBtVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -34,17 +33,10 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public BoardVO countLike(int board_no) throws Exception {
+	public int countLike(int board_no) throws Exception {
 		//좋아요 총 갯수 파악
 		return sqlSession.selectOne("board.countLike", board_no);
 	}
 	
-	//좋아요 버튼
-	@Override
-	public void addLikeBt(LikeBtVO likeBtVO) throws Exception {
-		//좋아요 버튼 누르기 (좋아요를 이미 누른 회원은 로그인시 좋아요버튼이 눌러져있음)
-		sqlSession.insert("board.addLikeBt",likeBtVO);
-	}
-
 }
 

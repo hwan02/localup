@@ -33,13 +33,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 좋아요 수 카운트 -->
-	<select id="countLike" resultType="BoardVO">
+	<select id="countLike" resultType="int">
 		select board_like from board where board_no=#{board_no}
-	</select>
-	
-	<!-- 좋아요 눌렀는지 확인 -->
-	<select id="checkLike" resultType="LikeBtVO">
-		select likebt_ch from likebt where member_email=#{member_email} and board_no=#{board_no}
 	</select>
 	
 </mapper>

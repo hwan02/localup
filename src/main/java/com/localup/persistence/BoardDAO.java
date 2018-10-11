@@ -1,7 +1,6 @@
 package com.localup.persistence;
 
 import com.localup.domain.BoardVO;
-import com.localup.domain.LikeBtVO;
 
 public interface BoardDAO {
 	
@@ -15,12 +14,6 @@ public interface BoardDAO {
 	public void upLike(int board_no) throws Exception;
 	
 	//좋아요 총 수
-	public BoardVO countLike(int board_no) throws Exception;
-	
-	//좋아요 버튼 누르기
-	public void addLikeBt(LikeBtVO likeBtVO) throws Exception;
-	
-	//좋아요 눌렀는지 확인
-	//public BoardVO checkLike() throws Exception;
+	public int countLike(int board_no) throws Exception;
 	
 }

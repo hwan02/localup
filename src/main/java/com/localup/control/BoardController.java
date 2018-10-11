@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.localup.domain.BoardVO;
 import com.localup.service.BoardService;
+import com.localup.service.ReplyService;
 
 @Controller
 @RequestMapping("board")
@@ -27,6 +28,9 @@ public class BoardController {
 	
 	@Inject
 	BoardService boardService;
+	
+	@Inject
+	ReplyService replyService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -54,7 +58,7 @@ public class BoardController {
 		boardVO.setBoard_img(savedName);
 		
 		System.out.println("contVO>>"+boardVO);
-		boardService.BoardWrite(boardVO);
+		boardService.boardWrite(boardVO);
 		//return "board/board";
 		return "redirect:/index";
 	}
@@ -91,16 +95,19 @@ public class BoardController {
 
 	@RequestMapping(value="read", method=RequestMethod.GET) //게시글 상세페이지 --> http://localhost/board/read?board_no=2
 	public String read(int board_no,Model model) throws Exception{
-		model.addAttribute("boardVO",boardService.BoarRead(board_no));
+		model.addAttribute("boardVO",boardService.boarRead(board_no));
+		model.addAttribute("board_like",boardService.likeCount(board_no));
+		model.addAttribute("replyCnt",replyService.count(board_no));
 		return "board/boardRead";
 	}
 	
 	//좋아요
 	@RequestMapping(value="like", method=RequestMethod.POST)
-	public String like(int board_no,Model model) throws Exception{
+	public @ResponseBody int like(int board_no,Model model) throws Exception{
 		System.out.println("like board_no>>>"+board_no);
-		boardService.LikeUp(board_no); //좋아요 갯수 update 0-->1, 1-->2
-		return "board/boardRead";
+		boardService.likeUp(board_no); //좋아요 갯수 update 0-->1, 1-->2
+		//model.addAttribute("like",boardService.LikeCount(board_no));
+		return boardService.likeCount(board_no);//"board/boardRead";
 	}
 	
 }

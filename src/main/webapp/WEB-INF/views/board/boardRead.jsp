@@ -50,8 +50,8 @@
 		$.ajax({
 			url:'/reply/all/'+board_no,
 			success:function(result){ //result --> List데이터
-				console.log(result.length);
-				console.log(result);
+				//console.log(result.length);
+				//console.log(result);
 				var str='';
 				$(result).each(function(){
 					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
@@ -141,9 +141,10 @@
 				success:function(result){
 					alert(result);
 					$('input[name=member_email]').val('');
-					$('#reply_cont').html();
+					$('#reply_cont').val('');
 					$('input[name=reply_star]').val('');
-					replylist();
+					//replylist();
+					replylistPage(1);
 				}
 			});
 		});//댓글 입력
@@ -175,7 +176,8 @@
 					if(result==='SUCCESS'){
 						alert('삭제되었습니다!!');
 						$('#modDiv').hide(1500); //모달창 닫기
-						replylist(); //갱신내용 확인
+						//replylist(); //갱신내용 확인
+						replylistPage(1); //갱신내용 확인
 					}
 				}
 			});
@@ -203,7 +205,8 @@
 					if(result==='SUCCESS'){
 						alert('수정되었습니다!!');
 						$('#modDiv').hide(1500); //모달창 닫기
-						replylist(); //갱신내용 확인
+						//replylist(); //갱신내용 확인
+						replylistPage(1); //갱신내용 확인
 					}
 				}
 			});
@@ -222,9 +225,9 @@
 		
 	});//window ready
 	
-	function likeClick(){
+	function likeClick(){ //좋아요 업데이트, 좋아요 갯수 나타내기
 		var board_no = $('input[name=board_no]').val();
-		console.log(board_no);
+		console.log('board_no>>>'+board_no);
 		//alert('클릭');
 		$.ajax({
 			url:'/board/like',
@@ -233,10 +236,12 @@
 				board_no: board_no
 			},
 			success:function(result){
-				alert('++');
+				console.log('result>>>'+result);
+				$('#like').html(+result);
 			}
 		});
 	}
+	
 </script>
 </head>
 <body>
@@ -251,18 +256,24 @@
 	<br>
 	
 	<!-- 좋아요 버튼 -->
-	<a href="javascript:likeClick();"><img src="/resources/img/like.png"></a>
-	<a><img src="/resources/img/like_b.png"></a>
+	<a href="javascript:likeClick();"><img src="/resources/img/like_b.png"></a>
+	[<span id="like">${board_like }</span>]
+	<!-- <a><img src="/resources/img/like.png"></a> -->
 	
+	<!-- 댓글 갯수 -->
+	<a><img src="/resources/img/comment-white-oval-bubble_b.png"></a>
+	<span id="replyCount">[${replyCnt }]</span>
+		
 	<!-- 메인으로 돌아가기 -->
+	<br>
 	<button id="mainBtn">메인으로</button>
-	
+
 	<hr>
 	<form method="post" id="replyForm">
 		댓글: <textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>
 		이메일: <input type="text" name="member_email" id="member_email"><br>
 		평점: <input type="text" name="reply_star" id="reply_star"><br>
-		<button id="addReply">등록</button>
+		<button id="addReply" type="button">등록</button>
 	</form>
 	
 	<!-- 댓글list 출력 -->

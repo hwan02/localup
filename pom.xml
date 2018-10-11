@@ -23,6 +23,17 @@
 	</repositories>
 
 	<dependencies>
+		<!--Web Socket  -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 		<!--Mail -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>

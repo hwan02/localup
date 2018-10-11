@@ -25,7 +25,7 @@
 		<select id="listName" resultType="string">
 			select member_email
 			from member
-			where upper(member_email) like upper(#{mainSearch})
+			where upper(member_email) like upper(#{search})
 			ORDER BY member_email
 		</select>
 </mapper> 

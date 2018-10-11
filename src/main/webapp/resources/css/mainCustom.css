@@ -177,3 +177,7 @@ body {
     word-wrap: break-word;
     width: 100%;
 }
+/*연관검색어 */
+#display{
+	position: absolute; background-color: white; top: 30px; border: 1px solid black; width: 300px; display: none
+}

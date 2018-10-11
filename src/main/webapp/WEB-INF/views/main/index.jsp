@@ -26,7 +26,7 @@
             <li class="nav-item">
               <input type="search" id="mainSearch">
           <button class="navbar-toggler-icon" id="mainButton"></button>
-           <div id="display"  style="position: absolute; background-color: white; top: 25px; border: 1px solid black; width: 300px; display: none"></div>
+           <div id="display"></div>
             </li>
             <li></li>
             <li class="nav-item">
@@ -152,7 +152,6 @@
                      url: "/search",
                      data: {mainSearch : mainSearch},
                      success:function(result){
-                    	 alert(result);
 							var words = result.split("|");
 							var count = words[0];
  							$("#display").empty();

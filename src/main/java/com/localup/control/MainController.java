@@ -82,4 +82,16 @@ public class MainController {
 		model.addAttribute("listNames",listNames);
 		return "main/search";
 	}
+	@RequestMapping("page")
+	public String page() {
+		return "/page";
+	}
+	@RequestMapping("message")
+	public String message() {
+		return "/message_test";
+	}
+	@RequestMapping("echo")
+	public String echo() {
+		return "/echo_test";
+	}
 }

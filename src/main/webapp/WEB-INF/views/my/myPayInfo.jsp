@@ -119,53 +119,72 @@
 	<h1>결제내역 조회</h1>
 	<hr>
 
+<%-- 	<c:forEach items="${GuideVO}" var="GuideVO"> --%>
+		<!--가이드 번호 -->
+<%-- 		<input type="hidden" value="가이드번호 : ${GuideVO.tour_no}"> --%>
+<!-- 		<br> -->
+<!-- 		<table border="1" cellpadding="5"> -->
+<!-- 			<tr> -->
+<!-- 				<th>투어명</th> -->
+<!-- 				<th>투어 시작 날짜</th> -->
+<!-- 				<th>투어 종료 날짜</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				투어명 -->
+<%-- 				<td><input type="text" value="${GuideVO.tour_title}" readonly></td> --%>
+				
+<!-- 				시작날짜 -->
+<%-- 				<td><input type="text" value="${GuideVO.tour_sdate}" readonly></td> --%>
+<!-- 				종료날짜 -->
+<%-- 				<td><input type="text" value="${GuideVO.tour_edate}" readonly></td> --%>
+<!-- 			</tr> -->
+<!-- 		</table> -->
+<%-- 	</c:forEach> --%>
+	
+	<form action="/pay/myPayInfo"   method="post">	
+	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
 	<c:forEach items="${GuideVO}" var="GuideVO">
-		<!--가이드 번호-->
-		<input type="hidden" value="가이드번호 : ${GuideVO.tour_no}">
-		<br>
-		<table border="1" cellpadding="5">
+	<input type="hidden" value="가이드번호 : ${GuideVO.tour_no}">
+	
+		신청 이메일
+		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
+<!-- 		투어번호 -->
+<input type="hidden" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}">
+		<table border="1" cellpadding="5" class="paypaypay">
 			<tr>
 				<th>투어명</th>
 				<th>투어 시작 날짜</th>
 				<th>투어 종료 날짜</th>
 			</tr>
 			<tr>
-				<!--투어명-->
-				<td><input type="text" value="${GuideVO.tour_title}" readonly></td>
-				
-				<!--시작날짜-->
+<!-- 				투어명  -->
+ 				<td><input type="text" value="${GuideVO.tour_title}" readonly></td>
+ 				<!-- 				시작날짜 -->
 				<td><input type="text" value="${GuideVO.tour_sdate}" readonly></td>
-				<!--종료날짜-->
+<!-- 				종료날짜 -->
 				<td><input type="text" value="${GuideVO.tour_edate}" readonly></td>
 			</tr>
 		</table>
-	</c:forEach>
-	
-	<form action="/pay/myPayInfo"   method="post">	
-	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
-	
-	
-		신청 이메일
-		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
-		투어번호
-<input type="text" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}">
-		<table border="1" cellpadding="5" class="paypaypay">
+		
+		<table border="1" cellpadding="5" class="paypaypay">		
 			<tr>
 				<th>투어 인원</th>
 				<th>투어 금액</th>
 				<th>투어 결제수단</th>
 			</tr>
+			
 			<tr>
-<!-- 				투어인원 -->
+			<!-- 투어인원 -->
 				<td><input type="text" value="${PayInfoVO.pay_num}" readonly></td>
 
-<!-- 				투어금액 -->
+			<!--투어금액 -->
 				<td><input type="text" value="${PayInfoVO.pay_pay}" readonly></td>
 
-<!-- 				투어 결제수단 -->
+			<!--투어 결제수단 -->
 				<td><input type="text" value="${PayInfoVO.pay_way}" readonly></td>
 			</tr>
 		</table>
+		
 		
 		<table border="1" cellpadding="5" id="tourPay">
 			<tr>
@@ -189,6 +208,8 @@
 				<td>		<a href='/pay/myPayInfoUpdate?pay_no=${PayInfoVO.pay_no}'>	<input type="button" class="payCancel" value="결제취소"></a></td>
 			</tr>
 		</table>
+		<br>
+	</c:forEach>
 	</c:forEach>
 
 	</form>

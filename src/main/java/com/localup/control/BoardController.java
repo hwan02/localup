@@ -12,13 +12,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.localup.domain.BoardVO;
+import com.localup.domain.Criteria;
 import com.localup.service.BoardService;
 import com.localup.service.ReplyService;
 
@@ -101,12 +104,49 @@ public class BoardController {
 		return "board/boardRead";
 	}
 	
+	@RequestMapping(value="update", method=RequestMethod.GET) //게시물 수정폼
+	public String modGET(Model model, int board_no, @ModelAttribute("cri") Criteria cri) throws Exception {
+		model.addAttribute("boardVO", boardService.boarRead(board_no));
+		return "board/boardUpdate";
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.POST) //게시물 DB 수정
+	public String modPOST(BoardVO boardVO, RedirectAttributes attr, Criteria cri) throws Exception {
+		boardService.boardUpdate(boardVO);//수정작업
+		//attr.addFlashAttribute("msg","SUCCESS");
+		
+		//list.jsp를 호출하면서 유지해야 하는 URL 파라미터String 정의!!
+		//attr.addAttribute("cri",cri); //에러
+		//RedirectAttributes클래스 addAttribute()메소드에는 String을 저장!!
+		//attr.addAttribute("page",cri.getPage());
+		//attr.addAttribute("perPageNum",cri.getPerPageNum());
+		
+		return "redirect:/index"; //수정작업확인  //일단 메인
+	}
+	
+	@RequestMapping("delete") //특정 게시물 삭제 (URL요청)
+	public String delete(int board_no, RedirectAttributes attr, Criteria cri) throws Exception {
+		System.out.println("delete board_no>>>"+board_no);
+		boardService.boardDelete(board_no);
+		//attr.addFlashAttribute("msg","SUCCESS");
+		//attr.addAttribute("page",cri.getPage());
+		//attr.addAttribute("perPageNum",cri.getPerPageNum());
+		
+		return "redirect:/index"; //메인
+	}
+	
 	//좋아요
 	@RequestMapping(value="like", method=RequestMethod.POST)
 	public @ResponseBody int like(int board_no,Model model) throws Exception{
 		System.out.println("like board_no>>>"+board_no);
 		boardService.likeUp(board_no); //좋아요 갯수 update 0-->1, 1-->2
 		//model.addAttribute("like",boardService.LikeCount(board_no));
+		return boardService.likeCount(board_no);//"board/boardRead";
+	}
+	@RequestMapping(value="likeMinus", method=RequestMethod.POST)
+	public @ResponseBody int likeMinus(int board_no,Model model) throws Exception{
+		System.out.println("like board_no>>>"+board_no);
+		boardService.likeMinus(board_no);
 		return boardService.likeCount(board_no);//"board/boardRead";
 	}
 	

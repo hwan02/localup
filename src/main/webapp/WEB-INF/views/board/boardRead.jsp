@@ -119,7 +119,7 @@
 		replylistPage(1);
 		
 		$('#addReply').click(function(){//입력요청
-			var member_email = $('input[name=member_email]').val();
+			var member_email = $('#replyForm input[name=member_email]').val();
 			var reply_cont = $('#reply_cont').val();
 			var reply_star = $('input[name=reply_star]').val();
 			
@@ -140,7 +140,7 @@
 				//dataType:'json' //from 서버
 				success:function(result){
 					alert(result);
-					$('input[name=member_email]').val('');
+					$('#replyForm input[name=member_email]').val('');
 					$('#reply_cont').val('');
 					$('input[name=reply_star]').val('');
 					//replylist();
@@ -245,7 +245,7 @@
 </script>
 </head>
 <body>
-	<form>
+	<form name="boardCont">
 		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no" readonly><br>
 		제목: <input type="text" name="board_title" value="${boardVO.board_title }" readonly><br>
 		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }" readonly><br>
@@ -261,14 +261,15 @@
 	<!-- <a><img src="/resources/img/like.png"></a> -->
 	
 	<!-- 댓글 갯수 -->
-	<a><img src="/resources/img/comment-white-oval-bubble_b.png"></a>
-	<span id="replyCount">[${replyCnt }]</span>
+	<%-- <a><img src="/resources/img/comment-white-oval-bubble_b.png"></a>
+	<span id="replyCount">[${replyCnt }]</span> --%>
 		
 	<!-- 메인으로 돌아가기 -->
 	<br>
 	<button id="mainBtn">메인으로</button>
 
 	<hr>
+	<img src="/resources/img/comment-white-oval-bubble_b.png">Comment
 	<form method="post" id="replyForm">
 		댓글: <textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>
 		이메일: <input type="text" name="member_email" id="member_email"><br>

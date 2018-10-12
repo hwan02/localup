@@ -79,7 +79,7 @@ public class PayInfoController {
 	
 	//결제내역 폼 보기
 	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
-	public String myPayInfoGET(Criteria cri,Model model, Integer tour_no, String member_email) throws Exception {
+	public String myPayInfoGET(Criteria cri,Model model, Integer board_no,Integer tour_no, String member_email) throws Exception {
 		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
 		//model.addAttribute("PayInfoVO",payInfoService.payList2(member_email,pay_no));
 		

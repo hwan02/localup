@@ -6,6 +6,19 @@
 <meta charset="UTF-8">
 <!--작성자 : rys-->
 <title>가이드 상세페이지</title>
+
+<!--구글 제이쿼리-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var msg = "${msg}";
+		if (msg == "success") {
+			alert("등록완료 ;)");
+		}else if(msg == "upfail"){
+			alert("등록 실패 :(");
+		}
+	});
+</script>
 </head>
 <body>
 <h1>가이드 상세페이지</h1>
@@ -41,6 +54,11 @@
 	<label>투어 금액</label>
 	<br>
 	<input type="text" readonly="readonly" value="${GuideVO.tour_pay}">
+	<br>
+	<!--투어 내용-->
+	<label>투어 내용</label>
+	<br>
+	<textarea rows="10" cols="10" name="tour_cont">${GuideVO.tour_cont}</textarea>
 	<br>
 	<!--투어 이미지-->
 	<input type="image" src="/resources/img/${GuideVO.tour_img }">

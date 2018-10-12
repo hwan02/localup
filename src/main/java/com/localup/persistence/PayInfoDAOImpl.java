@@ -27,7 +27,7 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 	//투어번호
 	@Override
 	public List<GuideVO> payList(Integer tour_no) throws Exception {
-		tour_no=1;
+		//tour_no=1;
 		return sqlSession.selectList("payInfo.payList",tour_no);
 	}
 

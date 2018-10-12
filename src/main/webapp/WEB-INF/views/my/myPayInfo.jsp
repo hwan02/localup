@@ -121,7 +121,7 @@
 
 	<c:forEach items="${GuideVO}" var="GuideVO">
 		<!--가이드 번호-->
-		<input type="text" value="가이드번호 : ${GuideVO.tour_no}">
+		<input type="hidden" value="가이드번호 : ${GuideVO.tour_no}">
 		<br>
 		<table border="1" cellpadding="5">
 			<tr>
@@ -166,6 +166,7 @@
 				<td><input type="text" value="${PayInfoVO.pay_way}" readonly></td>
 			</tr>
 		</table>
+		
 		<table border="1" cellpadding="5" id="tourPay">
 			<tr>
 				<th>투어 결제상태</th>

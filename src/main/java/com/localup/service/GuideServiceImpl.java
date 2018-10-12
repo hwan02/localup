@@ -23,4 +23,16 @@ public class GuideServiceImpl implements GuideService{
 		return guideDAO.list(board_no);
 	}
 
+	//특정 가이드 상세페이지 DB수정
+	@Override
+	public boolean update(GuideVO guideVO) throws Exception {
+		return guideDAO.update(guideVO);
+	}
+
+	//특정 가이드 상세페이지 DB삭제
+	@Override
+	public boolean delete(Integer tour_no) throws Exception {
+		return guideDAO.delete(tour_no);
+	}
+
 }

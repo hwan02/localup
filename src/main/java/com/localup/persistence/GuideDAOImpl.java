@@ -23,11 +23,31 @@ public class GuideDAOImpl implements GuideDAO{
 		sqlSession.insert("guide.insert",guideVO);
 	}
 
-	//특정 가이드 상세페이지 가져오기
+	//특정 가이드 상세페이지 DB가져오기
 	@Override
 	public GuideVO list(Integer board_no) throws Exception {
-		board_no = 1;
+		//board_no = 1;
 		return sqlSession.selectOne("guide.list",board_no);
 	}
 
+	//특정 가이드 상세페이지 DB수정
+	@Override
+	public boolean update(GuideVO guideVO) throws Exception {
+		int guideUpdate = sqlSession.update("guide.update",guideVO);
+		if(guideUpdate ==1) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	//특정 가이드 상세페이지 DB삭제
+	@Override
+	public boolean delete(Integer tour_no) {
+		int guideDelete = sqlSession.delete("guide.delete",tour_no);
+		if(guideDelete==1) {
+			return true;
+		}
+		return false;
+	}
 }

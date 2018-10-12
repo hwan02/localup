@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.localup.domain.GuideVO;
 import com.localup.persistence.GuideDAO;
@@ -69,8 +70,7 @@ public class GuideController {
 		return "main/main";
 	}
 	
-	
-	
+	//이미지 업로드
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 		//UUID uid = UUID.randomUUID();
 		//String savedName = uid.toString() + "_upload_" + originalName;
@@ -80,4 +80,34 @@ public class GuideController {
 		return savedName;
 	}
 
+	//가이드 상세 페이지 수정폼 보기
+	@RequestMapping(value="guideUpdate",method=RequestMethod.GET)
+	public String guideUpdateGET(Integer tour_no, Model model) throws Exception {
+		model.addAttribute("GuideVO",guideService.list(tour_no));
+		return "board/guideUpdate";
+	}
+	
+	//가이드 상세 페이지 DB수정 요청
+	@RequestMapping(value="guideUpdate",method=RequestMethod.POST)
+	public String guideUpdatePOST(GuideVO guideVO,RedirectAttributes attr) throws Exception {
+		
+		if(guideService.update(guideVO)) { //수정 성공
+			attr.addFlashAttribute("msg","success");
+		}else { //수정 실패
+			attr.addFlashAttribute("msg","upfail");
+		}//if ~ else
+		return "redirect:guideDetailPage";
+	}
+	
+	//가이드 상세 페이지 DB삭제 요청
+	@RequestMapping("guideDelete")
+	public String guideDelete(Integer tour_no, Model model) throws Exception {
+		if(guideService.delete(tour_no)) { //삭제성공
+			model.addAttribute("msg","success");
+		}else { //삭제실패
+			model.addAttribute("msg","delfail");
+		}
+		return "redirect:/guide/main";
+	}
+	
 }

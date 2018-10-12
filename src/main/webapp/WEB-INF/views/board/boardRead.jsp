@@ -221,7 +221,34 @@
 		
 		$('#mainBtn').click(function(){
 			window.location.href='/index';
-		});
+		}); //메인으로 버튼
+		
+		$('#boardCont input[name=member_email]').click(function(){
+			alert('click');
+			window.location.href='/member/mInfo'; //이메일 정보값 넘겨줘야 함
+		}); //게시글 이메일 클릭시 사용자 정보 페이지 이동
+		
+		$('#modBtn').click(function(){
+			//self.location="/board/update?board_no=${board_no}"; //수정폼으로 이동
+			$('[name=boardCont]').attr("action","/board/update");
+			$('[name=boardCont]').attr("method","get");
+			$('[name=boardCont]').submit();
+		}); //수정 버튼
+			
+		$('#delBtn').click(function(){
+			alert('click'+board_no);
+			self.location="/board/delete?board_no=${boardVO.board_no}";
+		}); //삭제 버튼
+		
+		$('#likePlus').click(function(){
+			$('#likePlus').hide();
+			$('#likeMinus').show();
+		}); 
+		
+		$('#likeMinus').click(function(){
+			$('#likeMinus').hide();
+			$('#likePlus').show();
+		}); 
 		
 	});//window ready
 	
@@ -241,11 +268,29 @@
 			}
 		});
 	}
-	
+	///////
+	function likeMinus(){ //좋아요 업데이트, 좋아요 갯수 나타내기
+		var board_no = $('input[name=board_no]').val();
+		console.log('board_no>>>'+board_no);
+		//alert('클릭');
+		$.ajax({
+			url:'/board/likeMinus',
+			type:'post',
+			data:{
+				board_no: board_no
+			},
+			success:function(result){
+				console.log('result>>>'+result);
+				$('#like').html(+result);
+			}
+		});
+	}
+	/////////
 </script>
 </head>
 <body>
-	<form name="boardCont">
+	<!-- 게시글 내용 -->
+	<form name="boardCont" id="boardCont">
 		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no" readonly><br>
 		제목: <input type="text" name="board_title" value="${boardVO.board_title }" readonly><br>
 		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }" readonly><br>
@@ -253,12 +298,12 @@
 		<%-- <input type="text" value="${boardVO.board_img }" size="50"><br> --%>
 		내용: <textarea rows="20" cols="50" readonly>${boardVO.board_cont }</textarea><br>
 	</form>
-	<br>
 	
 	<!-- 좋아요 버튼 -->
-	<a href="javascript:likeClick();"><img src="/resources/img/like_b.png"></a>
+	
+	<a href="javascript:likeClick();" id="likePlus"><img src="/resources/img/like.png"></a>
+	<a href="javascript:likeMinus();" id="likeMinus" style="display: none;"><img src="/resources/img/like_b.png"></a>
 	[<span id="like">${board_like }</span>]
-	<!-- <a><img src="/resources/img/like.png"></a> -->
 	
 	<!-- 댓글 갯수 -->
 	<%-- <a><img src="/resources/img/comment-white-oval-bubble_b.png"></a>
@@ -266,9 +311,12 @@
 		
 	<!-- 메인으로 돌아가기 -->
 	<br>
+	<button type="button" id="modBtn">수정</button>
+	<button type="button"id="delBtn">삭제</button>
 	<button id="mainBtn">메인으로</button>
 
 	<hr>
+	<!-- 댓글 입력폼 -->
 	<img src="/resources/img/comment-white-oval-bubble_b.png">Comment
 	<form method="post" id="replyForm">
 		댓글: <textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>

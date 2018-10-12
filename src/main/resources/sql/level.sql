@@ -3,11 +3,11 @@
 /* 회원등급 */
 drop table levels;
 CREATE TABLE levels (
-	levels_level NUMBER NOT NULL, /* 회원레벨 */
+	--levels_level NUMBER NOT NULL, /* 회원레벨 */
 	levels_name VARCHAR2(20) NOT NULL, /* 레벨명 */
-	levels_point NUMBER NOT NULL, /* 누적경험치 */
-	levels_like NUMBER NOT NULL, /* 좋아요기준 */
-	levels_board NUMBER NOT NULL /* 게시글 수 */
+	--levels_point NUMBER NOT NULL, /* 누적경험치 */
+	--levels_like NUMBER NOT NULL, /* 좋아요기준 */
+	--levels_board NUMBER NOT NULL /* 게시글 수 */
 );
 
 CREATE UNIQUE INDEX PK_levels

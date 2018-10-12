@@ -21,15 +21,35 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public BoardVO readBoard(int board_no) throws Exception { //게시글 상세페이지
+	public BoardVO readBoard(int board_no) throws Exception { //특정 게시글 상세페이지
 		System.out.println("board_no>>"+board_no);
 		return sqlSession.selectOne("board.readBoard",board_no);
+	}
+	
+	@Override
+	public void updateBoard(BoardVO boardVO) throws Exception { //특정 게시글 수정
+		sqlSession.update("board.updateBoard",boardVO);
+	}
+
+	@Override
+	public void deleteBoard(int board_no) throws Exception { //특정 게시글 삭제
+		sqlSession.delete("board.deleteBoard",board_no);
+	}
+	
+	@Override
+	public void updateViewCnt(int board_no) throws Exception {
+		sqlSession.update("board.updateViewCnt",board_no);
 	}
 	
 	@Override
 	public void upLike(int board_no) throws Exception {
 		//게시판 테이블(board DB) 좋아요 수 업데이트
 		sqlSession.update("board.upLike",board_no);
+	}
+	
+	@Override
+	public void minusLike(int board_no) throws Exception {
+		sqlSession.update("board.minusLike",board_no);
 	}
 
 	@Override

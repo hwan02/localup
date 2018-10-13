@@ -1,5 +1,7 @@
 package com.localup.service;
 
+import java.util.List;
+
 import com.localup.domain.BoardVO;
 
 public interface BoardService {
@@ -16,6 +18,9 @@ public interface BoardService {
 	public void likeMinus(int board_no) throws Exception;
 	
 	//좋아요 수 카운트
-	public int likeCount(int board_no) throws Exception; 
+	public int likeCount(int board_no) throws Exception;
+	
+	//특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys
+	List<BoardVO> readIdBoard(String member_email) throws Exception; 
 	
 }

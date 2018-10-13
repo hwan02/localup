@@ -1,5 +1,7 @@
 package com.localup.persistence;
 
+import java.util.List;
+
 import com.localup.domain.BoardVO;
 
 public interface BoardDAO {
@@ -25,5 +27,8 @@ public interface BoardDAO {
 	
 	//좋아요 총 수
 	public int countLike(int board_no) throws Exception;
+
+	//특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys
+	public List<BoardVO> readIdBoard(String member_email) throws Exception;
 	
 }

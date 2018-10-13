@@ -31,4 +31,12 @@
 		delete from member
 		where member_email=#{member_email}
 	</delete>
+	
+	<!-- 특정 아이디가 쓴 게시글 조회 -->
+	<select id="readIdBoard" resultType="boardVO">
+		select board_no,member_email,board_type,board_title,board_cont,board_img,board_view,board_like,board_date 
+		from board
+		where member_email=#{member_email}
+	</select>
+	
 </mapper>

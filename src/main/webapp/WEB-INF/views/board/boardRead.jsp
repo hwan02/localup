@@ -225,7 +225,8 @@
 		
 		$('#boardCont input[name=member_email]').click(function(){
 			alert('click');
-			window.location.href='/member/mInfo'; //이메일 정보값 넘겨줘야 함
+			window.location.href='/member/mInfo?member_email=${boardVO.member_email}';
+			//이메일 정보값 넘겨줘야 함
 		}); //게시글 이메일 클릭시 사용자 정보 페이지 이동
 		
 		$('#modBtn').click(function(){
@@ -243,12 +244,12 @@
 		$('#likePlus').click(function(){
 			$('#likePlus').hide();
 			$('#likeMinus').show();
-		}); 
+		}); //좋아요+1
 		
 		$('#likeMinus').click(function(){
 			$('#likeMinus').hide();
 			$('#likePlus').show();
-		}); 
+		}); //좋아요-1
 		
 	});//window ready
 	

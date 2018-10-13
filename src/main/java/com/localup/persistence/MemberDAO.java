@@ -2,6 +2,8 @@ package com.localup.persistence;
 
 import java.util.List;
 
+import com.localup.domain.BoardVO;
+import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
 
 
@@ -17,4 +19,10 @@ public interface MemberDAO {
 	
 	//회원탈퇴
 	public void delete(String member_email) throws Exception;
+	
+	//나의 레벨 조회
+	public String myLevel(String member_email) throws Exception;
+	
+	//특정 아이디가 쓴 게시글 조회
+	public List<BoardVO> readIdBoard(String member_email) throws Exception;
 }

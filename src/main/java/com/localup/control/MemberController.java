@@ -52,12 +52,31 @@ public class MemberController {
 	}
 	
 	//사용자정보 페이지 폼 보기
-	@RequestMapping("mInfo")
+	/*@RequestMapping("mInfo")
 	public String mInfoGET(Model model,String member_id_guide1) throws Exception {
 		//model.addAttribute("memberVO",memberService.read(member_email));
 		//model.addAttribute("boardVO",boardService.BoarRead(board_no));
 		return"board/mInfo";
-	} 	
+	}*/
 	
+	//사용자 정보페이지 레벨 보이기(작성:yr)
+	@RequestMapping("mInfo")
+	public String mInfoGET(Model model,String member_email) throws Exception {
+		System.out.println("member_email>>"+member_email);
+		model.addAttribute("memberVO",memberService.read(member_email));
+		//model.addAttribute("member_email",member_email);
+		model.addAttribute("myLevel",memberService.readLevel(member_email));
+		model.addAttribute("boardList",memberService.listIdBoard(member_email));
+		return"board/mInfo";
+	}
+	
+	//위의 사용자정보 페이지 레벨 테스트용
+	/*@RequestMapping("mInfotest")
+	public String mInfoGET2(Model model,String member_email) throws Exception {
+		System.out.println("member_email>>"+member_email);
+		model.addAttribute("member_email",member_email);
+		model.addAttribute("myLevel",memberService.readLevel(member_email));
+		return"test/levelTest";
+	}*/
 	
 }

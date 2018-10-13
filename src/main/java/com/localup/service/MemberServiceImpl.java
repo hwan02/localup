@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.localup.domain.BoardVO;
+import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
 import com.localup.persistence.MemberDAO;
 
@@ -31,6 +33,18 @@ public class MemberServiceImpl implements MemberService{
 	public void delete(String member_email) throws Exception {
 		memberDAO.delete(member_email);
 		
+	}
+	
+	//특정 아이디 레벨 조회
+	@Override
+	public String readLevel(String member_email) throws Exception {
+		return memberDAO.myLevel(member_email);
+	}
+	
+	//특정 아이디가 쓴(내가 쓴) 게시글 조회
+	@Override
+	public List<BoardVO> listIdBoard(String member_email) throws Exception {
+		return memberDAO.readIdBoard(member_email);
 	}
 
 	//회원정보 조회

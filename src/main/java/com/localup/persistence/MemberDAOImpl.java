@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.localup.domain.BoardVO;
+import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
-
-
 
 //작성자 : rys
 @Repository
@@ -28,7 +28,7 @@ public class MemberDAOImpl implements MemberDAO{
 	//특정값 조회
 	@Override
 	public MemberVO read(String member_email) throws Exception {
-		member_email = "localup@gmail.com";
+		//member_email = "localup@gmail.com";
 		System.out.println("로그인상태 아이디>>>"+member_email);
 		return sqlSession.selectOne("member.read",member_email);
 	}
@@ -38,6 +38,20 @@ public class MemberDAOImpl implements MemberDAO{
 	public void delete(String member_email) throws Exception {
 		sqlSession.delete("member.delete",member_email);
 		
+	}
+	
+	//나의 레벨 조회
+	@Override
+	public String myLevel(String member_email) throws Exception {
+		//System.out.println("MemberDAO myLevel member_email>>>"+member_email);
+		//System.out.println("MemberDAO SQL>>>"+sqlSession.selectOne("point.myLevel",member_email));
+		return sqlSession.selectOne("point.myLevel",member_email);
+	}
+
+	//특정 아이디가 쓴 게시글 조회
+	@Override
+	public List<BoardVO> readIdBoard(String member_email) throws Exception {
+		return sqlSession.selectList("member.readIdBoard",member_email);
 	}
 
 	//전체 회원정보 조회

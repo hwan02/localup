@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- point.xml -->
+<!--
+	level: 초보자, 탐험자, 초보가이드, 베테랑가이드, 정복자
+	게시글 수, 좋아요 수
+-->
+<mapper namespace="point">
+
+	<!-- 나의 레벨 -->
+	<select id="myLevel" resultType="String">
+		select levels_name 
+		from levels 
+		where (select count(board_no) from board where member_email=#{member_email}) 
+		between levels_min and levels_max
+	</select>
+	
+</mapper>

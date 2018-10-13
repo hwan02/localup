@@ -1,5 +1,7 @@
 package com.localup.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -58,5 +60,10 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne("board.countLike", board_no);
 	}
 	
+	//특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys
+	@Override
+	public List<BoardVO> readIdBoard(String member_email) throws Exception {
+		return sqlSession.selectList("member.readIdBoard",member_email);
+	}
 }
 

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.localup.domain.BoardVO;
 import com.localup.domain.Criteria;
 import com.localup.service.BoardService;
+import com.localup.service.MemberService;
 import com.localup.service.ReplyService;
 
 @Controller
@@ -149,6 +150,16 @@ public class BoardController {
 		boardService.likeMinus(board_no);
 		return boardService.likeCount(board_no);//"board/boardRead";
 	}
+	
+	
+	//특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys
+	@RequestMapping("myWrite")
+	public String myWrite(Model model,String member_email) throws Exception {
+		System.out.println("member_email>>"+member_email);
+		model.addAttribute("boardList",boardService.readIdBoard(member_email));
+		return"my/myWrite";
+	}
+	
 	
 }
 

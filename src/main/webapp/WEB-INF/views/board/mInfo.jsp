@@ -27,21 +27,30 @@
 		width: 400px;
 	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#addSub').click(function(){
+			var member_email_guide = $('input[name=member_email]').val();
+			alert(member_email_guide);
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>사용자정보</h1>
 	<hr>
 	<!--회원아이디-->
-	ID: <input type="text" readonly value="${memberVO.member_email }">
+	ID: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
 	<br>
 	<!--랭킹-->
 	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly>
 	<br>
 	
 	<!--팔로워-->
-	팔로워 : <input type="text" name="" readonly>
+	팔로워 : <input type="text" name="member_email_sub" readonly>
 		<!--팔로워 클릭시 팔로우로 변경하기-->
-		<input type="button" name="" value="팔로워">
+		<input type="button" name="addSub" value="팔로워" id="addSub">
 		<br><br>
 	
 	<!--업로드한 게시글 가져오기-->

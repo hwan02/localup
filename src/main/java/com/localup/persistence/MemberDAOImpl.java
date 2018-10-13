@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.localup.domain.BoardVO;
 import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
+import com.localup.domain.SubVO;
 
 //작성자 : rys
 @Repository
@@ -52,6 +53,12 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<BoardVO> readIdBoard(String member_email) throws Exception {
 		return sqlSession.selectList("member.readIdBoard",member_email);
+	}
+	
+	//팔로우(구독)하기
+	@Override
+	public void insertSub(SubVO subVO) throws Exception {
+		sqlSession.insert("member.insertSub",subVO);
 	}
 
 	//전체 회원정보 조회

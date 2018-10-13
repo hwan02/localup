@@ -5,6 +5,7 @@ import java.util.List;
 import com.localup.domain.BoardVO;
 import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
+import com.localup.domain.SubVO;
 
 public interface MemberService {
 	//회원정보 업데이트
@@ -24,4 +25,7 @@ public interface MemberService {
 	
 	//특정 아이디가 작성한(내가 쓴) 게시글 조회
 	public List<BoardVO> listIdBoard(String member_email) throws Exception;
+	
+	//팔로우(구독)하기
+	public void addSub(SubVO subVO) throws Exception;
 }

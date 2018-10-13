@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.localup.domain.BoardVO;
 import com.localup.domain.LevelsVO;
 import com.localup.domain.MemberVO;
+import com.localup.domain.SubVO;
 import com.localup.persistence.MemberDAO;
 
 @Service
@@ -45,6 +46,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<BoardVO> listIdBoard(String member_email) throws Exception {
 		return memberDAO.readIdBoard(member_email);
+	}
+	
+	//팔로우(구독)하기
+	@Override
+	public void addSub(SubVO subVO) throws Exception {
+		memberDAO.insertSub(subVO);
 	}
 
 	//회원정보 조회

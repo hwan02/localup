@@ -39,4 +39,10 @@
 		where member_email=#{member_email}
 	</select>
 	
+	<!-- 특정 아이디 구독(팔로우) -->
+	<insert id="insertSub">
+		insert into sub (member_email_sub,member_email_guide) 
+		values (#{member_email_sub},#{member_email_guide})
+	</insert>
+	
 </mapper>

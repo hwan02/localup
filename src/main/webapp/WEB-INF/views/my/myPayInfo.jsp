@@ -149,7 +149,7 @@
 		신청 이메일
 		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
 <!-- 		투어번호 -->
-<input type="hidden" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}">
+<%-- <input type="hidden" name="pay_no" class="pay_no" value="${PayInfoVO.pay_no}"> --%>
 		<table border="1" cellpadding="5" class="paypaypay">
 			<tr>
 				<th>투어명</th>

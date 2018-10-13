@@ -26,6 +26,7 @@ import com.localup.domain.GuideVO;
 import com.localup.persistence.GuideDAO;
 import com.localup.persistence.GuideDAOImpl;
 import com.localup.service.GuideService;
+import com.localup.service.PayInfoService;
 
 @Controller
 @RequestMapping("guide")
@@ -36,6 +37,9 @@ public class GuideController {
 	
 	@Inject
 	GuideService guideService;
+	
+	@Inject
+	PayInfoService payInfoService;
 	
 	//local 폴더에 저장 위치 호출
 	@Resource(name="uploadPath")
@@ -110,4 +114,11 @@ public class GuideController {
 		return "redirect:/guide/main";
 	}
 	
+	//가이드 신청현황폼 보기
+	@RequestMapping("myApply")
+	public String myApply(String member_email, Integer pay_no, Integer tour_no,Model model) throws Exception{
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email, pay_no));
+		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
+		return "my/myApply";
+	}
 }

@@ -51,7 +51,7 @@
 	<input type="text" readonly="readonly" value="${GuideVO.tour_edate}">
 	<br>
 	<!--투어 금액-->
-	<label>투어 금액</label>
+	<label>투어 금액(1인당)</label>
 	<br>
 	<input type="text" readonly="readonly" value="${GuideVO.tour_pay}">
 	<br>

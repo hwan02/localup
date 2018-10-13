@@ -79,9 +79,9 @@ public class PayInfoController {
 	
 	//결제내역 폼 보기
 	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
-	public String myPayInfoGET(Criteria cri,Model model, Integer board_no,Integer tour_no,Integer pay_no, String member_email) throws Exception {
-		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
-		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email,pay_no));
+	public String myPayInfoGET(Criteria cri,Model model, Integer board_no,String member_email) throws Exception {
+		//model.addAttribute("GuideVO",payInfoService.payList(board_no));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
 		
 		//List<BoardVO> list = service.listAll(); //from DB ===> 데이터생성
 		//model.addAttribute("list",list);

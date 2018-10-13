@@ -1,6 +1,8 @@
 package com.localup.persistence;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.localup.domain.GuideVO;
+import com.localup.domain.PayInfoVO;
 
 @Repository
 public class GuideDAOImpl implements GuideDAO{
@@ -28,6 +31,18 @@ public class GuideDAOImpl implements GuideDAO{
 	public GuideVO list(Integer board_no) throws Exception {
 		//board_no = 1;
 		return sqlSession.selectOne("guide.list",board_no);
+	}
+
+	@Override
+	public List<GuideVO> myApplySchedule(Date tour_edate) throws Exception {
+		//board_no = 1;
+		return sqlSession.selectList("guide.myApplySchedule",tour_edate);
+	}
+	
+	@Override
+	public List<GuideVO> myApplyPast(Date tour_edate) throws Exception {
+		//board_no = 1;
+		return sqlSession.selectList("guide.myApplyPast",tour_edate);
 	}
 
 	//특정 가이드 상세페이지 DB수정

@@ -80,13 +80,17 @@ body {
 </script>
 </head>
 <body>
-	<h1>가이드 신청 현황 조회</h1>
+	<h1>투어 완료</h1>
 	<hr>
 	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
+	<c:forEach items="${GuideVO}" var="GuideVO">
+
+	
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a> 
+		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어 신청현황</a> 
 		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a> 
 	</div>
 
@@ -97,27 +101,25 @@ body {
 	
 
 	<table border="1" cellpadding="5">
-
 <%-- 	<c:forEach items="${GuideVO}" var="GuideVO"> --%>
 		<tr>
-			<th>신청회원</th>
-			<th>인원수</th>
-			<th>투어 금액</th>
-			<th>결제상태</th>
+			<th>투어명</th>
+			<th>시작 날짜</th>
+			<th>마지막 날짜</th>
 			<th>투어 올린글 확인하기</th>
 		</tr>
 
 
 
 		<tr>
-			<td>${PayInfoVO.member_email}</td>
+<%-- 			<td>${PayInfoVO.member_email}</td> --%>
 <%-- 			<td>${GuideVO.tour_title}</td> --%>
-			<td>${PayInfoVO.pay_num }</td>
+			<td>${GuideVO.tour_title }</td>
 			
 			<!--투어금액 -->
-			<td>${PayInfoVO.pay_pay}</td>
+			<td>${GuideVO.tour_sdate}</td>
 			
-			<td>${PayInfoVO.pay_state }</td>
+			<td>${GuideVO.tour_edate }</td>
 			
 			<!--가이드 상세페이지 이동하기-->
 			<td>
@@ -128,6 +130,7 @@ body {
 		</tr>
 <%-- 	</c:forEach> --%>
 	</table>
+	</c:forEach>
 	</c:forEach>
 </body>
 </html>

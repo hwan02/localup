@@ -51,7 +51,8 @@
 		<br>
 		<textarea rows="10" cols="10" name="tour_cont">${GuideVO.tour_cont}</textarea>
 		<br>
-		<a href="/guide/guideDetailPage?board_no=${GuideVO.board_no}"><input type="button" id="update" value="수정"></a> <input type="button" id="delete" value="삭제">
+<%-- 		<a href="/guide/guideDetailPage?board_no=${GuideVO.board_no}"><input type="button" id="update" value="수정"></a> <input type="button" id="delete" value="삭제"> --%>
+		<input type="button" id="update" value="수정"> <input type="button" id="delete" value="삭제">
 	</form>
 </body>
 </html>

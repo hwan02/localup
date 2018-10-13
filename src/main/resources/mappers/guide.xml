@@ -19,6 +19,23 @@
 		from tour
 		where board_no=#{board_no}
 	</select>
+
+	<!--myApplySchedule 투어예정-->
+	<select id="myApplySchedule" resultType="GuideVO">
+		select 
+		tour_title,tour_sdate,tour_edate,board_no
+<!-- 		tour_edate -->
+		from tour
+		where tour_edate>sysdate
+	</select>
+
+	<!--myApplyPast 투어완료-->
+	<select id="myApplyPast" resultType="GuideVO">
+		select 
+		tour_title,tour_sdate,tour_edate,board_no
+		from tour
+		where sysdate>tour_edate 
+	</select>
 	
 	<!--가이드 상세페이지 DB수정 -->
 	<update id="update">

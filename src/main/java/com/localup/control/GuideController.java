@@ -1,6 +1,9 @@
 package com.localup.control;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -11,11 +14,14 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +32,7 @@ import com.localup.domain.GuideVO;
 import com.localup.persistence.GuideDAO;
 import com.localup.persistence.GuideDAOImpl;
 import com.localup.service.GuideService;
+import com.localup.service.PayInfoService;
 
 @Controller
 @RequestMapping("guide")
@@ -36,6 +43,9 @@ public class GuideController {
 	
 	@Inject
 	GuideService guideService;
+	
+	@Inject
+	PayInfoService payInfoService;
 	
 	//local 폴더에 저장 위치 호출
 	@Resource(name="uploadPath")
@@ -57,9 +67,12 @@ public class GuideController {
 
 	//가이드 상세 페이지 등록 ===> DB 입력처리
 	@RequestMapping(value="guideWrite",method=RequestMethod.POST)
-	public String guideWritePOST(GuideVO guideVO, MultipartFile tour_imgs) throws Exception {
+	public String guideWritePOST(GuideVO guideVO ,MultipartFile tour_imgs) throws Exception {
+        //System.out.println("guideVO>>>"+guideVO);
+		
 		String savedName = uploadFile(tour_imgs.getOriginalFilename(),tour_imgs.getBytes());
 		guideVO.setTour_img(savedName);
+		
 		guideService.insert(guideVO);
 		return "redirect: /guide/main";
 	}
@@ -110,4 +123,28 @@ public class GuideController {
 		return "redirect:/guide/main";
 	}
 	
+	//가이드 신청현황폼 보기
+	@RequestMapping("myApply")
+	public String myApply(String member_email,Model model) throws Exception{
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
+		return "my/myApply";
+	}
+
+	//투어예정 폼 보기
+	@RequestMapping("myApplySchedule")
+	public String myApplySchedule(Date tour_edate,String member_email,Model model) throws Exception{
+		model.addAttribute("GuideVO",guideService.myApplySchedule(tour_edate));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
+		return "my/myApplySchedule";
+	}
+
+	//투어과거 폼 보기
+	@RequestMapping("myApplyPast")
+	public String myApplyPast(Date tour_edate,String member_email,Model model) throws Exception{
+		model.addAttribute("GuideVO",guideService.myApplyPast(tour_edate));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
+		return "my/myApplyPast";
+	}
+
+
 }

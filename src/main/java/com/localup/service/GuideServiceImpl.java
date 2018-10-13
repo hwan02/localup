@@ -1,5 +1,8 @@
 package com.localup.service;
 
+import java.sql.Date;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +24,16 @@ public class GuideServiceImpl implements GuideService{
 	@Override
 	public GuideVO list(Integer board_no) throws Exception {
 		return guideDAO.list(board_no);
+	}
+
+	@Override
+	public List<GuideVO> myApplySchedule(Date tour_edate) throws Exception {
+		return guideDAO.myApplySchedule(tour_edate);
+	}
+
+	@Override
+	public List<GuideVO> myApplyPast(Date tour_edate) throws Exception {
+		return guideDAO.myApplyPast(tour_edate);
 	}
 
 	//특정 가이드 상세페이지 DB수정

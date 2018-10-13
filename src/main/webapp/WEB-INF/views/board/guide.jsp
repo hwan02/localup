@@ -67,7 +67,7 @@
 	<a href="http://localhost/pay/pay"><input type="button" value="투어 신청"></a>
 	<br>
 	<!--게시글 상페이지로 이동하기-->
-	<a href="http://localhost/board/read?board_no=1"><input type="button" value="게시글 작성"></a> 
+	<a href="/board/read?board_no=${GuideVO.board_no }"><input type="button" value="게시글 작성"></a> 
 	<!--게시글 번호 TEST 후 hide 처리-->
 	<input type="hidden" value="${GuideVO.board_no }">
 </body>

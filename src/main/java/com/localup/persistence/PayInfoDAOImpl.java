@@ -33,8 +33,8 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 
 	//결제번호
 	@Override
-	public List<PayInfoVO> payList2(String member_email,Integer pay_no) throws Exception {
-		member_email="localup@gmail.com";
+	public List<PayInfoVO> payList2(String member_email) throws Exception {
+		//member_email="localup@gmail.com";
 		return sqlSession.selectList("payInfo.payList2",member_email);
 	}
 

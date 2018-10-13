@@ -13,7 +13,12 @@ public class PayInfoVO {
 	private Date pay_cdate; /* 결제취소일시 */
 	private String member_email;/* 신청회원 */
 
-	private String member_id_guide1; /* 가이드ID */
+	@Override
+	public String toString() {
+		return "PayInfoVO [pay_no=" + pay_no + ", pay_num=" + pay_num + ", pay_pay=" + pay_pay + ", pay_way=" + pay_way
+				+ ", board_no=" + board_no + ", pay_state=" + pay_state + ", pay_pdate=" + pay_pdate + ", pay_cdate="
+				+ pay_cdate + ", member_email=" + member_email + "]";
+	}
 
 	public Integer getPay_no() {
 		return pay_no;
@@ -87,19 +92,6 @@ public class PayInfoVO {
 		this.member_email = member_email;
 	}
 
-	public String getMember_id_guide1() {
-		return member_id_guide1;
-	}
-
-	public void setMember_id_guide1(String member_id_guide1) {
-		this.member_id_guide1 = member_id_guide1;
-	}
-
-	@Override
-	public String toString() {
-		return "PayInfoVO [pay_no=" + pay_no + ", pay_num=" + pay_num + ", pay_pay=" + pay_pay + ", pay_way=" + pay_way
-				+ ", board_no=" + board_no + ", pay_state=" + pay_state + ", pay_pdate=" + pay_pdate + ", pay_cdate="
-				+ pay_cdate + ", member_email=" + member_email + ", member_id_guide1=" + member_id_guide1 + "]";
-	}
+	// private String member_id_guide1; /* 가이드ID */
 
 }

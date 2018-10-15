@@ -1,6 +1,7 @@
 package com.localup.control;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,19 +64,31 @@ public class MemberController {
 	
 	//사용자 정보페이지 보이기(작성:yr)
 	@RequestMapping(value="mInfo",method=RequestMethod.GET)
-	public String mInfoGET(Model model,String member_email,SubVO subVO) throws Exception {
+	public String mInfoGET(Model model,String member_email, SubVO subVO, HttpSession session) throws Exception {
 		System.out.println("member_email>>"+member_email);
 		model.addAttribute("memberVO",memberService.read(member_email));
 		//model.addAttribute("member_email",member_email);
 		model.addAttribute("myLevel",memberService.readLevel(member_email));
 		model.addAttribute("boardList",memberService.listIdBoard(member_email));
+		model.addAttribute("countSub",memberService.countSub(member_email));
+		model.addAttribute("member_email_sub",memberService.readSub(member_email));
+		
+		//model.addAttribute("loginSubId",memberService.readLoginSub(member_email)); //로그인한 아이디가 팔로우한 테이블에 있는지
 		return "board/mInfo";
 	}
 	
-	@RequestMapping(value="mInfo",method=RequestMethod.POST)
-	public @ResponseBody String mInfoPOST(Model model,String member_email,SubVO subVO) throws Exception {
+	//구독하기
+	@RequestMapping(value="addSub",method=RequestMethod.POST)
+	public @ResponseBody int addSub(Model model,String member_email_guide,SubVO subVO) throws Exception {
 		memberService.addSub(subVO);
-		return "board/mInfo";
+		return memberService.countSub(member_email_guide); //구독자 수
+	}
+	
+	//구독 취소
+	@RequestMapping(value="minusSub",method=RequestMethod.POST)
+	public @ResponseBody int minusSub(Model model,String member_email_guide,String member_email_sub, SubVO subVO) throws Exception {
+		memberService.minusSub(member_email_sub, member_email_guide);
+		return memberService.countSub(member_email_guide);
 	}
 	
 	//위의 사용자정보 페이지 레벨 테스트용

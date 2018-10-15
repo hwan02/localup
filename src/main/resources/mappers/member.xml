@@ -39,10 +39,40 @@
 		where member_email=#{member_email}
 	</select>
 	
+	<!-- 팔로우(구독) -->
 	<!-- 특정 아이디 구독(팔로우) -->
 	<insert id="insertSub">
 		insert into sub (member_email_sub,member_email_guide) 
 		values (#{member_email_sub},#{member_email_guide})
 	</insert>
+	
+	<!-- 특정 아이디 팔로우 수 -->
+	<select id="subCount" resultType="int">
+		select count(*) 
+		from sub 
+		where member_email_guide=#{member_email_guide}
+	</select>
+	
+	<!-- 특정 아이디를 팔로우 한 사용자 조회 -->
+	<select id="selectSub" resultType="SubVO">
+		select member_email_sub 
+		from sub 
+		where member_email_guide=#{member_email_guide}
+	</select>
+	
+	<!-- 로그인한 아이디가 팔로우한 사용자인지 알기위해-->
+	<select id="loginSub" resultType="String">
+		select member_email_guide
+		from sub 
+		where member_email_sub=#{member_email_sub}
+	</select>
+	
+	<!-- 특정 아이디 구독(팔로우)취소 -->
+	<delete id="deleteSub">
+		delete from sub 
+		where member_email_sub=#{member_email_sub} and member_email_guide=#{member_email_guide}
+	</delete>
+	
+	
 	
 </mapper>

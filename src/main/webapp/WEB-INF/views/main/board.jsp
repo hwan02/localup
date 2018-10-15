@@ -5,16 +5,15 @@
 <c:forEach items="${list}" var="board">
 	 <div class="col-lg-4 mb-4">
 		<div class="card h-100">
-			<h4 class="card-header">${board.board_title }</h4>
+			<h4 class="card-header"><a href="/board/read?board_no=${board.board_no }">${board.board_title }</a></h4>
 			<div class="card-body">
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-					adipisicing elit. Sapiente esse necessitatibus neque.</p>
+				<p class="card-text">${board.board_cont}</p>
 			</div>
 			<div class="card-footer">
-				<a href="#" class="btn btn-primary">Learn More</a>
+				<a href="#" class="btn btn-primary">${board.board_view}</a>
 			</div>
-		</div>
-	</div> 
+		</div>	
+	</div>	
 	<%-- <li>
 		<div class="message-card ">
 			<div

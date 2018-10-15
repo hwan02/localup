@@ -72,7 +72,7 @@ public class MainController {
 	}
 	@RequestMapping("search")
 	public String search(String mainSearch, Model model) {
-		List<String> listName=service.listName(mainSearch);
+		List<String> listName=service.listName(mainSearch);	
 		String listNames = listName.size()+"|";
 	    for(int i=0; i<listName.size(); i++){
 	    	listNames += listName.get(i);

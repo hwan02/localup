@@ -25,10 +25,8 @@
     
     
     function sendMessage(){
-        
             //websocket으로 메시지를 보내겠다.
             sock.send($("#message").val());
-        
     }
             
     //evt 파라미터는 websocket이 보내준 데이터다.

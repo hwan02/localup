@@ -63,11 +63,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
              for (WebSocketSession session: this.sessionSet){
                     if (session.isOpen()){
                            try{
-
                                  session.sendMessage(new TextMessage(message));
-
                            }catch (Exception ignored){
-
                                  this.logger.error("fail to send message!", ignored);
                            }
                     }
@@ -82,11 +79,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
                            while (true){
                                  try {
                                         sendMessage ("send message index "+i++);
-
                                         Thread.sleep(1000);
-
                                  } catch (InterruptedException e) {
-
                                         e.printStackTrace();
                                         break;
                                  }

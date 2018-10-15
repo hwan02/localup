@@ -159,7 +159,7 @@ public class BoardController {
 		model.addAttribute("boardList",boardService.readIdBoard(member_email));
 		return"my/myWrite";
 	}
-	
+
 	
 }
 

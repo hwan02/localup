@@ -32,8 +32,41 @@
 	$(function(){
 		$('#addSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
-			alert(member_email_guide);
-		});
+			//var member_email_sub = ${sessionScope.id };
+			var member_email_sub = 'localup@gmail.com';
+			//alert(member_email_guide);
+			$.ajax({
+				url:'/member/addSub',
+				type:'post',
+				data:{
+					member_email_guide:member_email_guide
+					,member_email_sub:member_email_sub
+				},
+				success:function(result){
+					console.log('result>>>'+result);
+					$('#countSub').html(+result);
+				}
+			});
+		});//팔로우 버튼
+		
+		$('#minusSub').click(function(){
+			var member_email_guide = $('input[name=member_email]').val();
+			//var member_email_sub = ${sessionScope.id };
+			var member_email_sub = 'localup@gmail.com';
+			//alert(member_email_guide);
+			$.ajax({
+				url:'/member/minusSub',
+				type:'post',
+				data:{
+					member_email_guide:member_email_guide,
+					member_email_sub:member_email_sub
+				},
+				success:function(result){
+					console.log('result>>>'+result);
+					$('#countSub').html(+result);
+				}
+			});
+		});//팔로우 취소 버튼
 	});
 </script>
 </head>
@@ -48,9 +81,25 @@
 	<br>
 	
 	<!--팔로워-->
-	팔로워 : <input type="text" name="member_email_sub" readonly>
+	팔로워 : 
 		<!--팔로워 클릭시 팔로우로 변경하기-->
-		<input type="button" name="addSub" value="팔로워" id="addSub">
+		<%-- 로그인한 아이디가 팔로우한 테이블에 있으면 팔로워 취소버튼을 보이고
+		없으면 팔로우 버튼을 보이게 할 것 --%>
+		
+		<c:if test="${empty loginSubId }"></c:if>
+			<input type="button" name="addSub" value="팔로워" id="addSub">
+		
+		<c:if test="${not empty loginSubId }"></c:if>
+			<input type="button" name="minusSub" value="팔로워취소" id="minusSub">
+		
+		
+		<!-- 팔로우 수 -->
+		<div id="countSub">${countSub }</div>
+		
+		<!-- 팔로워한 사용자 목록 -->
+		<c:forEach items="${member_email_sub }" var="subVO">
+			<div id="member_email_sub">${subVO.member_email_sub }</div>
+		</c:forEach>
 		<br><br>
 	
 	<!--업로드한 게시글 가져오기-->

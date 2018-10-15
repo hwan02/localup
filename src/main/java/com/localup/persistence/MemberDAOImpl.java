@@ -1,6 +1,8 @@
 package com.localup.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,6 +43,7 @@ public class MemberDAOImpl implements MemberDAO{
 		
 	}
 	
+	//작성자 : yr
 	//나의 레벨 조회
 	@Override
 	public String myLevel(String member_email) throws Exception {
@@ -60,7 +63,35 @@ public class MemberDAOImpl implements MemberDAO{
 	public void insertSub(SubVO subVO) throws Exception {
 		sqlSession.insert("member.insertSub",subVO);
 	}
-
+	
+	//팔로우 수
+	@Override
+	public int subCount(String member_email_guide) throws Exception {
+		return sqlSession.selectOne("member.subCount",member_email_guide);
+	}
+	
+	//팔로우 한 사용자 조회
+	@Override
+	public List<SubVO> selectSub(String member_email_guide) throws Exception {
+		return sqlSession.selectList("member.selectSub",member_email_guide);
+	}
+	
+	//팔로우 취소
+	@Override
+	public void deleteSub(String member_email_sub,String member_email_guide) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("member_email_sub", member_email_sub);
+		map.put("member_email_guide", member_email_guide);
+		System.out.println("map>>>"+map);
+		sqlSession.delete("member.deleteSub",map);
+	}
+	
+	//로그인한 아이디가 팔로우한 사용자인지 찾기
+	@Override
+	public List<String> loginSub(String member_email_sub) throws Exception {
+		return sqlSession.selectList("member.loginSub",member_email_sub);
+	}
+	
 	//전체 회원정보 조회
 //	@Override
 //	public List<MemberVO> listAll() throws Exception {

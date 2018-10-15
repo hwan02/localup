@@ -53,6 +53,30 @@ public class MemberServiceImpl implements MemberService{
 	public void addSub(SubVO subVO) throws Exception {
 		memberDAO.insertSub(subVO);
 	}
+	
+	//팔로우 수
+	@Override
+	public int countSub(String member_email_guide) throws Exception {
+		return memberDAO.subCount(member_email_guide);
+	}
+	
+	//팔로우한 사용자 조회
+	@Override
+	public List<SubVO> readSub(String member_email_guide) throws Exception {
+		return memberDAO.selectSub(member_email_guide);
+	}
+	
+	//팔로우 취소
+	@Override
+	public void minusSub(String member_email_sub, String member_email_guide) throws Exception {
+		memberDAO.deleteSub(member_email_sub, member_email_guide);
+	}
+	
+	//로그인한 아이디가 팔로우한 사용자인지 찾기
+	@Override
+	public List<String> readLoginSub(String member_email_sub) throws Exception {
+		return memberDAO.loginSub(member_email_sub);
+	}
 
 	//회원정보 조회
 //	@Override

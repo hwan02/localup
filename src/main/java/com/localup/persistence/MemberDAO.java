@@ -29,4 +29,16 @@ public interface MemberDAO {
 	
 	//팔로우(구독)하기
 	public void insertSub(SubVO subVO) throws Exception;
+	
+	//팔로우 수
+	public int subCount(String member_email_guide) throws Exception;
+	
+	//팔로우 한 사용자 조회
+	public List<SubVO> selectSub(String member_email_guide) throws Exception;
+	
+	//로그인한 아이디가 팔로우한 사용자인지 찾기
+	public List<String> loginSub(String member_email_sub) throws Exception;
+	
+	//팔로우 취소
+	public void deleteSub(String member_email_sub,String member_email_guide) throws Exception;
 }

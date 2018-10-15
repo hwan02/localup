@@ -1,4 +1,6 @@
 /* 게시글 */
+alter table board drop constraint FK_member_TO_board cascade;
+alter table board drop constraint PK_board cascade;
 drop table board;
 CREATE TABLE board (
 	board_no NUMBER NOT NULL, /* 게시글번호 */

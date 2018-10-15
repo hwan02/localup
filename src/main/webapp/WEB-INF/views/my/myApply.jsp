@@ -6,7 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>가이드 신청 현황</title>
+<title>마이페이지-가이드 신청 현황 조회</title>
+<!--구글 제이쿼리-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!--더보기-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!--메뉴 클릭시 사이드바 생성-->
 <style>
@@ -62,6 +68,30 @@ body {
 		font-size: 18px;
 	}
 }
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
 </style>
 
 <!--메뉴 클릭시 사이드바 생성-->
@@ -77,57 +107,131 @@ body {
 		document.getElementById("main").style.marginLeft = "0";
 		document.body.style.backgroundColor = "white";
 	}
+	
+	
+	//더보기
+	var showUntil = 1; 
+	function showMore() {
+		for(var i=showUntil; i<showUntil+5; i++) {
+			$('#td_'+i).show();
+		}
+		showUntil+=5;
+	}
+	
+	$(function() {
+		showMore();
+	});
+	
+	//검색
+	function myFunction() {
+		  var input, filter, table, tr, td, i;
+		  input = document.getElementById("myType");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[0];
+		    if (td) {
+		      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }
+		  }
+		}
+	
+	$(function() {
+		$("#myType").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			    $("#myTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+	});
+	
+	//맨위로 버튼
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	        document.getElementById("myBtn").style.display = "block";
+	    } else {
+	        document.getElementById("myBtn").style.display = "none";
+	    }
+	}
+	
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+	    document.body.scrollTop = 0;
+	    document.documentElement.scrollTop = 0;
+	}
 </script>
 </head>
-<body>
-	<h1>가이드 신청 현황 조회</h1>
+<body class="container">
+	<h1><a href="/index">가이드 신청 현황 조회</a></h1>
 	<hr>
+	<!--맨위로 클릭-->
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	
 	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a> 
+		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
+		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어 신청현황</a>  
 		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a> 
 	</div>
-
+	</c:forEach>
+	
 	<!--메뉴 클릭시 사이드바 생성-->
 	<div id="main">
 		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
+		<div>
+			<input id="myType" type="text" placeholder="Search..">		
+		</div>
 	</div>
-	
-
-	<table border="1" cellpadding="5">
-
-<%-- 	<c:forEach items="${GuideVO}" var="GuideVO"> --%>
-		<tr>
-			<th>신청회원</th>
-			<th>인원수</th>
-			<th>투어 금액</th>
-			<th>결제상태</th>
-			<th>투어 올린글 확인하기</th>
-		</tr>
 
 
+	<table class="table table-striped"
+		style="text-align: center; border: 1px solid #dddddd; margin-top: 50px margin-left: auto; margin-right: auto;">
+		<thead>
+			<tr>
+				<th>신청회원</th>
+				<th>인원수</th>
+				<th>투어 금액</th>
+				<th>결제상태</th>
+				<th>투어 올린글 확인하기</th>
+			</tr>
+		</thead>
 
-		<tr>
-			<td>${PayInfoVO.member_email}</td>
-<%-- 			<td>${GuideVO.tour_title}</td> --%>
-			<td>${PayInfoVO.pay_num }</td>
-			
-			<!--투어금액 -->
-			<td>${PayInfoVO.pay_pay}</td>
-			
-			<td>${PayInfoVO.pay_state }</td>
-			
-			<!--가이드 상세페이지 이동하기-->
-			<td>
-				<a href='/guide/guideDetailPage?board_no=${PayInfoVO.board_no}'>	
-					<input type="button"  class="guideDetailPage" value="가이드 상세페이지">
-				</a>
-			</td>
-		</tr>
-<%-- 	</c:forEach> --%>
+		<tbody id="myTable">
+			<c:forEach items="${PayInfoVO}" var="PayInfoVO"  varStatus="stat"> 
+				<tr id="td_${stat.count }" style="display: none;">
+					<td>${PayInfoVO.member_email}</td>
+					<td>${PayInfoVO.pay_num }</td>
+					<td>${PayInfoVO.pay_pay}</td>
+					<td>${PayInfoVO.pay_state }</td>
+
+					<!--가이드 상세페이지 이동하기-->
+					<td>
+						<a href='/guide/guideDetailPage?board_no=${PayInfoVO.board_no}'>
+							<input type="button" class="guideDetailPage" value="가이드 상세페이지">
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+
+		<tfoot>
+			<tr>
+				<td colspan="5">
+					<a href="javascript:showMore();" class="btn btn-primary">더보기</a>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
-	</c:forEach>
 </body>
 </html>

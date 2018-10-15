@@ -11,8 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--더보기-->
-<link type="text/css" rel="stylesheet" href="css/reset.css" media="screen" />
-<link type="text/css" rel="stylesheet" href="css/js-load.css" media="screen" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!--메뉴 클릭시 사이드바 생성-->
@@ -71,37 +70,11 @@ body {
 }
 
 
-.js-load {
-    display: none;
-}
-.js-load.active {
-    display: block;
-}
-.is_comp.js-load:after {
-    display: none;
-}
-.btn-wrap, .lists, .main {
-    display: block;
-}
-.main {
-    max-width: 640px;
-    margin: 0 auto;
-}
-.lists {
-    margin-bottom: 4rem;
-}
-
-.btn-wrap {
-    text-align: center;
-}
 
 
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+
+
 
 td, th {
     border: 1px solid #dddddd;
@@ -109,9 +82,27 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
 }
+
+
+
+
+
 </style>
 
 <!--메뉴 클릭시 사이드바 생성-->
@@ -128,26 +119,21 @@ tr:nth-child(even) {
 		document.body.style.backgroundColor = "white";
 	}
 	
-	
-	$(window).on('load', function () {
-	    load('#js-load', '4');
-	    $("#js-btn-wrap .button").on("click", function () {
-	        load('#js-load', '4', '#js-btn-wrap');
-	    })
-	});
-	 
-	function load(id, cnt, btn) {
-	    var girls_list = id + " .js-load:not(.active)";
-	    var girls_length = $(girls_list).length;
-	    var girls_total_cnt;
-	    if (cnt < girls_length) {
-	        girls_total_cnt = cnt;
-	    } else {
-	        girls_total_cnt = girls_length;
-	        $('.button').hide()
-	    }
-	    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+	//더보기
+	var showUntil = 1; 
+	function showMore() {
+		for(var i=showUntil; i<showUntil+5; i++) {
+			$('#td_'+i).show();
+		}
+		showUntil+=5;
 	}
+	
+	$(function() {
+		showMore();
+	});
+	
+	
+	
 	
 	
 	function myFunction() {
@@ -168,14 +154,6 @@ tr:nth-child(even) {
 		  }
 		}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	$(function() {
 		$("#myType").on("keyup", function() {
 			var value = $(this).val().toLowerCase();
@@ -185,17 +163,42 @@ tr:nth-child(even) {
 			  });
 	});
 	
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	        document.getElementById("myBtn").style.display = "block";
+	    } else {
+	        document.getElementById("myBtn").style.display = "none";
+	    }
+	}
+	
+	
+	
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+	    document.body.scrollTop = 0;
+	    document.documentElement.scrollTop = 0;
+	}
+	
+	
 </script>
 </head>
-<body>
-	<h1>마이페이지-내가올린글</h1>
+<body class="container">
+	<h1><a href="/index">마이페이지-내가올린글</a></h1>
 	<hr>
+	<!--맨위로 클릭-->
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	
 	<!--메뉴 클릭시 사이드바 생성-->
 	<div id="main">
 		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
+		<div>
+			<input id="myType" type="text" placeholder="Search..">		
+		</div>
 	</div>
 	
-	<input id="myType" type="text" placeholder="Search..">
 	
 
 <%-- 	<input type="hidden" value="${boardVO.member_email}"> --%>
@@ -204,44 +207,49 @@ tr:nth-child(even) {
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="/board/myWrite?member_email=${boardVO.member_email}">전체 게시글 보기</a> 
-		<a href="/board/myWriteRestaurant?member_email=${boardVO.member_email}">맛집</a>
-		<a href="/board/myWriteTraffic?member_email=${boardVO.member_email}">교통</a> 
+		<a href="/guide/myApplySchedule?member_email=${boardVO.member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${boardVO.member_email}">투어 신청현황</a>  
+		<a href="/guide/myApplyPast?member_email=${boardVO.member_email}">완료 투어</a> 
 	</div>
 	</c:forEach>
 	
-	<div id="contents">
-		<div id="js-load" class="main">
-			<ul class="lists">
-					
-					<table  class="lists__item js-load">
+	<div class="row">
+			
+					<table  class="table table-striped" style="text-align: center; border: 1px solid #dddddd; margin-top:50px margin-left: auto; margin-right: auto;">
 						<thead>
 						<tr>
-							<th>게시글 번호</th>
-							<th>게시글 유형별</th>
-							<th>게시글 제목</th>
-							<th>게시글 작성 날짜</th>
+							<th style=" text-align: center;">게시글 번호</th>
+							<th style=" text-align: center;">게시글 유형별</th>
+							<th style=" text-align: center;">게시글 제목</th>
+							<th style=" text-align: center;">게시글 작성 날짜</th>
 						</tr>
 						</thead>
 						<tbody id="myTable">
-						<c:forEach items="${boardList }" var="boardVO">	
-						<tr>
+							<c:forEach items="${boardList }" var="boardVO" varStatus="stat">	
+						<tr id="td_${stat.count }" style="display: none;">
 							<td>${boardVO.board_no }</td>
 							<td>${boardVO.board_type }</td>
 							<td><a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
  									value="${boardVO.board_date }" /></td>
 						</tr>
-							
-					</c:forEach>
+							</c:forEach>
 						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="5">
+									<a href="javascript:showMore();" class="btn btn-primary">더보기</a>	
+								</td>
+						</tr>
+			</tfoot>
+
 					</table>
-			</ul>
-<%-- 				</c:forEach> --%>
+					
 		
-			<div id="js-btn-wrap" class="btn-wrap">
-				<a href="javascript:;" class="button">더보기</a>
-			</div>
-		</div>
+<!-- 			<div id="js-btn-wrap" class="btn-wrap"> -->
+<!-- 				<a href="javascript:;" class="button">더보기</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 
 </body>

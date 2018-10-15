@@ -30,11 +30,12 @@
 	
 
 	<!-- Web Socket -->
-	<websocket:handlers>
+	 <websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo/"/>
 		<websocket:sockjs/>
 	</websocket:handlers>
 	<beans:bean id="echoHandler" class="com.localup.websocket.EchoHandler"></beans:bean> 
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean

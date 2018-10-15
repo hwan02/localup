@@ -94,4 +94,8 @@ public class MainController {
 	public String echo() {
 		return "/echo_test";
 	}
+	@RequestMapping("room")
+	public String room() {
+		return "/room";
+	}
 }

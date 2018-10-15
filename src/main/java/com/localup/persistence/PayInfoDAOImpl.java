@@ -27,14 +27,14 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 	//투어번호
 	@Override
 	public List<GuideVO> payList(Integer tour_no) throws Exception {
-		tour_no=1;
+		//tour_no=1;
 		return sqlSession.selectList("payInfo.payList",tour_no);
 	}
 
 	//결제번호
 	@Override
-	public List<PayInfoVO> payList2(String member_email,Integer pay_no) throws Exception {
-		member_email="localup@gmail.com";
+	public List<PayInfoVO> payList2(String member_email) throws Exception {
+		//member_email="localup@gmail.com";
 		return sqlSession.selectList("payInfo.payList2",member_email);
 	}
 

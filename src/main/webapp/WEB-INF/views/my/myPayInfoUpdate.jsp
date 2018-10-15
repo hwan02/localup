@@ -91,7 +91,7 @@
 		<!--투어번호-->
 		신청 이메일
 		<input type="text" name="member_email" value="${PayInfoVO.member_email}">
-		투어번호
+		결제번호
 		<input type="text" name="pay_no" value="${PayInfoVO.pay_no}">
 		<table border="1" cellpadding="5" class="paypaypay">
 			<tr>
@@ -133,6 +133,7 @@
 			</tr>
 		</table>
 <%-- 	</c:forEach> --%>
+<%-- 	<a href="/pay/myPayInfo?tour_no=${GuideVO.tour_no}"><input type="button" class="payCancel" value="결제취소"></a>  --%>
 	<input type="button" class="payCancel" value="결제취소">
 	<div id="result" style="text-align: center;"></div>
 	</form>

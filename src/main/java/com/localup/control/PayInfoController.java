@@ -79,9 +79,9 @@ public class PayInfoController {
 	
 	//결제내역 폼 보기
 	@RequestMapping(value="myPayInfo", method=RequestMethod.GET)
-	public String myPayInfoGET(Criteria cri,Model model, Integer tour_no, String member_email) throws Exception {
-		model.addAttribute("GuideVO",payInfoService.payList(tour_no));
-		//model.addAttribute("PayInfoVO",payInfoService.payList2(member_email,pay_no));
+	public String myPayInfoGET(Criteria cri,Model model, Integer board_no,String member_email) throws Exception {
+		//model.addAttribute("GuideVO",payInfoService.payList(board_no));
+		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
 		
 		//List<BoardVO> list = service.listAll(); //from DB ===> 데이터생성
 		//model.addAttribute("list",list);
@@ -113,7 +113,7 @@ public class PayInfoController {
 
 	
 	
-	//결제내역 수정
+	//결제내역 수정 폼으로 이동
 	@RequestMapping(value="myPayInfo", method=RequestMethod.POST)
 	public String myPayInfoPOST(PayInfoVO payInfoVO,Model model) throws Exception {
 		//System.out.println(payInfoVO);
@@ -124,12 +124,13 @@ public class PayInfoController {
 
 	//결제내역 수정 폼
 	@RequestMapping(value="myPayInfoUpdate", method=RequestMethod.GET)
-	public String myPayInfoUpdateGET(Model model,Integer pay_no) throws Exception {
+	public String myPayInfoUpdateGET(Model model,Integer pay_no, Integer tour_no) throws Exception {
 		//System.out.println(payInfoVO);
-		
+		//model.addAttribute("GuideVO",payInfoService.payList(tour_no));
 		model.addAttribute("PayInfoVO",payInfoService.payList_payno(pay_no));
 		return"my/myPayInfoUpdate";
 	}
+	
 	@RequestMapping(value="myPayInfoUpdate", method=RequestMethod.POST)
 	public String myPayInfoUpdatePOST(PayInfoVO payInfoVO) throws Exception {
 		//System.out.println(payInfoVO);

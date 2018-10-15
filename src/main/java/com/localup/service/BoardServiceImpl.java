@@ -1,11 +1,12 @@
 package com.localup.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.localup.domain.BoardVO;
-import com.localup.domain.LikeBtVO;
 import com.localup.persistence.BoardDAO;
 
 @Service
@@ -15,30 +16,48 @@ public class BoardServiceImpl implements BoardService{
 	@Inject
 	private BoardDAO boardDAO;
 	
+	//게시글
 	@Override
-	public void BoardWrite(BoardVO boardVO) throws Exception {
+	public void boardWrite(BoardVO boardVO) throws Exception { //입력
 		boardDAO.insertBoard(boardVO);
 	}
 
 	@Override
-	public BoardVO BoarRead(int board_no) throws Exception {
+	public BoardVO boarRead(int board_no) throws Exception { //읽기
+		boardDAO.updateViewCnt(board_no); //조회수 증가
 		return boardDAO.readBoard(board_no);
-	}
-
-	//------좋아요 버튼
-	@Override
-	public void LikeUp(int board_no) throws Exception {
-		boardDAO.upLike(board_no);
-	}
-
-	@Override
-	public void LikeCount(int board_no) throws Exception {
-		boardDAO.countLike(board_no);
 	}
 	
 	@Override
-	public void LikeAdd(LikeBtVO likeBtVO) throws Exception {
-		boardDAO.addLikeBt(likeBtVO);
+	public void boardUpdate(BoardVO boardVO) throws Exception { //수정
+		boardDAO.updateBoard(boardVO);
+	}
+
+	@Override
+	public void boardDelete(int board_no) throws Exception { //삭제
+		boardDAO.deleteBoard(board_no);
+	}
+	
+	//------좋아요 버튼
+	@Override
+	public void likeUp(int board_no) throws Exception {
+		boardDAO.upLike(board_no);
+	}
+	
+	@Override
+	public void likeMinus(int board_no) throws Exception {
+		boardDAO.minusLike(board_no);
+	}
+
+	@Override
+	public int likeCount(int board_no) throws Exception {
+		return boardDAO.countLike(board_no);
+	}
+	
+	//특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys
+	@Override
+	public List<BoardVO> readIdBoard(String member_email) throws Exception {
+		return boardDAO.readIdBoard(member_email);
 	}
 	
 }

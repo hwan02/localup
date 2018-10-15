@@ -53,6 +53,35 @@
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#addBoard').click(function(){ //게시글 입력폼 유효성 검사
+			if($('#board_title').val().trim()==''){
+				alert('제목을 입력해주세요.');
+				$('#board_title').focus();
+			}else if($('#board_type').val()=='==선택=='){
+				alert('유형을 선택해주세요.');
+				$('#board_type').focus();
+			}else if($('#member_email').val().trim()==''){
+				alert('아이디(메일)을 입력해주세요.');
+				$('#member_email').focus();
+			}else if($('#board_cont').val().trim()==''){
+				alert('내용을 입력해주세요.');
+				$('#board_cont').focus();
+			}else if($('#board_imgs').val()==''){
+				alert('사진과 함께 올리주세요.');
+				$('#board_imgs').focus();
+			}else if($('#board_alti').val()==''&&$('#board_long').val()==''){
+				alert('지도에서 지역을 선택해주세요.');
+				$('#question').focus();
+			}else{
+				//올바른 데이터 입력시
+				$('#write').submit();
+			}
+		}); //게시글 등록 버튼 클릭
+
+	});
+</script>
 </head>
 <body>
 	<div class="map_wrap">
@@ -78,11 +107,9 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f91e6d892e5876c99502e2d0571baffb&libraries=services"></script>
 	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요&libraries=services"></script> -->
 	<script>
-		///////
 		// 마커를 담을 배열입니다
-var markers = [];
-		//////
-	
+		var markers = [];
+			
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -92,8 +119,6 @@ var markers = [];
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		
 		var marker = new daum.maps.Marker(); // 클릭한 위치를 표시할 마커입니다
-		
-		////////
 		
 		// 장소 검색 객체를 생성합니다
 		var ps = new daum.maps.services.Places();  
@@ -312,9 +337,7 @@ var markers = [];
 		        el.removeChild (el.lastChild);
 		    }
 		}
-		////////
-		
-		
+		 
 		//지도에 클릭 이벤트를 등록합니다
 		//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 		daum.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -332,23 +355,24 @@ var markers = [];
 		});
 	</script>
 
-	<form name="write" method="post" enctype="multipart/form-data">
+	<form name="write" id="write" method="post" enctype="multipart/form-data">
 	<!-- <form name="write" method="post"> -->
-		제목: <input type="text" name="board_title"><br>
+		제목: <input type="text" name="board_title" id="board_title"><br>
 		유형:
-			<select name="board_type">
+			<select name="board_type" id="board_type">
+				<option value="==선택==">==선택==</option>
 				<option value="맛집">맛집</option>
 				<option value="교통">교통</option>
 				<option value="편의시설">편의시설</option>
 				<option value="숙박">숙박</option>
 				<option value="랜드마크">랜드마크</option>
 			</select><br>
-		이메일: <input type="text" name="member_email"><br>
-		내용: <textarea rows="20" cols="50" name="board_cont"></textarea><br>
-		이미지: <input type="file" name="board_imgs"><br>
+		이메일: <input type="text" name="member_email" id="member_email"><br>
+		내용: <textarea rows="20" cols="50" name="board_cont" id="board_cont"></textarea><br>
+		이미지: <input type="file" name="board_imgs" id="board_imgs"><br>
 		위도: <input type="text" name="board_alti" id="board_alti">
 		경도: <input type="text" name="board_long" id="board_long"><br>
-		<button type="submit">등록</button>
+		<button type="button" id="addBoard">등록</button>
 	</form>
 </body>
 </html>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class ReplyController {
 	@RequestMapping(value="",method=RequestMethod.POST)
 	public ResponseEntity<String> write(@RequestBody ReplyVO replyVO) {
 		//ResponseEntitiy<클라이언트에게 전달할 자료형>
-			
+		
 		ResponseEntity<String> entity = null;
 		try {
 			replyService.addReply(replyVO);
@@ -83,7 +84,7 @@ public class ReplyController {
 			//pageMaker와 list정보를 한개의 변수(객체)에 저장!! ===> Map
 			map.put("list", list);
 			map.put("pageMaker", pageMaker);
-				
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

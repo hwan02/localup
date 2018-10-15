@@ -20,26 +20,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where board_no=#{board_no}
 	</select>
 	
-	<!-- 좋아요 버튼 -->
-	<!-- 좋아요 버튼 누르기 -->
-	<insert id="addLikeBt">
-		insert into likebt (likebt_ch,board_no,member_email) 
-					values (#{likebt_ch},#{board_no},#{member_email})
-	</insert>
+	<!-- 특정 게시물 수정 -->
+	<update id="updateBoard">
+		update board 
+		set board_title=#{board_title},board_cont=#{board_cont} 
+		where board_no=#{board_no}
+	</update>
+		
+	<!-- 특정 게시물 삭제 -->
+	<delete id="deleteBoard">
+		delete from board where board_no=#{board_no}
+	</delete>
 	
+	<!-- 게시물을 읽을 때 조회수 증가(+1) -->
+	<update id="updateViewCnt">
+		update board 
+		set board_view=board_view+1 
+		where board_no=board_no
+	</update>
+	
+	<!-- 좋아요 버튼 -->
 	<!-- 좋아요 수 업데이트 -->
 	<update id="upLike">
 		update board set board_like=board_like+1 where board_no=#{board_no}
 	</update>
 	
+	<update id="minusLike">
+		update board set board_like=board_like-1 where board_no=#{board_no}
+	</update>
+	
 	<!-- 좋아요 수 카운트 -->
-	<select id="countLike" resultType="BoardVO">
+	<select id="countLike" resultType="int">
 		select board_like from board where board_no=#{board_no}
 	</select>
 	
-	<!-- 좋아요 눌렀는지 확인 -->
-	<select id="checkLike" resultType="LikeBtVO">
-		select likebt_ch from likebt where member_email=#{member_email} and board_no=#{board_no}
+	<!-- 특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys -->
+	<select id="readIdBoard" resultType="boardVO">
+<!-- 		select board_no,member_email,board_type,board_title,board_cont,board_img,board_view,board_like,board_date  -->
+		select board_no,member_email,board_type,board_title,board_date 
+		from board
+		where member_email=#{member_email}
 	</select>
+	
 	
 </mapper>

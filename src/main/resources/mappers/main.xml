@@ -19,10 +19,10 @@
 			from board
 			where substr(board_alti,0,14)=#{lat} and board_long=#{lng}
 		</select>
-		<select id="locInfo" resultType="string">
+		<select id="locInfo" resultType="java.lang.String">
 			select member_pref from member where member_email=#{email}
 		</select>
-		<select id="listName" resultType="string">
+		<select id="listName" resultType="java.lang.String">
 			select member_email
 			from member
 			where upper(member_email) like upper(#{search})

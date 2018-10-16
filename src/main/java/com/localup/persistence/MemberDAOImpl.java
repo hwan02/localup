@@ -88,8 +88,12 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	//로그인한 아이디가 팔로우한 사용자인지 찾기
 	@Override
-	public List<String> loginSub(String member_email_sub) throws Exception {
-		return sqlSession.selectList("member.loginSub",member_email_sub);
+	public int checkSub(String member_email_sub, String member_email_guide) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("member_email_sub", member_email_sub);
+		map.put("member_email_guide", member_email_guide);
+		System.out.println("map>>>"+map);
+		return sqlSession.selectOne("member.checkSub",map);
 	}
 	
 	//전체 회원정보 조회

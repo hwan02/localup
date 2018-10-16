@@ -37,7 +37,7 @@ public interface MemberDAO {
 	public List<SubVO> selectSub(String member_email_guide) throws Exception;
 	
 	//로그인한 아이디가 팔로우한 사용자인지 찾기
-	public List<String> loginSub(String member_email_sub) throws Exception;
+	public int checkSub(String member_email_sub,String member_email_guide) throws Exception;
 	
 	//팔로우 취소
 	public void deleteSub(String member_email_sub,String member_email_guide) throws Exception;

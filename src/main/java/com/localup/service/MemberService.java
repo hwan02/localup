@@ -36,7 +36,7 @@ public interface MemberService {
 	public List<SubVO> readSub(String member_email_guide) throws Exception; 
 	
 	//로그인한 아이디가 팔로우한 사용자인지 찾기
-	public List<String> readLoginSub(String member_email_sub) throws Exception;
+	public int subCheck(String member_email_sub,String member_email_guide) throws Exception;
 	
 	//팔로우 취소
 	public void minusSub(String member_email_sub,String member_email_guide) throws Exception;

@@ -74,8 +74,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	//로그인한 아이디가 팔로우한 사용자인지 찾기
 	@Override
-	public List<String> readLoginSub(String member_email_sub) throws Exception {
-		return memberDAO.loginSub(member_email_sub);
+	public int subCheck(String member_email_sub, String member_email_guide) throws Exception {
+		return memberDAO.checkSub(member_email_sub, member_email_guide);
 	}
 
 	//회원정보 조회

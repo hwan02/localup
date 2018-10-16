@@ -19,22 +19,22 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index">Localup</a>
+        <a class="navbar-brand" href="index"><img src=/resources/img/logo.png></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <input type="search" id="mainSearch">
+              <input type="search" id="mainSearch" placeholder="검색할 아이디를 입력">
           <button class="navbar-toggler-icon" id="mainButton"></button>
            <div id="display"></div>
             </li>
             <li class="dropdown messages-menu">
             	<%-- 알림 --%>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o fa-spin fa-3x fa-fw"></i>
-                  <span class="label label-success">4</span>
+                  <i class="fa fa-envelope-o <%-- fa-spin fa-3x fa-fw --%>"></i>
+                  <span class="label label-success">100</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="header">You have 4 messages</li>
@@ -44,7 +44,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="#" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -56,7 +56,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -68,7 +68,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Developers
@@ -80,7 +80,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Sales Department
@@ -92,7 +92,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Reviewers
@@ -110,38 +110,38 @@
               <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%-- dropdown-toggle --%>" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 마이페이지
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                 <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-              </div>
+              </div> --%>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%-- dropdown-toggle --%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 랭킹
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
                 <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
                 <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-              </div>
+              </div>--%>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%-- dropdown-toggle --%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 공지사항
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="full-width.html">Full Width Page</a>
                 <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
                 <a class="dropdown-item" href="faq.html">FAQ</a>
                 <a class="dropdown-item" href="404.html">404</a>
                 <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-              </div>
+              </div>--%>
             </li>
             <li>
               <a class="nav-link" href="index" id="logCheck">

@@ -45,7 +45,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="write", method=RequestMethod.GET) //게시글 쓰기 폼
-	public String writeGET() throws Exception{
+	public String writeGET(String board_alti, String board_long) throws Exception{
+		System.out.println(board_alti+board_long);
 		return "board/boardWrite";
 	}
 	

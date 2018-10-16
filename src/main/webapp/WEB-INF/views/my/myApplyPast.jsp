@@ -180,6 +180,7 @@ td, th {
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/member/myUpdate?member_email=${PayInfoVO.member_email}">회원정보 변경</a>
 		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
 		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
 		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어 신청현황</a>  

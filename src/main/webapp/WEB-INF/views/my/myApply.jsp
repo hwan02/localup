@@ -6,13 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>마이페이지-가이드 신청 현황 조회</title>
+<title>로컬업</title>
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--더보기-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/resources/css/mainCustom.css" rel="stylesheet">
+<%--아이콘  --%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!--메뉴 클릭시 사이드바 생성-->
 <style>
@@ -31,7 +38,7 @@ body {
 	background-color: #111;
 	overflow-x: hidden;
 	transition: 0.5s;
-	padding-top: 60px;
+	padding-top: 120px;
 }
 
 .sidenav a {
@@ -49,7 +56,7 @@ body {
 
 .sidenav .closebtn {
 	position: absolute;
-	top: 0;
+	top: 50px;
 	right: 25px;
 	font-size: 36px;
 	margin-left: 50px;
@@ -170,15 +177,154 @@ td, th {
 </script>
 </head>
 <body class="container">
-	<h1><a href="/index">가이드 신청 현황 조회</a></h1>
+<!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index">Localup</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <input type="search" id="mainSearch">
+          <button class="navbar-toggler-icon" id="mainButton"></button>
+           <div id="display"></div>
+            </li>
+            <li class="dropdown messages-menu">
+            	<%-- 알림 --%>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o fa-spin fa-3x fa-fw"></i>
+                  <span class="label label-success">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 4 messages</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Support Team
+                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li><!-- end message -->
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                          </div>
+                          <h4>
+                            AdminLTE Design Team
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                          </div>
+                          <h4>
+                            Developers
+                            <small><i class="fa fa-clock-o"></i> Today</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                          </div>
+                          <h4>
+                            Sales Department
+                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                          </div>
+                          <h4>
+                            Reviewers
+                            <small><i class="fa fa-clock-o"></i> 2 days</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="loginA"></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                마이페이지
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                랭킹
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                공지사항
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              </div>
+            </li>
+            <li>
+              <a class="nav-link" href="index" id="logCheck">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	
+	<br><br>
+	<h1>가이드 신청 현황 조회</h1>
 	<hr>
 	<!--맨위로 클릭-->
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	
-	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
+	<c:forEach items="${payList2}" var="PayInfoVO">
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/member/myUpdate?member_email=${PayInfoVO.member_email}">회원정보 변경</a>
 		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
 		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
 		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어 신청현황</a>  
@@ -208,19 +354,21 @@ td, th {
 		</thead>
 
 		<tbody id="myTable">
-			<c:forEach items="${PayInfoVO}" var="PayInfoVO"  varStatus="stat"> 
+			<c:forEach items="${payList2}" var="payList2"  varStatus="stat"> 
 				<tr id="td_${stat.count }" style="display: none;">
-					<td>${PayInfoVO.member_email}</td>
-					<td>${PayInfoVO.pay_num }</td>
-					<td>${PayInfoVO.pay_pay}</td>
-					<td>${PayInfoVO.pay_state }</td>
-
+					<td>${payList2.member_email}</td>
+					<td>${payList2.pay_num }</td>
+					<td>${payList2.pay_pay}</td>
+					<td>${payList2.pay_state }</td>	
+			
+					
 					<!--가이드 상세페이지 이동하기-->
 					<td>
-						<a href='/guide/guideDetailPage?board_no=${PayInfoVO.board_no}'>
+						
+						<a href='/guide/guideDetailPage?board_no=${payList2.board_no}'>
 							<input type="button" class="guideDetailPage" value="가이드 상세페이지">
 						</a>
-					</td>
+					</td>  
 				</tr>
 			</c:forEach>
 		</tbody>

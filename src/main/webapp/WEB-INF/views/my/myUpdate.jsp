@@ -7,29 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보 변경 TEST</title>
+<!--더보기-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
-	//비밀번호 일치 하는 작업 : 보류!(굳이 필요 없을듯)
-// 	var checkFirst = false;
-// 	var lastKeyword = '';
-// 	var loopSendKeyword = false;
-
-// 	function checkPwd() {
-// 		var f1 = document.forms[0];
-// 		var pw1 = f1.member_pw.value;
-// 		var pw2 = f1.member_pwCheck.value;
-// 		if (pw1 != pw2) {
-// 			document.getElementById('checkPwd').style.color = "red";
-// 			document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-// 		} else {
-// 			document.getElementById('checkPwd').style.color = "black";
-// 			document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-
-// 		}
-
-// 	}
 
 	$(function() { 
 		$('#updateBT').click(function() { //수정 버튼 클릭시
@@ -51,21 +36,105 @@
 			$('form').submit();
 		});
 	});
+	
+	<!--메뉴 클릭시 사이드바 생성-->
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+		document.getElementById("main").style.marginLeft = "250px";
+		document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+	}
+
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+		document.getElementById("main").style.marginLeft = "0";
+		document.body.style.backgroundColor = "white";
+	}
 </script>
+
+<style>
+<!--메뉴 클릭시 사이드바 생성-->
+body {
+	font-family: "Lato", sans-serif;
+	transition: background-color .5s;
+}
+
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+#main {
+	transition: margin-left .5s;
+	padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+</style>
 </head>
-<body>
-	<h1>회원정보 변경 TEST</h1>
+<body class="container">
+	<h1><a href="/index">회원정보 변경 </a></h1>
 	<hr>
 	<form action="/member/myUpdate" method="post">
-<%-- 		<c:forEach items="${memberVO}" var="memberVO"> --%>
+	<!--메뉴 클릭시 사이드바 생성-->
+	<div id="main">
+		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
+	</div>
+	
+<%-- 	<c:forEach items="${memberVO}" var="memberVO2"> --%>
+	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/member/myUpdate?member_email=${memberVO.member_email}">회원정보 변경</a> 
+		<a href="/board/myWrite?member_email=${memberVO.member_email}">전체 게시글 보기</a> 
+		<a href="/guide/myApplySchedule?member_email=${memberVO.member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${memberVO.member_email}">투어 신청현황</a>  
+		<a href="/guide/myApplyPast?member_email=${memberVO.member_email}">완료 투어</a> 
+	</div>
+<%-- 	</c:forEach> --%>
+	
+<%-- 	<c:forEach items="${memberVO}" var="memberVO"> --%>
 		이메일
 		<div><input type="text" disabled="disabled" name="member_email" value="${memberVO.member_email}"></div>
 		<input type="hidden"  name="member_email" value="${memberVO.member_email}">
 		<br>
 		비밀번호
 		<div><input type="password" name="member_pw" value="${memberVO.member_pw}"></div>
-<!-- 		<div><input type="password" name="member_pwCheck" onkeyup="checkPwd()" placeholder="비밀번호 입력"></div> -->
-<!-- 		<div id="checkPwd">동일한 비밀번호 입력하세요.</div> -->
 		<br>
 		이름
 		<div><input type="text" disabled="disabled" name="member_name" value="${memberVO.member_name}"></div>

@@ -24,7 +24,6 @@
 	<select id="myApplySchedule" resultType="GuideVO">
 		select 
 		tour_title,tour_sdate,tour_edate,board_no
-<!-- 		tour_edate -->
 		from tour
 		where tour_edate>sysdate
 	</select>

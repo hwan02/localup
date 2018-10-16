@@ -23,9 +23,9 @@
 			select member_pref from member where member_email=#{email}
 		</select>
 		<select id="listName" resultType="java.lang.String">
-			select member_email
-			from member
-			where upper(member_email) like upper(#{search})
-			ORDER BY member_email
+				select member_email
+				from member
+				where upper(member_email) like upper(#{search})
+				ORDER BY member_email
 		</select>
 </mapper> 

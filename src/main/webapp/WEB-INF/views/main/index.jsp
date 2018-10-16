@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <input type="search" id="mainSearch">
+              <input type="search" id="mainSearch" placeholder="검색할 아이디를 입력">
           <button class="navbar-toggler-icon" id="mainButton"></button>
            <div id="display"></div>
             </li>

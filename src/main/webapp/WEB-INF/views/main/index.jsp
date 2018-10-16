@@ -19,7 +19,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index">Localup</a>
+        <a class="navbar-brand" href="index"><img src=/resources/img/logo.png></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,8 +33,8 @@
             <li class="dropdown messages-menu">
             	<%-- ¾Ë¸² --%>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o fa-spin fa-3x fa-fw"></i>
-                  <span class="label label-success">4</span>
+                  <i class="fa fa-envelope-o <%-- fa-spin fa-3x fa-fw --%>"></i>
+                  <span class="label label-success">100</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="header">You have 4 messages</li>
@@ -44,7 +44,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="#" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -56,7 +56,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -68,7 +68,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Developers
@@ -80,7 +80,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Sales Department
@@ -92,7 +92,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Reviewers

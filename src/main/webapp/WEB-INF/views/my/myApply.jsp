@@ -2,17 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>마이페이지-가이드 신청 현황 조회</title>
+
+
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--더보기-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	
+	
+	
+	
 
 <!--메뉴 클릭시 사이드바 생성-->
 <style>
@@ -31,7 +38,7 @@ body {
 	background-color: #111;
 	overflow-x: hidden;
 	transition: 0.5s;
-	padding-top: 60px;
+	padding-top: 120px;
 }
 
 .sidenav a {
@@ -49,7 +56,7 @@ body {
 
 .sidenav .closebtn {
 	position: absolute;
-	top: 0;
+	top: 50px;
 	right: 25px;
 	font-size: 36px;
 	margin-left: 50px;
@@ -70,11 +77,11 @@ body {
 }
 
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+/* td, th { */
+/*     border: 1px solid #dddddd; */
+/*     text-align: left; */
+/*     padding: 8px; */
+/* } */
 
 
 #myBtn {
@@ -91,6 +98,47 @@ td, th {
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
+}
+
+/*가이드 상세페이지 버튼*/
+.guideDetBT {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: red;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px;
+  width: 170px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.guideDetBT span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.guideDetBT span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.guideDetBT:hover span {
+  padding-right: 25px;
+}
+
+.guideDetBT:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 </style>
 
@@ -167,18 +215,25 @@ td, th {
 	    document.body.scrollTop = 0;
 	    document.documentElement.scrollTop = 0;
 	}
+	
+	
 </script>
 </head>
 <body class="container">
-	<h1><a href="/index">가이드 신청 현황 조회</a></h1>
+
+
+	
+	<br><br>
+	<h1>가이드 신청 현황 조회</h1>
 	<hr>
 	<!--맨위로 클릭-->
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	
-	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
+	<c:forEach items="${payList2}" var="PayInfoVO">
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/member/myUpdate?member_email=${PayInfoVO.member_email}">회원정보 변경</a>
 		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
 		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
 		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어 신청현황</a>  
@@ -189,15 +244,18 @@ td, th {
 	<!--메뉴 클릭시 사이드바 생성-->
 	<div id="main">
 		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
-		<div>
-			<input id="myType" type="text" placeholder="Search..">		
-		</div>
 	</div>
+	
+	<!--검색-->
+	<div class="col-4">
+		<input id="myType" class="form-control" type="text"
+			placeholder="Search..">
+	</div>
+	<br>
 
-
-	<table class="table table-striped"
-		style="text-align: center; border: 1px solid #dddddd; margin-top: 50px margin-left: auto; margin-right: auto;">
-		<thead>
+	<div class="container">
+	<table class="table table-striped">
+		<thead >
 			<tr>
 				<th>신청회원</th>
 				<th>인원수</th>
@@ -208,19 +266,21 @@ td, th {
 		</thead>
 
 		<tbody id="myTable">
-			<c:forEach items="${PayInfoVO}" var="PayInfoVO"  varStatus="stat"> 
+			<c:forEach items="${payList2}" var="payList2"  varStatus="stat"> 
 				<tr id="td_${stat.count }" style="display: none;">
-					<td>${PayInfoVO.member_email}</td>
-					<td>${PayInfoVO.pay_num }</td>
-					<td>${PayInfoVO.pay_pay}</td>
-					<td>${PayInfoVO.pay_state }</td>
-
+					<td>${payList2.member_email}</td>
+					<td>${payList2.pay_num }</td>
+					<td>${payList2.pay_pay}</td>
+					<td>${payList2.pay_state }</td>	
+			
+					
 					<!--가이드 상세페이지 이동하기-->
 					<td>
-						<a href='/guide/guideDetailPage?board_no=${PayInfoVO.board_no}'>
-							<input type="button" class="guideDetailPage" value="가이드 상세페이지">
+						
+						<a href='/guide/guideDetailPage?board_no=${payList2.board_no}'>
+							<button type="button" class="guideDetBT" style="vertical-align:middle"><span>가이드 상세페이지</span></button> 
 						</a>
-					</td>
+					</td>  
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -232,6 +292,8 @@ td, th {
 				</td>
 			</tr>
 		</tfoot>
+		
 	</table>
+	</div>
 </body>
 </html>

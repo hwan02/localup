@@ -126,7 +126,8 @@ public class GuideController {
 	//가이드 신청현황폼 보기
 	@RequestMapping("myApply")
 	public String myApply(String member_email,Model model) throws Exception{
-		model.addAttribute("PayInfoVO",payInfoService.payList2(member_email));
+		model.addAttribute("payList2",payInfoService.payList2(member_email));
+		//model.addAttribute("GuideVO",guideService.list(board_no));
 		return "my/myApply";
 	}
 

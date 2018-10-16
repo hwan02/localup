@@ -50,6 +50,7 @@ public class MainDAOImpl implements MainDAO {
 	@Override
 	public List<String> listName(String mainSearch) {
 		String search = "%"+mainSearch+"%";
+		//System.out.println("search="+search);
 		return sqlSession.selectList("main.listName", search);
 	}
 }

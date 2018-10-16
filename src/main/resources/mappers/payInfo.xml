@@ -26,7 +26,7 @@
 	<!--결제내역 조회(ver : PayInfoVO)-->
 	<select id="payList2" resultType="PayInfoVO">
 		select
-		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate,member_email,board_no
+		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate,board_no,member_email
 		from pay
 		where member_email=#{member_email}
 	</select>

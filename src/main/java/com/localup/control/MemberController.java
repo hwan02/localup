@@ -73,11 +73,14 @@ public class MemberController {
 		//memberService.subCheck(member_email_sub, member_email_guide)
 		int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
 		
+		System.out.println("subInfo>>>>"+subInfo);
+		
 		//subInfo=1이라면 이미 팔로워  subInfo=0이라면 아직 팔로워하지 않았음
-		if(subInfo==0)
-			model.addAttribute("subInfo", "enable");
-		else 
-			model.addAttribute("subInfo", "disable");
+		if(subInfo==0) {
+			model.addAttribute("subInfo", "enable");			
+		}else {
+			model.addAttribute("subInfo", "disable");			
+		}
 		
 		System.out.println("member_email>>"+sub_guide);
 		model.addAttribute("memberVO",memberService.read(sub_guide));

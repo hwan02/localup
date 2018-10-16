@@ -31,6 +31,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#addSub').click(function(){
+			
 			var member_email_guide = $('input[name=member_email]').val();
 			//var member_email_sub = ${sessionScope.id };
 			var member_email_sub = 'localup@gmail.com';
@@ -45,11 +46,15 @@
 				success:function(result){
 					console.log('result>>>'+result);
 					$('#countSub').html(result);
+					
 				}
 			});
+			
+// 			location.reload();
 		});//팔로우 버튼
 		
 		$('#minusSub').click(function(){
+			
 			var member_email_guide = $('input[name=member_email]').val();
 			//var member_email_sub = ${sessionScope.id };
 			var member_email_sub = 'localup@gmail.com';
@@ -67,7 +72,7 @@
 				}
 			});
 		});//팔로우 취소 버튼
-		
+
 	});
 </script>
 </head>
@@ -87,12 +92,14 @@
 		<%-- 로그인한 아이디가 팔로우한 테이블에 있으면 팔로워 취소버튼을 보이고
 		없으면 팔로우 버튼을 보이게 할 것 --%>
 		
+		<form action="" method="post">
 		<c:if test="${subInfo eq 'enable'}">
-			<input type="button" name="addSub" value="팔로워" id="addSub">
+			<input type="button" name="addSub"  value="팔로워" id="addSub">
 		</c:if>
 		<c:if test="${subInfo eq 'disable'}">
-			<input type="button" name="minusSub" value="팔로워취소" id="minusSub">
+			<input type="button" name="minusSub"   value="팔로워취소" id="minusSub" >
 		</c:if>
+		</form>
 		
 		<!-- 팔로우 수 -->
 		<div id="countSub">${countSub }</div>

@@ -6,7 +6,7 @@
 		<c:forEach items="${custom}" var="overlay" varStatus="status">
 			<li class="up">
 				<span class="number">${status.count }</span> 
-				<a href="가야할 길">
+				<a href="board/read?board_no=${overlay.board_no}">
 				<span class="title">${overlay.board_title }</span>
 				</a>
 				<span class="count">${overlay.board_like}</span>

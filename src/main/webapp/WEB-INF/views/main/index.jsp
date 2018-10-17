@@ -110,7 +110,7 @@
               <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item <%--dropdown--%>">
-              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%--dropdown-toggle--%>" href="member/myUpdate?member_email=${member_email}" id="navbarDropdownPortfolio" aria-haspopup="true" aria-expanded="false">
                 마이페이지
               </a>
               <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <!--작성자 : rys-->
-<title>가이드 상세페이지 등록</title>
+<title>투어 등록</title>
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -94,7 +94,7 @@
 		<!--투어 이미지-->
 		<input type="file" name="tour_imgs" id="tour_imgs" id="tour_imgs"> <br>
 		<!--게시글 번호 TEST 후 hide 처리-->
-		<input type="text" name="board_no" placeholder="모두 머지 할시 히든처리">
+		<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="모두 머지 할시 히든처리">
 		<br>
 		<!--투어 등록하기-->
 		<input type="button" id="tour_submit" value="투어 등록하기"> <br>

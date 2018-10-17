@@ -61,7 +61,8 @@ public class GuideController {
 	
 	//가이드 상세 페이지 등록 폼보기
 	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
-	public String guideWriteGET() throws Exception {
+	public String guideWriteGET(Integer board_no, Model model) throws Exception {
+		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guideWrite";
 	}
 
@@ -125,9 +126,9 @@ public class GuideController {
 	
 	//가이드 신청현황폼 보기
 	@RequestMapping("myApply")
-	public String myApply(String member_email,Model model) throws Exception{
+	public String myApply(String member_email,Model model,Integer tour_no) throws Exception{
 		model.addAttribute("payList2",payInfoService.payList2(member_email));
-		//model.addAttribute("GuideVO",guideService.list(board_no));
+//		model.addAttribute("myApplyGuideUpdate",guideService.myApplyGuideUpdate(tour_no));
 		return "my/myApply";
 	}
 

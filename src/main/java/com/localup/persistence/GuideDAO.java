@@ -23,4 +23,6 @@ public interface GuideDAO {
 	public List<GuideVO> myApplySchedule(Date tour_edate) throws Exception;
 
 	public List<GuideVO> myApplyPast(Date tour_edate) throws Exception;
+
+	public GuideVO myApplyGuideUpdate(Integer tour_no) throws Exception;
 }

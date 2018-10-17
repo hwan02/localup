@@ -41,4 +41,10 @@ public interface MemberDAO {
 	
 	//팔로우 취소
 	public void deleteSub(String member_email_sub,String member_email_guide) throws Exception;
+	
+	//내가 팔로우 한 사용자들 조회
+	public List<SubVO> myGuide(String member_email_sub) throws Exception;
+	
+	//사용자가 쓴 게시글 전체 행 수
+	public int countMBord(String member_email);
 }

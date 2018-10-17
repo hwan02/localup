@@ -96,6 +96,18 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("member.checkSub",map);
 	}
 	
+	//내가 팔로우 한 사용자들 조회
+	@Override
+	public List<SubVO> myGuide(String member_email_sub) throws Exception {
+		return sqlSession.selectList("member.myGuide",member_email_sub);
+	}
+	
+	//사용자가 쓴 게시글 전체 행 수
+	@Override
+	public int countMBord(String member_email) {
+		return sqlSession.selectOne("member.countMBord",member_email);
+	}
+	
 	//전체 회원정보 조회
 //	@Override
 //	public List<MemberVO> listAll() throws Exception {

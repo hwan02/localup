@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.localup.domain.Criteria;
 import com.localup.domain.MemberVO;
+import com.localup.domain.PageMaker;
 import com.localup.domain.SubVO;
 import com.localup.service.BoardService;
 import com.localup.service.MemberService;
@@ -134,6 +136,12 @@ public class MemberController {
 		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));	
 		//return memberService.countSub(member_email_guide);
 		return memberService.countSub(sub_guide);
+	}
+	
+	@RequestMapping(value="myCreate",method=RequestMethod.GET)
+	public String myCreate(Model model, String member_email_sub) throws Exception {
+		model.addAttribute("creator",memberService.readGuide(member_email_sub));
+		return "/my/myCreator";
 	}
 	
 	

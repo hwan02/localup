@@ -77,6 +77,18 @@ public class MemberServiceImpl implements MemberService{
 	public int subCheck(String member_email_sub, String member_email_guide) throws Exception {
 		return memberDAO.checkSub(member_email_sub, member_email_guide);
 	}
+	
+	//내가 팔로우 한 사용자들 조회
+	@Override
+	public List<SubVO> readGuide(String member_email_sub) throws Exception {
+		return memberDAO.myGuide(member_email_sub);
+	}
+	
+	//특정 사용자가 쓴 게시글 전체 행수 조회
+	@Override
+	public int mboardCount(String member_email) throws Exception {
+		return memberDAO.countMBord(member_email);
+	}
 
 	//회원정보 조회
 //	@Override

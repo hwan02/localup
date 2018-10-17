@@ -47,6 +47,7 @@
 					$('#countSub').html(result);
 				}
 			});
+			location.reload();
 		});//팔로우 버튼
 		
 		$('#minusSub').click(function(){
@@ -66,6 +67,7 @@
 					$('#countSub').html(result);
 				}
 			});
+			location.reload();
 		});//팔로우 취소 버튼
 		
 	});

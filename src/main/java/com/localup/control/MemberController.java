@@ -105,8 +105,10 @@ public class MemberController {
 			model.addAttribute("subInfo", "enable");
 		else 
 			model.addAttribute("subInfo", "disable");
-		//return memberService.countSub(member_email_guide); //구독자 수
 		
+		model.addAttribute("countSub",memberService.countSub(sub_guide));//구독자 수
+		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));
+		//return memberService.countSub(member_email_guide); //구독자 수
 		return memberService.countSub(sub_guide); //구독자 수
 	}
 	
@@ -125,8 +127,8 @@ public class MemberController {
 		else 
 			model.addAttribute("subInfo", "disable");
 		
-		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));
-		
+		model.addAttribute("countSub",memberService.countSub(sub_guide));//구독자 수
+		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));	
 		//return memberService.countSub(member_email_guide);
 		return memberService.countSub(sub_guide);
 	}

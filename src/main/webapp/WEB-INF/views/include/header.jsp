@@ -111,7 +111,7 @@
             </li>
             <li class="nav-item <%--dropdown--%>">
               <a class="nav-link <%--dropdown-toggle--%>" href="javascript:myPageCheck()" id="navbarDropdownPortfolio" aria-haspopup="true" aria-expanded="false">
-                마이페이지
+              		  마이페이지
               </a>
               <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                 <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
@@ -122,8 +122,8 @@
               </div> --%>
             </li>
             <li class="nav-item <%--dropdown--%>">
-              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                랭킹
+              <a class="nav-link <%--dropdown-toggle--%>" href="/rank/category" id="navbarDropdownBlog" <%--data-toggle="dropdown"--%> aria-haspopup="true" aria-expanded="false">
+             		   랭킹
               </a>
               <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
@@ -132,8 +132,8 @@
               </div>--%>
             </li>
             <li class="nav-item <%--dropdown--%>">
-              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                공지사항
+              <a class="nav-link <%--dropdown-toggle--%>" href="javascript:rank()" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                		공지사항
               </a>
               <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="full-width.html">Full Width Page</a>
@@ -205,6 +205,13 @@
 		location.href="/member/myUpdate?member_email=${member_email}";
 		}else{ location.href="#";}
 	}
+
+	/*랭킹보기*/
+// 	function rankCategory(){
+// 		if('${login}'){
+// 		location.href="/rank/category";
+// 		}else{ location.href="/rank/category";}
+// 	}
 	function goMainDetail(value){
 		var name = value.split('@')[0];
 		var email = value.split('@')[1];

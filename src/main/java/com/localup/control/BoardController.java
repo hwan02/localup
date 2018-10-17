@@ -45,9 +45,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="write", method=RequestMethod.GET) //게시글 쓰기 폼
-	public String writeGET(String board_alti, String board_long) throws Exception{
+	public String writeGET(String board_title,String board_alti, String board_long, Model model) throws Exception{
+		System.out.println(board_title);
 		System.out.println(board_alti+board_long);
-		return "board/boardWrite";
+		model.addAttribute("board_alti", board_alti);
+		model.addAttribute("board_long", board_long);
+		return "board/boardWrite2";
 	}
 	
 	@RequestMapping(value="write", method=RequestMethod.POST) //db입력

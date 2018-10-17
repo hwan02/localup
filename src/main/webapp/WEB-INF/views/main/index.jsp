@@ -33,7 +33,7 @@
             <li class="dropdown messages-menu">
             	<%-- 알림 --%>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o fa-spin fa-3x fa-fw"></i>
+                  <i class="fa fa-envelope-o <%-- fa-spin fa-3x fa-fw --%>"></i>
                   <span class="label label-success">4</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -44,7 +44,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="#" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -56,7 +56,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -68,7 +68,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Developers
@@ -80,7 +80,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Sales Department
@@ -92,7 +92,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Reviewers
@@ -109,39 +109,39 @@
             <li class="nav-item">
               <a class="nav-link" href="#" id="loginA"></a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item <%--dropdown--%>">
+              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 마이페이지
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                 <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
                 <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-              </div>
+              </div> --%>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item <%--dropdown--%>">
+              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 랭킹
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
                 <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
                 <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-              </div>
+              </div>--%>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item <%--dropdown--%>">
+              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 공지사항
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="full-width.html">Full Width Page</a>
                 <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
                 <a class="dropdown-item" href="faq.html">FAQ</a>
                 <a class="dropdown-item" href="404.html">404</a>
                 <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-              </div>
+              </div>--%>
             </li>
             <li>
               <a class="nav-link" href="index" id="logCheck">
@@ -205,7 +205,7 @@
 			if('${login}'){
 				$("#loginA").attr('href','#');
 				$("#loginA").text('${member_email}');
-				alert("환영합니다")
+				//alert("환영합니다")
 				var first="첫 화면";
 				searchPlaces(first);
 				$("#logCheck").text('로그아웃');
@@ -534,16 +534,16 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
     var iwContent = '<div style="padding:5px;">'
     				+'위도:'+latlng.getLat()
     				+'<br>경도:'+latlng.getLng()
-    				+'<br><a href="board/write">게시글쓰기</a>'
+    				+'<br><a href="board/write?board_alti='+ latlng.getLat()+
+    				'&board_long='+latlng.getLng()+'\">게시글쓰기</a>'
     				+'<br><a href="javascript:removeMarker()">취소</a>'
     				+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-
+  
     // 인포윈도우 설정
     infowindow.setContent(iwContent);
         
     infowindow.open(map, marker);
 });
-
 function removeMarker() {
    marker.setMap(null); //마커 표시 취소
    infowindow.close(); //인포윈도우 닫기
@@ -708,22 +708,20 @@ function replaceLoc(){
 <!-- 지도 범위 내 영역 표시  -->
 <div id="ajaxResult"></div>
 <!-- 키워드로 장소검색하고 목록으로 표출하기 -->
-<div id="menu_wrap" class="bg_white">
-    <div class="option">
-        <div>
-            <form onsubmit="searchPlaces(); return false;">
-                키워드 : <input type="text" id="keyword" size="15">
-                <button type="submit">검색하기</button> 
-            </form>
-        </div>
-    </div>
-    <hr>
-    <ul id="placesList"></ul>
-    <div id="pagination"></div>
+<div class="map_wrap">
+	<div id="menu_wrap" class="bg_white">
+	    <div class="option">
+	        <div>
+	            <form onsubmit="searchPlaces(); return false;">
+	                키워드 : <input type="text" id="keyword" size="15">
+	                <button type="submit">검색하기</button> 
+	            </form>
+	        </div>
+	    </div>
+	    <hr>
+	</div>
 </div>
 
-    <!-- Page Content -->
-    <div class="container">
 
 <script>
 	$(function(){

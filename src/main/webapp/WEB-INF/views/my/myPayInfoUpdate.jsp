@@ -10,16 +10,11 @@
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
 	$(function() { 	
 		$(".payCancel").click(function() { //결제취소 버튼 할시       
 			var formObj = $("form[role='form']");
 			alert("취소가 되었습니다.");
 		var str = "결제완료";
-
-// 		$(this).parents('tr').find('.pay_state').fadeToggle("slow");
-// 		$(this).parents('tr').find('.complete').fadeToggle("slow");
-// 		$(this).parents('tr').find('.pay_cdate').fadeToggle("slow");
 		
 		$(".pay_state").fadeToggle("slow");;
 		$(".complete").fadeToggle("slow");;
@@ -27,60 +22,8 @@
 
  		$('form').attr('action', '/pay/myPayInfoUpdate');
  		$('form').submit();
-		
-
-			
-
-			
-
-	
-	
-		
 		});	
 	});	
- 		
-//  		$.ajax({
-// 				url:'/pay/myPayInfo',
-// 				success: function(data){
-// 					console.log(data);
-// 					$('#result').html('<font color=blue>'+data+'</font>');
-					
-// 				},
-// 				data:{
-// 					name: $('.pay_state').val(),
-					
-// 				}
-// 			});
-
- 	
-
-		
-		
-
-// 		$('#selectPw').click(function(){
-// 			$('#result').html('잠시만 기다려주세요...');
-// 			$.ajax({
-// 				url:'/findPw',
-// 				success: function(data){
-// 					console.log(data);
-// 					$('#result').html('<font color=blue>'+data+'</font>');
-// 					if($.trim(data).length==0){
-// 						$('#result').html('<font color=red>정확한 정보를 기입해주세요.</font>');
-// 					}
-// 				},
-// 				data:{
-// 					name: $('#name2').val(),
-// 					id: $('#id').val()
-// 				}
-// 			});
-// 		});//pw찾기 버튼 클릭
-		
-	
-
-	
-		
-
-
 </script>
 </head>
 <body>

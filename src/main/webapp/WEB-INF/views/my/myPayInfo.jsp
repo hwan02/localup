@@ -7,56 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>결제내역</title>
-<style type="text/css">
-.pagination {
-  display: inline-block;
-  padding-left: 0;
-  margin: 20px 0;
-  border-radius: 4px;
-}
-.pagination > li {
-  display: inline;
-}
-.pagination > li > a,
-.pagination > li > span {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.42857143;
-  color: #337ab7;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-.pagination > .active > a{
-  z-index: 2;
-  color: #fff;
-  cursor: default;
-  background-color: #337ab7;
-  border-color: #337ab7;
-</style>
+
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
 
-	$(function() { 	
-		$(".payCancel").click(function() { //결제취소 버튼   
- 			$('form').attr('action', '/pay/myPayInfo');
- 			$('form').attr('method', 'get');
- 			$('form').submit();
+<script type="text/javascript" src="/resources/my_js/myPayInfo.js"></script>
 
-		});	
+<!--메뉴 클릭시 사이드바 생성-->
+<link rel="stylesheet" href="/resources/my_css/myPayInfo.css">
 
-		$(".guideDetailPage").click(function() { //가이드상세 페이지 버튼      
- 			//$('form').attr('action', '/pay/myPayInfo');
- 			$('form').attr('method', 'get');
- 			$('form').submit();
-
-		});	
-	});	
- 		
-</script>
 </head>
 <body>
 	<h1>결제내역 조회</h1>

@@ -66,6 +66,7 @@ public class MainController {
 	public String locInfo(String email, Model model) {
 		if(email!=null) {
 		String locInfo =service.locInfo(email);
+		System.out.println("MainController,locInfo="+locInfo);
 		model.addAttribute("locInfo",locInfo);
 		}
 		return "main/locInfo";
@@ -74,7 +75,7 @@ public class MainController {
 	public String search(String mainSearch, Model model) {
 		//System.out.println("mainSearch="+mainSearch);
 		List<String> listName=service.listName(mainSearch);	
-		//System.out.println("listName="+listName);
+		System.out.println("MainController, listName="+listName);
 		String listNames = listName.size()+"|";
 	    for(int i=0; i<listName.size(); i++){
 	    	listNames += listName.get(i);
@@ -99,5 +100,9 @@ public class MainController {
 	@RequestMapping("room")
 	public String room() {
 		return "/room";
+	}
+	@RequestMapping("map")
+	public String map() {
+		return "board/boardWrite2";
 	}
 }

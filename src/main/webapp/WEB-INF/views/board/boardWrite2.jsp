@@ -127,6 +127,22 @@
 		// 키워드로 장소를 검색합니다
 		//searchPlaces();
 		$(function(){
+			var board_alti = document.getElementById('board_alti');
+			var board_long = document.getElementById('board_long');
+			board_alti.value = '${board_alti}';
+			board_long.value = '${board_long}';
+			//해당 위치에 해당하는 인포 띄우기 
+    		var iwContent = '<div style="padding:5px;">선택위치!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new daum.maps.LatLng('${board_alti}', '${board_long}'), //인포윈도우 표시 위치입니다
+		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		
+		// 인포윈도우를 생성하고 지도에 표시합니다
+			var infowindow = new daum.maps.InfoWindow({
+			    map: map, // 인포윈도우가 표시될 지도
+			    position : iwPosition, 
+			    content : iwContent,
+			    removable : iwRemoveable
+			});
 			newLocation();
 		});
 		//마커이미지
@@ -176,15 +192,13 @@
     			//마커 클릭 시 해당 위도, 경도 값 넣기
     			var board_alti = document.getElementById('board_alti');
     			var board_long = document.getElementById('board_long');
-                board_alti.value = marker.getPosition().getLng();
-    			board_long.value = marker.getPosition().getLat();
+                board_alti.value = marker.getPosition().getLat();
+    			board_long.value = marker.getPosition().getLng();
     			searchDetailAddrFromLoc( marker.getPosition().getLat(),marker.getPosition().getLng(), function(result, status) {
     			        if (status === daum.maps.services.Status.OK) {
     			            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
     			            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-    			            
     			            var content = '<div class="bAddr">' +
-    			                             
     			                            detailAddr + 
     			                        '</div>';
     			         // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다

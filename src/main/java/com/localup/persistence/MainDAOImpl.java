@@ -44,12 +44,14 @@ public class MainDAOImpl implements MainDAO {
 
 	@Override
 	public String locInfo(String email) {
+		System.out.println("MainDAO, locInfo="+email);
 		return sqlSession.selectOne("main.locInfo", email);
 	}
 
 	@Override
 	public List<String> listName(String mainSearch) {
 		String search = "%"+mainSearch+"%";
+		System.out.println("MainDAO, listName="+search);
 		//System.out.println("search="+search);
 		return sqlSession.selectList("main.listName", search);
 	}

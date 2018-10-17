@@ -44,7 +44,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="#" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -56,7 +56,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -68,7 +68,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Developers
@@ -80,7 +80,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Sales Department
@@ -92,7 +92,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="#" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Reviewers
@@ -205,7 +205,7 @@
 			if('${login}'){
 				$("#loginA").attr('href','#');
 				$("#loginA").text('${member_email}');
-				alert("환영합니다")
+				//alert("환영합니다")
 				var first="첫 화면";
 				searchPlaces(first);
 				$("#logCheck").text('로그아웃');
@@ -534,16 +534,16 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
     var iwContent = '<div style="padding:5px;">'
     				+'위도:'+latlng.getLat()
     				+'<br>경도:'+latlng.getLng()
-    				+'<br><a href="board/write">게시글쓰기</a>'
+    				+'<br><a href="board/write?board_alti='+ latlng.getLat()+
+    				'&board_long='+latlng.getLng()+'\">게시글쓰기</a>'
     				+'<br><a href="javascript:removeMarker()">취소</a>'
     				+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-
+  
     // 인포윈도우 설정
     infowindow.setContent(iwContent);
         
     infowindow.open(map, marker);
 });
-
 function removeMarker() {
    marker.setMap(null); //마커 표시 취소
    infowindow.close(); //인포윈도우 닫기

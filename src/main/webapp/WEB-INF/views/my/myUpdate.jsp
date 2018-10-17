@@ -137,7 +137,6 @@
 		<div class="form-group">
 		<label for="comment">소개</label>
       	<textarea class="form-control" name="member_intro" rows="5" id="comment" name="text">${memberVO.member_intro}</textarea>
-		
     	</div>
 			
 		

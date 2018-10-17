@@ -50,7 +50,7 @@ public class BoardController {
 		System.out.println(board_alti+board_long);
 		model.addAttribute("board_alti", board_alti);
 		model.addAttribute("board_long", board_long);
-		return "board/boardWrite2";
+		return "board/boardWrite";
 	}
 	
 	@RequestMapping(value="write", method=RequestMethod.POST) //db입력

@@ -1,87 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로컬업</title>
-<style>
-	.fileDrop {
-		width: 80%;
-		height: 100px;
-		border: 1px dotted gray;
-		/* background-color: lightslategrey; */
-		margin: auto;
-	}
-	
-	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-	.map_wrap {position:relative;width:100%;height:500px;}
-	#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-	.bg_white {background:#fff;}
-	#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-	#menu_wrap .option{text-align: center;}
-	#menu_wrap .option p {margin:10px 0;}  
-	#menu_wrap .option button {margin-left:5px;}
-	#placesList li {list-style: none;}
-	#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-	#placesList .item span {display: block;margin-top:4px;}
-	#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-	#placesList .item .info{padding:10px 0 10px 55px;}
-	#placesList .info .gray {color:#8a8a8a;}
-	#placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-	#placesList .info .tel {color:#009900;}
-	#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-	#placesList .item .marker_1 {background-position: 0 -10px;}
-	#placesList .item .marker_2 {background-position: 0 -56px;}
-	#placesList .item .marker_3 {background-position: 0 -102px}
-	#placesList .item .marker_4 {background-position: 0 -148px;}
-	#placesList .item .marker_5 {background-position: 0 -194px;}
-	#placesList .item .marker_6 {background-position: 0 -240px;}
-	#placesList .item .marker_7 {background-position: 0 -286px;}
-	#placesList .item .marker_8 {background-position: 0 -332px;}
-	#placesList .item .marker_9 {background-position: 0 -378px;}
-	#placesList .item .marker_10 {background-position: 0 -423px;}
-	#placesList .item .marker_11 {background-position: 0 -470px;}
-	#placesList .item .marker_12 {background-position: 0 -516px;}
-	#placesList .item .marker_13 {background-position: 0 -562px;}
-	#placesList .item .marker_14 {background-position: 0 -608px;}
-	#placesList .item .marker_15 {background-position: 0 -654px;}
-	#pagination {margin:10px auto;text-align: center;}
-	#pagination a {display:inline-block;margin-right:10px;}
-	#pagination .on {font-weight: bold; cursor: default;color:#777;}
-	
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('#addBoard').click(function(){ //게시글 입력폼 유효성 검사
-			if($('#board_title').val().trim()==''){
-				alert('제목을 입력해주세요.');
-				$('#board_title').focus();
-			}else if($('#board_type').val()=='==선택=='){
-				alert('유형을 선택해주세요.');
-				$('#board_type').focus();
-			}else if($('#member_email').val().trim()==''){
-				alert('아이디(메일)을 입력해주세요.');
-				$('#member_email').focus();
-			}else if($('#board_cont').val().trim()==''){
-				alert('내용을 입력해주세요.');
-				$('#board_cont').focus();
-			}else if($('#board_imgs').val()==''){
-				alert('사진과 함께 올리주세요.');
-				$('#board_imgs').focus();
-			}else if($('#board_alti').val()==''&&$('#board_long').val()==''){
-				alert('지도에서 지역을 선택해주세요.');
-				$('#question').focus();
-			}else{
-				//올바른 데이터 입력시
-				$('#write').submit();
-			}
-		}); //게시글 등록 버튼 클릭
+<!--전체 디자인 요소-->
+<link rel= "stylesheet" type="text/css" href="/resources/board_css/boardWrite.css">
 
-	});
-</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!--유효성 검사-->
+<script type="text/javascript" src="/resources/board_js/boardWrite.js"></script>
 </head>
 <body>
 	<div class="map_wrap">
@@ -356,8 +289,8 @@
 	</script>
 
 	<form name="write" id="write" method="post" enctype="multipart/form-data">
-	<!-- <form name="write" method="post"> -->
-		제목: <input type="text" name="board_title" id="board_title"><br>
+	<div class="align-center">
+		<div>
 		유형:
 			<select name="board_type" id="board_type">
 				<option value="==선택==">==선택==</option>
@@ -366,13 +299,51 @@
 				<option value="편의시설">편의시설</option>
 				<option value="숙박">숙박</option>
 				<option value="랜드마크">랜드마크</option>
-			</select><br>
-		이메일: <input type="text" name="member_email" id="member_email"><br>
-		내용: <textarea rows="20" cols="50" name="board_cont" id="board_cont"></textarea><br>
-		이미지: <input type="file" name="board_imgs" id="board_imgs"><br>
-		위도: <input type="text" name="board_alti" id="board_alti">
-		경도: <input type="text" name="board_long" id="board_long"><br>
+			</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		이미지: <input type="file" name="board_imgs" id="board_imgs">
+		</div>
+		<div class="question">
+			<input type="text" name="board_title" id="board_title" required />
+			<label>제목</label>
+		</div>
+
+		<div class="question">
+			<input type="text" name="member_email" id="member_email" required />
+			<label>이메일</label>
+		</div>
+		
+		<div class="question">
+<!-- 			<div class="form-group"> -->
+      			<textarea class="form-control"  rows="5" name="board_cont" id="board_cont" placeholder="내용"></textarea>
+<!--     		</div> -->
+    	</div>
+		
+		<div class="question">
+			<input type="text" name="board_alti" id="board_alti" required>
+			<label>위도</label>
+			<input type="text" name="board_long" id="board_long" required>
+			<label>경도</label>
+		</div>
+
+<!-- 		제목: <input type="text" name="board_title" id="board_title"><br> -->
+<!-- 		유형: -->
+<!-- 			<select name="board_type" id="board_type"> -->
+<!-- 				<option value="==선택==">==선택==</option> -->
+<!-- 				<option value="맛집">맛집</option> -->
+<!-- 				<option value="교통">교통</option> -->
+<!-- 				<option value="편의시설">편의시설</option> -->
+<!-- 				<option value="숙박">숙박</option> -->
+<!-- 				<option value="랜드마크">랜드마크</option> -->
+<!-- 			</select> -->
+<!-- 			<br> -->
+<!-- 		이메일: <input type="text" name="member_email" id="member_email"><br> -->
+<!-- 		내용: <textarea rows="20" cols="50" name="board_cont" id="board_cont"></textarea><br> -->
+		
+<!-- 		위도: <input type="text" name="board_alti" id="board_alti"> -->
+<!-- 		경도: <input type="text" name="board_long" id="board_long"><br> -->
 		<button type="button" id="addBoard">등록</button>
+	</div>
 	</form>
 </body>
 </html>

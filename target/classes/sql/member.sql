@@ -9,7 +9,7 @@ CREATE TABLE member (
 	member_email VARCHAR2(50) NOT NULL, /* 이메일 */
 	member_pref VARCHAR2(50), /* 선호지역 */
 	member_intro VARCHAR2(300), /* 소개 */
-	member_state VARCHAR2(20) /* 상태 */
+	member_state NUMBER DEFAULT 0 NOT NULL /* 상태 */
 );
 
 CREATE UNIQUE INDEX PK_member
@@ -23,10 +23,16 @@ ALTER TABLE member
 		PRIMARY KEY (
 			member_email
 		);
-insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
-   values('localup@gmail.com','123','가이드왕','서울시','010-1234-5678','서울시 서초구','나야나');
-insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
-   values('naver@gmail.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');    
-insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro)
-   values('gildong@naver.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나');
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro,member_state)
+   values('localup@gmail.com','123','가이드왕','서울시','010-1234-5678','서울시 서초구','나야나',1);
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro,member_state)
+   values('naver@gmail.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나',1);    
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro,member_state)
+   values('gildong@naver.com','123','네이버','경기도','010-1234-5678','성남시 판교','나야나',1);
+------------------------------
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro,member_state)
+   values('li@naver.com','123','네이버','리','010-1234-5678','서울시 강남구','나야나',1);
+insert into member (member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro,member_state)
+   values('gil@naver.com','123','네이버','길','010-1234-5678','서울시 동작구','나야나',1);
+---------------------------------
 select * from member;

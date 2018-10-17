@@ -30,15 +30,7 @@ ALTER TABLE sub
 			member_email
 		);
 
-ALTER TABLE sub
-	ADD
-		CONSTRAINT FK_member_TO_sub
-		FOREIGN KEY (
-			member_email_guide
-		)
-		REFERENCES member (
-			member_email
-		);
+
 		
 --TEST
-insert into sub(member_id_sub1,member_id_guide1) values('localup@gmail.com','naver@gmail.com');
+insert into sub(member_email_sub,member_email_guide) values('localup@gmail.com','naver@gmail.com');

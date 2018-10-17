@@ -28,3 +28,15 @@ create sequence reply_seq
 		increment by 1
 		nocycle
 		nocache;
+		
+------------------------------
+--ALTER TABLE reply
+--	ADD
+--		CONSTRAINT FK_board_TO_reply
+--		FOREIGN KEY (
+--			board_no
+--		)
+--		REFERENCES board (
+--			board_no
+--		);
+alter table reply drop constraint FK_board_TO_reply cascade;

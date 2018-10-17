@@ -61,10 +61,11 @@
 	</select>
 	
 	<!-- 로그인한 아이디가 팔로우한 사용자인지 알기위해-->
-	<select id="loginSub" resultType="String">
-		select member_email_guide
+	<select id="checkSub" resultType="int">
+		select count(*) 
 		from sub 
-		where member_email_sub=#{member_email_sub}
+		where member_email_sub=#{member_email_sub} 
+		and member_email_guide=#{member_email_guide}
 	</select>
 	
 	<!-- 특정 아이디 구독(팔로우)취소 -->

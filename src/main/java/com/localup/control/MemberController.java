@@ -1,5 +1,8 @@
 package com.localup.control;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -64,14 +67,28 @@ public class MemberController {
 	
 	//사용자 정보페이지 보이기(작성:yr)
 	@RequestMapping(value="mInfo",method=RequestMethod.GET)
-	public String mInfoGET(Model model,String member_email, SubVO subVO, HttpSession session) throws Exception {
-		System.out.println("member_email>>"+member_email);
-		model.addAttribute("memberVO",memberService.read(member_email));
+	//public String mInfoGET(Model model,String member_email, SubVO subVO, HttpSession session) throws Exception {
+	public String mInfoGET(Model model, SubVO subVO, HttpSession session) throws Exception {
+		String sub_guide = subVO.getMember_email_guide();
+		//memberService.subCheck(member_email_sub, member_email_guide)
+		int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
+		
+		System.out.println("subInfo>>>>"+subInfo);
+		
+		//subInfo=1이라면 이미 팔로워  subInfo=0이라면 아직 팔로워하지 않았음
+		if(subInfo==0) {
+			model.addAttribute("subInfo", "enable");			
+		}else {
+			model.addAttribute("subInfo", "disable");			
+		}
+		
+		System.out.println("member_email>>"+sub_guide);
+		model.addAttribute("memberVO",memberService.read(sub_guide));
 		//model.addAttribute("member_email",member_email);
-		model.addAttribute("myLevel",memberService.readLevel(member_email));
-		model.addAttribute("boardList",memberService.listIdBoard(member_email));
-		model.addAttribute("countSub",memberService.countSub(member_email));
-		model.addAttribute("member_email_sub",memberService.readSub(member_email));
+		model.addAttribute("myLevel",memberService.readLevel(sub_guide));
+		model.addAttribute("boardList",memberService.listIdBoard(sub_guide));
+		model.addAttribute("countSub",memberService.countSub(sub_guide));//구독자 수
+		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));
 		
 		//model.addAttribute("loginSubId",memberService.readLoginSub(member_email)); //로그인한 아이디가 팔로우한 테이블에 있는지
 		return "board/mInfo";
@@ -81,15 +98,44 @@ public class MemberController {
 	@RequestMapping(value="addSub",method=RequestMethod.POST)
 	public @ResponseBody int addSub(Model model,String member_email_guide,SubVO subVO) throws Exception {
 		memberService.addSub(subVO);
-		return memberService.countSub(member_email_guide); //구독자 수
+		
+		String sub_guide = subVO.getMember_email_guide();
+		//memberService.subCheck(member_email_sub, member_email_guide)
+		int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
+		
+		//subInfo=1이라면 이미 팔로워  subInfo=0이라면 아직 팔로워하지 않았음
+		if(subInfo==0)
+			model.addAttribute("subInfo", "enable");
+		else 
+			model.addAttribute("subInfo", "disable");
+		
+		model.addAttribute("countSub",memberService.countSub(sub_guide));//구독자 수
+		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));
+		//return memberService.countSub(member_email_guide); //구독자 수
+		return memberService.countSub(sub_guide); //구독자 수
 	}
 	
 	//구독 취소
 	@RequestMapping(value="minusSub",method=RequestMethod.POST)
 	public @ResponseBody int minusSub(Model model,String member_email_guide,String member_email_sub, SubVO subVO) throws Exception {
 		memberService.minusSub(member_email_sub, member_email_guide);
-		return memberService.countSub(member_email_guide);
+		
+		String sub_guide = subVO.getMember_email_guide();
+		//memberService.subCheck(member_email_sub, member_email_guide)
+		int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
+		
+		//subInfo=1이라면 이미 팔로워  subInfo=0이라면 아직 팔로워하지 않았음
+		if(subInfo==0)
+			model.addAttribute("subInfo", "enable");
+		else 
+			model.addAttribute("subInfo", "disable");
+		
+		model.addAttribute("countSub",memberService.countSub(sub_guide));//구독자 수
+		model.addAttribute("member_email_sub",memberService.readSub(sub_guide));	
+		//return memberService.countSub(member_email_guide);
+		return memberService.countSub(sub_guide);
 	}
+	
 	
 	//위의 사용자정보 페이지 레벨 테스트용
 	/*@RequestMapping("mInfotest")

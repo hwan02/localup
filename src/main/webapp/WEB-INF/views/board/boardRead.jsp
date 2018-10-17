@@ -225,7 +225,8 @@
 		
 		$('#boardCont input[name=member_email]').click(function(){
 			alert('click');
-			window.location.href='/member/mInfo?member_email=${boardVO.member_email}';
+			//window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=${sessionScope.Id}';
+			window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=localup@gmail.com';
 			//이메일 정보값 넘겨줘야 함
 		}); //게시글 이메일 클릭시 사용자 정보 페이지 이동
 		

@@ -43,7 +43,7 @@ public class MemberController {
 	@RequestMapping(value="myUpdate", method=RequestMethod.POST)
 	public String myUpdatePOST(MemberVO memberVO)throws Exception{
 		memberService.update(memberVO);		//수정작업
-		return "redirect:myUpdate";		//수정작업확인	
+		return "redirect:/member/myUpdate";		//수정작업확인	
 	}
 	
 	//회원 탈퇴시 ==이동==> 메인페이지

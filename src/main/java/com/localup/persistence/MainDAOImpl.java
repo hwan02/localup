@@ -52,7 +52,6 @@ public class MainDAOImpl implements MainDAO {
 	public List<String> listName(String mainSearch) {
 		String search = "%"+mainSearch+"%";
 		System.out.println("MainDAO, listName="+search);
-		//System.out.println("search="+search);
 		return sqlSession.selectList("main.listName", search);
 	}
 }

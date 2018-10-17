@@ -11,6 +11,9 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <style type="text/css">
+	body{
+		margin: 70px 50px;
+	}
 	input[type="text"]{
 		display: inline-block;
 		/* border: 1px solid #ccc; */
@@ -24,10 +27,16 @@
     	resize: vertical;
     	size: 50px;
 		height: 37px;
-		width: 400px;
+		width: 300px;
 	}
 	input[type="button"]{
 		background-color: #00ff80;
+	}
+	table{
+		width:80%;
+		margin:20px 30px;
+		border:1;
+		border-color: #00ff80;
 	}
 	
 </style>
@@ -78,14 +87,13 @@
 </script>
 </head>
 <body>
-
 	<h3>사용자정보</h3>
-	<hr>
+	<hr size="100px" width="300px" align="left" style="border: solid 2px #00ff80;">
 	<!--회원아이디-->
 	이메일: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
 	<br>
 	<!--랭킹-->
-	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly>
+	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly style="width: 220px">
 	<br>
 	
 	<!--팔로워-->

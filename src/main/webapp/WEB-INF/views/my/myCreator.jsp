@@ -6,18 +6,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>내가 구독한 사람</title>
+<title>내가 팔로우한 사용자</title>
+<style type="text/css">
+	body{
+		margin: 70px 50px;
+	}
+	table {
+		width:40%;
+		margin:20px 10px;
+		border:1;
+		border-color: #00ff80;
+	}
+	th{
+		text-align: left;
+	}
+</style>
 </head>
 <body>
-내가 구독한 사람
-<hr>
-<c:forEach items="${creator }" var="myGuide">
+<h3>내가 팔로우한 사용자</h3>
+<hr align="left" style="border: solid 2px #00ff80;" width="200px">
+<!-- <hr align="left" style="border: solid 2px #343a40;" width="200px"> -->
+<table cellpadding="3">
+	<tr>
+		<th colspan="2">팔로우</th>
+		<th>날짜</th>
+	</tr>
+	<c:forEach items="${creator }" var="myGuide">
+	<tr>
+		<td>
+			<img src="/resources/img/user_big.png" height="70" width="70">
+		</td>
+		<td>
+			<%-- <a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=${sessionScope.Id}">${myGuide.member_email_guide }</a> --%>
+		<a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=localup@gmail.com">${myGuide.member_email_guide }</a>
+		</td>
+		<td>
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${myGuide.sub_date }"/>
+		</td>
+	</tr>
+	</c:forEach>
+</table>
+
+<%-- <c:forEach items="${creator }" var="myGuide">
 	<div>
-		<%-- <a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=${sessionScope.Id}">${myGuide.member_email_guide }</a> --%>
+		<a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=${sessionScope.Id}">${myGuide.member_email_guide }</a>
 		<a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=localup@gmail.com">${myGuide.member_email_guide }</a>
 		<fmt:formatDate pattern="yyyy-MM-dd" value="${myGuide.sub_date }"/>
 	</div>
-</c:forEach>
+</c:forEach> --%>
 
 </body>
 </html>

@@ -41,6 +41,30 @@
 		background-color: #fff;
 		border: 1px solid #ddd;
 	}
+	body{
+		margin: 70px 50px;
+	}
+	div{
+		margin: 20px 30px;
+	}
+	input[type="text"]{
+		display: inline-block;
+		/* border: 1px solid #ccc; */
+		border-left: thin;
+		border-right: thin;
+		border-top: thin;
+		border-radius: 4px;
+		box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+    	resize: vertical;
+    	size: 50px;
+		height: 37px;
+		width: 300px;
+	}
+	button{
+		background-color: #00ff80;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

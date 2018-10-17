@@ -10,71 +10,70 @@
 </head>
 <body>
 <h3>랭킹</h3>
-
-맛집<hr>
-<c:forEach items="${restaurant }" var="boardVO" varStatus="status">
-	<div>
-		${status.count}
-		<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
-		<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
-		${boardVO.member_email }
-		<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
-	</div>
-</c:forEach>
-<br>
-
-교통<hr>
-<c:forEach items="${traffic }" var="boardVO" varStatus="status">
-	<div>
-		${status.count}
-		<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
-		<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
-		${boardVO.member_email }
-		<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
-	</div>
-</c:forEach>
-<br>
-
-편의시설<hr>
-<c:forEach items="${traffic }" var="boardVO" varStatus="status">
-	<div>
-		${status.count}
-		<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
-		<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
-		${boardVO.member_email }
-		<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
-	</div>
-</c:forEach>
-<br>
-
-숙박<hr>
-<c:forEach items="${lodgment }" var="boardVO" varStatus="status">
-	<div>
-		${status.count}
-		<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
-		<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
-		${boardVO.member_email }
-		<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
-	</div>
-</c:forEach>
-<br>
-
-랜드마크<hr>
-<c:forEach items="${randmark }" var="boardVO" varStatus="status">
-	<div>
-		${status.count}
-		<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
-		<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
-		${boardVO.member_email }
-		<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
-		<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
-	</div>
-</c:forEach>
-<br>
+	맛집<hr>
+	<c:forEach items="${restaurant }" var="boardVO" varStatus="status">
+		<div>
+			${status.count}
+			<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
+			<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
+			${boardVO.member_email }
+			<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
+		</div>
+	</c:forEach>
+	<br>
+	
+	교통<hr>
+	<c:forEach items="${traffic }" var="boardVO" varStatus="status">
+		<div>
+			${status.count}
+			<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
+			<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
+			${boardVO.member_email }
+			<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
+		</div>
+	</c:forEach>
+	<br>
+	
+	편의시설<hr>
+	<c:forEach items="${facilities }" var="boardVO" varStatus="status">
+		<div>
+			${status.count}
+			<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
+			<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
+			${boardVO.member_email }
+			<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
+		</div>
+	</c:forEach>
+	<br>
+	
+	숙박<hr>
+	<c:forEach items="${lodgment }" var="boardVO" varStatus="status">
+		<div>
+			${status.count}
+			<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
+			<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
+			${boardVO.member_email }
+			<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
+		</div>
+	</c:forEach>
+	<br>
+	
+	랜드마크<hr>
+	<c:forEach items="${randmark }" var="boardVO" varStatus="status">
+		<div>
+			${status.count}
+			<img src="/resources/img/${boardVO.board_img }" width="50" height="50" >
+			<a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a>
+			${boardVO.member_email }
+			<img src="/resources/img/like.png" width="15" height="15">[${boardVO.board_like }]
+			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.board_date }"/>
+		</div>
+	</c:forEach>
+	<br>
 
 </body>
 </html>

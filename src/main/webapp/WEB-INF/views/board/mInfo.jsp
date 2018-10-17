@@ -26,6 +26,9 @@
 		height: 37px;
 		width: 400px;
 	}
+	input[type="button"]{
+		background-color: #00ff80;
+	}
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,10 +78,11 @@
 </script>
 </head>
 <body>
-	<h1>사용자정보</h1>
+
+	<h3>사용자정보</h3>
 	<hr>
 	<!--회원아이디-->
-	ID: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
+	이메일: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
 	<br>
 	<!--랭킹-->
 	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly>
@@ -90,20 +94,23 @@
 		<%-- 로그인한 아이디가 팔로우한 테이블에 있으면 팔로워 취소버튼을 보이고
 		없으면 팔로우 버튼을 보이게 할 것 --%>
 		
+		<!-- 팔로우 수 -->
+		[<span id="countSub">${countSub }</span>]
+		
 		<c:if test="${subInfo eq 'enable'}">
-			<input type="button" name="addSub" value="팔로워" id="addSub">
+			<input type="button" name="addSub" value="팔로워" id="addSub" class="btn">
 		</c:if>
 		<c:if test="${subInfo eq 'disable'}">
-			<input type="button" name="minusSub" value="팔로워취소" id="minusSub">
+			<input type="button" name="minusSub" value="팔로워취소" id="minusSub" class="btn">
 		</c:if>
 		
-		<!-- 팔로우 수 -->
-		<div id="countSub">${countSub }</div>
-		
 		<!-- 팔로워한 사용자 목록 -->
-		<c:forEach items="${member_email_sub }" var="subVO">
-			<div id="member_email_sub">${subVO.member_email_sub }</div>
-		</c:forEach>
+		<br>팔로우한 사용자<br>
+		<div id="subPeople">
+			<c:forEach items="${member_email_sub }" var="subVO">
+				<div id="member_email_sub">${subVO.member_email_sub }</div>
+			</c:forEach>
+		</div>
 		<br><br>
 	
 	<!--업로드한 게시글 가져오기-->

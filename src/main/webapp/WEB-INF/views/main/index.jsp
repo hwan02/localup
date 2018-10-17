@@ -236,14 +236,19 @@
 							$.each(words[1].split(','),function(index, value){
 								var name = value.split('@')[0];
 								var email = value.split('@')[1];
-								$("#display").append($('<a href="javascript:goMainDetail('+name+')">'+name+"@"+email+'</a><br>')).show();
+								$("#display").append($('<a href=javascript:goMainDetail("'+value+'")>'+name+"@"+email+'</a><br>')).show();
 							})
 							}
 						}
                      });
                  }
-             });
+             }); 
 		});
+	function goMainDetail(value){
+		var name = value.split('@')[0];
+		var email = value.split('@')[1];
+		location.href="/member/mInfo?member_email_sub=${member_email}&member_email_guide="+name+"@"+email;
+	}
 	</script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer,services,drawing"></script>

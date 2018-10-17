@@ -23,10 +23,7 @@ public class MainController {
 	@Inject
 	private MainService service;
 	
-	@RequestMapping("main")
-	public String main() {
-		return "main/main";
-	}
+	
 	
 	@RequestMapping(value="index")
 	public String indexGet(String logout, HttpServletRequest request) {

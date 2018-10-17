@@ -138,10 +138,18 @@ public class MemberController {
 		return memberService.countSub(sub_guide);
 	}
 	
+	//내가 팔로우한 사용자들
 	@RequestMapping(value="myCreate",method=RequestMethod.GET)
 	public String myCreate(Model model, String member_email_sub) throws Exception {
 		model.addAttribute("creator",memberService.readGuide(member_email_sub));
 		return "/my/myCreator";
+	}
+	
+	//나를 팔로우한 사용자들
+	@RequestMapping(value="myFan",method=RequestMethod.GET)
+	public String myFan(Model model, String member_email_guide) throws Exception {
+		model.addAttribute("member_email_sub",memberService.readSub(member_email_guide));
+		return "/my/myFan";
 	}
 	
 	

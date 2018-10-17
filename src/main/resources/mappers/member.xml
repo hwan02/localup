@@ -55,7 +55,7 @@
 	
 	<!-- 특정 아이디를 팔로우 한 사용자 조회 -->
 	<select id="selectSub" resultType="SubVO">
-		select member_email_sub 
+		select member_email_sub,sub_date 
 		from sub 
 		where member_email_guide=#{member_email_guide}
 	</select>

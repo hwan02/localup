@@ -12,4 +12,5 @@ $(function() {
  			$('form').submit();
 
 		});	
+		
 	});	

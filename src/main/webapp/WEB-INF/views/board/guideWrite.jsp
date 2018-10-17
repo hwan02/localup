@@ -87,14 +87,14 @@
 		<input type="text" name="tour_edate" id="tour_edate" placeholder="예) 2018-08-17">
 		<br>
 		<!--투어 금액-->
-		<input type="text" name="tour_pay" id="tour_pay" placeholder="투어금액"> <br>
+		<input type="text" name="tour_pay"  placeholder="투어금액"> <br>
 		<!--투어 내용-->
 		<textarea rows="10" cols="10" name="tour_cont" id="tour_cont" placeholder="투어내용"></textarea>
 		<br>
 		<!--투어 이미지-->
 		<input type="file" name="tour_imgs" id="tour_imgs" id="tour_imgs"> <br>
 		<!--게시글 번호 TEST 후 hide 처리-->
-		<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="모두 머지 할시 히든처리">
+			<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="모두 머지 할시 히든처리">
 		<br>
 		<!--투어 등록하기-->
 		<input type="button" id="tour_submit" value="투어 등록하기"> <br>

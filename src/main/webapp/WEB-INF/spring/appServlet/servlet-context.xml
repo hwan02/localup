@@ -65,8 +65,8 @@
 	<!--서버의 파일 저장 경로 설정-->
 	<!--이유는 서비스 할 때 데이터베이스에서 읽어야 하는 등 성능상에 문제가 있을 수 있다-->
 	<beans:bean id="uploadPath" class="java.lang.String">
-<!-- 		<beans:constructor-arg value="D:\localup\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\localup\resources\img"></beans:constructor-arg> -->
-		<beans:constructor-arg value="C:\localup\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\localup\resources\img"></beans:constructor-arg>
+		<beans:constructor-arg value="D:\localup\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\localup\resources\img"></beans:constructor-arg>
+<!-- 		<beans:constructor-arg value="C:\localup\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\localup\resources\img"></beans:constructor-arg> -->
 	</beans:bean>
 	
 	

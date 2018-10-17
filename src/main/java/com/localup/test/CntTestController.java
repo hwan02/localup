@@ -12,5 +12,4 @@ public class CntTestController {
 		return"test/cnt";
 	}
 	
-	
 }

@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.subCount(member_email_guide);
 	}
 	
-	//팔로우한 사용자 조회
+	//특정 사용자를 팔로우한 사용자 조회
 	@Override
 	public List<SubVO> readSub(String member_email_guide) throws Exception {
 		return memberDAO.selectSub(member_email_guide);

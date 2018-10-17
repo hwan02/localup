@@ -64,7 +64,7 @@
 	<input type="image" src="/resources/img/${GuideVO.tour_img }">
 	<br>
 	<!--투어 신청하기-->
-	<a href="http://localhost/pay/pay"><input type="button" value="투어 신청"></a>
+	<a href="http://localhost/pay/pay?board_no=${GuideVO.board_no}"><input type="button" value="투어 신청"></a>
 	<br>
 	<!--게시글 상페이지로 이동하기-->
 	<a href="/board/read?board_no=${GuideVO.board_no }"><input type="button" value="게시글 작성"></a> 

@@ -13,7 +13,8 @@
 <hr>
 <c:forEach items="${creator }" var="myGuide">
 	<div>
-		${myGuide.member_email_guide }
+		<%-- <a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=${sessionScope.Id}">${myGuide.member_email_guide }</a> --%>
+		<a href="/member/mInfo?member_email_guide=${myGuide.member_email_guide }&member_email_sub=localup@gmail.com">${myGuide.member_email_guide }</a>
 		<fmt:formatDate pattern="yyyy-MM-dd" value="${myGuide.sub_date }"/>
 	</div>
 </c:forEach>

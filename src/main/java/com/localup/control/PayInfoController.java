@@ -33,9 +33,13 @@ public class PayInfoController {
 	@Inject
 	PayInfoService payInfoService;
 	
+	@Inject
+	GuideService guideService;
+	
 	//결제페이지 폼 보이기(ver : 모달에서 메인페이지 클릭시)
 	@RequestMapping(value="pay",method=RequestMethod.GET)
-	public String payGET() throws Exception{
+	public String payGET(Integer board_no, Model model) throws Exception{
+		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/pay";
 	}
 	
@@ -43,14 +47,14 @@ public class PayInfoController {
 	@RequestMapping(value="pay",method=RequestMethod.POST)
 	public String payPOST(PayInfoVO payInfoVO) throws Exception{
 		payInfoService.insert(payInfoVO);
-		return "redirect:/pay/main";
+		return "redirect:/index";
 	}
 	
 	//결제페이 ==이동==> main(ver : 모달에서 메인페이지 클릭시)
-	@RequestMapping("main")
-	public String main() {
-		return "main/main";
-	}
+//	@RequestMapping("index")
+//	public String main() {
+//		return "main/index";
+//	}
 
 	//결제페이지 폼 보이기(ver : 모달에서 마이페이지 클릭시)
 //	@RequestMapping(value="payMy",method=RequestMethod.GET)

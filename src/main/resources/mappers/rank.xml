@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- rank.xml -->
 <mapper namespace="rank">
-	
+
 	<!-- 분야별 랭킹 보기 -->
 	<select id="categoryRank1" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no

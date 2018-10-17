@@ -708,22 +708,20 @@ function replaceLoc(){
 <!-- 지도 범위 내 영역 표시  -->
 <div id="ajaxResult"></div>
 <!-- 키워드로 장소검색하고 목록으로 표출하기 -->
-<div id="menu_wrap" class="bg_white">
-    <div class="option">
-        <div>
-            <form onsubmit="searchPlaces(); return false;">
-                키워드 : <input type="text" id="keyword" size="15">
-                <button type="submit">검색하기</button> 
-            </form>
-        </div>
-    </div>
-    <hr>
-    <ul id="placesList"></ul>
-    <div id="pagination"></div>
+<div class="map_wrap">
+	<div id="menu_wrap" class="bg_white">
+	    <div class="option">
+	        <div>
+	            <form onsubmit="searchPlaces(); return false;">
+	                키워드 : <input type="text" id="keyword" size="15">
+	                <button type="submit">검색하기</button> 
+	            </form>
+	        </div>
+	    </div>
+	    <hr>
+	</div>
 </div>
 
-    <!-- Page Content -->
-    <div class="container">
 
 <script>
 	$(function(){

@@ -100,4 +100,8 @@ public class MainController {
 	public String room() {
 		return "/room";
 	}
+	@RequestMapping("map")
+	public String map() {
+		return "board/boardWrite2";
+	}
 }

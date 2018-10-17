@@ -49,4 +49,12 @@
 		where tour_no=#{tour_no}
 	</delete>
 	
+	<!--가이드 상세페이지 수정폼-->
+		<select id="myApplyGuideUpdate" resultType="GuideVO">
+		select 
+		tour_no
+		from tour
+		where tour_no=#{tour_no} 
+	</select>
+	
 </mapper>

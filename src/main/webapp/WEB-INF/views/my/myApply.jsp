@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header.jsp"%>
+<%-- <%@include file="../main/index.jsp"%> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
 
 <!--메뉴 클릭시 사이드바 생성-->
 <script type="text/javascript" src="/resources/my_js/myApply.js"></script>
+
 
 
 <!-- <link> -->
@@ -33,8 +35,8 @@
 	<!--맨위로 클릭-->
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	
-	<c:forEach items="${payList2}" var="PayInfoVO">
 	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
+	<c:forEach items="${payList2}" var="PayInfoVO">
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="/member/myUpdate?member_email=${PayInfoVO.member_email}">회원정보 변경</a>
@@ -42,6 +44,10 @@
 		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
 		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어신청 조회</a>  
 		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a> 
+		
+	
+		 
+
 	</div>
 	</c:forEach>
 	

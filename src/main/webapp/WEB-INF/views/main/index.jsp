@@ -110,7 +110,7 @@
               <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item <%--dropdown--%>">
-              <a class="nav-link <%--dropdown-toggle--%>" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%--dropdown-toggle--%>" href="javascript:myPageCheck()" id="navbarDropdownPortfolio" aria-haspopup="true" aria-expanded="false">
                 마이페이지
               </a>
               <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
@@ -236,14 +236,25 @@
 							$.each(words[1].split(','),function(index, value){
 								var name = value.split('@')[0];
 								var email = value.split('@')[1];
-								$("#display").append($('<a href="javascript:goMainDetail('+name+')">'+name+"@"+email+'</a><br>')).show();
+								$("#display").append($('<a href=javascript:goMainDetail("'+value+'")>'+name+"@"+email+'</a><br>')).show();
 							})
 							}
 						}
                      });
                  }
-             });
+             }); 
 		});
+	/* 마이페이지 클릭 시 로그인 상태 확인 후 이동 */
+	function myPageCheck(){
+		if('${login}'){
+		location.href="member/myUpdate?member_email=${member_email}";
+		}else{ location.href="#";}
+	}
+	function goMainDetail(value){
+		var name = value.split('@')[0];
+		var email = value.split('@')[1];
+		location.href="/member/mInfo?member_email_sub=${member_email}&member_email_guide="+name+"@"+email;
+	}
 	</script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e44ca42b17cfcb33cbcd5af281672e&libraries=clusterer,services,drawing"></script>

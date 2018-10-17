@@ -110,8 +110,8 @@
 			
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-			center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3 // 지도의 확대 레벨
+			center : new daum.maps.LatLng('${board_alti}', '${board_long}'), // 지도의 중심좌표
+			level : 5 // 지도의 확대 레벨
 		};
 	
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -170,16 +170,31 @@
                 removable : iwRemoveable
             });
 
-            // 마커에 클릭이벤트를 등록합니다
+            // 마커에 클릭이벤트를 등록합니다 기존마커정보 
             daum.maps.event.addListener(marker, 'click', function() {
+            	
     			//마커 클릭 시 해당 위도, 경도 값 넣기
     			var board_alti = document.getElementById('board_alti');
     			var board_long = document.getElementById('board_long');
                 board_alti.value = marker.getPosition().getLng();
     			board_long.value = marker.getPosition().getLat();
-    			var content="제목을 넣어주세요"
+    			searchDetailAddrFromLoc( marker.getPosition().getLat(),marker.getPosition().getLng(), function(result, status) {
+    			        if (status === daum.maps.services.Status.OK) {
+    			            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+    			            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+    			            
+    			            var content = '<div class="bAddr">' +
+    			                             
+    			                            detailAddr + 
+    			                        '</div>';
+    			         // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+    						 infowindow.setContent(content);
+    						 infowindow.open(map, marker);
+    			        }
+    			});
+    			/* var content="제목을 넣어주세요"
     			infowindow.setContent(content);
-    		    infowindow.open(map, marker);
+    		    infowindow.open(map, marker); */
                   //사라졌던 마커가 있으면 다시 표시해주기
                   /* if(disMarker != null && disMarker.getMap() == null) {
                   	disMarker.setMap(map);
@@ -305,9 +320,34 @@ function replaceLoc(){
 		    }
 		}
 		 
+		function searchDetailAddrFromCoords(coords, callback) {
+		    // 좌표로 법정동 상세 주소 정보를 요청합니다
+		    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+		}
+		/* 기존마커클릭시 해당 좌표 주소 */
+		function searchDetailAddrFromLoc(alti,longt, callback) {
+		    // 좌표로 법정동 상세 주소 정보를 요청합니다
+		    geocoder.coord2Address(longt, alti, callback);
+		} 
 		//지도에 클릭 이벤트를 등록합니다
 		//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 		daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+			// 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+			searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+			        if (status === daum.maps.services.Status.OK) {
+			            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+			            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+			            
+			            var content = '<div class="bAddr">' +
+			                           
+			                            detailAddr + 
+			                        '</div>';
+			         // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+						 infowindow.setContent(content);
+						 infowindow.open(map, marker);
+			        }
+			});
+			 
 			// 마커를 클릭한 위치에 표시합니다 
             marker.setPosition(mouseEvent.latLng);
             marker.setMap(map);

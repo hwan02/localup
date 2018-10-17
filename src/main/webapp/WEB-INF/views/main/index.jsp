@@ -110,7 +110,7 @@
               <a class="nav-link" href="#" id="loginA"></a>
             </li>
             <li class="nav-item <%--dropdown--%>">
-              <a class="nav-link <%--dropdown-toggle--%>" href="member/myUpdate?member_email=${member_email}" id="navbarDropdownPortfolio" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link <%--dropdown-toggle--%>" href="javascript:myPageCheck()" id="navbarDropdownPortfolio" aria-haspopup="true" aria-expanded="false">
                 마이페이지
               </a>
               <%-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
@@ -244,6 +244,12 @@
                  }
              }); 
 		});
+	/* 마이페이지 클릭 시 로그인 상태 확인 후 이동 */
+	function myPageCheck(){
+		if('${login}'){
+		location.href="member/myUpdate?member_email=${member_email}";
+		}else{ location.href="#";}
+	}
 	function goMainDetail(value){
 		var name = value.split('@')[0];
 		var email = value.split('@')[1];

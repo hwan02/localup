@@ -79,7 +79,7 @@
 		<input type="hidden" name="pay_state" value="결제완료">
 		<!--게시글 번호 TEST후 hiden 처리(DB에서 가져오기)-->
 		<!--board_no-->
-		<input type="text" name="board_no" placeholder="게시글번호">
+		<input type="text" name="board_no" value="${GuideVO.board_no }" placeholder="게시글번호">
 		<br>
 <!-- 		<input type="submit" value="확인"> -->
 

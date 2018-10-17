@@ -316,6 +316,7 @@
 	<button type="button" id="modBtn">수정</button>
 	<button type="button"id="delBtn">삭제</button>
 	<button id="mainBtn">메인으로</button>
+	<a href="/guide/guideDetailPage?board_no=${boardVO.board_no }"><button type="button">게시글 상세페이지</button></a> 
 
 	<hr>
 	<!-- 댓글 입력폼 -->

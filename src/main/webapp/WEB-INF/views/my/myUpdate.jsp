@@ -2,122 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원정보 변경 TEST</title>
+<title>회원정보 변경</title>
 <!--더보기-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<link rel="stylesheet" href="/resources/my_css/myUpdate.css">
+
 <!--구글 제이쿼리-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" src="/resources/my_js/myUpdate.js"></script>
 
-	$(function() { 
-		$('#updateBT').click(function() { //수정 버튼 클릭시
-			alert("수정 완료");
-		});
-		
-	    $("input").keydown(function() { //수정 할시 버튼 생김
-	        $("#updateDIV").show(1000);
-	    });
 
-	    $("textarea").keydown(function() {//수정 할시 버튼 생김
-	        $("#updateDIV").show(1000);
-	    });
-	});
-	
-	$(function() {
-		$("#deleteBT").click(function() {
-			$('form').attr('action','/member/delete');
-			$('form').submit();
-		});
-	});
-	
-	<!--메뉴 클릭시 사이드바 생성-->
-	function openNav() {
-		document.getElementById("mySidenav").style.width = "250px";
-		document.getElementById("main").style.marginLeft = "250px";
-		document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-	}
-
-	function closeNav() {
-		document.getElementById("mySidenav").style.width = "0";
-		document.getElementById("main").style.marginLeft = "0";
-		document.body.style.backgroundColor = "white";
-	}
-</script>
-
-<style>
-<!--메뉴 클릭시 사이드바 생성-->
-body {
-	font-family: "Lato", sans-serif;
-	transition: background-color .5s;
-}
-
-.sidenav {
-	height: 100%;
-	width: 0;
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	background-color: #111;
-	overflow-x: hidden;
-	transition: 0.5s;
-	padding-top: 60px;
-}
-
-.sidenav a {
-	padding: 8px 8px 8px 32px;
-	text-decoration: none;
-	font-size: 25px;
-	color: #818181;
-	display: block;
-	transition: 0.3s;
-}
-
-.sidenav a:hover {
-	color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-	position: absolute;
-	top: 0;
-	right: 25px;
-	font-size: 36px;
-	margin-left: 50px;
-}
-
-#main {
-	transition: margin-left .5s;
-	padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-	.sidenav {
-		padding-top: 15px;
-	}
-	.sidenav a {
-		font-size: 18px;
-	}
-}
-</style>
 </head>
 <body class="container">
-	<h1><a href="/index">회원정보 변경 </a></h1>
-	<hr>
 	<form action="/member/myUpdate" method="post">
 	<!--메뉴 클릭시 사이드바 생성-->
 	<div id="main">
 		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
 	</div>
 	
-<%-- 	<c:forEach items="${memberVO}" var="memberVO2"> --%>
-	<!--메뉴 클릭시 사이드바 생성 그리고 사이드바 메뉴 클릭시 이동-->
+	<div class="container" >
+		<h1><a href="/index">회원정보 변경 </a></h1>
+	</div>
+
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="/member/myUpdate?member_email=${memberVO.member_email}">회원정보 변경</a> 
@@ -126,27 +40,35 @@ body {
 		<a href="/guide/myApply?member_email=${memberVO.member_email}">투어 신청현황</a>  
 		<a href="/guide/myApplyPast?member_email=${memberVO.member_email}">완료 투어</a> 
 	</div>
-<%-- 	</c:forEach> --%>
-	
-<%-- 	<c:forEach items="${memberVO}" var="memberVO"> --%>
-		이메일
-		<div><input type="text" disabled="disabled" name="member_email" value="${memberVO.member_email}"></div>
-		<input type="hidden"  name="member_email" value="${memberVO.member_email}">
-		<br>
-		비밀번호
-		<div><input type="password" name="member_pw" value="${memberVO.member_pw}"></div>
-		<br>
-		이름
-		<div><input type="text" disabled="disabled" name="member_name" value="${memberVO.member_name}"></div>
-		<div><input type="hidden"  name="member_name" value="${memberVO.member_name}"></div>
-		<br>
-		주소
-<%-- 		<div><input type="text" name="member_addr" value="${mUpdateVO.member_addr}"> <button type="button">주소검색</button> </div> --%>
-		<br>
-<%-- 			<input type="text" name="member_zipcode"  value="${memberVO.member_zipcode}" id="sample6_postcode" placeholder="우편번호"> --%>
-			<input type="text"  name="member_addr"  value="${memberVO.member_addr}" id="sample6_address" size="30" placeholder="주소">
-			<input type="button"  onclick="sample6_execDaumPostcode()" value="주소 찾기">
-<%-- 			<input type="text"  name="member_detailedaddress" value="${memberVO.member_detailedaddress}" id="sample6_address2" placeholder="상세주소"> --%>
+	<br>
+	<div class="container">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+        		<span class="input-group-text">이메일&nbsp;&nbsp;&nbsp;</span>
+      		</div>
+			<input type="text" class="form-control" readonly="readonly" name="member_email" value="${memberVO.member_email}">
+		</div>
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+        		<span class="input-group-text">비밀번호</span>
+      		</div>
+			<input type="password" class="form-control" name="member_pw" value="${memberVO.member_pw}">
+		</div>
+		
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+        		<span class="input-group-text">이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      		</div>
+			<input type="text" class="form-control" readonly="readonly" name="member_name" value="${memberVO.member_name}">
+		</div>
+  
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+        			<span class="input-group-text" onclick="sample6_execDaumPostcode()" >주소찾기</span> 
+      			</div>
+				<input type="text" class="form-control" name="member_addr"  value="${memberVO.member_addr}" id="sample6_address" size="30" placeholder="주소">
+      		</div>
 			
 			<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 			<script>
@@ -197,21 +119,35 @@ body {
 							}).open();
 				}
 			</script>
-			<br>
-		연락처
-		<div><input type="tel" name="member_tel" value="${memberVO.member_tel}"></div>
-		<br>
-		선호지역
-		<div><input type="text" name="member_pref" value="${memberVO.member_pref}"></div>
-		<br>
-		소개
-<%-- 		<div><input type="text" name="member_intro" value="${mUpdateVO.member_intro}"></div> --%>
-		<div><textarea rows="10" cols="30" name="member_intro">${memberVO.member_intro}</textarea> </div>
-<%-- 		</c:forEach> --%>
-		<br>
-		<div style="display: none;" id="updateDIV"><button id="updateBT">수정</button></div>
-		<div><button type="reset">취소</button></div>
-		<div><button type="button" id="deleteBT">탈퇴</button></div>
+			
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+        		<span class="input-group-text">연락처&nbsp;&nbsp;&nbsp;</span>
+      		</div>
+		<input type="tel" class="form-control" name="member_tel" value="${memberVO.member_tel}">
+		</div>
+		
+		<div class="input-group mb-3">
+		<div class="input-group-prepend">
+        		<span class="input-group-text">선호지역</span>
+      		</div>
+		<input type="text" class="form-control" name="member_pref" value="${memberVO.member_pref}">
+		</div>
+		
+		<div class="form-group">
+		<label for="comment">소개</label>
+      	<textarea class="form-control" name="member_intro" rows="5" id="comment" name="text">${memberVO.member_intro}</textarea>
+		
+    	</div>
+			
+		
+		<div class="btn-group">
+  			<label style="display: none;" id="updateDIV"><button id="updateBT" class="btn btn-primary">수정</button></label> 
+  			<label><button type="reset" class="btn btn-primary">취소</button></label> 
+  			<label><button type="button" id="deleteBT" class="btn btn-primary">탈퇴</button></label> 
+		</div>
+		
+	</div>
 	</form>
 </body>
 </html>

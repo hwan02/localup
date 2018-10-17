@@ -13,6 +13,7 @@ import com.localup.persistence.MainDAO;
 public class MainServiceImpl implements MainService{
 	@Inject
 	private MainDAO mainDAO;
+	
 	@Override
 	public List<BoardVO> listBoard(Location loc,String board_type) {
 		return mainDAO.listBoard(loc,board_type);

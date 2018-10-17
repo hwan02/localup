@@ -74,6 +74,18 @@
 		where member_email_sub=#{member_email_sub} and member_email_guide=#{member_email_guide}
 	</delete>
 	
+	<!-- 내가 팔로우한 사용자들 조회 -->
+	<select id="myGuide" resultType="SubVO">
+		select member_email_guide,sub_date 
+		from sub 
+		where member_email_sub=#{member_email_sub}
+	</select>
 	
+	<!-- 사용자가 쓴 게시글 행 수 조회 -->
+	<select id="countMBord" resultType="int">
+		select count(*) 
+		from board 
+		where member_email=#{member_email}
+	</select>
 	
 </mapper>

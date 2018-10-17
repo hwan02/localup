@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="string" type="java.lang.String"/>
 		<package name="com.localup.domain"/>
 	</typeAliases>
 </configuration>

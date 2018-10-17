@@ -34,3 +34,6 @@ ALTER TABLE sub
 		
 --TEST
 insert into sub(member_email_sub,member_email_guide) values('localup@gmail.com','naver@gmail.com');
+
+--test
+--insert into sub (member_email_sub,member_email_guide) values ('localup@gmail.com','gildong@naver.com');

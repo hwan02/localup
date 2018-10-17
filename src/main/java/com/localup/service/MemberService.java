@@ -40,4 +40,10 @@ public interface MemberService {
 	
 	//팔로우 취소
 	public void minusSub(String member_email_sub,String member_email_guide) throws Exception;
+	
+	//내가 팔로우 한 사용자들 조회
+	public List<SubVO> readGuide(String member_email_sub) throws Exception;
+	
+	//사용자 가 쓴 게시글 전체 행수
+	public int mboardCount(String member_email) throws Exception;
 }

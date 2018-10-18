@@ -50,33 +50,7 @@
 			$('form').submit();
 		});
 		
-			var cnt =0;
-		//투어인원 입력시
-		$("#sum").click(function() {
-			cnt++;
-			if(cnt<11){
-				$("#pay_num").val(cnt);
-				var amount =(cnt*$("#pay_pay").val());
-				$("#pay_pay2").val(amount);
-				
-			}else{
-				$("#sum").hide();
-				$("#mussssss").show();
-			}
-		});
-	
-			
-			$("#mussssss").click(function() {
-			cnt--;
-			if(cnt>0){
-				$("#pay_num").val(cnt);
-				var amount =(cnt*$("#pay_pay").val());
-				$("#pay_pay2").val(amount);
-				
-			}else if(cnt==0){
-				$("#mussssss").hide();
-			}
-			});
+		
 		
 
 			
@@ -102,15 +76,11 @@
 		<!--DB입력 v-->
 		<!--pay_num-->
 		<input type="text" name="pay_num" id="pay_num"  placeholder="투어 인원">
-		<input type="button" id="sum" value="더하기">
-		<input type="button" id="mussssss" value="빼기">
 		<br>
 		<!--DB : 결제 수단으로 입력 v-->
 		<!--pay_pay-->
 		<!--pay_way-->
 		<input type="text" name="pay_pay" id="pay_pay" value="${GuideVO.tour_pay }" placeholder="결제금액">
-		<input type="text" name="pay_pay" id="pay_pay2"  placeholder="결제금액">
-		
 		<br>
 		<input type="button" id="payGO" value="결제 하기">
 		<br>

@@ -139,9 +139,10 @@
       	<textarea class="form-control" name="member_intro" rows="5" id="comment" name="text">${memberVO.member_intro}</textarea>
     	</div>
 			
-		
 		<div class="btn-group">
-  			<label style="display: none;" id="updateDIV"><button id="updateBT" class="btn btn-primary">수정</button></label> 
+  			<label style="display: none;" id="updateDIV">
+  				<button id="updateBT" class="btn btn-primary">수정</button>
+  			</label> 
   			<label><button type="reset" class="btn btn-primary">취소</button></label> 
   			<label><button type="button" id="deleteBT" class="btn btn-primary">탈퇴</button></label> 
 		</div>

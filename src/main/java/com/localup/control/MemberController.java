@@ -43,21 +43,21 @@ public class MemberController {
 	@RequestMapping(value="myUpdate", method=RequestMethod.POST)
 	public String myUpdatePOST(MemberVO memberVO)throws Exception{
 		memberService.update(memberVO);		//수정작업
-		return "redirect:/member/myUpdate";		//수정작업확인	
+		return "redirect:/index";		//수정작업확인	
 	}
 	
 	//회원 탈퇴시 ==이동==> 메인페이지
 	@RequestMapping(value="delete", method=RequestMethod.POST)
 	public String delete(@RequestParam("member_email") String member_email) throws Exception{
 		memberService.delete(member_email);
-		return "redirect:/member/main";
+		return "redirect:/index";
 	}
 	
-	//메인 가상 경로 : pull 한후 메인 컨트롤러에 main.jsp 가는 경로가 없으므로 생성함
-	@RequestMapping(value="main", method=RequestMethod.GET)
-	public String main() throws Exception{
-		return "main/main";
-	}
+//	//메인 가상 경로 : pull 한후 메인 컨트롤러에 main.jsp 가는 경로가 없으므로 생성함
+//	@RequestMapping(value="main", method=RequestMethod.GET)
+//	public String main() throws Exception{
+//		return "main/main";
+//	}
 	
 	//사용자정보 페이지 폼 보기
 	/*@RequestMapping("mInfo")

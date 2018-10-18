@@ -29,6 +29,10 @@
 
 <script type="text/javascript">
 	$(function() {
+		//숫자 유효성 검사
+		var numExp = /^\d+$/; 			//숫자 4자리(하이픈 포함)
+		var emailExp = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+		
 		$("#payGO").click(function() {
 			// window.open("open할 window", "자식창 이름", "팝업창 옵션");
 			window.open("http://localhost/pay/payWindow", "pay",
@@ -36,49 +40,80 @@
 		});
 		
 		//모달창 : 메인 페이지로 가기, 마이페이지 내역으로 가기
+// 		$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
+			
+			
+// 			$("#my-dialog,#dialog-background").toggle();
+			
+		
+// 		});	
+		//모달창 : 메인 페이지로 가기, 마이페이지 내역으로 가기
 		$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
 			$("#my-dialog,#dialog-background").toggle();
-		});
+			
+// 			if(!emailExp.test($('#eamil1').val()+'@'+$('#email2').val().trim()=='')){
+// 				alert("신청회원 다시입력 하세요 ;)" );
+// 				$('#eamil1').val("");
+// 				$('#email2').val("");
+// 				$('#eamil1').focus();
+// 			}
+			
+// 			if(!numExp.test($('#pay_num').val().trim()=='' )){ //숫자 유효성 검사
+// 				alert("투어인원 다시입력 하세요 ;)" );
+// 				$('#pay_num').val("");
+// 				$('#pay_num').focus();   
+// 			}else if($('#pay_pay').val().trim()=='' ){
+// 				alert("결제금액 다시입력 하세요 ;)" );
+// 				$('#pay_pay').val("");
+// 				$('#pay_pay').focus();
+// 			}
+			
+			
+		
+		});	
+
 		
 		$("#btn-close-dialog-main").click(function() {
+// 			if(!member_emailExp.test($('#member_email').val().trim()=='' )){
+// 				alert("신청회원 다시입력 하세요 ;)" );
+// 				$('#member_email').val("");
+// 				$('#member_email').focus();
+// 			}
+			
+			
+// 			if(!numExp.test($('#pay_num').val().trim()=='' )){ //숫자 유효성 검사
+// 				alert("투어인원 다시입력 하세요 ;)" );
+// 				$('#pay_num').val("");
+// 				$('#pay_num').focus();   
+// 			}else if(!numExp.test($('#pay_pay').val() )){
+// 				alert("결제금액 다시입력 하세요 ;)" );
+// 				$('#pay_pay').val("");
+// 				$('#pay_pay').focus();
+// 			}else{
+				
+// 			}
+				
 			$('form').attr('action','/pay/pay');
 			$('form').submit();
-		});
-
-		$("#btn-close-dialog-mypage").click(function() {
-			$('form').attr('action','/pay/payMy');
-			$('form').submit();
-		});
-		
-			var cnt =0;
-		//투어인원 입력시
-		$("#sum").click(function() {
-			cnt++;
-			if(cnt<11){
-				$("#pay_num").val(cnt);
-				var amount =(cnt*$("#pay_pay").val());
-				$("#pay_pay2").val(amount);
-				
-			}else{
-				$("#sum").hide();
-				$("#mussssss").show();
-			}
-		});
-	
 			
-			$("#mussssss").click(function() {
-			cnt--;
-			if(cnt>0){
-				$("#pay_num").val(cnt);
-				var amount =(cnt*$("#pay_pay").val());
-				$("#pay_pay2").val(amount);
-				
-			}else if(cnt==0){
-				$("#mussssss").hide();
-			}
-			});
-		
+			
+	});
 
+// 		$("#btn-close-dialog-mypage").click(function() {
+// 			$('form').attr('action','/board/read?board_no=${GuideVO.board_no }');
+// 			$('form').submit();
+// 		});
+		
+		
+		
+		//투어인원 입력시 자동 계산
+		$("#pay_num").keyup(function() {
+	        var vp1 = $(this).val();
+	        if(vp1 > 0) {
+	            //var paygogo = Math.round(vp1 * $("#pay_pay2"));
+	            $("#pay_pay").val(Math.round(vp1 * ${GuideVO.tour_pay}));
+	        }
+		});
 			
 			
 			
@@ -97,42 +132,43 @@
 		<br>
 		<!--DB가져오기-->
 		<!--member_email-->
-		<input type="text" name="member_email" placeholder="신청회원 이메일">
+		<input type="text" name="member_email"  id="member_email" placeholder="신청회원 이메일" >
+<!-- 		<input type="text" id="email1" name="email1" placeholder="아이디">@ -->
+<!-- 						<input type="text" id="email2" name="email2" placeholder="이메일 주소"> -->
 		<br>
 		<!--DB입력 v-->
 		<!--pay_num-->
-		<input type="text" name="pay_num" id="pay_num"  placeholder="투어 인원">
-		<input type="button" id="sum" value="더하기">
-		<input type="button" id="mussssss" value="빼기">
+		<input type="text" name="pay_num" id="pay_num"   placeholder="투어 인원">
 		<br>
 		<!--DB : 결제 수단으로 입력 v-->
 		<!--pay_pay-->
 		<!--pay_way-->
-		<input type="text" name="pay_pay" id="pay_pay" value="${GuideVO.tour_pay }" placeholder="결제금액">
-		<input type="text" name="pay_pay" id="pay_pay2"  placeholder="결제금액">
-		
+		<div>1인 금액</div>
+		<input type="text" readonly="readonly" id="pay_pay2" value="${GuideVO.tour_pay }" placeholder="결제금액">
+		<br>
+		<input type="text" name="pay_pay" id="pay_pay" readonly="readonly" placeholder="결제금액 입력">
 		<br>
 		<input type="button" id="payGO" value="결제 하기">
 		<br>
-		<input type="text" name="pay_way"  placeholder="결제수단">
+		<input type="text" name="pay_way" readonly="readonly" id="pay_way" placeholder="결제수단">
 		<br>
 		<!--pay_state 결제 상태 TEST 후 hiden 처리 v-->
 		<input type="hidden" name="pay_state" value="결제완료">
 		<!--게시글 번호 TEST후 hiden 처리(DB에서 가져오기)-->
 		<!--board_no-->
-		<input type="text" name="board_no" value="${GuideVO.board_no }" placeholder="게시글번호">
+		<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="게시글번호">
 		<br>
 <!-- 		<input type="submit" value="확인"> -->
 
 		<!--모달창 : 메인 페이지로 가기, 마이페이지 내역으로 가기-->
 		<input type="button" id="btn-open-dialog" value="확인">
 		<div id="my-dialog">
-			<label>메인 또는 마이페이지 클릭시 결제 완료 ;)</label>
+			<label>한번 더 확인 할 필요 없나요??</label>
 			<br>
-			<button id="btn-close-dialog-main">메인 페이지</button>
-			<button id="btn-close-dialog-mypage">마이 페이지</button>
-			<br><br>
-			<button id="btn-close-dialog">닫기</button>
+			<button type="button" id="btn-close-dialog-main">메인 페이지</button>
+<!-- 			<button type="button" id="btn-close-dialog-mypage">마이 페이지</button> -->
+<!-- 			<br><br> -->
+			<button type="button" id="btn-close-dialog">닫기</button>
 		</div>
 		<div id="dialog-background"></div>
 	</form>

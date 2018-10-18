@@ -250,6 +250,12 @@
 		location.href="/member/myUpdate?member_email=${member_email}";
 		}else{ location.href="#";}
 	}
+	/* 랭킹 클릭시 누구가 이동 가능 */
+// 	function rankCategory(){
+// 		if('${login}'){
+// 		location.href="/rank/category?member_email=${member_email}";
+// 		}else{ location.href="/rank/category";}
+// 	}
 	function goMainDetail(value){
 		var name = value.split('@')[0];
 		var email = value.split('@')[1];

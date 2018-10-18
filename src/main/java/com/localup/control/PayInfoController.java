@@ -38,7 +38,7 @@ public class PayInfoController {
 	
 	//결제페이지 폼 보이기(ver : 모달에서 메인페이지 클릭시)
 	@RequestMapping(value="pay",method=RequestMethod.GET)
-	public String payGET(Integer board_no, Model model) throws Exception{
+	public String payGET(Integer board_no,Model model) throws Exception{
 		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/pay";
 	}

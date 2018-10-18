@@ -10,7 +10,8 @@
 <title>나를 팔로우한 사용자들</title>
 <style type="text/css">
 	body{
-		margin: 70px 50px;
+		margin: 100px 20px 75px 200px;
+		/*top right bottom left*/
 	}
 	table {
 		width:40%;
@@ -24,8 +25,8 @@
 </style>
 </head>
 <body>
-	<h3>나를 팔로우한 사용자들</h3>
-	<hr align="left" style="border: solid 2px #00ff80;" width="200px">
+	<h4>나를 팔로우한 사용자들</h4>
+	<hr align="left" style="border: solid 2px #00ff80;" width="300px">
 	<!-- <hr align="left" style="border: solid 2px #343a40;" width="200px"> -->
 	<table cellpadding="3">
 		<tr>

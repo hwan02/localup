@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,8 @@
 		width:80%;
 		margin:20px 30px;
 		border:1;
-		border-color: #00ff80;
+		border-radius: 5px;
+		border: 1px solid #00ff80;
 	}
 	
 </style>
@@ -45,8 +47,8 @@
 	$(function(){
 		$('#addSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
-			//var member_email_sub = ${sessionScope.id };
-			var member_email_sub = 'localup@gmail.com';
+			var member_email_sub = $('#login_email').val();
+			//var member_email_sub = 'localup@gmail.com';
 			//alert(member_email_guide);
 			$.ajax({
 				url:'/member/addSub',
@@ -65,8 +67,8 @@
 		
 		$('#minusSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
-			//var member_email_sub = ${sessionScope.id };
-			var member_email_sub = 'localup@gmail.com';
+			var member_email_sub = $('#login_email').val();
+			//var member_email_sub = 'localup@gmail.com';
 			//alert(member_email_guide);
 			$.ajax({
 				url:'/member/minusSub',
@@ -87,6 +89,7 @@
 </script>
 </head>
 <body>
+	<input type="hidden" name="login_email" id="login_email" value="${member_email }">
 	<h3>사용자정보</h3>
 	<hr size="100px" width="300px" align="left" style="border: solid 2px #00ff80;">
 	<!--회원아이디-->
@@ -126,7 +129,7 @@
 		<c:forEach items="${boardList }" var="boardVO">
 		<tr>
 			<td>${boardVO.board_no }</td>
-			<td><img src="/resources/img/${boardVO.board_img }" height="70" width="70"></td>
+			<td><img src="/resources/img/${boardVO.board_img }" height="80" width="80"></td>
 			<td><a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.board_date }"/></td>
 		</tr>

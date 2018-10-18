@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -102,7 +103,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="read", method=RequestMethod.GET) //게시글 상세페이지 --> http://localhost/board/read?board_no=2
-	public String read(int board_no,Model model) throws Exception{
+	public String read(int board_no,Model model,HttpSession session) throws Exception{
+		session.getAttribute("member_email");
 		model.addAttribute("boardVO",boardService.boarRead(board_no));
 		model.addAttribute("board_like",boardService.likeCount(board_no));
 		model.addAttribute("replyCnt",replyService.count(board_no));

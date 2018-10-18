@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,19 @@
 <title>로컬업</title>
 <style type="text/css">
 	#modDiv {
-		background-color: gray;
-		width: 300px;
-		height: 100px;
+		/* background-color: #FAF4C0; */
+		width: 480px;
+		height: 200px;
 		padding: 30px;
-		position: absolute;
-		top: 80%;
-		left: 70%;
+		/*position: absolute;
+		top: 100%;
+		right: 10%;
 		bottom: 100%;
-		margin-top: -50px;
-		margin-left: -150px;
+		margin-top: -100px;
+		margin-left: -150px; */
 		z-index: 1000;
+		border: 1px solid #00ff80;
+		border-radius: 5px;
 	}
 	
 	.pagination {
@@ -42,11 +45,13 @@
 		border: 1px solid #ddd;
 	}
 	body{
-		margin: 70px 50px;
+		/* margin: 70px 50px; */
+		width: 480px;
+		margin: 0 auto;
 	}
-	div{
+	/* div{
 		margin: 20px 30px;
-	}
+	} */
 	input[type="text"]{
 		display: inline-block;
 		/* border: 1px solid #ccc; */
@@ -64,6 +69,37 @@
 	}
 	button{
 		background-color: #00ff80;
+		border: thin;
+		border-radius: 10px;
+		height: 40px;
+		width: 90px;
+	}
+	input[type="button"]{
+		background-color: #00ff80;
+		border: thin;
+		border-radius: 10px;
+		height: 40px;
+		width: 90px;
+	}
+	#board_cont{
+		border-radius: 5px;
+		height: 350px;
+	}
+	#reply_cont{
+		border-radius: 5px;
+		height: 100px;
+		width: 480px;
+	}
+	ul{
+		list-style:none;
+		padding-left:0px;
+	}
+	#repl{
+		/* border: 1px solid #ddd; */
+		border: 1px solid #00ff80;
+		margin-bottom: 2px;
+		border-radius: 5px;
+		padding: 10px;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -78,9 +114,12 @@
 				//console.log(result);
 				var str='';
 				$(result).each(function(){
+					/* str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
+						+ this.reply_cont +'" data-remail="'+ this.member_email +'" data-rdate="'+ this.reply_date +'" class="replyLi">'
+							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>'; */
 					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
 						+ this.reply_cont +'" data-remail="'+ this.member_email +'" data-rdate="'+ this.reply_date +'" class="replyLi">'
-							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>';
+							+ this.reply_star +", "+ this.reply_cont +"//"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>';
 				});
 				$('#replies').html(str);
 			}
@@ -96,9 +135,12 @@
 			success:function(result){ //result ---> Map{List("list"), PageMaker("pageMaker")}
 				var str='';
 				$(result.list).each(function(){
-					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
+					/* str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
 					+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
-							+ this.reply_no +" 평점:"+ this.reply_star +":"+ this.reply_cont +" 이메일:"+ this.member_email + '<button>수정</button></li>';
+							+ this.reply_no +" 평점:"+ this.reply_star +":"+ this.reply_cont +" 이메일:"+ this.member_email + '<button>수정</button></li>'; */
+					str += '<div id="repl"><li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
+						+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
+						+ this.reply_star +"점<br>"+ this.reply_cont +"<br>작성자:"+ this.member_email +' <button>수정</button></li></div>';
 				});
 				$('#replies').html(str);
 				printPaging(result.pageMaker);
@@ -249,8 +291,8 @@
 		
 		$('#boardCont input[name=member_email]').click(function(){
 			alert('click');
-			//window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=${sessionScope.Id}';
-			window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=localup@gmail.com';
+			window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=${member_email}';
+			//window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=localup@gmail.com';
 			//이메일 정보값 넘겨줘야 함
 		}); //게시글 이메일 클릭시 사용자 정보 페이지 이동
 		
@@ -318,18 +360,18 @@
 	<!-- 게시글 내용 -->
 	<form name="boardCont" id="boardCont">
 		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no" readonly><br>
-		제목: <input type="text" name="board_title" value="${boardVO.board_title }" readonly><br>
-		이메일(작성자): <input type="text" name="member_email" value="${boardVO.member_email }" readonly><br>
-		이미지: <img src="/resources/img/${boardVO.board_img }" width="300" height="300" readonly><br>
+		<input type="text" name="board_title" value="${boardVO.board_title }" readonly placeholder="제목"><br>
+		<input type="text" name="member_email" value="${boardVO.member_email }" readonly style="width: 230px;" placeholder="작성자"><br>
+		<img src="/resources/img/${boardVO.board_img }" width="420" height="300"><br>
 		<%-- <input type="text" value="${boardVO.board_img }" size="50"><br> --%>
-		내용: <textarea rows="20" cols="50" readonly>${boardVO.board_cont }</textarea><br>
+		<textarea rows="20" cols="50" readonly id="board_cont">${boardVO.board_cont }</textarea><br>
 	</form>
 	
 	<!-- 좋아요 버튼 -->
-	
 	<a href="javascript:likeClick();" id="likePlus"><img src="/resources/img/like.png"></a>
 	<a href="javascript:likeMinus();" id="likeMinus" style="display: none;"><img src="/resources/img/like_b.png"></a>
 	[<span id="like">${board_like }</span>]
+	<br>
 	
 	<!-- 댓글 갯수 -->
 	<%-- <a><img src="/resources/img/comment-white-oval-bubble_b.png"></a>
@@ -348,10 +390,10 @@
 	<!-- 댓글 입력폼 -->
 	<img src="/resources/img/comment-white-oval-bubble_b.png">Comment
 	<form method="post" id="replyForm">
-		댓글: <textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>
-		이메일: <input type="text" name="member_email" id="member_email"><br>
-		평점: <input type="text" name="reply_star" id="reply_star"><br>
-		<button id="addReply" type="button">등록</button>
+		<textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>
+		<input type="text" name="member_email" id="member_email" placeholder="이메일" ><br>
+		<input type="text" name="reply_star" id="reply_star" placeholder="1~5점 사이의 점수를 남겨주세요" >
+		<br><button id="addReply" type="button">등록</button>
 	</form>
 	
 	<!-- 댓글list 출력 -->
@@ -362,11 +404,11 @@
 	
 	<!-- 수정과 삭제를 위한 div 모달창 -->
 	<div id="modDiv" style="display: none;">
-		<div class="modal-title"></div>
+		<div class="modal-title" style="display: none;"></div>
 		<div>
-			평점: <input type="text" id="reply_star"><br>
-			내용: <input type="text" id="reply_cont"><br>
-			이메일: <input type="text" id="member_email" disabled>
+			<input type="text" id="reply_star" placeholder="평점"><br>
+			<input type="text" id="reply_cont" placeholder="내용"><br>
+			<input type="text" id="member_email" readonly>
 		</div>
 		<div>
 			<button id="modReply">수정</button>

@@ -8,6 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>나를 팔로우한 사용자들</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/resources/my_css/myFan.css">
+
+<script type="text/javascript" src="/resources/my_js/myFan.js"></script>
+
 <style type="text/css">
 	body{
 		margin: 100px 20px 75px 200px;
@@ -25,6 +31,22 @@
 </style>
 </head>
 <body>
+	<br><br>
+	<!--메뉴 클릭시 사이드바 생성-->
+	<div id="main">
+		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
+	</div>
+	
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/board/myWrite?member_email=${memberVO.member_email}">전체 게시글 보기</a> 
+		<a href="/guide/myApplySchedule?member_email=${memberVO.member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${memberVO.member_email}">투어 신청현황</a>  
+		<a href="/guide/myApplyPast?member_email=${memberVO.member_email}">완료 투어</a>
+		<a href="/member/myFan?member_email_guide=${member_email }">팔로워</a>
+		<a href="/member/myCreate?member_email_sub=${member_email }">팔로잉</a>
+	</div>
+	
 	<h4>나를 팔로우한 사용자들</h4>
 	<hr align="left" style="border: solid 2px #00ff80;" width="300px">
 	<!-- <hr align="left" style="border: solid 2px #343a40;" width="200px"> -->

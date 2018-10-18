@@ -119,7 +119,7 @@
 							+ this.reply_no +":"+ this.reply_star +":"+ this.reply_cont +":"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>'; */
 					str += '<li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
 						+ this.reply_cont +'" data-remail="'+ this.member_email +'" data-rdate="'+ this.reply_date +'" class="replyLi">'
-							+ this.reply_star +", "+ this.reply_cont +"//"+ this.member_email +":"+ this.reply_date +'<button>수정</button></li>';
+							+ this.reply_star +", "+ this.reply_cont +"//"+ this.member_email +":"+ this.reply_date +'<button id="upRepl">수정</button></li>';
 				});
 				$('#replies').html(str);
 			}
@@ -140,7 +140,7 @@
 							+ this.reply_no +" 평점:"+ this.reply_star +":"+ this.reply_cont +" 이메일:"+ this.member_email + '<button>수정</button></li>'; */
 					str += '<div id="repl"><li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
 						+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
-						+ this.reply_star +"점<br>"+ this.reply_cont +"<br>작성자:"+ this.member_email +' <button>수정</button></li></div>';
+						+ this.reply_star +"점<br>"+ this.reply_cont +"<br>작성자:"+ this.member_email +' <button id="upRepl">수정</button></li></div>';
 				});
 				$('#replies').html(str);
 				printPaging(result.pageMaker);
@@ -206,7 +206,7 @@
 				//dataType:'json' //from 서버
 				success:function(result){
 					alert(result);
-					$('#replyForm input[name=member_email]').val('');
+					//$('#replyForm input[name=member_email]').val('');
 					$('#reply_cont').val('');
 					$('input[name=reply_star]').val('');
 					//replylist();
@@ -290,22 +290,35 @@
 		}); //메인으로 버튼
 		
 		$('#boardCont input[name=member_email]').click(function(){
-			alert('click');
+			//alert('click');
 			window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=${member_email}';
 			//window.location.href='/member/mInfo?member_email_guide=${boardVO.member_email}&member_email_sub=localup@gmail.com';
 			//이메일 정보값 넘겨줘야 함
 		}); //게시글 이메일 클릭시 사용자 정보 페이지 이동
 		
 		$('#modBtn').click(function(){
-			//self.location="/board/update?board_no=${board_no}"; //수정폼으로 이동
-			$('[name=boardCont]').attr("action","/board/update");
-			$('[name=boardCont]').attr("method","get");
-			$('[name=boardCont]').submit();
+			var email = $('#boardCont input[name=member_email]').val();
+			var login_email = $('#login_email').val();
+			if(email != login_email){
+				alert('이 게시글을 작성한 사용자만 수정할 수 있습니다');
+			}else{
+				//self.location="/board/update?board_no=${board_no}"; //수정폼으로 이동
+				$('[name=boardCont]').attr("action","/board/update");
+				$('[name=boardCont]').attr("method","get");
+				$('[name=boardCont]').submit();	
+			}
 		}); //수정 버튼
 			
 		$('#delBtn').click(function(){
-			alert('click'+board_no);
-			self.location="/board/delete?board_no=${boardVO.board_no}";
+			var email = $('#boardCont input[name=member_email]').val();
+			var login_email = $('#login_email').val();
+			if(email != login_email){
+				alert('이 게시글을 작성한 사용자만 수정할 수 있습니다');
+			}else{
+				//alert('click'+board_no);
+				self.location="/board/delete?board_no=${boardVO.board_no}";
+			}
+			
 		}); //삭제 버튼
 		
 		$('#likePlus').click(function(){
@@ -357,6 +370,8 @@
 </script>
 </head>
 <body>
+	<br><br>
+	<input type="hidden" name="login_email" value="${member_email }" id="login_email"><br>
 	<!-- 게시글 내용 -->
 	<form name="boardCont" id="boardCont">
 		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no" readonly><br>
@@ -391,7 +406,7 @@
 	<img src="/resources/img/comment-white-oval-bubble_b.png">Comment
 	<form method="post" id="replyForm">
 		<textarea rows="5" cols="70" name="reply_cont" id="reply_cont"></textarea><br>
-		<input type="text" name="member_email" id="member_email" placeholder="이메일" ><br>
+		<input type="text" name="member_email" id="member_email" placeholder="이메일" value="${member_email }" readonly><br>
 		<input type="text" name="reply_star" id="reply_star" placeholder="1~5점 사이의 점수를 남겨주세요" >
 		<br><button id="addReply" type="button">등록</button>
 	</form>
@@ -407,7 +422,7 @@
 		<div class="modal-title" style="display: none;"></div>
 		<div>
 			<input type="text" id="reply_star" placeholder="평점"><br>
-			<input type="text" id="reply_cont" placeholder="내용"><br>
+			<input type="text" id="reply_cont" placeholder="내용" style="width: 300px; height: 50px;">
 			<input type="text" id="member_email" readonly>
 		</div>
 		<div>

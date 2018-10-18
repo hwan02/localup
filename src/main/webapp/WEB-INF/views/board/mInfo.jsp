@@ -89,6 +89,7 @@
 </script>
 </head>
 <body>
+	<br><br>
 	<input type="hidden" name="login_email" id="login_email" value="${member_email }">
 	<h3>사용자정보</h3>
 	<hr size="100px" width="300px" align="left" style="border: solid 2px #00ff80;">

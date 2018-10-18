@@ -24,7 +24,7 @@
 
 </head>
 <body class="container">
-
+	<br><br>
 	<!--맨위로 클릭-->
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	
@@ -36,7 +36,9 @@
 		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
 		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
 		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어신청 조회</a>  
-		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a> 
+		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a>
+		<a href="/member/myFan?member_email_guide=${member_email }">팔로워</a>
+		<a href="/member/myCreate?member_email_sub=${member_email }">팔로잉</a>
 	</div>
 	</c:forEach>
 	
@@ -44,7 +46,7 @@
 	<div id="main">
 		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; 메뉴</span>
 	</div>
-
+	<br>
 	<div class="container">
 		<h1>
 			<a href="/index">투어예정</a>

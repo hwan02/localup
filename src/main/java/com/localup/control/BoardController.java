@@ -51,7 +51,7 @@ public class BoardController {
 		System.out.println(board_alti+board_long);
 		model.addAttribute("board_alti", board_alti);
 		model.addAttribute("board_long", board_long);
-		return "board/boardWrite";
+		return "board/boardWrite2";
 	}
 	
 	@RequestMapping(value="write", method=RequestMethod.POST) //db입력
@@ -74,7 +74,8 @@ public class BoardController {
 	
 	//-----------------test Image Upload
 	@RequestMapping(value="test", method=RequestMethod.GET) //게시글 쓰기 폼
-	public String testGET() throws Exception{
+	public String testGET(HttpSession session) throws Exception{
+		session.getAttribute("member_email");
 		return "board/testWrite";
 	}
 	

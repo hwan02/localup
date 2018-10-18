@@ -309,7 +309,7 @@
 		</div>
 
 		<div class="question">
-			<input type="text" name="member_email" id="member_email" required />
+			<input type="text" name="member_email" id="member_email" required value="${member_email }" readonly/>
 			<label>이메일</label>
 		</div>
 		

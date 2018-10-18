@@ -103,6 +103,7 @@
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 	//var board_no=2;
 	function replylist(){ //전체 댓글
@@ -140,7 +141,7 @@
 							+ this.reply_no +" 평점:"+ this.reply_star +":"+ this.reply_cont +" 이메일:"+ this.member_email + '<button>수정</button></li>'; */
 					str += '<div id="repl"><li data-rno="'+ this.reply_no +'" data-rstar="'+ this.reply_star +'" data-rcont="'
 						+ this.reply_cont +'" data-remail="'+ this.member_email +'" class="replyLi">'
-						+ this.reply_star +"점<br>"+ this.reply_cont +"<br>작성자:"+ this.member_email +' <button id="upRepl">수정</button></li></div>';
+						+ this.reply_star +"점<br>"+ this.reply_cont +"<br>작성자:"+ this.member_email +' <button>수정</button></li></div>';
 				});
 				$('#replies').html(str);
 				printPaging(result.pageMaker);
@@ -185,51 +186,72 @@
 		replylistPage(1);
 		
 		$('#addReply').click(function(){//입력요청
-			var member_email = $('#replyForm input[name=member_email]').val();
-			var reply_cont = $('#reply_cont').val();
-			var reply_star = $('input[name=reply_star]').val();
+			if($('#reply_cont').val().trim()==''){
+				alert('내용을 입력해주세요.');
+				$('#reply_cont').focus();
+			}else if($('#reply_star').val()==''){
+				alert('평점을 입력해주세요');
+				$('#reply_star').focus();
+			}else{
+				var member_email = $('#replyForm input[name=member_email]').val();
+				var reply_cont = $('#reply_cont').val();
+				var reply_star = $('input[name=reply_star]').val();
+				
+				$.ajax({
+					url:'/reply',
+					type:'post',
+					data: JSON.stringify({ //파라미터 데이터 ---> JSON으로 변환
+						//컨트롤러의 메소드 파라미터에 @RequestBody가 정의되어있을때 사용
+						board_no : board_no,
+						member_email : member_email,
+						reply_cont : reply_cont,
+						reply_star : reply_star
+					}),
+					headers:{
+						//JSON데이터를 서버(컨트롤러)에 보냄!!
+						'Content-Type':'application/json'
+					},
+					//dataType:'json' //from 서버
+					success:function(result){
+						alert(result);
+						//$('#replyForm input[name=member_email]').val('');
+						$('#reply_cont').val('');
+						$('input[name=reply_star]').val('');
+						//replylist();
+						replylistPage(1);
+					}
+				});
 			
-			$.ajax({
-				url:'/reply',
-				type:'post',
-				data: JSON.stringify({ //파라미터 데이터 ---> JSON으로 변환
-					//컨트롤러의 메소드 파라미터에 @RequestBody가 정의되어있을때 사용
-					board_no : board_no,
-					member_email : member_email,
-					reply_cont : reply_cont,
-					reply_star : reply_star
-				}),
-				headers:{
-					//JSON데이터를 서버(컨트롤러)에 보냄!!
-					'Content-Type':'application/json'
-				},
-				//dataType:'json' //from 서버
-				success:function(result){
-					alert(result);
-					//$('#replyForm input[name=member_email]').val('');
-					$('#reply_cont').val('');
-					$('input[name=reply_star]').val('');
-					//replylist();
-					replylistPage(1);
-				}
-			});
+			}
+			
 		});//댓글 입력
 		
 		//<ul><li data-rno=15>안녕댓글<button>수정</button></li></ul>
 		//댓글 수정
 		$('#replies').on('click','.replyLi button',function(){//('click','li button',function(){
-			//수정버튼 좌측에 있는 댓글번호,댓글내용 얻기
 			var reply = $(this).parent(); //---> <li>엘리먼트
-			var reply_no = reply.attr('data-rno');
-			var reply_cont = reply.attr('data-rcont');//reply.text();
-			var reply_star = reply.attr('data-rstar');
 			var member_email = reply.attr('data-remail');
+			var login_email = $('#login_email').val();
+			if(member_email != login_email){
+				alert('이 댓글을 작성한 사용자만 수정할 수 있습니다');
+				return;
+			}else{
+				//수정버튼 좌측에 있는 댓글번호,댓글내용 얻기
+				var reply = $(this).parent(); //---> <li>엘리먼트
+				var reply_no = reply.attr('data-rno');
+				var reply_cont = reply.attr('data-rcont');//reply.text();
+				var reply_star = reply.attr('data-rstar');
+				var member_email = reply.attr('data-remail');
+				
+				$('.modal-title').html(reply_no);
+				$('#modDiv #reply_cont').val(reply_cont);
+				$('#modDiv #member_email').val(member_email);
+				$('#modDiv #reply_star').val(reply_star);
+				$('#modDiv').show(1500);
+			}
 			
-			$('.modal-title').html(reply_no);
-			$('#modDiv #reply_cont').val(reply_cont);
-			$('#modDiv #member_email').val(member_email);
-			$('#modDiv #reply_star').val(reply_star);
-			$('#modDiv').show(1500);
+			
+			
 		});
 		
 		//댓글 삭제 요청
@@ -423,7 +445,7 @@
 		<div>
 			<input type="text" id="reply_star" placeholder="평점"><br>
 			<input type="text" id="reply_cont" placeholder="내용" style="width: 300px; height: 50px;">
-			<input type="text" id="member_email" readonly>
+			<input type="text" id="member_email" name="member_email"readonly>
 		</div>
 		<div>
 			<button id="modReply">수정</button>

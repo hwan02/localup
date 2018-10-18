@@ -731,7 +731,7 @@ function replaceLoc(){
 	        <div>
 	            <form onsubmit="searchPlaces(); return false;">
 	                키워드 : <input type="text" id="keyword" size="15">
-	                <button type="submit">검색하기</button> 
+	                <button type="submit" class="btn btn-primary">검색하기</button> 
 	            </form>
 	        </div>
 	    </div>

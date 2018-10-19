@@ -45,47 +45,11 @@
 		$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
 			$("#my-dialog,#dialog-background").toggle();
 			
-// 			if(!emailExp.test($('#eamil1').val()+'@'+$('#email2').val().trim()=='')){
-// 				alert("신청회원 다시입력 하세요 ;)" );
-// 				$('#eamil1').val("");
-// 				$('#email2').val("");
-// 				$('#eamil1').focus();
-// 			}
-			
-// 			if(!numExp.test($('#pay_num').val().trim()=='' )){ //숫자 유효성 검사
-// 				alert("투어인원 다시입력 하세요 ;)" );
-// 				$('#pay_num').val("");
-// 				$('#pay_num').focus();   
-// 			}else if($('#pay_pay').val().trim()=='' ){
-// 				alert("결제금액 다시입력 하세요 ;)" );
-// 				$('#pay_pay').val("");
-// 				$('#pay_pay').focus();
-// 			}
-			
-			
-		
 		});	
 
 		
 		$("#btn-close-dialog-main").click(function() {
-// 			if(!member_emailExp.test($('#member_email').val().trim()=='' )){
-// 				alert("신청회원 다시입력 하세요 ;)" );
-// 				$('#member_email').val("");
-// 				$('#member_email').focus();
-// 			}
-			
-			
-// 			if(!numExp.test($('#pay_num').val().trim()=='' )){ //숫자 유효성 검사
-// 				alert("투어인원 다시입력 하세요 ;)" );
-// 				$('#pay_num').val("");
-// 				$('#pay_num').focus();   
-// 			}else if(!numExp.test($('#pay_pay').val() )){
-// 				alert("결제금액 다시입력 하세요 ;)" );
-// 				$('#pay_pay').val("");
-// 				$('#pay_pay').focus();
-// 			}else{
-				
-// 			}
+
 				
 			$('form').attr('action','/pay/pay');
 			$('form').submit();
@@ -103,7 +67,7 @@
 	            $("#pay_pay").val(Math.round(vp1 * ${GuideVO.tour_pay}));
 	        }
 		});
-	});		
+});		
 			
 			
 			
@@ -160,7 +124,7 @@
 		<div id="my-dialog">
 			<label>한번 더 확인 할 필요 없나요??</label>
 			<br>
-			<button type="button" class="btn id="btn-close-dialog-main">메인 페이지</button>
+			<button type="button" class="btn" id="btn-close-dialog-main">메인 페이지</button>
 <!-- 			<button type="button" id="btn-close-dialog-mypage">마이 페이지</button> -->
 <!-- 			<br><br> -->
 			<button type="button"  class="btn btn-danger" id="btn-close-dialog">닫기</button>

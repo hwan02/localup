@@ -1,5 +1,7 @@
 package com.localup.control;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -144,25 +146,20 @@ public class MemberControl {
 			//이메일의 각 문자를 16진수로 변환 -> 각각에 이메일 길이값만큼 더해주기 -> 하나의 코드로 묶기
 		}
 		
-		form.setContent("로컬업 이메일 인증을 위한 링크입니다.\n"
-					   +"http://localhost/member/success?code="+code
-					   +"\n링크를 클릭하여 회원가입을 완료하세요.");
 		try {
+			InetAddress local;
+			local = InetAddress.getLocalHost();
+			form.setContent("로컬업 이메일 인증을 위한 링크입니다.\n"
+					+"http://"+local.getHostAddress()+"/member/success?code="+code
+					+"\n링크를 클릭하여 회원가입을 완료하세요.");
+	
 			memberService_sign.insert(memberVO);
-		} catch (Exception e) {
-			// 회원 등록 실패(이미 사용중인 이메일)
-			//e.printStackTrace();
-			return "login/member_fail";
-		}
-		
-		try {
 			sendEmail(form);
 		} catch (Exception e) {
-			// 메일 발송 실패
+			// 회원 등록 실패
 			//e.printStackTrace();
 			return "login/member_fail";
-		}
-		
+		}		
 		
 		System.out.println("회원가입 대기 페이지 요청...");
 		System.out.println(memberVO);

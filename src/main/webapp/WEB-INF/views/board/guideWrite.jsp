@@ -62,7 +62,7 @@
 </head>
 <body class="container">
 <br><br><br>
-<h1>가이드 상세페이지 등록</h1>
+<h1>투어 등록</h1>
 <br>
 <!--
 		DB
@@ -76,7 +76,7 @@
 		게시글 번호(FK : board_no)
 -->
 
-	<form action="/guide/guideWrite?board_no=${GuideVO.board_no }" method="post"
+	<form method="post"
 		enctype="multipart/form-data">
 		<!--투어명-->
 		<input type="text" class="form-control" name="tour_title" id="tour_title" placeholder="투어명"> <br>
@@ -94,11 +94,11 @@
 		<!--투어 이미지-->
 		<input type="file" name="tour_imgs" id="tour_imgs" id="tour_imgs"> <br>
 		<!--게시글 번호 TEST 후 hide 처리-->
-			<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="모두 머지 할시 히든처리">
+			<input type="hidden" name="board_no" value="${board_no }" placeholder="모두 머지 할시 히든처리">
 		<br>
 		<!--투어 등록하기-->
-		
-			<input type="submit" class="btn btn-danger" id="tour_submit" value="투어 등록하기">
+		<!-- <button type="button" id="tour_submit" class="btn btn-danger">투어 등록하기</button> -->
+		<input type="button" class="btn btn-danger" id="tour_submit" value="투어 등록하기">
 	
 		<br>
 		<br>

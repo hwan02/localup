@@ -65,7 +65,8 @@ public class GuideController {
 	//가이드 상세 페이지 등록 폼보기
 	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
 	public String guideWriteGET(Integer board_no, Model model) throws Exception {
-		model.addAttribute("GuideVO",guideService.list(board_no));
+		model.addAttribute("board_no",board_no);
+		//model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guideWrite";
 	}
 

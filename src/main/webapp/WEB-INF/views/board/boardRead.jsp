@@ -431,7 +431,7 @@
 	<button type="button" id="modBtn">수정</button>
 	<button type="button"id="delBtn">삭제</button>
 	<button id="mainBtn">메인으로</button>
-	<a href="/guide/guideDetailPage?board_no=${boardVO.board_no }&member_eamil=${boardVO.member_email}"><button type="button">투어신청</button></a>
+	<a href="/guide/guideDetailPage?board_no=${boardVO.board_no }&member_eamil=${member_email}"><button type="button">투어신청</button></a>
 	<!--가이드 일때만 투어 등록하기-->
 <%-- 	<a href="/guide/guideWrite?board_no=${boardVO.board_no}"> --%>
 	<input type="button" value="투어 등록" id="insertTour">

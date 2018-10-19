@@ -23,12 +23,13 @@
 			//alert('dddd');
 			var email = $('#writeEmail').val();
 			var login_email = $('#login_email').val();
+			
 			if(email != login_email){
 				alert('이 게시글을 작성한 사용자만 수정할 수 있습니다');
 			}else{
 				self.location="/guide/guideUpdate?tour_no=${GuideVO.tour_no}"; //수정폼으로 이동
 			}
-		}); //수정 버튼
+ 		}); //수정 버튼
 	});
 			
 // 	$('#tourUpdate').click(function(){//('click','li button',function(){

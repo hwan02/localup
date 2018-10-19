@@ -55,8 +55,9 @@ public class GuideController {
 	//가이드 상세 페이지 (작성자 : rys)
 	//가이드 상세 페이지 폼 보기
 	@RequestMapping("guideDetailPage")
-	public String guideDetailPage(Integer board_no, Model model,HttpSession session) throws Exception {
+	public String guideDetailPage(Integer board_no, Model model,HttpSession session,String member_email) throws Exception {
 		session.getAttribute("member_email");
+		model.addAttribute("writeEmail",member_email);
 		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guide";
 	}
@@ -77,14 +78,10 @@ public class GuideController {
 		guideVO.setTour_img(savedName);
 		
 		guideService.insert(guideVO);
-		return "redirect: /guide/main";
+		return "redirect:/index";
 	}
 	
-	//가이드 상세 페이지 등록 ==이동==> 페인페이지
-	@RequestMapping("main")
-	public String main() {
-		return "main/main";
-	}
+
 	
 	//이미지 업로드
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {

@@ -343,6 +343,18 @@
 			
 		}); //삭제 버튼
 		
+		$('#insertTour').click(function(){
+			var email = $('#boardCont input[name=member_email]').val();
+			var login_email = $('#login_email').val();
+			if(email != login_email){
+				alert('투어등록은 작성한 사용자만 수정할 수 있습니다');
+			}else{
+				//alert('click'+board_no);
+				self.location="/guide/guideWrite?board_no=${boardVO.board_no}";
+			}
+			
+		}); //삭제 버튼
+		
 		$('#likePlus').click(function(){
 			$('#likePlus').hide();
 			$('#likeMinus').show();
@@ -419,9 +431,10 @@
 	<button type="button" id="modBtn">수정</button>
 	<button type="button"id="delBtn">삭제</button>
 	<button id="mainBtn">메인으로</button>
-	<a href="/guide/guideDetailPage?board_no=${boardVO.board_no }"><button type="button">투어신청</button></a>
+	<a href="/guide/guideDetailPage?board_no=${boardVO.board_no }&member_eamil=${boardVO.member_email}"><button type="button">투어신청</button></a>
 	<!--가이드 일때만 투어 등록하기-->
-	<a href="/guide/guideWrite?board_no=${boardVO.board_no}"><input type="button" value="투어 등록"></a>  
+<%-- 	<a href="/guide/guideWrite?board_no=${boardVO.board_no}"> --%>
+	<input type="button" value="투어 등록" id="insertTour">
 
 	<hr>
 	<!-- 댓글 입력폼 -->

@@ -18,6 +18,17 @@
 		}else if(msg == "upfail"){
 			alert("등록 실패 :(");
 		}
+		
+		$('#tourUpdate').click(function(){
+			//alert('dddd');
+			var email = $('#writeEmail').val();
+			var login_email = $('#login_email').val();
+			if(email != login_email){
+				alert('이 게시글을 작성한 사용자만 수정할 수 있습니다');
+			}else{
+				self.location="/guide/guideUpdate?tour_no=${GuideVO.tour_no}"; //수정폼으로 이동
+			}
+		}); //수정 버튼
 	});
 			
 // 	$('#tourUpdate').click(function(){//('click','li button',function(){
@@ -28,11 +39,14 @@
 // 			return;
 // 		}
 // 	});
+
 </script>
 </head>
 <body class="container">
 <br><br><br>
-<h1>가이드 상세페이지</h1>
+<h1>투어신청</h1>	
+	<input type="hidden" name="writeEmail" value="${writeEmail }" id="writeEmail"><br>
+	<input type="hidden" name="login_email" value="${member_email }" id="login_email"><br>
 
 <!--
 		DB
@@ -83,7 +97,9 @@
 	<!--게시글 상페이지로 이동하기-->
 	<a href="/board/read?board_no=${GuideVO.board_no }"><input type="button" class="btn btn-success" value="게시글 상세페이지"></a> 
 	<!-- 게시글 상페이지 수정폼 이동하기 -->
-	<a href="/guide/guideUpdate?tour_no=${GuideVO.tour_no}"><input type="button" class="btn btn-warning" id="tourUpdate" value="투어 수정"></a>
+	<%-- <a href="/guide/guideUpdate?tour_no=${GuideVO.tour_no}" id="tourUpdate"> --%>
+		<input type="button" class="btn btn-warning"  value="투어 수정" id="tourUpdate">
+	<!-- </a> -->
 	<!--게시글 번호 TEST 후 hide 처리-->
 	<input type="hidden" value="${GuideVO.board_no }">
 	<br><br><br><br>

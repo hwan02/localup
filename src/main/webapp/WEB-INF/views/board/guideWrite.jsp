@@ -35,7 +35,7 @@
 				alert("날짜 다시입력 하세요 ;)" );
 				$('#tour_edate').val("");
 				$('#tour_edate').focus();
-			}else if($("#tour_pay").val().trim()==''){
+			}else if(!payExp.test($("#tour_pay").val()) ){
 				alert("투어금액 입력하세요");
 				$("#tour_pay").val("");
 				$("#tour_pay").focus("");
@@ -47,10 +47,7 @@
 				alert("이미지가 없습니다.");
 				$("#tour_imgs").val("");
 				$("#tour_imgs").focus("");
-			}
-			
-			
-			else{
+			}else{
 				alert("업로드 성공");
 				$("form").attr("action","/guide/guideWrite");
 				$('form').submit();		
@@ -79,7 +76,7 @@
 		게시글 번호(FK : board_no)
 -->
 
-	<form action="" method="post"
+	<form action="/guide/guideWrite?board_no=${GuideVO.board_no }" method="post"
 		enctype="multipart/form-data">
 		<!--투어명-->
 		<input type="text" class="form-control" name="tour_title" id="tour_title" placeholder="투어명"> <br>
@@ -90,7 +87,7 @@
 		<input type="text"  class="form-control" name="tour_edate" id="tour_edate" placeholder="예) 투어 끝나는날짜 : 2018-08-17">
 		<br>
 		<!--투어 금액-->
-		<input type="text" class="form-control" name="tour_pay"  placeholder="투어금액"> <br>
+		<input type="text" class="form-control" name="tour_pay" id="tour_pay" placeholder="투어금액"> <br>
 		<!--투어 내용-->
 		<textarea class="form-control" rows="10" cols="10" name="tour_cont" id="tour_cont" placeholder="투어내용"></textarea>
 		<br>
@@ -100,7 +97,10 @@
 			<input type="hidden" name="board_no" value="${GuideVO.board_no }" placeholder="모두 머지 할시 히든처리">
 		<br>
 		<!--투어 등록하기-->
-		<input type="button" class="btn btn-danger" id="tour_submit" value="투어 등록하기"> <br>
+		
+			<input type="submit" class="btn btn-danger" id="tour_submit" value="투어 등록하기">
+	
+		<br>
 		<br>
 	</form>
 

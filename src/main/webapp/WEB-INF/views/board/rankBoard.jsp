@@ -18,6 +18,7 @@
 </style>
 </head>
 <body>
+<br><br>
 	<h2>랭킹</h2>
 	맛집<hr align="left" style="border: solid 2px #00ff80;" width="200px">
 	<c:forEach items="${restaurant }" var="boardVO" varStatus="status">

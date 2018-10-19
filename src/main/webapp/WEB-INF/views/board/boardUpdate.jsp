@@ -52,6 +52,7 @@
 </style>
 </head>
 <body>
+	<br><br>
 	<!-- 게시글 내용 -->
 	<form name="boardCont" id="boardCont" enctype="multipart/form-data" action="/board/update" method="post">
 		<input type="text" name="board_no" value="${boardVO.board_no }" id="board_no"><br>

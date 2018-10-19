@@ -25,6 +25,11 @@ public class GuideServiceImpl implements GuideService{
 	public GuideVO list(Integer board_no) throws Exception {
 		return guideDAO.list(board_no);
 	}
+	
+	@Override
+	public GuideVO myApplyGuideUpdate(Integer tour_no) throws Exception{
+		return guideDAO.myApplyGuideUpdate(tour_no);
+	}
 
 	@Override
 	public List<GuideVO> myApplySchedule(Date tour_edate) throws Exception {

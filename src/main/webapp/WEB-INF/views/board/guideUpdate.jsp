@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../include/header.jsp"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,35 +25,41 @@
 	});
 </script>
 </head>
-<body>
-	<h1>가이드 상세페이지 수정폼</h1>
-	<hr>
+<body class="container">
+<br><br><br>
+	<h1>투어 수정</h1>
+	<br>
+
 	<form action="" method="post">
 		<!--투어 번호 TEST 후 hide 처리-->
-		<input type="hidden" name="tour_no" value="${GuideVO.tour_no}">
+		<input type="hidden" class="form-control" name="tour_no" value="${GuideVO.tour_no}">
 		<label>투어명</label>
 		<br>
-		<input type="text" name="tour_title" value="${GuideVO.tour_title}">
+		<input type="text" class="form-control" name="tour_title" value="${GuideVO.tour_title}">
 		<br>
-		<label>투어 시작일시</label> <label>투어 종료일시</label>
+		<label>투어 시작일시</label> 
 		<br>
 		<!--투어 시작일시(날짜)-->
-		<input type="text" name="tour_sdate" value="${GuideVO.tour_sdate}"> ~
+		<input type="text" class="form-control" name="tour_sdate" value="${GuideVO.tour_sdate}">
+    	<br>
+    	<label>투어 종료일시</label>
+    	<br>
     	<!--투어 종료일시(날짜)-->
-		<input type="text" name="tour_edate" value="${GuideVO.tour_edate}">
+		<input type="text" class="form-control" name="tour_edate" value="${GuideVO.tour_edate}">
 		<br>
 		<!--투어 금액-->
 		<label>투어 금액</label>
 		<br>
-		<input type="text" name="tour_pay" value="${GuideVO.tour_pay}">
+		<input type="text" class="form-control" name="tour_pay" value="${GuideVO.tour_pay}">
 		<br>
 		<!--투어 내용-->
 		<label>투어 내용</label>
 		<br>
-		<textarea rows="10" cols="10" name="tour_cont">${GuideVO.tour_cont}</textarea>
+		<textarea class="form-control" rows="10" cols="10" name="tour_cont">${GuideVO.tour_cont}</textarea>
 		<br>
 <%-- 		<a href="/guide/guideDetailPage?board_no=${GuideVO.board_no}"><input type="button" id="update" value="수정"></a> <input type="button" id="delete" value="삭제"> --%>
-		<input type="button" id="update" value="수정"> <input type="button" id="delete" value="삭제">
+		<input type="button" class="btn btn-warning" id="update" value="수정"> <input type="button" class="btn btn-danger" id="delete" value="삭제">
 	</form>
+	<br><br>
 </body>
 </html>

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,14 +55,18 @@ public class GuideController {
 	//가이드 상세 페이지 (작성자 : rys)
 	//가이드 상세 페이지 폼 보기
 	@RequestMapping("guideDetailPage")
-	public String guideDetailPage(Integer board_no, Model model) throws Exception {
+	public String guideDetailPage(Integer board_no, Model model,HttpSession session,String member_email) throws Exception {
+		session.getAttribute("member_email");
+		model.addAttribute("writeEmail",member_email);
 		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guide";
 	}
 	
 	//가이드 상세 페이지 등록 폼보기
 	@RequestMapping(value="guideWrite",method=RequestMethod.GET)
-	public String guideWriteGET() throws Exception {
+	public String guideWriteGET(Integer board_no, Model model) throws Exception {
+		model.addAttribute("board_no",board_no);
+		//model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guideWrite";
 	}
 
@@ -74,14 +79,10 @@ public class GuideController {
 		guideVO.setTour_img(savedName);
 		
 		guideService.insert(guideVO);
-		return "redirect: /guide/main";
+		return "redirect:/index";
 	}
 	
-	//가이드 상세 페이지 등록 ==이동==> 페인페이지
-	@RequestMapping("main")
-	public String main() {
-		return "main/main";
-	}
+
 	
 	//이미지 업로드
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
@@ -109,7 +110,7 @@ public class GuideController {
 		}else { //수정 실패
 			attr.addFlashAttribute("msg","upfail");
 		}//if ~ else
-		return "redirect:guideDetailPage";
+		return "redirect:/index";
 	}
 	
 	//가이드 상세 페이지 DB삭제 요청
@@ -127,7 +128,9 @@ public class GuideController {
 	@RequestMapping("myApply")
 	public String myApply(String member_email,Model model) throws Exception{
 		model.addAttribute("payList2",payInfoService.payList2(member_email));
-		//model.addAttribute("GuideVO",guideService.list(board_no));
+		
+		System.out.println(model.addAttribute("payList2",payInfoService.payList2(member_email)));
+//		model.addAttribute("myApplyGuideUpdate",guideService.myApplyGuideUpdate(tour_no));
 		return "my/myApply";
 	}
 

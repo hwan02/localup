@@ -22,6 +22,7 @@
 
 </head>
 <body class="container">
+	<br><br>
 	<form action="/member/myUpdate" method="post">
 	<!--메뉴 클릭시 사이드바 생성-->
 	<div id="main">
@@ -34,13 +35,14 @@
 
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="/member/myUpdate?member_email=${memberVO.member_email}">회원정보 변경</a> 
-		<a href="/board/myWrite?member_email=${memberVO.member_email}">전체 게시글 보기</a> 
-		<a href="/guide/myApplySchedule?member_email=${memberVO.member_email}">투어예정</a>
-		<a href="/guide/myApply?member_email=${memberVO.member_email}">투어 신청현황</a>  
-		<a href="/guide/myApplyPast?member_email=${memberVO.member_email}">완료 투어</a> 
+		<a href="/member/myUpdate?member_email=${member_email}">회원정보 변경</a> 
+		<a href="/board/myWrite?member_email=${member_email}">전체 게시글 보기</a> 
+		<a href="/guide/myApplySchedule?member_email=${member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${member_email}">투어 신청현황</a>  
+		<a href="/guide/myApplyPast?member_email=${member_email}">완료 투어</a>
+		<a href="/member/myFan?member_email_guide=${member_email }">팔로워</a>
+		<a href="/member/myCreate?member_email_sub=${member_email }">팔로잉</a>
 	</div>
-	<br>
 	<div class="container">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -139,9 +141,10 @@
       	<textarea class="form-control" name="member_intro" rows="5" id="comment" name="text">${memberVO.member_intro}</textarea>
     	</div>
 			
-		
 		<div class="btn-group">
-  			<label style="display: none;" id="updateDIV"><button id="updateBT" class="btn btn-primary">수정</button></label> 
+  			<label style="display: none;" id="updateDIV">
+  				<button id="updateBT" class="btn btn-primary">수정</button>
+  			</label> 
   			<label><button type="reset" class="btn btn-primary">취소</button></label> 
   			<label><button type="button" id="deleteBT" class="btn btn-primary">탈퇴</button></label> 
 		</div>

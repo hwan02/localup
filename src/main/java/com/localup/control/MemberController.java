@@ -43,21 +43,21 @@ public class MemberController {
 	@RequestMapping(value="myUpdate", method=RequestMethod.POST)
 	public String myUpdatePOST(MemberVO memberVO)throws Exception{
 		memberService.update(memberVO);		//수정작업
-		return "redirect:myUpdate";		//수정작업확인	
+		return "redirect:/index";		//수정작업확인	
 	}
 	
 	//회원 탈퇴시 ==이동==> 메인페이지
 	@RequestMapping(value="delete", method=RequestMethod.POST)
 	public String delete(@RequestParam("member_email") String member_email) throws Exception{
 		memberService.delete(member_email);
-		return "redirect:/member/main";
+		return "redirect:/index";
 	}
 	
-	//메인 가상 경로 : pull 한후 메인 컨트롤러에 main.jsp 가는 경로가 없으므로 생성함
-	@RequestMapping(value="main", method=RequestMethod.GET)
-	public String main() throws Exception{
-		return "main/main";
-	}
+//	//메인 가상 경로 : pull 한후 메인 컨트롤러에 main.jsp 가는 경로가 없으므로 생성함
+//	@RequestMapping(value="main", method=RequestMethod.GET)
+//	public String main() throws Exception{
+//		return "main/main";
+//	}
 	
 	//사용자정보 페이지 폼 보기
 	/*@RequestMapping("mInfo")
@@ -71,9 +71,14 @@ public class MemberController {
 	@RequestMapping(value="mInfo",method=RequestMethod.GET)
 	//public String mInfoGET(Model model,String member_email, SubVO subVO, HttpSession session) throws Exception {
 	public String mInfoGET(Model model, SubVO subVO, HttpSession session) throws Exception {
+		String member_email_sub = (String) session.getAttribute("member_email");
+		System.out.println("login_mail>>>"+member_email_sub);
+		
 		String sub_guide = subVO.getMember_email_guide();
 		//memberService.subCheck(member_email_sub, member_email_guide)
-		int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
+		
+		//int subInfo = memberService.subCheck(subVO.getMember_email_sub(), sub_guide);
+		int subInfo = memberService.subCheck(member_email_sub, sub_guide);
 		
 		System.out.println("subInfo>>>>"+subInfo);
 		
@@ -98,7 +103,7 @@ public class MemberController {
 	
 	//구독하기
 	@RequestMapping(value="addSub",method=RequestMethod.POST)
-	public @ResponseBody int addSub(Model model,String member_email_guide,SubVO subVO) throws Exception {
+	public @ResponseBody int addSub(Model model,String member_email_guide,SubVO subVO,HttpSession session) throws Exception {
 		memberService.addSub(subVO);
 		
 		String sub_guide = subVO.getMember_email_guide();
@@ -119,7 +124,7 @@ public class MemberController {
 	
 	//구독 취소
 	@RequestMapping(value="minusSub",method=RequestMethod.POST)
-	public @ResponseBody int minusSub(Model model,String member_email_guide,String member_email_sub, SubVO subVO) throws Exception {
+	public @ResponseBody int minusSub(Model model,String member_email_guide,String member_email_sub, SubVO subVO,HttpSession session) throws Exception {
 		memberService.minusSub(member_email_sub, member_email_guide);
 		
 		String sub_guide = subVO.getMember_email_guide();
@@ -140,14 +145,16 @@ public class MemberController {
 	
 	//내가 팔로우한 사용자들
 	@RequestMapping(value="myCreate",method=RequestMethod.GET)
-	public String myCreate(Model model, String member_email_sub) throws Exception {
+	public String myCreate(Model model, String member_email_sub,HttpSession session) throws Exception {
+		session.getAttribute("member_email");
 		model.addAttribute("creator",memberService.readGuide(member_email_sub));
 		return "/my/myCreator";
 	}
 	
 	//나를 팔로우한 사용자들
 	@RequestMapping(value="myFan",method=RequestMethod.GET)
-	public String myFan(Model model, String member_email_guide) throws Exception {
+	public String myFan(Model model, String member_email_guide,HttpSession session) throws Exception {
+		session.getAttribute("member_email");
 		model.addAttribute("member_email_sub",memberService.readSub(member_email_guide));
 		return "/my/myFan";
 	}

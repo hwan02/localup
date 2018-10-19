@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,9 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <style type="text/css">
+	body{
+		margin: 70px 50px;
+	}
 	input[type="text"]{
 		display: inline-block;
 		/* border: 1px solid #ccc; */
@@ -24,7 +28,17 @@
     	resize: vertical;
     	size: 50px;
 		height: 37px;
-		width: 400px;
+		width: 300px;
+	}
+	input[type="button"]{
+		background-color: #00ff80;
+	}
+	table{
+		width:80%;
+		margin:20px 30px;
+		border:1;
+		border-radius: 5px;
+		border: 1px solid #00ff80;
 	}
 	
 </style>
@@ -33,8 +47,8 @@
 	$(function(){
 		$('#addSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
-			//var member_email_sub = ${sessionScope.id };
-			var member_email_sub = 'localup@gmail.com';
+			var member_email_sub = $('#login_email').val();
+			//var member_email_sub = 'localup@gmail.com';
 			//alert(member_email_guide);
 			$.ajax({
 				url:'/member/addSub',
@@ -53,8 +67,8 @@
 		
 		$('#minusSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
-			//var member_email_sub = ${sessionScope.id };
-			var member_email_sub = 'localup@gmail.com';
+			var member_email_sub = $('#login_email').val();
+			//var member_email_sub = 'localup@gmail.com';
 			//alert(member_email_guide);
 			$.ajax({
 				url:'/member/minusSub',
@@ -75,13 +89,15 @@
 </script>
 </head>
 <body>
-	<h1>사용자정보</h1>
-	<hr>
+	<br><br>
+	<input type="hidden" name="login_email" id="login_email" value="${member_email }">
+	<h3>사용자정보</h3>
+	<hr size="100px" width="300px" align="left" style="border: solid 2px #00ff80;">
 	<!--회원아이디-->
-	ID: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
+	이메일: <input type="text" name="member_email" readonly value="${memberVO.member_email }">
 	<br>
 	<!--랭킹-->
-	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly>
+	랭킹(레벨/경험치) : <input type="text" name="levels_name" value="${myLevel }" readonly style="width: 220px">
 	<br>
 	
 	<!--팔로워-->
@@ -90,20 +106,23 @@
 		<%-- 로그인한 아이디가 팔로우한 테이블에 있으면 팔로워 취소버튼을 보이고
 		없으면 팔로우 버튼을 보이게 할 것 --%>
 		
+		<!-- 팔로우 수 -->
+		[<span id="countSub">${countSub }</span>]
+		
 		<c:if test="${subInfo eq 'enable'}">
-			<input type="button" name="addSub" value="팔로워" id="addSub">
+			<input type="button" name="addSub" value="팔로워" id="addSub" class="btn">
 		</c:if>
 		<c:if test="${subInfo eq 'disable'}">
-			<input type="button" name="minusSub" value="팔로워취소" id="minusSub">
+			<input type="button" name="minusSub" value="팔로워취소" id="minusSub" class="btn">
 		</c:if>
 		
-		<!-- 팔로우 수 -->
-		<div id="countSub">${countSub }</div>
-		
 		<!-- 팔로워한 사용자 목록 -->
-		<c:forEach items="${member_email_sub }" var="subVO">
-			<div id="member_email_sub">${subVO.member_email_sub }</div>
-		</c:forEach>
+		<br>팔로우한 사용자<br>
+		<div id="subPeople">
+			<c:forEach items="${member_email_sub }" var="subVO">
+				<div id="member_email_sub">${subVO.member_email_sub }</div>
+			</c:forEach>
+		</div>
 		<br><br>
 	
 	<!--업로드한 게시글 가져오기-->
@@ -111,7 +130,7 @@
 		<c:forEach items="${boardList }" var="boardVO">
 		<tr>
 			<td>${boardVO.board_no }</td>
-			<td><img src="/resources/img/${boardVO.board_img }" height="70" width="70"></td>
+			<td><img src="/resources/img/${boardVO.board_img }" height="80" width="80"></td>
 			<td><a href="/board/read?board_no=${boardVO.board_no }">${boardVO.board_title }</a></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.board_date }"/></td>
 		</tr>

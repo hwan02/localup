@@ -33,6 +33,12 @@ public class GuideDAOImpl implements GuideDAO{
 		return sqlSession.selectOne("guide.list",board_no);
 	}
 
+	//특정 가이드 상세페이지 DB가져오기
+	@Override
+	public GuideVO myApplyGuideUpdate(Integer tour_no) throws Exception {
+		return sqlSession.selectOne("guide.myApplyGuideUpdate",tour_no);
+	}
+
 	@Override
 	public List<GuideVO> myApplySchedule(Date tour_edate) throws Exception {
 		//board_no = 1;

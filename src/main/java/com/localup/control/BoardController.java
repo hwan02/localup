@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class BoardController {
 		System.out.println(board_alti+board_long);
 		model.addAttribute("board_alti", board_alti);
 		model.addAttribute("board_long", board_long);
-		return "board/boardWrite";
+		return "board/boardWrite2";
 	}
 	
 	@RequestMapping(value="write", method=RequestMethod.POST) //db입력
@@ -73,7 +74,8 @@ public class BoardController {
 	
 	//-----------------test Image Upload
 	@RequestMapping(value="test", method=RequestMethod.GET) //게시글 쓰기 폼
-	public String testGET() throws Exception{
+	public String testGET(HttpSession session) throws Exception{
+		session.getAttribute("member_email");
 		return "board/testWrite";
 	}
 	
@@ -102,7 +104,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="read", method=RequestMethod.GET) //게시글 상세페이지 --> http://localhost/board/read?board_no=2
-	public String read(int board_no,Model model) throws Exception{
+	public String read(int board_no,Model model,HttpSession session) throws Exception{
+		session.getAttribute("member_email");
 		model.addAttribute("boardVO",boardService.boarRead(board_no));
 		model.addAttribute("board_like",boardService.likeCount(board_no));
 		model.addAttribute("replyCnt",replyService.count(board_no));

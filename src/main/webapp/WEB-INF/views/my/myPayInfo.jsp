@@ -21,26 +21,7 @@
 	<h1>결제내역 조회</h1>
 	<hr>	
 	<form action=""   method="post">	
-	<c:forEach items="${PayInfoVO}" var="PayInfoVO">
-<%-- 	<c:forEach items="${GuideVO}" var="GuideVO"> --%>
-	<!-- 	투어번호 -->
-<%-- 	<input type="hidden" value="${GuideVO.tour_no}"> --%>
-<!-- 		<table border="1" cellpadding="5" class="paypaypay"> -->
-<!-- 			<tr> -->
-<!-- 				<th>투어명</th> -->
-<!-- 				<th>투어 시작 날짜</th> -->
-<!-- 				<th>투어 종료 날짜</th> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				투어명  --> 
-<%--  				<td><input type="text" value="${GuideVO.tour_title}" readonly></td> --%>
-<!--  								시작날짜 -->
-<%-- 				<td><input type="text" value="${GuideVO.tour_sdate}" readonly></td> --%>
- <!-- 				종료날짜 --> 
-<%-- 				<td><input type="text" value="${GuideVO.tour_edate}" readonly></td> --%>
-<!-- 			</tr> -->
-<!-- 		</table> -->
-		
+	<c:forEach items="${PayInfoVO}" var="PayInfoVO">		
 		게시글번호
 		<input type="text" name="board_no" value="${PayInfoVO.board_no}">
 		<br>
@@ -58,10 +39,10 @@
 			
 			<tr>
 				<!-- 투어인원 -->
-				<td><input type="text" value="${PayInfoVO.pay_num}" readonly></td>
+				<td><input type="text" id="pay_num" value="${PayInfoVO.pay_num}" readonly></td>
 
 				<!--투어금액 -->
-				<td><input type="text" value="${PayInfoVO.pay_pay}" readonly></td>
+				<td><input type="text" id="pay_pay" value="${PayInfoVO.pay_pay}" readonly></td>
 
 				<!--투어 결제수단 -->
 				<td><input type="text" value="${PayInfoVO.pay_way}" readonly></td>

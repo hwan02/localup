@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>투어 결제</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -341,15 +342,16 @@ $(function() {
 	});
 </script>
 </head>
-<body>
+<body class="container">
+	<br>
 	<label>카드</label>
 	<br>
-	<input type="button" id="KBcard" value="국민카드">
-	<input type="button" id="Kakaocard" value="카카오카드">
-	<input type="button" id="KEBHanacard" value="KEB하나카드">
+ 	<input type="button" class="btn btn-warning" id="KBcard" value="국민카드">
+	<input type="button"  class="btn btn-success" id="KEBHanacard" value="KEB하나카드">
+	<input type="button" class="btn btn-warning" id="Kakaocard" value="카카오카드">
 	<br>
 	<!--국민카드-->
-	<table border="1" cellpadding="5"  id="KBcard_NumberInput" style="display: none;">
+	<table border="1" cellpadding="5" id="KBcard_NumberInput" style="display: none;">
 		<tr>
 			<td>KB 카드번호</td>
 			<td><input type="text" id="KBcard_Number" autofocus="autofocus"  placeholder="'-' 하이픈 사용하여 카드번호 입력"  size="25" style="display: none;"></td>
@@ -405,9 +407,9 @@ $(function() {
 	</table>
 	<br>
 	
-	<input type="button" id="Shinhancard" value="신한카드">
-	<input type="button" id="nonghyupcard" value="농협카드">
-	<input type="button" id="Kbankcard" value="케이뱅크 카드">	
+	<input type="button" class="btn btn-primary" id="Shinhancard" value="신한카드">
+	<input type="button" class="btn btn-warning" id="nonghyupcard" value="농협카드">
+	<input type="button" class="btn btn-danger" id="Kbankcard" value="케이뱅크 카드">	
 	<br>
 	<!--신한카드-->
 	<table border="1" cellpadding="5"  id="Shinhancard_NumberInput" style="display: none;">
@@ -479,9 +481,9 @@ $(function() {
 
 	<label>계좌</label>
 	<br>	
-	<input type="button" id="KBbank" value="국민은행">
-	<input type="button" id="Kakaobank" value="카카오뱅크">
-	<input type="button" id="KEBHanabank" value="KEB하나은행">
+	<input type="button" class="btn btn-warning" id="KBbank" value="국민은행">
+	<input type="button" class="btn btn-success" id="KEBHanabank" value="KEB하나은행">
+	<input type="button" class="btn btn-warning" id="Kakaobank" value="카카오뱅크">
 	<br>
 	<!--국민은행-->
 	<div>
@@ -511,9 +513,9 @@ $(function() {
 		</div>
 	<br>
 
-	<input type="button" id="Shinhanbank" value="신한은행">
-	<input type="button" id="nonghyupbank" value="농협은행">
-	<input type="button" id="Kbank2" value="케이뱅크">	
+	<input type="button" class="btn btn-primary" id="Shinhanbank" value="신한은행">
+	<input type="button" class="btn btn-warning" id="nonghyupbank" value="농협은행">
+	<input type="button" class="btn btn-danger" id="Kbank2" value="케이뱅크">	
 	<br>
 	<!--신한은행-->
 	<div>

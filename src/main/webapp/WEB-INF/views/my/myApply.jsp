@@ -39,11 +39,11 @@
 	<c:forEach items="${payList2}" var="PayInfoVO">
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="/member/myUpdate?member_email=${PayInfoVO.member_email}">회원정보 변경</a>
-		<a href="/board/myWrite?member_email=${PayInfoVO.member_email}">전체 게시글 보기</a>
-		<a href="/guide/myApplySchedule?member_email=${PayInfoVO.member_email}">투어예정</a>
-		<a href="/guide/myApply?member_email=${PayInfoVO.member_email}">투어신청 조회</a>  
-		<a href="/guide/myApplyPast?member_email=${PayInfoVO.member_email}">완료 투어</a> 
+		<a href="/member/myUpdate?member_email=${member_email}">회원정보 변경</a> 
+		<a href="/board/myWrite?member_email=${member_email}">전체 게시글 보기</a> 
+		<a href="/guide/myApplySchedule?member_email=${member_email}">투어예정</a>
+		<a href="/guide/myApply?member_email=${member_email}">투어 신청현황</a>  
+		<a href="/guide/myApplyPast?member_email=${member_email}">완료 투어</a> 
 		<a href="/member/myFan?member_email_guide=${member_email }">팔로워</a>
 		<a href="/member/myCreate?member_email_sub=${member_email }">팔로잉</a>
 	</div>

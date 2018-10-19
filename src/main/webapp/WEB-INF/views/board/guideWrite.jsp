@@ -35,10 +35,10 @@
 				alert("날짜 다시입력 하세요 ;)" );
 				$('#tour_edate').val("");
 				$('#tour_edate').focus();
-			}else if(!payExp.test($("#tour_pay").val()) ){
+			/* }else if(!payExp.test($("#tour_pay").val()) ){
 				alert("투어금액 입력하세요");
 				$("#tour_pay").val("");
-				$("#tour_pay").focus("");
+				$("#tour_pay").focus(""); */
 			}else if($("#tour_cont").val().trim()==''){
 				alert("투어내용 입력하세요");
 				$("#tour_cont").val("");
@@ -87,7 +87,7 @@
 		<input type="text"  class="form-control" name="tour_edate" id="tour_edate" placeholder="예) 투어 끝나는날짜 : 2018-08-17">
 		<br>
 		<!--투어 금액-->
-		<input type="text" class="form-control" name="tour_pay" id="tour_pay" placeholder="투어금액"> <br>
+		<input type="number" class="form-control" name="tour_pay" id="tour_pay" placeholder="투어금액"> <br>
 		<!--투어 내용-->
 		<textarea class="form-control" rows="10" cols="10" name="tour_cont" id="tour_cont" placeholder="투어내용"></textarea>
 		<br>

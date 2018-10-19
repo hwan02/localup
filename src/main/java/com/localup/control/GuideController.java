@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,8 @@ public class GuideController {
 	//가이드 상세 페이지 (작성자 : rys)
 	//가이드 상세 페이지 폼 보기
 	@RequestMapping("guideDetailPage")
-	public String guideDetailPage(Integer board_no, Model model) throws Exception {
+	public String guideDetailPage(Integer board_no, Model model,HttpSession session) throws Exception {
+		session.getAttribute("member_email");
 		model.addAttribute("GuideVO",guideService.list(board_no));
 		return "board/guide";
 	}
@@ -110,7 +112,7 @@ public class GuideController {
 		}else { //수정 실패
 			attr.addFlashAttribute("msg","upfail");
 		}//if ~ else
-		return "redirect:guideDetailPage";
+		return "redirect:/index";
 	}
 	
 	//가이드 상세 페이지 DB삭제 요청
@@ -126,8 +128,10 @@ public class GuideController {
 	
 	//가이드 신청현황폼 보기
 	@RequestMapping("myApply")
-	public String myApply(String member_email,Model model,Integer tour_no) throws Exception{
+	public String myApply(String member_email,Model model) throws Exception{
 		model.addAttribute("payList2",payInfoService.payList2(member_email));
+		
+		System.out.println(model.addAttribute("payList2",payInfoService.payList2(member_email)));
 //		model.addAttribute("myApplyGuideUpdate",guideService.myApplyGuideUpdate(tour_no));
 		return "my/myApply";
 	}

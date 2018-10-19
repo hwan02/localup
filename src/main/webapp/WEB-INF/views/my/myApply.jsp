@@ -83,7 +83,7 @@
 					<td>${payList2.member_email}</td>
 					<td>${payList2.pay_num }</td>
 					<td>${payList2.pay_pay}</td>
-					<td>${payList2.pay_state }</td>	
+					<td>${payList2.pay_state }</td>		
 			
 					
 					<!--가이드 상세페이지 이동하기-->

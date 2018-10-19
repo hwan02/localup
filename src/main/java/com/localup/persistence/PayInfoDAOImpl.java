@@ -61,7 +61,7 @@ public class PayInfoDAOImpl implements PayInfoDAO{
 	public List<PayInfoVO> myPayInfoAll(int start, int max,String member_email) {
 		//RowBounds rb = new RowBounds(skip,max);
 		//===>rb를 통해 조회할 행의 범위설정이 가능 : start=스킵할 행의수, max=조회할 최대 행의수
-		member_email="localup@gmail.com";
+		//member_email="localup@gmail.com";
 		RowBounds rb = new RowBounds(start,max);
 		return sqlSession.selectList("payInfo.payList2",member_email ,rb);
 		//								호출 id			

@@ -12,7 +12,6 @@
 <script type="text/javascript">
  
     $(function(){
-    	alert("1");
         $("#sendBtn").click(function(){
             sendMessage();
         });
@@ -27,7 +26,6 @@
     
     
     function sendMessage(){
-    	alert("2");
             //websocket으로 메시지를 보내겠다.
             sock.send($("#message").val());
     }

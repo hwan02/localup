@@ -10,9 +10,9 @@ connect();
         var data = evt.data;
           console.log(data)
           // String을 JSON 형태로 
-          // var msgResult = JSON.parse(data)        
-          //console.log("msgResult="+msgResult)             
-          appendMessage(data);
+           var msgResult = JSON.parse(data)        
+          console.log("msgResult="+msgResult)             
+          appendMessage(msgResult);
        };
        sock.onclose = function() {
            //appendMessage("연결을 끊었습니다.");
@@ -21,11 +21,9 @@ connect();
    }
    
  function appendMessage(msg) {  
-	 alert("appendMessage of msg="+msg)	
        if(msg == '' || msg == undefined){
           return false;
        }else{
-    	   alert("message="+msg);
 /*            $.ajax({
                type : 'post',
                data : msg,

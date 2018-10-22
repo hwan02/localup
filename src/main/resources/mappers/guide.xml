@@ -34,7 +34,7 @@
 		tour_title,tour_sdate,tour_edate,board_no
 		from tour
 		where sysdate>tour_edate 
-	</select>
+	</select> 
 	
 	<!--가이드 상세페이지 DB수정 -->
 	<update id="update">

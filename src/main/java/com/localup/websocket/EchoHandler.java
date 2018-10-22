@@ -17,7 +17,7 @@ public class EchoHandler extends TextWebSocketHandler{
     
     //세션을 모두 저장한다.
     //방법 1 :  1:1 채팅
-//    private Map<String, WebSocketSession> sessions = new HashMap<String, WebSocketSession>();
+    private Map<String, WebSocketSession> sessions = new HashMap<String, WebSocketSession>();
     
     //방법 2 : 전체 채팅
     private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
@@ -32,12 +32,11 @@ public class EchoHandler extends TextWebSocketHandler{
     public void afterConnectionEstablished(WebSocketSession session)
             throws Exception {
         //맵을 쓸때 방법
-//        sessions.put(session.getId(), session);
+        sessions.put(session.getId(), session);
         //List쓸때 방법
         sessionList.add(session);
          //0번째 중괄호에 session.getId()을 넣으라는뜻
-        logger.info("{} 연결됨", session.getId()); 
-        
+        logger.info("{} 연결됨", session.getId());        
     }
     
     /**
@@ -46,16 +45,17 @@ public class EchoHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session,
             TextMessage message) throws Exception {
-        
+        System.out.println("3");
         //0번째에 session.getId() 1번째에 message.getPayload() 넣음
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
         System.out.println(session.getId());
         System.out.println(message.getPayload());
     //    logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-        
+        //gson json 형태를 이용할 수 있게 
+        //json 자바스크립트인데 자바영역에서도 사용할 수 있게 
         //연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
         for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage("echo:" + message.getPayload()));
+            sess.sendMessage(new TextMessage(message.getPayload()));
         }
         
         // 맵 방법.
@@ -67,8 +67,6 @@ public class EchoHandler extends TextWebSocketHandler{
             
         }*/
         
-        //연결되어 있는 모든 클라이언트들에게 메시지를 전송한다.
-//        session.sendMessage(new TextMessage("echo:" + message.getPayload()));
     }
     
     /**

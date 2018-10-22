@@ -10,7 +10,7 @@
 					  member_pref=#{member_pref},
 					  member_intro=#{member_intro}
 					  where member_email=#{member_email}
-  </update>
+	</update>
   
   	<!-- 전체회원정보 조회 -->
 <!-- 	<select id="myUpdateCheck" resultType="MemberVO"> -->

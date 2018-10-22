@@ -14,6 +14,7 @@
 			</div>
 		</div>	
 	</div>	
+</c:forEach>
 	<%-- <li>
 		<div class="message-card ">
 			<div
@@ -99,5 +100,5 @@
 			</div>
 		</div>
 	</li> --%>
-</c:forEach>
+
 <!-- </ul> -->

@@ -5,39 +5,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- rank.xml -->
 <mapper namespace="rank">
 
-	<!-- ºĞ¾ßº° ·©Å· º¸±â -->
+	<!-- ë¶„ì•¼ë³„ ë­í‚¹ ë³´ê¸° -->
 	<select id="categoryRank1" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no
 		from board 
-		where board_type='¸ÀÁı' and
+		where board_type='ë§›ì§‘' and
 		rownum between 1 and 3 
 		order by board_like desc
 	</select>
 	<select id="categoryRank2" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no
 		from board  
-		where board_type='±³Åë' and
+		where board_type='êµí†µ' and
 		rownum between 1 and 3 
 		order by board_like desc
 	</select>
 	<select id="categoryRank3" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no
 		from board 
-		where board_type='ÆíÀÇ½Ã¼³' and
+		where board_type='í¸ì˜ì‹œì„¤' and
 		rownum between 1 and 3 
 		order by board_like desc
 	</select>
 	<select id="categoryRank4" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no
 		from board 
-		where board_type='¼÷¹Ú' and 
+		where board_type='ìˆ™ë°•' and 
 		rownum between 1 and 3 
 		order by board_like desc
 	</select>
 	<select id="categoryRank5" resultType="boardVO">
 		select member_email,board_title,board_like,board_img,board_date,board_no
 		from board 
-		where board_type='·£µå¸¶Å©' and
+		where board_type='ëœë“œë§ˆí¬' and
 		rownum between 1 and 3 
 		order by board_like desc
 	</select>

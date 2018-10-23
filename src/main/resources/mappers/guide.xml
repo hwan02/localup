@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--ÀÛ¼ºÀÚ : rys-->
+<!--ìž‘ì„±ìž : rys-->
 <mapper namespace="guide">   
-	<!--°¡ÀÌµå »ó¼¼ ÆäÀÌÁö µî·Ï ===> DB ÀÔ·Â-->
+	<!--ê°€ì´ë“œ ìƒì„¸ íŽ˜ì´ì§€ ë“±ë¡ ===> DB ìž…ë ¥-->
 	<insert id="insert">
 		insert into tour (tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no)
 		values(tour_seq.nextval,#{tour_title},#{tour_sdate},#{tour_edate},#{tour_pay},#{tour_cont},#{tour_img},#{board_no})
@@ -12,7 +12,7 @@
 <!-- 		values(#{tour_img}) -->
 <!-- 	</insert> -->
 
-	<!-- Æ¯Á¤ °¡ÀÌµå »ó¼¼ÆäÀÌÁö °¡Á®¿À±â -->
+	<!-- íŠ¹ì • ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ ê°€ì ¸ì˜¤ê¸° -->
 	<select id="list" resultType="GuideVO">
 		select
 		tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no
@@ -20,7 +20,7 @@
 		where board_no=#{board_no}
 	</select>
 
-	<!--myApplySchedule Åõ¾î¿¹Á¤-->
+	<!--myApplySchedule íˆ¬ì–´ì˜ˆì •-->
 	<select id="myApplySchedule" resultType="GuideVO">
 		select 
 		tour_title,tour_sdate,tour_edate,board_no
@@ -28,28 +28,28 @@
 		where tour_edate>sysdate
 	</select>
 
-	<!--myApplyPast Åõ¾î¿Ï·á-->
+	<!--myApplyPast íˆ¬ì–´ì™„ë£Œ-->
 	<select id="myApplyPast" resultType="GuideVO">
 		select 
 		tour_title,tour_sdate,tour_edate,board_no
 		from tour
 		where sysdate>tour_edate 
-	</select> 
+	</select>
 	
-	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö DB¼öÁ¤ -->
+	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ DBìˆ˜ì • -->
 	<update id="update">
 		update tour
 		set tour_title=#{tour_title},tour_sdate=#{tour_sdate},tour_edate=#{tour_edate},tour_pay=#{tour_pay},tour_cont=#{tour_cont}
 		where tour_no=#{tour_no}
 	</update>
 	
-	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö DB»èÁ¦ -->
+	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ DBì‚­ì œ -->
 	<delete id="delete">
 		delete from tour
 		where tour_no=#{tour_no}
 	</delete>
 	
-	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö ¼öÁ¤Æû-->
+	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ ìˆ˜ì •í¼-->
 		<select id="myApplyGuideUpdate" resultType="GuideVO">
 		select 
 		tour_no

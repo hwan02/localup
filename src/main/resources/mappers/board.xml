@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- board.xml -->
 <mapper namespace="board">
 
-	<!-- °Ô½Ã±Û ÀÔ·Â -->
+	<!-- ê²Œì‹œê¸€ ìž…ë ¥ -->
 	<insert id="insertBoard">
 		insert into board (board_no,member_email,board_type,board_title,board_cont,board_img,board_date,board_alti,board_long) 
 					values (board_seq.nextval,#{member_email},#{board_type},#{board_title},#{board_cont},#{board_img},sysdate,#{board_alti},#{board_long})
@@ -13,34 +13,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					values (board_seq.nextval,#{member_email},#{board_type},#{board_title},#{board_cont},sysdate,#{board_alti},#{board_long}) -->
 	</insert>
 	
-	<!-- Æ¯Á¤ °Ô½Ã±Û º¸±â -->
+	<!-- íŠ¹ì • ê²Œì‹œê¸€ ë³´ê¸° -->
 	<select id="readBoard" resultType="BoardVO">
 		select board_no,member_email,board_type,board_title,board_cont,board_img,board_date,board_alti,board_long 
 		from board
 		where board_no=#{board_no}
 	</select>
 	
-	<!-- Æ¯Á¤ °Ô½Ã¹° ¼öÁ¤ -->
+	<!-- íŠ¹ì • ê²Œì‹œë¬¼ ìˆ˜ì • -->
 	<update id="updateBoard">
 		update board 
 		set board_title=#{board_title},board_cont=#{board_cont} 
 		where board_no=#{board_no}
 	</update>
 		
-	<!-- Æ¯Á¤ °Ô½Ã¹° »èÁ¦ -->
+	<!-- íŠ¹ì • ê²Œì‹œë¬¼ ì‚­ì œ -->
 	<delete id="deleteBoard">
 		delete from board where board_no=#{board_no}
 	</delete>
 	
-	<!-- °Ô½Ã¹°À» ÀÐÀ» ¶§ Á¶È¸¼ö Áõ°¡(+1) -->
+	<!-- ê²Œì‹œë¬¼ì„ ì½ì„ ë•Œ ì¡°íšŒìˆ˜ ì¦ê°€(+1) -->
 	<update id="updateViewCnt">
 		update board 
 		set board_view=board_view+1 
 		where board_no=board_no
 	</update>
 	
-	<!-- ÁÁ¾Æ¿ä ¹öÆ° -->
-	<!-- ÁÁ¾Æ¿ä ¼ö ¾÷µ¥ÀÌÆ® -->
+	<!-- ì¢‹ì•„ìš” ë²„íŠ¼ -->
+	<!-- ì¢‹ì•„ìš” ìˆ˜ ì—…ë°ì´íŠ¸ -->
 	<update id="upLike">
 		update board set board_like=board_like+1 where board_no=#{board_no}
 	</update>
@@ -49,12 +49,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update board set board_like=board_like-1 where board_no=#{board_no}
 	</update>
 	
-	<!-- ÁÁ¾Æ¿ä ¼ö Ä«¿îÆ® -->
+	<!-- ì¢‹ì•„ìš” ìˆ˜ ì¹´ìš´íŠ¸ -->
 	<select id="countLike" resultType="int">
 		select board_like from board where board_no=#{board_no}
 	</select>
 	
-	<!-- Æ¯Á¤ ¾ÆÀÌµð°¡ ¾´ ÀüÃ¼ °Ô½Ã±Û Á¶È¸ : ÀÛ¼ºÀÚ rys -->
+	<!-- íŠ¹ì • ì•„ì´ë””ê°€ ì“´ ì „ì²´ ê²Œì‹œê¸€ ì¡°íšŒ : ìž‘ì„±ìž rys -->
 	<select id="readIdBoard" resultType="boardVO">
 <!-- 		select board_no,member_email,board_type,board_title,board_cont,board_img,board_view,board_like,board_date  -->
 		select board_no,member_email,board_type,board_title,board_date,board_type 

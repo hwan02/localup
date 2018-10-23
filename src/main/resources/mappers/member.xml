@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--ÀÛ¼ºÀÚ : rys-->
+<!--ìž‘ì„±ìž : rys-->
 <mapper namespace="member">   
-  <!--È¸¿øÁ¤º¸ ¼öÁ¤-->
+  <!--íšŒì›ì •ë³´ ìˆ˜ì •-->
   <update id="myUpdate">
   	update member set member_pw=#{member_pw},
 					  member_addr=#{member_addr},
@@ -10,57 +10,57 @@
 					  member_pref=#{member_pref},
 					  member_intro=#{member_intro}
 					  where member_email=#{member_email}
-	</update>
+  </update>
   
-  	<!-- ÀüÃ¼È¸¿øÁ¤º¸ Á¶È¸ -->
+  	<!-- ì „ì²´íšŒì›ì •ë³´ ì¡°íšŒ -->
 <!-- 	<select id="myUpdateCheck" resultType="MemberVO"> -->
 <!-- 		select member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro -->
 <!-- 		from member -->
 <!-- 		order by member_email ASC -->
 <!-- 	</select> -->
 
-	<!-- Æ¯Á¤ ¾ÆÀÌµð ÀÐ±â -->
+	<!-- íŠ¹ì • ì•„ì´ë”” ì½ê¸° -->
 	<select id="read" resultType="MemberVO">
 		select member_email,member_pw,member_name,member_addr,member_tel,member_pref,member_intro
 		from member
 		where member_email=#{member_email}
 	</select>
 
-	<!-- Æ¯Á¤ ±Û¹øÈ£ »èÁ¦ -->
+	<!-- íŠ¹ì • ê¸€ë²ˆí˜¸ ì‚­ì œ -->
 	<delete id="delete">
 		delete from member
 		where member_email=#{member_email}
 	</delete>
 	
-	<!-- Æ¯Á¤ ¾ÆÀÌµð°¡ ¾´ °Ô½Ã±Û Á¶È¸ -->
+	<!-- íŠ¹ì • ì•„ì´ë””ê°€ ì“´ ê²Œì‹œê¸€ ì¡°íšŒ -->
 	<select id="readIdBoard" resultType="boardVO">
 		select board_no,member_email,board_type,board_title,board_cont,board_img,board_view,board_like,board_date 
 		from board
 		where member_email=#{member_email}
 	</select>
 	
-	<!-- ÆÈ·Î¿ì(±¸µ¶) -->
-	<!-- Æ¯Á¤ ¾ÆÀÌµð ±¸µ¶(ÆÈ·Î¿ì) -->
+	<!-- íŒ”ë¡œìš°(êµ¬ë…) -->
+	<!-- íŠ¹ì • ì•„ì´ë”” êµ¬ë…(íŒ”ë¡œìš°) -->
 	<insert id="insertSub">
 		insert into sub (member_email_sub,member_email_guide) 
 		values (#{member_email_sub},#{member_email_guide})
 	</insert>
 	
-	<!-- Æ¯Á¤ ¾ÆÀÌµð ÆÈ·Î¿ì ¼ö -->
+	<!-- íŠ¹ì • ì•„ì´ë”” íŒ”ë¡œìš° ìˆ˜ -->
 	<select id="subCount" resultType="int">
 		select count(*) 
 		from sub 
 		where member_email_guide=#{member_email_guide}
 	</select>
 	
-	<!-- Æ¯Á¤ ¾ÆÀÌµð¸¦ ÆÈ·Î¿ì ÇÑ »ç¿ëÀÚ Á¶È¸ -->
+	<!-- íŠ¹ì • ì•„ì´ë””ë¥¼ íŒ”ë¡œìš° í•œ ì‚¬ìš©ìž ì¡°íšŒ -->
 	<select id="selectSub" resultType="SubVO">
 		select member_email_sub,sub_date 
 		from sub 
 		where member_email_guide=#{member_email_guide}
 	</select>
 	
-	<!-- ·Î±×ÀÎÇÑ ¾ÆÀÌµð°¡ ÆÈ·Î¿ìÇÑ »ç¿ëÀÚÀÎÁö ¾Ë±âÀ§ÇØ-->
+	<!-- ë¡œê·¸ì¸í•œ ì•„ì´ë””ê°€ íŒ”ë¡œìš°í•œ ì‚¬ìš©ìžì¸ì§€ ì•Œê¸°ìœ„í•´-->
 	<select id="checkSub" resultType="int">
 		select count(*) 
 		from sub 
@@ -68,20 +68,20 @@
 		and member_email_guide=#{member_email_guide}
 	</select>
 	
-	<!-- Æ¯Á¤ ¾ÆÀÌµð ±¸µ¶(ÆÈ·Î¿ì)Ãë¼Ò -->
+	<!-- íŠ¹ì • ì•„ì´ë”” êµ¬ë…(íŒ”ë¡œìš°)ì·¨ì†Œ -->
 	<delete id="deleteSub">
 		delete from sub 
 		where member_email_sub=#{member_email_sub} and member_email_guide=#{member_email_guide}
 	</delete>
 	
-	<!-- ³»°¡ ÆÈ·Î¿ìÇÑ »ç¿ëÀÚµé Á¶È¸ -->
+	<!-- ë‚´ê°€ íŒ”ë¡œìš°í•œ ì‚¬ìš©ìžë“¤ ì¡°íšŒ -->
 	<select id="myGuide" resultType="SubVO">
 		select member_email_guide,sub_date 
 		from sub 
 		where member_email_sub=#{member_email_sub}
 	</select>
 	
-	<!-- »ç¿ëÀÚ°¡ ¾´ °Ô½Ã±Û Çà ¼ö Á¶È¸ -->
+	<!-- ì‚¬ìš©ìžê°€ ì“´ ê²Œì‹œê¸€ í–‰ ìˆ˜ ì¡°íšŒ -->
 	<select id="countMBord" resultType="int">
 		select count(*) 
 		from board 

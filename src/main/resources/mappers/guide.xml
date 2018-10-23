@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--ìž‘ì„±ìž : rys-->
+<!--ÀÛ¼ºÀÚ : rys-->
 <mapper namespace="guide">   
-	<!--ê°€ì´ë“œ ìƒì„¸ íŽ˜ì´ì§€ ë“±ë¡ ===> DB ìž…ë ¥-->
+	<!--°¡ÀÌµå »ó¼¼ ÆäÀÌÁö µî·Ï ===> DB ÀÔ·Â-->
 	<insert id="insert">
 		insert into tour (tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no)
 		values(tour_seq.nextval,#{tour_title},#{tour_sdate},#{tour_edate},#{tour_pay},#{tour_cont},#{tour_img},#{board_no})
@@ -12,7 +12,7 @@
 <!-- 		values(#{tour_img}) -->
 <!-- 	</insert> -->
 
-	<!-- íŠ¹ì • ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ ê°€ì ¸ì˜¤ê¸° -->
+	<!-- Æ¯Á¤ °¡ÀÌµå »ó¼¼ÆäÀÌÁö °¡Á®¿À±â -->
 	<select id="list" resultType="GuideVO">
 		select
 		tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no
@@ -20,7 +20,7 @@
 		where board_no=#{board_no}
 	</select>
 
-	<!--myApplySchedule íˆ¬ì–´ì˜ˆì •-->
+	<!--myApplySchedule Åõ¾î¿¹Á¤-->
 	<select id="myApplySchedule" resultType="GuideVO">
 		select 
 		tour_title,tour_sdate,tour_edate,board_no
@@ -28,7 +28,7 @@
 		where tour_edate>sysdate
 	</select>
 
-	<!--myApplyPast íˆ¬ì–´ì™„ë£Œ-->
+	<!--myApplyPast Åõ¾î¿Ï·á-->
 	<select id="myApplyPast" resultType="GuideVO">
 		select 
 		tour_title,tour_sdate,tour_edate,board_no
@@ -36,20 +36,20 @@
 		where sysdate>tour_edate 
 	</select> 
 	
-	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ DBìˆ˜ì • -->
+	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö DB¼öÁ¤ -->
 	<update id="update">
 		update tour
 		set tour_title=#{tour_title},tour_sdate=#{tour_sdate},tour_edate=#{tour_edate},tour_pay=#{tour_pay},tour_cont=#{tour_cont}
 		where tour_no=#{tour_no}
 	</update>
 	
-	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ DBì‚­ì œ -->
+	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö DB»èÁ¦ -->
 	<delete id="delete">
 		delete from tour
 		where tour_no=#{tour_no}
 	</delete>
 	
-	<!--ê°€ì´ë“œ ìƒì„¸íŽ˜ì´ì§€ ìˆ˜ì •í¼-->
+	<!--°¡ÀÌµå »ó¼¼ÆäÀÌÁö ¼öÁ¤Æû-->
 		<select id="myApplyGuideUpdate" resultType="GuideVO">
 		select 
 		tour_no

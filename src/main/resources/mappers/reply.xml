@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- reply.xml -->
 <mapper namespace="reply">
 
-	<!-- ëŒ“ê¸€ ì¶”ê°€ -->
+	<!-- ´ñ±Û Ãß°¡ -->
 	<insert id="insertReply">
 		insert into reply (reply_no,board_no,reply_cont,member_email,reply_date,reply_star)
 					values (reply_seq.nextval,#{board_no},#{reply_cont},#{member_email},sysdate,#{reply_star})
 	</insert>
 	
-	<!-- (íŠ¹ì •ê²Œì‹œë¬¼ì— ëŒ€í•œ)ëŒ“ê¸€ì¡°íšŒ -->
+	<!-- (Æ¯Á¤°Ô½Ã¹°¿¡ ´ëÇÑ)´ñ±ÛÁ¶È¸ -->
 	<select id="selectReply" resultType="ReplyVO">
 		select reply_no,board_no,reply_cont,member_email,reply_date,reply_star
 		from reply
@@ -19,25 +19,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by reply_no desc
 	</select>
 	
-	<!-- íŠ¹ì •ëŒ“ê¸€ ìˆ˜ì • -->
+	<!-- Æ¯Á¤´ñ±Û ¼öÁ¤ -->
 	<update id="updateReply">
 		update reply 
 		set reply_cont=#{reply_cont},reply_star=#{reply_star},reply_date=sysdate
 		where reply_no=#{reply_no}
 	</update>
 	
-	<!-- íŠ¹ì •ëŒ“ê¸€ ì‚­ì œ -->
+	<!-- Æ¯Á¤´ñ±Û »èÁ¦ -->
 	<delete id="deleteReply">
 		delete from reply where reply_no=#{reply_no}
 	</delete>
 	
-	<!-- íŠ¹ì •ê²Œì‹œë¬¼ì˜ ì´ ëŒ“ê¸€ìˆ˜ -->
+	<!-- Æ¯Á¤°Ô½Ã¹°ÀÇ ÃÑ ´ñ±Û¼ö -->
 	<select id="count" resultType="int">
 		select count(*) from reply where board_no=#{board_no}
 	</select>
 	
-	<!-- ëŒ“ê¸€ë‹¬ë¦° ê²Œì‹œë¬¼ ë²ˆí˜¸ì–»ê¸° 
-		ì™œ? ëŒ“ê¸€ ì‚­ì œì‹œ (í•´ë‹¹ê²Œì‹œë¬¼ì˜ ëŒ“ê¸€ìˆ˜ ê°ì†Œ)ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ
+	<!-- ´ñ±Û´Ş¸° °Ô½Ã¹° ¹øÈ£¾ò±â 
+		¿Ö? ´ñ±Û »èÁ¦½Ã (ÇØ´ç°Ô½Ã¹°ÀÇ ´ñ±Û¼ö °¨¼Ò)»ç¿ëÇÏ±â À§ÇØ¼­
 	-->
 	<select id="getBno" resultType="int">
 		select board_no from reply where reply_no=#{reply_no}

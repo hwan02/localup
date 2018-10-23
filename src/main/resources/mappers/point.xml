@@ -4,12 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- point.xml -->
 <!--
-	level: ì´ˆë³´ìž, íƒí—˜ìž, ì´ˆë³´ê°€ì´ë“œ, ë² í…Œëž‘ê°€ì´ë“œ, ì •ë³µìž
-	ê²Œì‹œê¸€ ìˆ˜, ì¢‹ì•„ìš” ìˆ˜
+	level: ÃÊº¸ÀÚ, Å½ÇèÀÚ, ÃÊº¸°¡ÀÌµå, º£Å×¶û°¡ÀÌµå, Á¤º¹ÀÚ
+	°Ô½Ã±Û ¼ö, ÁÁ¾Æ¿ä ¼ö
 -->
 <mapper namespace="point">
 
-	<!-- ë‚˜ì˜ ë ˆë²¨ -->
+	<!-- ³ªÀÇ ·¹º§ -->
 	<select id="myLevel" resultType="String">
 		select levels_name 
 		from levels 

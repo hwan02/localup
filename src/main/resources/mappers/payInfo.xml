@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--ì‘ì„±ì : rys-->
+<!--ÀÛ¼ºÀÚ : rys-->
 <mapper namespace="payInfo">   
-	<!--DB ì…ë ¥-->
+	<!--DB ÀÔ·Â-->
 	<insert id="insert">
-<!-- 		insert into pay (pay_no,pay_num,pay_pay,pay_way,board_no,pay_state,pay_pdate,member_email) -->
-<!-- 		values(pay_seq.nextval,#{pay_num},#{pay_pay},#{pay_way},#{board_no},#{pay_state},sysdate,#{member_email}) -->
 		insert into pay (pay_no,member_email,pay_num,pay_pay,board_no,pay_way,pay_state)
 		values(pay_seq.nextval,#{member_email},#{pay_num},#{pay_pay},#{board_no},#{pay_way},#{pay_state})
 	</insert>
 	
-<!-- 	<insert id="pay_cdate"> -->
-<!-- 		insert into pay (pay_cdate) -->
-<!-- 		values(sysdate) -->
-<!-- 	</insert> -->
 
-	<!--ê²°ì œë‚´ì—­ ì¡°íšŒ(ver : GuideVO)-->
+	<!--°áÁ¦³»¿ª Á¶È¸(ver : GuideVO)-->
 	<select id="payList" resultType="GuideVO">
 		select
 		tour_no,tour_title,tour_sdate,tour_edate,tour_pay,tour_cont,tour_img,board_no
@@ -23,7 +17,7 @@
 		where tour_no=#{tour_no}
 	</select>
 
-	<!--ê²°ì œë‚´ì—­ ì¡°íšŒ(ver : PayInfoVO)-->
+	<!--°áÁ¦³»¿ª Á¶È¸(ver : PayInfoVO)-->
 	<select id="payList2" resultType="PayInfoVO">
 		select
 		pay_no,pay_num,pay_pay,pay_way,pay_state,pay_pdate,pay_cdate,board_no,member_email
@@ -39,14 +33,14 @@
 		order by pay_no desc
 	</select>
 	
-	<!--ê²°ì œë‚´ì—­ ìˆ˜ì •-->
+	<!--°áÁ¦³»¿ª ¼öÁ¤-->
 	<update id="update">
 		update pay
 		set pay_state=#{pay_state},pay_cdate=sysdate
 		where pay_no=#{pay_no}
 	</update>
 
-	<!--ì „ì²´ í–‰ ìˆ˜ ì¡°íšŒ -->
+	<!--ÀüÃ¼ Çà ¼ö Á¶È¸ -->
 	<select id="totalCount" resultType="int">
 		select count(member_email) from pay
 	</select>

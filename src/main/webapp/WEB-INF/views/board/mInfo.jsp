@@ -45,6 +45,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		 $("#myButtons1").click(function(){
+	           alert('AJAX로 처리하고 정상 응답이면.. hide 해 준다.');
+	     $('#myModal').modal('hide')
+	        });
+
 		$('#addSub').click(function(){
 			var member_email_guide = $('input[name=member_email]').val();
 			var member_email_sub = $('#login_email').val();
@@ -115,6 +120,36 @@
 		<c:if test="${subInfo eq 'disable'}">
 			<input type="button" name="minusSub" value="팔로워취소" id="minusSub" class="btn">
 		</c:if>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+   			모달창 열기
+		</button>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+      <div class="modal-content">
+         <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">
+              채팅방
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" 
+               aria-hidden="true">x
+            </button>
+         </div>
+         <div class="modal-body">
+            내용.
+         </div>
+         <div class="modal-footer">
+          
+            <button type="button" class="btn btn-primary" id="myButtons1">
+               저장
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+               닫기
+            </button>
+         </div>
+      </div> 
+   </div> 
+</div>
 		
 		<!-- 팔로워한 사용자 목록 -->
 		<br>팔로우한 사용자<br>

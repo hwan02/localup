@@ -67,7 +67,6 @@
 		where member_email_sub=#{member_email_sub} 
 		and member_email_guide=#{member_email_guide}
 	</select>
-	
 	<!-- 특정 아이디 구독(팔로우)취소 -->
 	<delete id="deleteSub">
 		delete from sub 

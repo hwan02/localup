@@ -13,7 +13,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.localup.domain.ChatVO;
  
 public class EchoHandler extends TextWebSocketHandler{
     
@@ -43,7 +42,7 @@ public class EchoHandler extends TextWebSocketHandler{
     protected void handleTextMessage(WebSocketSession session,
             TextMessage message) throws Exception {
     	Map<String, Object> map = session.getAttributes();
-    	ChatVO chatVO = ChatVO.convertMessage(message.getPayload());
+    	//ChatVO chatVO = ChatVO.convertMessage(message.getPayload());
     	String member_email = (String) map.get("member_email");
     	/*if(chatVO.getChat_no().equals("manager")) {
             Map<String, Object> mapforReadTime = new HashMap<>();

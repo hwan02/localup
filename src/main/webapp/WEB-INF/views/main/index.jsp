@@ -5,7 +5,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=1100, initial-scale=0, shrink-to-fit=no">
+    <script>
+window.onfocus=function(){
+}
+window.onload=function(){
+ window.focus(); // 현재 window 즉 익스플러러를 윈도우 최상단에 위치
+window.moveTo(0,0); // 웹 페이지의 창 위치를 0,0 (왼쪽 최상단) 으로 고정
+window.resizeTo(1280,800); // 웹페이지의 크기를 가로 1280 , 세로 800 으로 고정(확장 및 축소)
+window.scrollTo(0,250); // 페이지 상단 광고를 바로 볼 수 있게 스크롤 위치를 조정
+}
+</script>
     <title>로컬업</title>
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -158,7 +168,7 @@
       <br>
 	<div id="mapwrap"> 
     <!-- 지도가 표시될 div -->
-	<div id="map" style="width: 100%; height: 800px;"></div>
+	<div id="map" style="width: 70%; height: 700px;left:370px;"></div>
     <!-- 지도 위에 표시될 마커 카테고리 -->
     <div class="category">
         <ul>
@@ -730,9 +740,13 @@ function replaceLoc(){
 	    <div class="option">
 	        <div>
 	            <form onsubmit="searchPlaces(); return false;">
+	            <div style="text-align:center;">
 	                키워드 : <input type="text" id="keyword" size="15">
 	                <button type="submit" class="btn btn-primary">검색하기</button> 
+	            </div>
 	            </form>
+	            <br>
+	            <br>
 	        </div>
 	    </div>
 	    <hr>

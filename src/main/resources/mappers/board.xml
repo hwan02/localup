@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 특정 아이디가 쓴 전체 게시글 조회 : 작성자 rys -->
-	<select id="readIdBoard" resultType="boardVO">
+	<select id="readIdBoard" resultType="BoardVO">
 <!-- 		select board_no,member_email,board_type,board_title,board_cont,board_img,board_view,board_like,board_date  -->
 		select board_no,member_email,board_type,board_title,board_date,board_type 
 		from board
